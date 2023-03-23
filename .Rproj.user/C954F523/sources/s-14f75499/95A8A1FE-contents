@@ -1,0 +1,112 @@
+deck[,]
+#Notation for extracting data from R objects. [row,column]
+
+head(deck)
+deck[1,1]
+deck[1,1:3]
+deck[c(1,1),1:3]
+#R will repeat if the row/column is repeated
+
+vec <- c(6, 1, 3, 6, 10, 5)
+vec[1:3]
+#This syntax will extract anything from an object/vector
+
+deck[1:2,1:2]
+#Returns a data frame
+deck[1:2,1]
+#Returns a vector
+deck[1:2,1,drop=FALSE]
+#Returns a data frame where R wants to return a vector
+
+deck[-(2:52), 1:3]
+deck[c(-1,1),1]
+
+deck[0,0]
+
+deck[1, ]
+#A blank space will tell R to extract every value in a row/column
+
+deck[1, c(TRUE, TRUE, FALSE)]
+
+rows <- c(TRUE, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, 
+          F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, 
+          F, F, F, F, F, F, F, F, F, F, F, F, F, F)
+deck[rows, ]
+#Logical values tell R if it should return data for a given row or column number
+
+deck[1, c("face", "suit", "value")]
+#Names allow R to pull data based on the name you ask it for
+
+deck[ , "value"]
+
+deal<-function(cards){
+  cards[1, ]
+}
+deal(deck)
+#Function returns the first row of a data frame
+
+dealG<-function(){
+  deck[1, ]
+}
+dealG
+dealG()
+#This does the same as above so why include "cards"? Cards serves as a placeholder until we give the function
+  #an argument to use that includes stored data.
+
+deck2<-deck[1:52, ]
+head(deck2)
+#Calls all data from deck
+
+deck3<-deck[c(2,1,3:52), ]
+head(deck3)
+#Calls data from deck with rows 1 and 2 switched
+
+random<-sample(1:52, size=52)
+random
+#Assigns random a sample of 52 integers from a pool of 52 integers. Randomizes 1-52 and assigns it to random.
+
+deck4<-deck[random, ]
+head(deck4)
+#Has deck pull data according to data assigned to random and assigns new order of cards to deck4
+
+shuffle<-function(cards){
+  random<-sample(1:52, size=52)
+  cards[random, ]
+}
+#Shuffle takes random with assortment of 1-52 in random order. Assigns random to cards so cards argument will
+  #call all rows and all data within rows. Cards serves as a placeholder until an argument is given to the
+  #function shuffle at a later time.
+
+deal(deck)
+deck2<-shuffle(deck)
+deal(deck2)
+#deal(deck) returns the first card in the deck. deck2<-shuffle(deck) causes the shuffle function to run and 
+  #shuffle the deck of cards using the above function and a sample of 1-52 assigned to random. Dealing deck2
+  #returns the new top card in the deck. deal function takes deck2 as an argument that uses the shuffle
+  #function with deck as an argument that supplies necessary card data.
+
+deck$value
+#Extracts the values for the values column of deck
+
+mean(deck$value)
+median(deck$value)
+
+lst <-list(numbers=c(1,2),logical=TRUE, strings=c("a","b","c"))
+lst
+lst[1]
+sum(lst[1])
+#Many R functions do not work with lists. lst[1] is returning a smaller list with only 1 element
+
+lst$numbers
+sum(lst$numbers)
+#Using a $ instead of [] returns the selected values without the list structure. R likes this.
+
+lst[[1]]
+#Same output as $ but works if elements in list don't have names or you don't want to use their names.
+
+lst["numbers"]
+lst[["numbers"]]
+#The first format returns a smaller list but the second format will return the values of the elements
+  #inside of the list.
+sum(lst["numbers"])
+sum(lst[["numbers"]])

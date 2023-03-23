@@ -1,0 +1,123 @@
+---
+title: "Lab_2"
+author: "BIOL209"
+date: '2023-02-07'
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Question 1: How many FASTQ files per sample do you expect (one FASTQ per sample or two FASTQ per sample)? Justify your answer.
+
+Two, as we sequence the genome in the fwd and rev strands
+
+# Question 2: Do you expect all the reads to be of the same size? Which size?
+
+Yes, as the illumina sequencing thecnology has a determined number of cycles (50, 100, 150 and 250 bp)
+
+
+# Question 2:  What are the genome files? Add the names here 
+
+```{bash}
+for i in S165 S166 S167;
+  do ls /course_data/BIOL209/raw_illumina_data/raw_reads/$i
+done
+```
+
+## Making the directories
+
+```{bash}
+for i in S165 S166 S167;
+  do mkdir $i
+done
+```
+
+## Making the directories
+
+```{bash}
+for i in S165 S166 S167;
+  do cp /course_data/BIOL209/raw_illumina_data/raw_reads/$i/*.fastq.gz $i/
+done
+
+ls S1*
+```
+
+# Q4: What is your sample’s sequence ID?
+
+```{bash}
+for i in S165 S166 S167;
+  do echo $i/*.fastq.gz;
+  zcat $i/*.fastq.gz | head;
+done
+```
+
+For all of them, the header is `@VH00487`
+
+# Q5: Can you use this information to count the number of reads per sample? Add the code below and the result. (Remember, to look at a GZ file without uncompressing it, use the zcat command)
+
+```{bash}
+for i in S16?/*_R*.fastq.gz;
+  do echo $i;
+  zcat $i | grep -c "@VH00487";
+done
+```
+
+# Q6: Are the number of reads between file R1 and R2 the same? Was this expected? Justify your answer.
+
+
+Yes, cause they are the product of the same input DNA and the same sequencing run.
+
+| Sample Name  |  Sequence ID  |  Number of Reads in R1  |  Number of Reads in R2  |
+|--------------|---------------|-------------------------|-------------------------|
+|  030121_38   |  NB551394     |  2649963                |  2649963                |
+|  S165        | @VH00487      | 1589680                 | 1589680                 |
+|  S166        | @VH00487      | 1559909                 | 1559909                 |
+|  S167        | @VH00487      | 1589418                 | 1589418                 |
+
+# Q7: What are the outputs of FastQC? 
+
+```{bash}
+for i in S16?/*_R*.fastq.gz;
+  do /Smaug_SSD/bin/fastqc $i;
+done
+```
+
+HTML (in/and a zip file) that contains the QC results for each FASTQ set of reads
+
+# Q8: How many sequence reads makeup our dataset? Does this agree with your previous calculation?
+
+Same as table above
+
+# Q9: What is the read length of our data? Is this result expected or do we see weird results?
+
+Most of them are 151 bp. THe range goes from 31 to 150 but the number of reads under 151 is very small
+
+# Q10: What is the GC content of our data ? Does this match expectations?
+
+- S165: 56, not really because its skewed to the left
+- S166:
+- S167: The mean GC content is 51% for the forward read and 52% for the reverse read. The expected mean GC content is 50% so it is very close to our expectation. However, the per-sequence GC content distribution does not match the theoretical distribution; there are two peaks (bimodal).
+
+
+# Q11: Describe the sequence quality of the files (per base sequence quality, per tile sequence quality, per sequence quality score).
+
+- S165: All but the per tile are very good for R1, while R2 is a little bit worse.
+- S166:
+- S167: For the forward reads, per base sequence quality and per sequence quality are great. Per tile sequence quality is flagged due to two tiles of poor quality. The same if observed for the reverse reads but they are of even lesser quality; there are more bases and tiles of poor quality. 
+
+
+#Q12: In general, are the forward and reverse reads of similar quality? If they differ, how do they differ?
+ R1 usually has better quality, while R2 is a little bit worse. THis is because R2 is done at the end of the cycle and its been know that it reduces the quality as documented by Illumina
+ 
+ -S167: The reverse reads are poorer quality than the forward reads. The reverse file has an overrepresented sequence and more tiles of poor quality. Additionally, there is a more notable dropoff in per base quality at the end of the reverse reads. The other metrics show similar quality between the two sets of reads.
+
+
+#Q12: Are there any issues with the various other metrics analyzed by FastQC (i.e. the red circles with the ‘X’ on the left under the ‘Summary’ heading)? Do you notice any patterns that are puzzling or troubling with any of these analyses?
+
+Depends on the sample.
+
+-S167: Per base sequence content and per sequence GC content are flagged. For the reverse reads, per tile sequence content is also flagged. Per base sequence content matches expectations for most of the positions of the reads but is only flagged because of the first 10 bp. This is a sequencer issue and is expected. 

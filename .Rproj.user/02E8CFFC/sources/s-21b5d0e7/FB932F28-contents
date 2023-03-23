@@ -1,0 +1,15 @@
+#                                                                               --- full sequence ---- --- best 1 domain ---- --- domain number estimation ----
+# target name                        accession  query name           accession    E-value  score  bias   E-value  score  bias   exp reg clu  ov env dom rep inc description of target
+#                ------------------- ---------- -------------------- ---------- --------- ------ ----- --------- ------ -----   --- --- --- --- --- --- --- --- ---------------------
+jgi|Rhicl1|18006|transcript:GBC06165 -          Het-C                PF07217.14    0.0084   15.3   1.1     0.011   14.9   1.1   1.2   1   0   0   1   1   1   1 -
+jgi|Rhicl1|8960|transcript:GBB98667  -          Het-C                PF07217.14       1.6    7.8   9.8     0.089   11.9   1.4   1.9   1   1   1   2   2   2   0 -
+#
+# Program:         hmmsearch
+# Version:         3.3 (Nov 2019)
+# Pipeline mode:   SEARCH
+# Query file:      het_c_HMM.hmm
+# Target file:     Rhicl1_GeneCatalog_proteins_20210318.aa.fasta
+# Option settings: hmmsearch --tblout HETC_glomero_table het_c_HMM.hmm Rhicl1_GeneCatalog_proteins_20210318.aa.fasta 
+# Current dir:     /Tabima_lab/homes/jcarleton/MBB101/Final_project
+# Date:            Tue Nov 15 14:31:18 2022
+# [ok]

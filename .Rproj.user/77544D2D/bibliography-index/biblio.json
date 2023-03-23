@@ -1,0 +1,1017 @@
+{
+    "sources": [
+        {
+            "URL": "http://yihui.org/knitr/",
+            "author": [
+                {
+                    "family": "Xie",
+                    "given": "Yihui"
+                }
+            ],
+            "edition": "2nd",
+            "id": "xie2015",
+            "issued": {
+                "date-parts": [
+                    [
+                        2015
+                    ]
+                ]
+            },
+            "note": "ISBN 978-1498716963",
+            "publisher": "Chapman; Hall/CRC",
+            "publisher-place": "Boca Raton, Florida",
+            "title": "Dynamic documents with R and knitr",
+            "type": "book"
+        },
+        {
+            "URL": "https://www.R-project.org/",
+            "author": [
+                {
+                    "literal": "R Core Team"
+                }
+            ],
+            "id": "R-base",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022
+                    ]
+                ]
+            },
+            "publisher": "R Foundation for Statistical Computing",
+            "publisher-place": "Vienna, Austria",
+            "title": "R: A language and environment for statistical computing",
+            "title-short": "R",
+            "type": "book"
+        },
+        {
+            "URL": "https://bioconductor.org/packages/Biobase",
+            "author": [
+                {
+                    "family": "Gentleman",
+                    "given": "R."
+                },
+                {
+                    "family": "Carey",
+                    "given": "V."
+                },
+                {
+                    "family": "Morgan",
+                    "given": "M."
+                },
+                {
+                    "family": "Falcon",
+                    "given": "S."
+                }
+            ],
+            "id": "R-Biobase",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022
+                    ]
+                ]
+            },
+            "note": "R package version 2.56.0",
+            "title": "Biobase: Base functions for bioconductor",
+            "title-short": "Biobase",
+            "type": "book"
+        },
+        {
+            "URL": "https://bioconductor.org/packages/BiocGenerics",
+            "author": [
+                {
+                    "family": "Team",
+                    "given": "The Bioconductor Dev"
+                }
+            ],
+            "id": "R-BiocGenerics",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022
+                    ]
+                ]
+            },
+            "note": "R package version 0.42.0",
+            "title": "BiocGenerics: S4 generic functions used in bioconductor",
+            "title-short": "BiocGenerics",
+            "type": "book"
+        },
+        {
+            "URL": "https://CRAN.R-project.org/package=bookdown",
+            "author": [
+                {
+                    "family": "Xie",
+                    "given": "Yihui"
+                }
+            ],
+            "id": "R-bookdown",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022
+                    ]
+                ]
+            },
+            "note": "R package version 0.29",
+            "title": "Bookdown: Authoring books and technical documents with r markdown",
+            "title-short": "Bookdown",
+            "type": "book"
+        },
+        {
+            "URL": "https://github.com/mikelove/DESeq2",
+            "author": [
+                {
+                    "family": "Love",
+                    "given": "Michael"
+                },
+                {
+                    "family": "Anders",
+                    "given": "Simon"
+                },
+                {
+                    "family": "Huber",
+                    "given": "Wolfgang"
+                }
+            ],
+            "id": "R-DESeq2",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022
+                    ]
+                ]
+            },
+            "note": "R package version 1.36.0",
+            "title": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+            "title-short": "DESeq2",
+            "type": "book"
+        },
+        {
+            "URL": "https://bioconductor.org/packages/GenomeInfoDb",
+            "author": [
+                {
+                    "family": "Arora",
+                    "given": "Sonali"
+                },
+                {
+                    "family": "Morgan",
+                    "given": "Martin"
+                },
+                {
+                    "family": "Carlson",
+                    "given": "Marc"
+                },
+                {
+                    "family": "Pagès",
+                    "given": "H."
+                }
+            ],
+            "id": "R-GenomeInfoDb",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022
+                    ]
+                ]
+            },
+            "note": "R package version 1.32.4",
+            "title": "GenomeInfoDb: Utilities for manipulating chromosome names, including modifying them to follow a particular naming style",
+            "title-short": "GenomeInfoDb",
+            "type": "book"
+        },
+        {
+            "URL": "https://bioconductor.org/packages/GenomicRanges",
+            "author": [
+                {
+                    "family": "Aboyoun",
+                    "given": "P."
+                },
+                {
+                    "family": "Pagès",
+                    "given": "H."
+                },
+                {
+                    "family": "Lawrence",
+                    "given": "M."
+                }
+            ],
+            "id": "R-GenomicRanges",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022
+                    ]
+                ]
+            },
+            "note": "R package version 1.48.0",
+            "title": "GenomicRanges: Representation and manipulation of genomic intervals",
+            "title-short": "GenomicRanges",
+            "type": "book"
+        },
+        {
+            "URL": "https://bioconductor.org/packages/IRanges",
+            "author": [
+                {
+                    "family": "Pagès",
+                    "given": "H."
+                },
+                {
+                    "family": "Aboyoun",
+                    "given": "P."
+                },
+                {
+                    "family": "Lawrence",
+                    "given": "M."
+                }
+            ],
+            "id": "R-IRanges",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022
+                    ]
+                ]
+            },
+            "note": "R package version 2.30.1",
+            "title": "IRanges: Foundation of integer range manipulation in bioconductor",
+            "title-short": "IRanges",
+            "type": "book"
+        },
+        {
+            "URL": "https://yihui.org/knitr/",
+            "author": [
+                {
+                    "family": "Xie",
+                    "given": "Yihui"
+                }
+            ],
+            "id": "R-knitr",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022
+                    ]
+                ]
+            },
+            "note": "R package version 1.40",
+            "title": "Knitr: A general-purpose package for dynamic report generation in r",
+            "title-short": "Knitr",
+            "type": "book"
+        },
+        {
+            "URL": "https://bioconductor.org/packages/MatrixGenerics",
+            "author": [
+                {
+                    "family": "Ahlmann-Eltze",
+                    "given": "Constantin"
+                },
+                {
+                    "family": "Hickey",
+                    "given": "Peter"
+                },
+                {
+                    "family": "Pagès",
+                    "given": "Hervé"
+                }
+            ],
+            "id": "R-MatrixGenerics",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022
+                    ]
+                ]
+            },
+            "note": "R package version 1.8.1",
+            "title": "MatrixGenerics: S4 generic summary statistic functions that operate on matrix-like objects",
+            "title-short": "MatrixGenerics",
+            "type": "book"
+        },
+        {
+            "URL": "https://github.com/HenrikBengtsson/matrixStats",
+            "author": [
+                {
+                    "family": "Bengtsson",
+                    "given": "Henrik"
+                }
+            ],
+            "id": "R-matrixStats",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022
+                    ]
+                ]
+            },
+            "note": "R package version 0.62.0",
+            "title": "matrixStats: Functions that apply to rows and columns of matrices (and to vectors)",
+            "title-short": "matrixStats",
+            "type": "book"
+        },
+        {
+            "URL": "https://CRAN.R-project.org/package=rmarkdown",
+            "author": [
+                {
+                    "family": "Allaire",
+                    "given": "JJ"
+                },
+                {
+                    "family": "Xie",
+                    "given": "Yihui"
+                },
+                {
+                    "family": "McPherson",
+                    "given": "Jonathan"
+                },
+                {
+                    "family": "Luraschi",
+                    "given": "Javier"
+                },
+                {
+                    "family": "Ushey",
+                    "given": "Kevin"
+                },
+                {
+                    "family": "Atkins",
+                    "given": "Aron"
+                },
+                {
+                    "family": "Wickham",
+                    "given": "Hadley"
+                },
+                {
+                    "family": "Cheng",
+                    "given": "Joe"
+                },
+                {
+                    "family": "Chang",
+                    "given": "Winston"
+                },
+                {
+                    "family": "Iannone",
+                    "given": "Richard"
+                }
+            ],
+            "id": "R-rmarkdown",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022
+                    ]
+                ]
+            },
+            "note": "R package version 2.17",
+            "title": "Rmarkdown: Dynamic documents for r",
+            "title-short": "Rmarkdown",
+            "type": "book"
+        },
+        {
+            "URL": "https://bioconductor.org/packages/S4Vectors",
+            "author": [
+                {
+                    "family": "Pagès",
+                    "given": "H."
+                },
+                {
+                    "family": "Lawrence",
+                    "given": "M."
+                },
+                {
+                    "family": "Aboyoun",
+                    "given": "P."
+                }
+            ],
+            "id": "R-S4Vectors",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022
+                    ]
+                ]
+            },
+            "note": "R package version 0.34.0",
+            "title": "S4Vectors: Foundation of vector-like and list-like containers in bioconductor",
+            "title-short": "S4Vectors",
+            "type": "book"
+        },
+        {
+            "URL": "https://bioconductor.org/packages/SummarizedExperiment",
+            "author": [
+                {
+                    "family": "Morgan",
+                    "given": "Martin"
+                },
+                {
+                    "family": "Obenchain",
+                    "given": "Valerie"
+                },
+                {
+                    "family": "Hester",
+                    "given": "Jim"
+                },
+                {
+                    "family": "Pagès",
+                    "given": "Hervé"
+                }
+            ],
+            "id": "R-SummarizedExperiment",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022
+                    ]
+                ]
+            },
+            "note": "R package version 1.26.1",
+            "title": "SummarizedExperiment: SummarizedExperiment container",
+            "title-short": "SummarizedExperiment",
+            "type": "book"
+        },
+        {
+            "URL": "http://www.nature.com/nmeth/journal/v12/n2/full/nmeth.3252.html",
+            "author": [
+                {
+                    "family": "Huber",
+                    "given": "W."
+                },
+                {
+                    "family": "Carey",
+                    "given": "V. J."
+                },
+                {
+                    "family": "Gentleman",
+                    "given": "R."
+                },
+                {
+                    "family": "Anders",
+                    "given": "S."
+                },
+                {
+                    "family": "Carlson",
+                    "given": "M."
+                },
+                {
+                    "family": "Carvalho",
+                    "given": "B. S."
+                },
+                {
+                    "family": "Bravo",
+                    "given": "H. C."
+                },
+                {
+                    "family": "Davis",
+                    "given": "S."
+                },
+                {
+                    "family": "Gatto",
+                    "given": "L."
+                },
+                {
+                    "family": "Girke",
+                    "given": "T."
+                },
+                {
+                    "family": "Gottardo",
+                    "given": "R."
+                },
+                {
+                    "family": "Hahne",
+                    "given": "F."
+                },
+                {
+                    "family": "Hansen",
+                    "given": "K. D."
+                },
+                {
+                    "family": "Irizarry",
+                    "given": "R. A."
+                },
+                {
+                    "family": "Lawrence",
+                    "given": "M."
+                },
+                {
+                    "family": "Love",
+                    "given": "M. I."
+                },
+                {
+                    "family": "MacDonald",
+                    "given": "J."
+                },
+                {
+                    "family": "Obenchain",
+                    "given": "V."
+                },
+                {
+                    "family": "Ole’s",
+                    "given": "A. K."
+                },
+                {
+                    "family": "Pag‘es",
+                    "given": "H."
+                },
+                {
+                    "family": "Reyes",
+                    "given": "A."
+                },
+                {
+                    "family": "Shannon",
+                    "given": "P."
+                },
+                {
+                    "family": "Smyth",
+                    "given": "G. K."
+                },
+                {
+                    "family": "Tenenbaum",
+                    "given": "D."
+                },
+                {
+                    "family": "Waldron",
+                    "given": "L."
+                },
+                {
+                    "family": "Morgan",
+                    "given": "M."
+                }
+            ],
+            "container-title": "Nature Methods",
+            "id": "Biobase2015",
+            "issue": "2",
+            "issued": {
+                "date-parts": [
+                    [
+                        2015
+                    ]
+                ]
+            },
+            "page": "115-121",
+            "title": "Orchestrating high-throughput genomic analysis with Bioconductor",
+            "type": "article-journal",
+            "volume": "12"
+        },
+        {
+            "URL": "http://www.nature.com/nmeth/journal/v12/n2/full/nmeth.3252.html",
+            "author": [
+                {
+                    "literal": "Huber"
+                },
+                {
+                    "literal": "W."
+                },
+                {
+                    "literal": "Carey"
+                },
+                {
+                    "family": "J.",
+                    "given": "V."
+                },
+                {
+                    "literal": "Gentleman"
+                },
+                {
+                    "literal": "R."
+                },
+                {
+                    "literal": "Anders"
+                },
+                {
+                    "literal": "S."
+                },
+                {
+                    "literal": "Carlson"
+                },
+                {
+                    "literal": "M."
+                },
+                {
+                    "literal": "Carvalho"
+                },
+                {
+                    "family": "S.",
+                    "given": "B."
+                },
+                {
+                    "literal": "Bravo"
+                },
+                {
+                    "family": "C.",
+                    "given": "H."
+                },
+                {
+                    "literal": "Davis"
+                },
+                {
+                    "literal": "S."
+                },
+                {
+                    "literal": "Gatto"
+                },
+                {
+                    "literal": "L."
+                },
+                {
+                    "literal": "Girke"
+                },
+                {
+                    "literal": "T."
+                },
+                {
+                    "literal": "Gottardo"
+                },
+                {
+                    "literal": "R."
+                },
+                {
+                    "literal": "Hahne"
+                },
+                {
+                    "literal": "F."
+                },
+                {
+                    "literal": "Hansen"
+                },
+                {
+                    "family": "D.",
+                    "given": "K."
+                },
+                {
+                    "literal": "Irizarry"
+                },
+                {
+                    "family": "A.",
+                    "given": "R."
+                },
+                {
+                    "literal": "Lawrence"
+                },
+                {
+                    "literal": "M."
+                },
+                {
+                    "literal": "Love"
+                },
+                {
+                    "family": "I.",
+                    "given": "M."
+                },
+                {
+                    "literal": "MacDonald"
+                },
+                {
+                    "literal": "J."
+                },
+                {
+                    "literal": "Obenchain"
+                },
+                {
+                    "literal": "V."
+                },
+                {
+                    "literal": "Ole’s"
+                },
+                {
+                    "family": "K.",
+                    "given": "A."
+                },
+                {
+                    "literal": "Pag‘es"
+                },
+                {
+                    "literal": "H."
+                },
+                {
+                    "literal": "Reyes"
+                },
+                {
+                    "literal": "A."
+                },
+                {
+                    "literal": "Shannon"
+                },
+                {
+                    "literal": "P."
+                },
+                {
+                    "literal": "Smyth"
+                },
+                {
+                    "family": "K.",
+                    "given": "G."
+                },
+                {
+                    "literal": "Tenenbaum"
+                },
+                {
+                    "literal": "D."
+                },
+                {
+                    "literal": "Waldron"
+                },
+                {
+                    "literal": "L."
+                },
+                {
+                    "literal": "Morgan"
+                },
+                {
+                    "literal": "M."
+                }
+            ],
+            "container-title": "Nature Methods",
+            "id": "BiocGenerics2015",
+            "issue": "2",
+            "issued": {
+                "date-parts": [
+                    [
+                        2015
+                    ]
+                ]
+            },
+            "page": "115-121",
+            "title": "Orchestrating high-throughput genomic analysis with Bioconductor",
+            "type": "article-journal",
+            "volume": "12"
+        },
+        {
+            "URL": "https://bookdown.org/yihui/bookdown",
+            "author": [
+                {
+                    "family": "Xie",
+                    "given": "Yihui"
+                }
+            ],
+            "id": "bookdown2016",
+            "issued": {
+                "date-parts": [
+                    [
+                        2016
+                    ]
+                ]
+            },
+            "note": "ISBN 978-1138700109",
+            "publisher": "Chapman; Hall/CRC",
+            "publisher-place": "Boca Raton, Florida",
+            "title": "Bookdown: Authoring books and technical documents with R markdown",
+            "title-short": "Bookdown",
+            "type": "book"
+        },
+        {
+            "DOI": "10.1186/s13059-014-0550-8",
+            "author": [
+                {
+                    "family": "Love",
+                    "given": "Michael I."
+                },
+                {
+                    "family": "Huber",
+                    "given": "Wolfgang"
+                },
+                {
+                    "family": "Anders",
+                    "given": "Simon"
+                }
+            ],
+            "container-title": "Genome Biology",
+            "id": "DESeq22014",
+            "issued": {
+                "date-parts": [
+                    [
+                        2014
+                    ]
+                ]
+            },
+            "page": "550",
+            "title": "Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2",
+            "type": "article-journal",
+            "volume": "15"
+        },
+        {
+            "DOI": "10.1371/journal.pcbi.1003118",
+            "URL": "http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1003118",
+            "author": [
+                {
+                    "family": "Lawrence",
+                    "given": "Michael"
+                },
+                {
+                    "family": "Huber",
+                    "given": "Wolfgang"
+                },
+                {
+                    "family": "Pagès",
+                    "given": "Hervé"
+                },
+                {
+                    "family": "Aboyoun",
+                    "given": "Patrick"
+                },
+                {
+                    "family": "Carlson",
+                    "given": "Marc"
+                },
+                {
+                    "family": "Gentleman",
+                    "given": "Robert"
+                },
+                {
+                    "family": "Morgan",
+                    "given": "Martin"
+                },
+                {
+                    "family": "Carey",
+                    "given": "Vincent"
+                }
+            ],
+            "container-title": "PLoS Computational Biology",
+            "id": "GenomicRanges2013",
+            "issued": {
+                "date-parts": [
+                    [
+                        2013
+                    ]
+                ]
+            },
+            "title": "Software for computing and annotating genomic ranges",
+            "type": "article-journal",
+            "volume": "9"
+        },
+        {
+            "DOI": "10.1371/journal.pcbi.1003118",
+            "URL": "http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1003118",
+            "author": [
+                {
+                    "family": "Lawrence",
+                    "given": "Michael"
+                },
+                {
+                    "family": "Huber",
+                    "given": "Wolfgang"
+                },
+                {
+                    "family": "Pagès",
+                    "given": "Hervé"
+                },
+                {
+                    "family": "Aboyoun",
+                    "given": "Patrick"
+                },
+                {
+                    "family": "Carlson",
+                    "given": "Marc"
+                },
+                {
+                    "family": "Gentleman",
+                    "given": "Robert"
+                },
+                {
+                    "family": "Morgan",
+                    "given": "Martin"
+                },
+                {
+                    "family": "Carey",
+                    "given": "Vincent"
+                }
+            ],
+            "container-title": "PLoS Computational Biology",
+            "id": "IRanges2013",
+            "issued": {
+                "date-parts": [
+                    [
+                        2013
+                    ]
+                ]
+            },
+            "title": "Software for computing and annotating genomic ranges",
+            "type": "article-journal",
+            "volume": "9"
+        },
+        {
+            "URL": "https://yihui.org/knitr/",
+            "author": [
+                {
+                    "family": "Xie",
+                    "given": "Yihui"
+                }
+            ],
+            "edition": "2nd",
+            "id": "knitr2015",
+            "issued": {
+                "date-parts": [
+                    [
+                        2015
+                    ]
+                ]
+            },
+            "note": "ISBN 978-1498716963",
+            "publisher": "Chapman; Hall/CRC",
+            "publisher-place": "Boca Raton, Florida",
+            "title": "Dynamic documents with R and knitr",
+            "type": "book"
+        },
+        {
+            "URL": "http://www.crcpress.com/product/isbn/9781466561595",
+            "author": [
+                {
+                    "family": "Xie",
+                    "given": "Yihui"
+                }
+            ],
+            "container-title": "Implementing reproducible computational research",
+            "editor": [
+                {
+                    "family": "Stodden",
+                    "given": "Victoria"
+                },
+                {
+                    "family": "Leisch",
+                    "given": "Friedrich"
+                },
+                {
+                    "family": "Peng",
+                    "given": "Roger D."
+                }
+            ],
+            "id": "knitr2014",
+            "issued": {
+                "date-parts": [
+                    [
+                        2014
+                    ]
+                ]
+            },
+            "note": "ISBN 978-1466561595",
+            "publisher": "Chapman; Hall/CRC",
+            "title": "Knitr: A comprehensive tool for reproducible research in R",
+            "title-short": "Knitr",
+            "type": "chapter"
+        },
+        {
+            "URL": "https://bookdown.org/yihui/rmarkdown",
+            "author": [
+                {
+                    "family": "Xie",
+                    "given": "Yihui"
+                },
+                {
+                    "family": "Allaire",
+                    "given": "J. J."
+                },
+                {
+                    "family": "Grolemund",
+                    "given": "Garrett"
+                }
+            ],
+            "id": "rmarkdown2018",
+            "issued": {
+                "date-parts": [
+                    [
+                        2018
+                    ]
+                ]
+            },
+            "note": "ISBN 9781138359338",
+            "publisher": "Chapman; Hall/CRC",
+            "publisher-place": "Boca Raton, Florida",
+            "title": "R markdown: The definitive guide",
+            "title-short": "R markdown",
+            "type": "book"
+        },
+        {
+            "URL": "https://bookdown.org/yihui/rmarkdown-cookbook",
+            "author": [
+                {
+                    "family": "Xie",
+                    "given": "Yihui"
+                },
+                {
+                    "family": "Dervieux",
+                    "given": "Christophe"
+                },
+                {
+                    "family": "Riederer",
+                    "given": "Emily"
+                }
+            ],
+            "id": "rmarkdown2020",
+            "issued": {
+                "date-parts": [
+                    [
+                        2020
+                    ]
+                ]
+            },
+            "note": "ISBN 9780367563837",
+            "publisher": "Chapman; Hall/CRC",
+            "publisher-place": "Boca Raton, Florida",
+            "title": "R markdown cookbook",
+            "type": "book"
+        }
+    ],
+    "project_biblios": [
+        "book.bib",
+        "packages.bib"
+    ]
+}

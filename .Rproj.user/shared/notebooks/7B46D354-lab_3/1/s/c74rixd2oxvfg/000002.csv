@@ -1,0 +1,9 @@
+"0","grep -o A mystery_genes/sequence1_1 | wc -l
+grep -o T mystery_genes/sequence1_1 | wc -l
+grep -o G mystery_genes/sequence1_1 | wc -l
+grep -o C mystery_genes/sequence1_1 | wc -l"
+"1","1739
+1743
+2004
+1991
+"

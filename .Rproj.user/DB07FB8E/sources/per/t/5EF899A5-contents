@@ -1,0 +1,20 @@
+
+library(shiny)
+library(googlesheets4)
+ants <- read_sheet("https://docs.google.com/spreadsheets/d/1VzKK5LI0Et-8gmSv_5A3-0h3dJoAhvhtoiYmuP1smg8/edit#gid=459893422")
+
+# Define server logic required to draw a histogram
+shinyServer(function(input, output) {
+
+    output$table <- renderDataTable({
+      ants[ants$location_type %in% input$location,]
+      })
+    
+    output$anova <- renderText({
+      summary(aov(data = ants[ants$location_type %in% input$location,], formula = Shannon_LL ~ location_type)) %>% unlist
+    })
+    
+    output$boxplot <- renderPlot({
+      ggplot(data = ants[ants$location_type %in% input$location,], aes(y=Shannon_LL, x=location_type)) + geom_boxplot()
+    })
+})

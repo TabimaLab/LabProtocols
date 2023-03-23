@@ -1,0 +1,7 @@
+"0","seqtab <- makeSequenceTable(mergers)"
+"0","dim(seqtab)"
+"1","[1]"
+"1","    74"
+"1"," 21609"
+"1","
+"

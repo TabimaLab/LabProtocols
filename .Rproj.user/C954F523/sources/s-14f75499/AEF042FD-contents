@@ -1,0 +1,208 @@
+---
+---
+---
+
+# **High Molecular Weight DNA Extraction**
+
+**Important safety, preparation, and protocol notes below.**
+
+## **Protocol**
+
+1.  Combine 325µL Buffer A, 325µL Buffer B, 130µL Buffer C, 87µL PVP(1%), and 5µL Proteinase K into a 2ml lo-bind tube, mix until viscous.
+
+2.  Place tubes into 65℃ hot plate until warm.
+
+3.  Pour LN2 into a refrigerated mortar and pestle until cold. Add tissue using a sterile spatula, grind into a fine powder, adding more LN2 as needed. Add 0.2-0.6g of tissue into each tube [1].
+
+4.  Incubate tubes on shaker (320 RPM) for ≥30 minutes \@ 65℃.
+
+5.  Add 280µL 5M Potassium Acetate to each tube, mix by inversion, incubate on ice for 5 minutes [2].
+
+6.  Add 500-700µL Phenol:Chloroform:Isoamyl alcohol (as much as the tube can hold without overfilling), hula mixer for 5 minutes, incubate at room temp for 2 minutes.
+
+7.  Centrifuge \@ 6000 x g for 10 minutes.
+
+8.  Transfer aqueous supernatant using wide-bore pipette tips to new 2ml lo-bind tubes [3, 4].
+
+9.  Add 1ml Chloroform:Isoamyl alcohol to tubes containing supernatant, hula mixer for 5 minutes, incubate at room temp for 2 minutes.
+
+10. Centrifuge \@ 6000 x g for 10 minutes.
+
+11. Pipette supernatant using wide-bore tips into new 2ml lo-bind tubes.
+
+12. Add 2.5µL RNase A to each tube and leave in 37℃ incubator for 30min.
+
+13. Estimate tubes volume and add 1/10x volume Sodium Acetate, 1x volume cold isopropyl alcohol.
+
+14. Mix gently by inversion, incubate \@ room temp for 5 minutes.
+
+15. Centrifuge \@ 3000 x g for 2 minutes, gently remove and discard supernatant. A white pellet should remain at the bottom of tubes.
+
+16. Wash pellet w/ 1mL, fresh, cold, 70% Ethanol.
+
+17. Centrifuge \@ 3000 x g for 2 minutes, pipette out Ethanol.
+
+18. Repeat steps 15-17.
+
+19. Dry pellet \@ 65℃ for 2 minutes, re-suspend in 100µL TE (or sterile DNase/RNase free water) [5].
+
+20. Keep suspended pellet \@ 4℃ for 24-48hrs to allow pellet to dissolve. When measuring concentration/purity, use wide-bore tips to avoid shearing. 
+
+**Extraction Notes [\#]** 
+
+1.  Additional tissue can be stored in a sterile 2mL tube \@ -20℃.
+2.  Vortexing HMW DNA causes it to break resulting in smaller fragment lengths. Always mix by inversion or on a rotator/shaker.
+3.  Always transfer solution containing DNA using wide-bore tips. Normal pipette tips are narrow and will shear high-molecular weight DNA. An alternative to wide-bore tips is to cut the ends off pipette tips with sterile scissors to they have a larger opening.
+4.  Take care to only transfer from the aqueous phase. To ensure contaminants are not transferred, consider leaving a small volume of the aqueous layer behind.
+5.  Over drying pellet is not recommended as DNA can convert from B to D form making later resuspension difficult.
+
+**Post-Extraction Steps** 
+
+-   Perform Qubit fluorometric quantification to obtain DNA concentration. 
+
+-   Measure DNA concentration and contamination using NanoDrop spectroscopy. 
+
+## **Required PPE** 
+
+-   Safety glasses 
+
+-   Nitrile gloves 
+
+-   Neoprene gloves 
+
+-   Cryo-gloves 
+
+-   Lab coat
+
+-   Fume hood 
+
+## **Pre-Extraction Steps** 
+
+**Day Prior** 
+
+-   Clean and sterilize mortars and pestles, spatulas, tweezers. 
+
+-   Refrigerate mortars and pestles.
+
+-   If using tissue from liquid culture, clean and sterilize vacuum flask, ceramic filter, green flask seal, and check sterile filter paper stock. 
+
+-   Check liquid nitrogen (LN2) tank volume. 
+
+-   Check all buffer, reagent, and chemical volumes are sufficient. 
+
+-   Check 2mL lo-bind tube and pipette tips stock. 
+
+**Day Of** 
+
+-   Set hot plate to 65℃. 
+
+-   Fill LN2 dewar. 
+
+-   Fill a bucket with ice. 
+
+-   Freeze fresh molecular grade isopropanol (1mL x sample \#) and fresh 70% ethanol (2mL x sample \#). Make 70% ethanol from 200 proof stock and DNase/RNase free water. 
+
+## **Critical Safety Information.** 
+
+**Phenol:Chloroform:Isoamyl alcohol** and **Chloroform:Isoamyl alcohol** are EXTREMLY toxic and should only be handled while wearing full PPE while working in the fume hood. Discard any PPE that contacts either mixture. Necessary PPE includes: 
+
+-   Safety glasses 
+
+-   Lab coat 
+
+-   Nitrile gloves 
+
+-   Neoprene gloves over nitrile gloves 
+
+If you are exposed to **Phenol:Chloroform:Isoamyl alcohol** OR **Chloroform:Isoamyl alcohol** please follow the management protocol below. 
+
+Inhalation: Secure and move away from source to an area with fresh, ventilated air. Monitor symptoms and contact medical services if needed. Most inhalation exposure can be quickly managed and lab members can return to work shortly. 
+
+Skin or eye exposure: Remove PPE and clothes from exposed area. Wash with warm water and soap for 15 minutes using a sink or eyewash (if eyes were exposed). After washing, file an incident report with lab leadership and seek medical attention. 
+
+**Liquid Nitrogen** is a dangerous chemical that can cause burns and damage organic tissue. It should only be handled while wearing full PPE including: 
+
+-   Safety glasses
+-   Lab coat
+-   Nitrile gloves
+-   Cryo-gloves over nitrile gloves
+
+If you are exposed to **Liquid Nitrogen,** please follow the management exposure below. 
+
+Skin or eye exposure: Soak the affected areas in warm water for 15 minutes. Do not agitate affected areas via rubbing. After soaking, file an incident report with lab leadership and seek medical attention. 
+
+## **Reagent Function and Troubleshooting** 
+
+**Buffer Mixes** 
+
+-   Buffer A - 0.35 M sorbitol; 0.1 M Tris-HCl, pH 9; 5 mM EDTA, pH 8 
+
+-   Buffer B - 0.2 M Tris-HCl, pH 9; 50 mM EDTA, pH 8; 2 M NaCl; 2% CTAB 
+
+-   Buffer C - 5% Sarkosyl (N-lauroylsarcosine sodium salt SIGMA L5125) 
+
+**Polyvinylpyrrolidone (PVP)** 
+
+Removes phenolic compounds from DNA. Polyphenols bind to DNA and co-precipitate with nucleic acid reducing purity. PVP removes polyphenol contamination by binding via hydrogen bonds and accumulates in the interphase when centrifuged with chloroform [1]. 
+
+**Proteinase K** 
+
+Digestion of contaminant proteins from a nucleic acid solution is performed by addition of proteinase K. 
+
+**Potassium Acetate** 
+
+C2H3O2K precipitates nucleic acids into the solution's supernatant.  
+
+**Phenol** 
+
+As an organic solvent, phenol removes proteins and polysaccharide contamination in conjunction with chloroform and isoamyl alcohol. Additionally, DNA is insoluble in phenol because DNA is polar, and phenol is nonpolar [1]. 
+
+**Chloroform** 
+
+Nonpolar proteins and lipids are dissolved in chloroform which, together with cellular debris, form the organic layer. This process leaves DNA isolated in the aqueous phase [1]. 
+
+**Isoamyl Alcohol** 
+
+C5H12O serves many roles in stabilizing the organic, interphase, and aqueous layers. It prevents chloroform from foaming when in contact with air. Foaming causes emulsification of the solution resulting in difficulties when purifying DNA. It additionally stabilizes the interphase layer as it is not miscible in the aqueous or organic layers. Finally, it helps to inhibit RNase activity and reduce RNA molecule contamination [1]. 
+
+**Sodium Acetate** 
+
+C2H3NaO2 neutralizes the charged sugar phosphate backbone of DNA. This process only occurs in the presence of isopropanol [1]. 
+
+**Isopropanol** 
+
+To precipitate nucleic acids from the supernatant, an alcohol must be used to break the hydration shell that forms around nucleic acid. Isopropanol is a preferred choice as it has a high capacity to reduce the dielectric constant of water and therefore less (0.6-0.7x volume supernatant) can be used in comparison to ethanol (2-3x volume supernatant). A low dielectric constant is needed in conjunction with sodium acetate to precipitate nucleic acid [1]. 
+
+**Ethanol** 
+
+Washes with 70% EtOH remove excess salt from the extraction buffer which may remain in the DNA pellet [1]. Ice cold ethanol should be used for washes. 
+
+**TE Buffer** 
+
+To store DNA for an extended period, TE buffer is used in place of sterile water. The buffer contains Tris, which buffers the solution by scavenging hydroxyl radicals, and EDTA, which protects DNA from DNases or RNases by chelating magnesium ions necessary for their function. Dilution of TE buffer with sterile water when sending samples for sequencing is recommended [1]. 
+
+**Background** 
+
+**What is high molecular weight (HMW) DNA?** 
+
+DNA considered HMW consists of strands greater than 50 kb in length [2]. 
+
+**Why is HMW DNA useful for assembling eukaryotic genomes?** 
+
+The genomes of higher eukaryotes often contain many repeated regions greater than several kilobases in length. First and second-generation sequencing technologies rely on DNA reads between 50bp and 1kb which produces fragmented genome assemblies that cannot accurately map repeated regions. HMW DNA using fragments in the 10s of kilobases long which improves the accuracy of eukaryotic genome assembly as longer reads can span repeated regions. Longer reads also contribute to better alignment of DNA contigs within the scope of the entire genome [2]. 
+
+**Why are both Qubit and NanoDrop spectroscopy used to quantify DNA concentration?** 
+
+Qubit quantification detects dyes that only bind to dsDNA molecules. This allows for highly accurate quantification of dsDNA concentration even in the presence of contaminants or ssDNA/RNA. Additionally, Qubit dyes have trouble binding to small nucleic acid fragments and plasmid DNA meaning only longer length fragments are measured [4]. 
+
+NanoDrop assesses DNA concentration by measuring UV absorbance at 230nm, 260nm and 280nm wavelengths. NanoDrop cannot differentiate between nucleic acid and contaminants that absorb at the same wavelength which can contribute to inaccurate concentration readings. NanoDrop measurement also does not account for fragment length and measures all DNA equally. Yet, nucleic acid purity ratios including proteins and phenols (260/280) and organic contaminants (260/230) can only be determined by NanoDrop [3]. 
+
+## **References** 
+
+[1] Heikrujam, J., Kishor, R., & Behari Mazumder, P. (2020). The chemistry behind plant DNA isolation protocols. Biochemical Analysis Tools - Methods for Bio-Molecules Studies, 1--12. <https://doi.org/10.5772/intechopen.92206> 
+
+[2] Mayjonade, B., Gouzy, J., Donnadieu, C., Pouilly, N., Marande, W., Callot, C., Langlade, N., & Muños, S. (2016). Extraction of high-molecular-weight genomic DNA for long-read sequencing of single molecules. BioTechniques, 61(4), 203--205. <https://doi.org/10.2144/000114460> 
+
+[3] Nanodrop microvolume spectrophotometers. Thermo Fisher Scientific. (n.d.). Retrieved October 10, 2022, from <https://www.thermofisher.com/us/en/home/industrial/spectroscopy-elemental-isotope-analysis/molecular-spectroscopy/uv-vis-spectrophotometry/instruments/nanodrop.html> 
+
+[4] Qubit fluorometric quantification. Thermo Fisher Scientific. (n.d.). Retrieved October 10, 2022, from <https://www.thermofisher.com/us/en/home/industrial/spectroscopy-elemental-isotope-analysis/molecular-spectroscopy/fluorometers/qubit.html>

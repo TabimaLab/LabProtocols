@@ -1,0 +1,131 @@
+---
+title: "FASTQ_Lab"
+author: 'Sara Wheeler'
+date: '2023-01-31'
+output: html_document
+---
+
+1.How many FASTQ files per sample do you expect (one FASTQ per sample or two FASTQ per sample)? Justify your answer.
+
+#There should be 2 FASTQ files per samples- a forward and reverse file since ILLUMINA sequences each read in both directions. Sequenced in forward and reversed directions. 
+
+2. Do you expect all the reads to be of the same size? Which size?
+
+#All of the reads should be 150 bp since that is the length set length in the sequencer.  
+#Yes, as the Illumina has a dtermined number of cycles
+
+Location of files:
+
+```{bash}
+cd /course_data/BIOL209/raw_illumina_data/raw_reads/
+
+mkdir Genome_backup_S165
+
+cp NBP03_S165_R1_001.fastq.gz ~/Genome_backup_S165
+cp NBP03_S165_R2_001.fastq.gz ~/Genome_backup_S165
+cp -r NBP03_S165_R2_001.fastq.gz ~/Genome_backup_S165
+
+cp NB0621_05_S166_R1_001.fastq.gz ~/Genome_backup
+cp NB0621_05_S166_R2_001.fastq.gz ~/Genome_backup
+
+cp NB0621_12_S167_R1_001.fastq.gz ~/Microbiomes/S167
+cp NB0621_12_S167_R2_001.fastq.gz ~/Microbiomes/S167
+
+
+
+for i in S165 S166 S167;
+  do cp /course_data/BIOL209/raw_illumina_data/raw_reads/$i/*.fasta.gz $i/
+done
+```
+
+```{bash}
+
+for i in S165 S166 S167;
+  do mkdir $i
+done
+```
+```{bash}
+for i in S165 S166 S167;
+  do cp /course_data/BIOL209/raw_illumina_data/raw_reads/$i/*.fasta.gz $i/
+done
+```
+3. What are the genome files? Add the names here
+
+#NBP03_S165_R1_001.fastq.gz and NBP03_S165_R2_001.fastq.gz
+
+
+4. Samples' sequence ID: 
+
+#VH00487
+
+```{bash}
+
+for i in S165 S166 S167;
+  do echo $i/*.fastq.gz;
+  zcat $i/*.fasta.gz | head;
+done
+```
+
+5. Can you use this information to count the number of reads per sample? Add the code below and the result. 
+
+#1589680
+
+```{bash}
+
+zcat NBP03_S165_R1_001.fastq.gz | grep -c "@VH00487"
+zcat NBP03_S165_R2_001.fastq.gz | grep -c "@VH00487"
+
+for i in S16?*/*_R?*.fastq.gz;
+  do echo $i;
+  zcat $i | grep -c "@VH00487";
+done
+
+```
+
+6. Are the number of reads between file R1 and R2 the same? Was this expected? Justify your answer.
+
+# Yes. They should be the same since they have the same gene content but are just in opposite directions.
+
+Running fastqc on each file: 
+```{bash} 
+/Smaug_SSD/bin/fastqc -o ~/Genome_backup_S165/QC NBP03_S165_R1_001.fastq.gz
+
+/Smaug_SSD/bin/fastqc -o ~/Genome_backup_S165/QC NBP03_S165_R2_001.fastq.gz 
+
+```{bash}
+for i in S167/*_R?*.fastq.gz;
+  do /Smaug_SSD/bin/fastqc $i;
+done
+
+```
+7. What are the outputs of FastQC? 
+
+# 4 files ---  .html and .zip for each file : NBP03_S165_R1_001_fastqc.html  NBP03_S165_R1_001_fastqc.zip  NBP03_S165_R2_001_fastqc.html  NBP03_S165_R2_001_fastqc.zip
+
+8. How many sequence reads makeup our dataset? Does this agree with your previous calculation? Look at .html files 
+
+# 1589680 reads 
+
+9. What is the read length of our data? Is this result expected or do we see weird results?
+
+# for forward reads: 35-151 bp, for reverse reads: 140-151 bp. 
+
+10. What is the GC content of our data ? Does this match expectations?
+
+# GC content is 54%, this matches expectations, close to 50%. 
+
+11. Describe the sequence quality of the files (per base sequence quality, per tile sequence quality, per sequence quality score).
+# per base and per seqeunce is great, per tile is flagged ebcause of a couple of low quality. R2 is a little bit worse 
+
+12. In general, are the forward and reverse reads of similar quality? If they differ, how do they differ?
+
+#forward file is higher quality. Per base sequence quality and per tile sequence quality are worse in reverse. There is also an overrepresented sequence, and adapter content is poorer. 
+
+13. Are there any issues with the various other metrics analyzed by FastQC (i.e. the red circles with the ‘X’ on the left under the ‘Summary’ heading)? Do you notice any patterns that are puzzling or troubling with any of these analyses?
+
+#per base sequence quality is flagged. 
+
+14. Improving the Illumina Data: Outline rough plan to improve the Illumina Sequence data. You don’t need to provide specific program commands and parameters, but do take a look at some of the programs above to start thinking about how you would improve or filter the read data. By all means you can consider using other software if you find something interesting or useful.
+
+
+

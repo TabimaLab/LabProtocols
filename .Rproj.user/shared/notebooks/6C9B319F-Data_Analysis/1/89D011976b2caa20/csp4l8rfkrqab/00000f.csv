@@ -1,0 +1,586 @@
+"0","derepFs <- derepFastq(filtFs, verbose = TRUE)"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/B001_raw_1.fq.gz
+"
+"2","Encountered 15538 unique sequences from 73524 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/B003_raw_1.fq.gz
+"
+"2","Encountered 13986 unique sequences from 49781 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/B007_raw_1.fq.gz
+"
+"2","Encountered 24413 unique sequences from 93222 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/B008_raw_1.fq.gz
+"
+"2","Encountered 33432 unique sequences from 118911 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/B009_raw_1.fq.gz
+"
+"2","Encountered 27748 unique sequences from 128845 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/B010_raw_1.fq.gz
+"
+"2","Encountered 19531 unique sequences from 71847 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/B011_raw_1.fq.gz
+"
+"2","Encountered 19442 unique sequences from 105291 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/Coes002_raw_1.fq.gz
+"
+"2","Encountered 23358 unique sequences from 111761 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/Coes003_raw_1.fq.gz
+"
+"2","Encountered 25369 unique sequences from 129537 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/Coes004_raw_1.fq.gz
+"
+"2","Encountered 30562 unique sequences from 104311 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/Coes006_raw_1.fq.gz
+"
+"2","Encountered 19458 unique sequences from 111015 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/Coes007_raw_1.fq.gz
+"
+"2","Encountered 7455 unique sequences from 110495 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/Coes009_raw_1.fq.gz
+"
+"2","Encountered 27730 unique sequences from 112070 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/Coes010_raw_1.fq.gz
+"
+"2","Encountered 19150 unique sequences from 82622 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/Cook005_raw_1.fq.gz
+"
+"2","Encountered 15109 unique sequences from 53771 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/Cook006_raw_1.fq.gz
+"
+"2","Encountered 18627 unique sequences from 80636 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/Cook007_raw_1.fq.gz
+"
+"2","Encountered 17867 unique sequences from 60218 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/Cook008_raw_1.fq.gz
+"
+"2","Encountered 22908 unique sequences from 91816 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/Cook009_raw_1.fq.gz
+"
+"2","Encountered 33435 unique sequences from 128962 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/Cook011_raw_1.fq.gz
+"
+"2","Encountered 28346 unique sequences from 127611 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/Cook012_raw_1.fq.gz
+"
+"2","Encountered 20129 unique sequences from 101677 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/Cook013_raw_1.fq.gz
+"
+"2","Encountered 26147 unique sequences from 104048 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/KP001_raw_1.fq.gz
+"
+"2","Encountered 19846 unique sequences from 104561 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/KP002_raw_1.fq.gz
+"
+"2","Encountered 24553 unique sequences from 116955 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/KP003_raw_1.fq.gz
+"
+"2","Encountered 20700 unique sequences from 96541 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/KP004_raw_1.fq.gz
+"
+"2","Encountered 18216 unique sequences from 71887 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/KP005_raw_1.fq.gz
+"
+"2","Encountered 15293 unique sequences from 65027 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/KP006_raw_1.fq.gz
+"
+"2","Encountered 23782 unique sequences from 97085 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/KP007_raw_1.fq.gz
+"
+"2","Encountered 26017 unique sequences from 90480 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/KP009_raw_1.fq.gz
+"
+"2","Encountered 15495 unique sequences from 60384 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/KP010_raw_1.fq.gz
+"
+"2","Encountered 9574 unique sequences from 45790 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/KP011_raw_1.fq.gz
+"
+"2","Encountered 16594 unique sequences from 101540 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/KP013_raw_1.fq.gz
+"
+"2","Encountered 13064 unique sequences from 48318 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/MP001_raw_1.fq.gz
+"
+"2","Encountered 24102 unique sequences from 118039 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/MP002_raw_1.fq.gz
+"
+"2","Encountered 30285 unique sequences from 117900 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/MP003_raw_1.fq.gz
+"
+"2","Encountered 14692 unique sequences from 55787 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/MP004_raw_1.fq.gz
+"
+"2","Encountered 16758 unique sequences from 90526 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/MP005_raw_1.fq.gz
+"
+"2","Encountered 11096 unique sequences from 74425 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/MP007_raw_1.fq.gz
+"
+"2","Encountered 21854 unique sequences from 94523 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/MP008_raw_1.fq.gz
+"
+"2","Encountered 31667 unique sequences from 124136 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/MR001_raw_1.fq.gz
+"
+"2","Encountered 23094 unique sequences from 117399 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/MR002_raw_1.fq.gz
+"
+"2","Encountered 22305 unique sequences from 123956 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PR001_raw_1.fq.gz
+"
+"2","Encountered 27095 unique sequences from 98133 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PR002_raw_1.fq.gz
+"
+"2","Encountered 33437 unique sequences from 87251 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PR003_raw_1.fq.gz
+"
+"2","Encountered 31133 unique sequences from 105414 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PR005_raw_1.fq.gz
+"
+"2","Encountered 36121 unique sequences from 119683 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PR006_raw_1.fq.gz
+"
+"2","Encountered 34000 unique sequences from 118961 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PR007_raw_1.fq.gz
+"
+"2","Encountered 19684 unique sequences from 62484 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PR008_raw_1.fq.gz
+"
+"2","Encountered 25468 unique sequences from 83034 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PR009_raw_1.fq.gz
+"
+"2","Encountered 34848 unique sequences from 109658 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PR010_raw_1.fq.gz
+"
+"2","Encountered 18068 unique sequences from 64055 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PRS001_raw_1.fq.gz
+"
+"2","Encountered 25517 unique sequences from 99593 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PRS002_raw_1.fq.gz
+"
+"2","Encountered 32344 unique sequences from 110741 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PRS003_raw_1.fq.gz
+"
+"2","Encountered 25690 unique sequences from 114537 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PRS004_raw_1.fq.gz
+"
+"2","Encountered 18941 unique sequences from 105652 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PRS006_raw_1.fq.gz
+"
+"2","Encountered 25384 unique sequences from 103983 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PRS007_raw_1.fq.gz
+"
+"2","Encountered 16749 unique sequences from 56299 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PRS009_raw_1.fq.gz
+"
+"2","Encountered 11638 unique sequences from 65415 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PRS010_raw_1.fq.gz
+"
+"2","Encountered 11468 unique sequences from 54224 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/SBFM_1_raw_1.fq.gz
+"
+"2","Encountered 19855 unique sequences from 68067 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/SBFM_10_raw_1.fq.gz
+"
+"2","Encountered 20966 unique sequences from 100493 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/SBFM_9_raw_1.fq.gz
+"
+"2","Encountered 16970 unique sequences from 70554 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/T10_raw_1.fq.gz
+"
+"2","Encountered 23439 unique sequences from 105216 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/T14_raw_1.fq.gz
+"
+"2","Encountered 31001 unique sequences from 102864 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/T15_raw_1.fq.gz
+"
+"2","Encountered 16515 unique sequences from 102514 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/T19_raw_1.fq.gz
+"
+"2","Encountered 22673 unique sequences from 94150 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/T2_raw_1.fq.gz
+"
+"2","Encountered 19643 unique sequences from 121184 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/T3_raw_1.fq.gz
+"
+"2","Encountered 34192 unique sequences from 125090 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/T4_raw_1.fq.gz
+"
+"2","Encountered 26213 unique sequences from 110578 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/T5_raw_1.fq.gz
+"
+"2","Encountered 14204 unique sequences from 76438 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/T7_raw_1.fq.gz
+"
+"2","Encountered 31434 unique sequences from 112024 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/T8_raw_1.fq.gz
+"
+"2","Encountered 22566 unique sequences from 92894 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/T9_raw_1.fq.gz
+"
+"2","Encountered 15618 unique sequences from 82845 total sequences read.
+"
+"0","derepRs <- derepFastq(filtRs, verbose = TRUE)"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/B001_raw_2.fq.gz
+"
+"2","Encountered 18628 unique sequences from 73524 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/B003_raw_2.fq.gz
+"
+"2","Encountered 13737 unique sequences from 49781 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/B007_raw_2.fq.gz
+"
+"2","Encountered 24472 unique sequences from 93222 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/B008_raw_2.fq.gz
+"
+"2","Encountered 35771 unique sequences from 118911 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/B009_raw_2.fq.gz
+"
+"2","Encountered 29569 unique sequences from 128845 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/B010_raw_2.fq.gz
+"
+"2","Encountered 20587 unique sequences from 71847 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/B011_raw_2.fq.gz
+"
+"2","Encountered 23321 unique sequences from 105291 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/Coes002_raw_2.fq.gz
+"
+"2","Encountered 23409 unique sequences from 111761 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/Coes003_raw_2.fq.gz
+"
+"2","Encountered 25472 unique sequences from 129537 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/Coes004_raw_2.fq.gz
+"
+"2","Encountered 30841 unique sequences from 104311 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/Coes006_raw_2.fq.gz
+"
+"2","Encountered 19849 unique sequences from 111015 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/Coes007_raw_2.fq.gz
+"
+"2","Encountered 10016 unique sequences from 110495 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/Coes009_raw_2.fq.gz
+"
+"2","Encountered 29806 unique sequences from 112070 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/Coes010_raw_2.fq.gz
+"
+"2","Encountered 19948 unique sequences from 82622 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/Cook005_raw_2.fq.gz
+"
+"2","Encountered 15039 unique sequences from 53771 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/Cook006_raw_2.fq.gz
+"
+"2","Encountered 19898 unique sequences from 80636 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/Cook007_raw_2.fq.gz
+"
+"2","Encountered 18148 unique sequences from 60218 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/Cook008_raw_2.fq.gz
+"
+"2","Encountered 22769 unique sequences from 91816 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/Cook009_raw_2.fq.gz
+"
+"2","Encountered 34493 unique sequences from 128962 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/Cook011_raw_2.fq.gz
+"
+"2","Encountered 28424 unique sequences from 127611 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/Cook012_raw_2.fq.gz
+"
+"2","Encountered 22977 unique sequences from 101677 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/Cook013_raw_2.fq.gz
+"
+"2","Encountered 27673 unique sequences from 104048 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/KP001_raw_2.fq.gz
+"
+"2","Encountered 19434 unique sequences from 104561 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/KP002_raw_2.fq.gz
+"
+"2","Encountered 27154 unique sequences from 116955 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/KP003_raw_2.fq.gz
+"
+"2","Encountered 23501 unique sequences from 96541 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/KP004_raw_2.fq.gz
+"
+"2","Encountered 22476 unique sequences from 71887 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/KP005_raw_2.fq.gz
+"
+"2","Encountered 16996 unique sequences from 65027 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/KP006_raw_2.fq.gz
+"
+"2","Encountered 23690 unique sequences from 97085 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/KP007_raw_2.fq.gz
+"
+"2","Encountered 23889 unique sequences from 90480 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/KP009_raw_2.fq.gz
+"
+"2","Encountered 16338 unique sequences from 60384 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/KP010_raw_2.fq.gz
+"
+"2","Encountered 13165 unique sequences from 45790 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/KP011_raw_2.fq.gz
+"
+"2","Encountered 18372 unique sequences from 101540 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/KP013_raw_2.fq.gz
+"
+"2","Encountered 13768 unique sequences from 48318 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/MP001_raw_2.fq.gz
+"
+"2","Encountered 24566 unique sequences from 118039 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/MP002_raw_2.fq.gz
+"
+"2","Encountered 31871 unique sequences from 117900 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/MP003_raw_2.fq.gz
+"
+"2","Encountered 14872 unique sequences from 55787 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/MP004_raw_2.fq.gz
+"
+"2","Encountered 19184 unique sequences from 90526 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/MP005_raw_2.fq.gz
+"
+"2","Encountered 11556 unique sequences from 74425 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/MP007_raw_2.fq.gz
+"
+"2","Encountered 21657 unique sequences from 94523 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/MP008_raw_2.fq.gz
+"
+"2","Encountered 27392 unique sequences from 124136 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/MR001_raw_2.fq.gz
+"
+"2","Encountered 23173 unique sequences from 117399 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/MR002_raw_2.fq.gz
+"
+"2","Encountered 24301 unique sequences from 123956 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PR001_raw_2.fq.gz
+"
+"2","Encountered 27539 unique sequences from 98133 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PR002_raw_2.fq.gz
+"
+"2","Encountered 26304 unique sequences from 87251 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PR003_raw_2.fq.gz
+"
+"2","Encountered 36421 unique sequences from 105414 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PR005_raw_2.fq.gz
+"
+"2","Encountered 37462 unique sequences from 119683 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PR006_raw_2.fq.gz
+"
+"2","Encountered 34000 unique sequences from 118961 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PR007_raw_2.fq.gz
+"
+"2","Encountered 19668 unique sequences from 62484 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PR008_raw_2.fq.gz
+"
+"2","Encountered 25226 unique sequences from 83034 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PR009_raw_2.fq.gz
+"
+"2","Encountered 35221 unique sequences from 109658 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PR010_raw_2.fq.gz
+"
+"2","Encountered 22476 unique sequences from 64055 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PRS001_raw_2.fq.gz
+"
+"2","Encountered 26396 unique sequences from 99593 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PRS002_raw_2.fq.gz
+"
+"2","Encountered 34024 unique sequences from 110741 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PRS003_raw_2.fq.gz
+"
+"2","Encountered 33877 unique sequences from 114537 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PRS004_raw_2.fq.gz
+"
+"2","Encountered 27624 unique sequences from 105652 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PRS006_raw_2.fq.gz
+"
+"2","Encountered 26939 unique sequences from 103983 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PRS007_raw_2.fq.gz
+"
+"2","Encountered 17279 unique sequences from 56299 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PRS009_raw_2.fq.gz
+"
+"2","Encountered 12970 unique sequences from 65415 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/PRS010_raw_2.fq.gz
+"
+"2","Encountered 11823 unique sequences from 54224 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/SBFM_1_raw_2.fq.gz
+"
+"2","Encountered 19801 unique sequences from 68067 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/SBFM_10_raw_2.fq.gz
+"
+"2","Encountered 21471 unique sequences from 100493 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/SBFM_9_raw_2.fq.gz
+"
+"2","Encountered 16837 unique sequences from 70554 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/T10_raw_2.fq.gz
+"
+"2","Encountered 24202 unique sequences from 105216 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/T14_raw_2.fq.gz
+"
+"2","Encountered 37020 unique sequences from 102864 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/T15_raw_2.fq.gz
+"
+"2","Encountered 17649 unique sequences from 102514 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/T19_raw_2.fq.gz
+"
+"2","Encountered 23547 unique sequences from 94150 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/T2_raw_2.fq.gz
+"
+"2","Encountered 23806 unique sequences from 121184 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/T3_raw_2.fq.gz
+"
+"2","Encountered 33447 unique sequences from 125090 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/T4_raw_2.fq.gz
+"
+"2","Encountered 33397 unique sequences from 110578 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/T5_raw_2.fq.gz
+"
+"2","Encountered 13602 unique sequences from 76438 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/T7_raw_2.fq.gz
+"
+"2","Encountered 32918 unique sequences from 112024 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/T8_raw_2.fq.gz
+"
+"2","Encountered 24001 unique sequences from 92894 total sequences read.
+"
+"2","Dereplicating sequence entries in Fastq file: ~/filtN//cutadapt/filtered/T9_raw_2.fq.gz
+"
+"2","Encountered 16628 unique sequences from 82845 total sequences read.
+"

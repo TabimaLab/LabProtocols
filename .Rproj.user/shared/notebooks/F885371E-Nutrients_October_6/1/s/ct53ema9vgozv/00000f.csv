@@ -1,0 +1,1 @@
+"0","june.results <- june.results[grep(pattern = ""D$"", x = june.results$Site, invert = T),]"

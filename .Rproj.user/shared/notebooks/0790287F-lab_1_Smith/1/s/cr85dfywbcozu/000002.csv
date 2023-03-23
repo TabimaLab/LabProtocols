@@ -1,0 +1,5 @@
+"0"," grep -o -c ""photosystem II reaction center protein"" Syn_WH101.cds.fasta
+ grep -o -c ""phycobilisome linker polypeptide"" Syn_WH101.cds.fasta"
+"1","12
+1
+"

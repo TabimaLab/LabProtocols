@@ -1,0 +1,367 @@
+---
+title: "Sequence Analysis"
+author: "Maddie Hincher"
+date: '2022-10-25'
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+DADA ONLY
+
+Load required packages 
+
+```{r setup, include=FALSE}
+library(dada2)
+packageVersion("dada2")
+library(ShortRead)
+packageVersion("ShortRead")
+library(Biostrings)
+packageVersion("Biostrings")
+library(tidyverse)
+```
+
+
+```
+if (!requireNamespace("BiocManager", quietly=TRUE))
+    install.packages("BiocManager")
+BiocManager::install("dada2")
+```
+
+## Step 1: Identify path of data and all files 
+
+``` {r}
+path <- "/Smaug_SSD/BIOL209/mhincher/sequence_analysis_eDNA/rawdata"
+list.files(path)
+```
+
+## Step 2: Create objects to sort the forward and reverse reads 
+
+This creates matched lists of the forward and reverse reads based on the name of the samples, assuming forwards end in `_1.fq.gz` and reverses end in `_2.fq.gz`. 
+
+```{r}
+fnFs <- sort(list.files(path, pattern = "_1.fq.gz$", full.names = TRUE))
+fnRs <- sort(list.files(path, pattern = "_2.fq.gz$", full.names = TRUE))
+
+fnFs
+fnRs
+``` 
+
+fnFs contains 126 elements, or all 126 forward read files ... was 73 
+fnRs contains 126 elements, or all 126 reverse read files 
+
+## Step 3: Remove the primers
+
+First, create objects that contain the forward and reverse primers that were used in sequencing 
+
+```{r}
+FWD <- "GGAAGTAAAAGTCGTAACAAGG"
+REV <- "GCTGCGTTCTTCATCGATGC"
+```
+
+**Q**: how does it know that "primer" in the `DNAstring(primer) is the FWD and REV, not just an object called primer because we never identify what primer is 
+  - Start backward from the code, `FWD.orients` and `REV.orients` are defined by `allOrients`. We can see that the input for allOrients includes `FWD` and `REV` which contain the sequences from the previous step. Therefore, at the top of the code chunk, when allOrients is defined by function(primer), its referencing the FWD and REV primers that we enter in allOrients. In the next line when we define DNA as DNAstring(primer), it knows that function primer is fulfilling `allOrients` which has two separate inputs of the `FWD` and `REV` primers.
+From this function, we get two outputs which are the FWD.orients and REV.orients. 
+
+**Q**: Why dont we put `FWD.orients` in replace of `primer` in the DNAstring? 
+  - because this is a function/loop and therefore this allows it to run both the forward and reverse without needing to recopy the code? 
+
+In the next line, orients is defined with the function c() which combines arguemnts into a vector so when you type orients, it will give you the DNAstring(primer) which we later use the input of FWD and REV. So, for FWD, c(Forward = dna) will match the original forward primer that we plug in. The next commands, like Complement = complement (dna) will match the corresponding nucleic acids to the forward pattern. Reverse = reverse(dna) will take the original primer and reverse it. RevComp = reverseComplement(dna) takes the reverse of the original DNA string and match the corresponding nucelic acids. All outputs are different. 
+Lastly,  `return(sapply(orients, toString))` changes the strings, which are objects, back to character vectors 
+
+```{r}
+allOrients <- function(primer) {
+    # Create all orientations of the input sequence
+    require(Biostrings)
+    dna <- DNAString(primer)  # The Biostrings works w/ DNAString objects rather than character vectors
+    orients <- c(Forward = dna, Complement = complement(dna), Reverse = reverse(dna), 
+        RevComp = reverseComplement(dna))
+    return(sapply(orients, toString))  # Convert back to character vector
+}
+
+FWD.orients <- allOrients(FWD)
+REV.orients <- allOrients(REV)
+
+FWD.orients
+REV.orients
+```
+
+## Step 4: Remove the N's 
+
+Ambiguous bases can mess up the identification of short primer sequences, so we need to remove N's so that the program can accurately find the `orients` that we just created. In this step, we are not dealing with the `FWD.orients` and `REV.orients`, we are just filtering out the N's from the list of files in `fnFs` and `fnRs`. 
+
+vector `fnFs.filtN` contains the files using path, but creates a new subdirectory called filtN, but basename() command removes all of the path up to and including the last path separator. This means that only files in `fnFs` and `fnRs` will be used, not the whole list of files before we separated into matched lists. Now we have a new folder with all the same files but with no Ns. 
+
+**Q**: Why do we filter and trim the `fnFs`, and the `fnFs.filtN`? Are these not the same thing? What is the point of creating a separate subdirectory for specifically filtered files and renaming them `*.filtN` when we filter all of the originals as well. 
+
+They are the same files, but making a new one that copies into a new file ensures that the original data wont be erased or manipulated if there are errors. 
+
+```{r}
+fnFs.filtN <- file.path(path, "filtN", basename(fnFs)) # Put N-filterd files in filtN/ subdirectory
+fnRs.filtN <- file.path(path, "filtN", basename(fnRs))
+filterAndTrim(fnFs, fnFs.filtN, fnRs, fnRs.filtN, maxN = 0, multithread = TRUE)
+```
+
+
+## Step 5: Counting primers
+
+We are going to count all of the primers regardless of primer orientation. 
+
+vcountpattern(pattern, subject)
+
+So... vcountpattern(primer, fn)
+  - Primer is found in allOrients as a function, and fn (filename?) can be interchanged for the different files, in this case `fnFs.filtN[[1]]`. In this fuction called primerHits, it is going to count the number of reads based off the primer orientations from `allOrients` (primer), in the short read `(sread)` fastq file names `(readFastq(fn))`. It will then return everything hit larger than 0. 
+The second chunk of code uses `sapply` to reiterate a function list of vectors where we define each `FWD.*Reads` and `REV.*Reads` = the character vector which contains the primer orients (`FWD.orients` or `REV.orients`), the function which counts the number of hits of the primers (`primerHits`), and gives the filename for this example (`fn= fnFs.filtN[[1]]`). 
+
+The output shows us only the hits for primers in the first file. This is ok because the files should all be in the same format, so we dont need to check and count each one. 
+
+```{r}
+primerHits <- function(primer, fn) {
+    # Counts number of reads in which the primer is found
+    nhits <- vcountPattern(primer, sread(readFastq(fn)), fixed = FALSE)
+    return(sum(nhits > 0))
+}
+rbind(FWD.ForwardReads = sapply(FWD.orients, primerHits, fn = fnFs.filtN[[1]]), 
+    FWD.ReverseReads = sapply(FWD.orients, primerHits, fn = fnRs.filtN[[1]]), 
+    REV.ForwardReads = sapply(REV.orients, primerHits, fn = fnFs.filtN[[1]]), 
+    REV.ReverseReads = sapply(REV.orients, primerHits, fn = fnRs.filtN[[1]]))
+```
+
+## Step 6: Remove Primers 
+
+First, locate an object cutadapt with path. Then, create `fnFs.cut` and `fnRs.cut` by listing the files (file.path) in our path.cut, basenames (removing everything besides `fnFs` and `fnRs`. 
+
+
+```{r}
+cutadapt <- "/usr/bin/cutadapt" # CHANGE ME to the cutadapt path on your machine
+
+path.cut <- file.path(path, "cutadapt")
+if(!dir.exists(path.cut)) dir.create(path.cut)
+fnFs.cut <- file.path(path.cut, basename(fnFs))
+fnRs.cut <- file.path(path.cut, basename(fnRs))
+```
+
+`FWD.RC <- dada2:::rc(FWD)` is creating `FWD.RC` so the forward reverse compliment 
+`REV.RC <- dada2:::rc(REV)` is creating `REV.RC` so the reverse reverse compliment
+
+```{r}
+FWD.RC <- dada2:::rc(FWD)
+REV.RC <- dada2:::rc(REV)
+```
+
+THEN... 
+
+Create flags for each files' primers. 
+
+So the `_1.fq.gz` files, contain forward reads which will be flagged by `-g` and Reverse reverse-compliments which will be flagged by `-a`. 
+
+The `_2.fq.gz` files, contain reverse reads flagged by `-G` and forward reverse-compliments which will be flagged by `-A`.   
+
+```{r}
+# Trim FWD and the reverse-complement of REV off of R1 (forward reads)
+R1.flags <- paste("-g", FWD, "-a", REV.RC) 
+# Trim REV and the reverse-complement of FWD off of R2 (reverse reads)
+R2.flags <- paste("-G", REV, "-A", FWD.RC) 
+```
+
+**this did not work** 
+
+The next step is different than in the guide. The idea is to send all the jobs to the cluster for them to execute in the background:
+
+```{r}
+for(i in seq_along(fnFs)) {
+  jobname <- basename(fnFs[i]) %>% gsub(pattern = "_.+", replacement = "_cutadapt", perl = T)
+  cut.sh <- paste(cutadapt, R1.flags, R2.flags, "-n", 2, # -n 2 required to remove FWD and REV from reads
+                             "-o", fnFs.cut[i], "-p", fnRs.cut[i], # output files
+                             fnFs.filtN[i], fnRs.filtN[i])
+system(paste('sbatch -J', jobname ,'--wrap "', cut.sh , '"'))
+}
+
+rbind(FWD.ForwardReads = sapply(FWD.orients, primerHits, fn = fnFs.cut[[1]]), 
+    FWD.ReverseReads = sapply(FWD.orients, primerHits, fn = fnRs.cut[[1]]), 
+    REV.ForwardReads = sapply(REV.orients, primerHits, fn = fnFs.cut[[1]]), 
+    REV.ReverseReads = sapply(REV.orients, primerHits, fn = fnRs.cut[[1]]))
+```
+
+From dada2, this removes uses cutadapts to remove the previously labled flags and creates output files `fnFs.cut[i]` and `fnRs.cut[i]`from the input files of `fnFs.filtN`and `fnRs.filtN`. 
+
+```{r} 
+for(i in seq_along(fnFs)) {
+  system2(cutadapt, args = c(R1.flags, R2.flags, "-n", 2, # -n 2 required to remove FWD and REV from reads
+                             "-o", fnFs.cut[i], "-p", fnRs.cut[i], # output files
+                             fnFs.filtN[i], fnRs.filtN[i])) # input files
+}
+```
+
+Now do a sanity check in the first cutadapt-ed file 
+
+```{r}
+rbind(FWD.ForwardReads = sapply(FWD.orients, primerHits, fn = fnFs.cut[[1]]), 
+    FWD.ReverseReads = sapply(FWD.orients, primerHits, fn = fnRs.cut[[1]]), 
+    REV.ForwardReads = sapply(REV.orients, primerHits, fn = fnFs.cut[[1]]), 
+    REV.ReverseReads = sapply(REV.orients, primerHits, fn = fnRs.cut[[1]]))
+```
+
+We should see all 0s in the results of all primer orientations 
+
+## Step 7: DADA analysis 
+
+Now we will create matched lists of the forward and reverse reads 
+
+```{r}
+# Forward and reverse fastq filenames have the format:
+cutFs <- sort(list.files(path.cut, pattern = "_1.fq.gz", full.names = TRUE))
+cutRs <- sort(list.files(path.cut, pattern = "_2.fq.gz", full.names = TRUE))
+```
+
+Now we are going to create a character vector so that when we type sample.name, it gives us only the name of the sample and not the true file name. This assumes all files are in the same format. 
+
+```{r}
+# Extract sample names, assuming filenames have format:
+get.sample.name <- function(fname) strsplit(basename(fname), "_")[[1]][1]
+sample.names <- unname(sapply(cutFs, get.sample.name))
+head(sample.names)
+```
+
+Assigning the filenames for the output of the filtered reads to be stored as fastq.gz files.
+
+**I don't get what this is doing** 
+
+```{r}
+filtFs <- file.path(path.cut, "filtered", basename(cutFs))
+filtRs <- file.path(path.cut, "filtered", basename(cutRs))
+```
+
+Now filter and trim the reads. 
+
+**Q**: Is the above command just creating a path so that the output of whatever happens to the cutFs/cutRs lists are saved as fastq.gz files? 
+
+Out, shows how many reads were present before and how many are present after filtering and trimming. 
+
+```{r}
+out <- filterAndTrim(cutFs, filtFs, cutRs, filtRs, maxN = 0, maxEE = c(2, 2), 
+    truncQ = 2, minLen = 50, rm.phix = TRUE, compress = TRUE, multithread = TRUE)  # on windows, set multithread = FALSE
+head(out)
+```
+
+## Step 8: Error Rates 
+
+```{r}
+errF <- learnErrors(filtFs, multithread = TRUE)
+errR <- learnErrors(filtRs, multithread = TRUE)
+plotErrors(errF, nominalQ = TRUE)
+```
+
+## Step 9: Dereplicate reads
+
+Use the program `derepFastq` to dereplicate the `filtFs/filtRs` 
+
+```{r}
+derepFs <- derepFastq(filtFs, verbose = TRUE)
+derepRs <- derepFastq(filtRs, verbose = TRUE)
+```
+
+Name the derep-class objects by the sample names
+
+```{r}
+names(derepFs) <- sample.names
+names(derepRs) <- sample.names
+```
+
+## Step 10: Sample Inference 
+
+Sample inference: in the case of sequencing analysis, as used in DADA2, it infers sequences exactly and resolves differences of as little as 1 nucleotide. This allows for less ASVs because if there is only 1 difference between sequences, other programs might count these as two different variants. By resolving these small differences, fewer spurious sequences are outputted. 
+
+For code: dada applies the core sample inference algorithm to the de-replicated list of forward and reverse reads, and saves it as `dadaFs/dadaRs` 
+
+```{r}
+dadaFs <- dada(derepFs, err = errF, multithread = TRUE)
+dadaRs <- dada(derepRs, err = errR, multithread = TRUE)
+```
+
+## Step 11: Merge the paired reads 
+
+**Q**: Why are we merging the dadaFs and derepFs when the derepFs have not been inferred? 
+
+```{r}
+mergers <- mergePairs(dadaFs, derepFs, dadaRs, derepRs, verbose=TRUE)
+```
+
+## Step 12: Construct Sequence Table 
+
+This takes this list `mergers` and uses the command `makeSequenceTable` and saves it as `seqtab` dim(seqtab) shows the number of columns and rows in seqtab 
+
+```{r}
+seqtab <- makeSequenceTable(mergers)
+dim(seqtab)
+```
+
+[1]    73 21396
+
+## Step 13: Remove Chimeras 
+
+Chimeras are artifact sequences formed by two or more biological sequences incorrectly joined together. This can leaded to inflated measures of diversity and bias population genetic parameters. Identified as short sequence fragments that are uncommon within a reference phylogenetic group.  
+
+**Q**: Does this take the consensus of all reads present in the analysis and use this a the reference for the short fragments that are uncommon? 
+
+Use command `removeBimeraDenovo` for `seqtab` matrix, creating a consensus as the reference for chimera identification and save as `seqtab.nochim` 
+
+```{r} 
+seqtab.nochim <- removeBimeraDenovo(seqtab, method="consensus", multithread=TRUE, verbose=TRUE)
+```
+
+## Step 14:  Track the reads through the pipeline 
+
+This creates a table displaying the number of reads that were present at each step of the pipeline, so that we can keep track of how many were lost at each step. 
+
+**Q**: what is the last two lines of this code? Why are SBFM pulled out? 
+
+```{r}
+getN <- function(x) sum(getUniques(x))
+track <- cbind(out, sapply(dadaFs, getN), sapply(dadaRs, getN), sapply(mergers, 
+    getN), rowSums(seqtab.nochim))
+# If processing a single sample, remove the sapply calls: e.g. replace
+# sapply(dadaFs, getN) with getN(dadaFs)
+colnames(track) <- c("input", "filtered", "denoisedF", "denoisedR", "merged", 
+    "nonchim")
+rownames(track) <- sample.names
+head(track)
+
+rownames(seqtab.nochim)[rownames(seqtab.nochim) %in% "SBFM"] <- c("SBFM1","SBFM10","SBFM9")
+saveRDS(seqtab.nochim, file = "nochimera.RDS")
+```
+
+## Step 15: Assign the Taxonomy 
+
+`unite.ref` is an object that contains a database of fungal taxonomy references. `taxa` object is defined by the function `assigntaxonomy` which takes the sequance table without chimeras, and the reference fungal sequences. tryRC means that the reverse compliment will be used to assugn taxonomy if it is a better match than the forward sequence. 
+`saveRDS` writes a single R object to a file. So it saves `taxa` into a new file called `taxa.RDS`. 
+
+STOPPED AT TAXA
+
+```{r}
+unite.ref <- "/Tabima_lab/homes/mhincher/Tabima_lab/raw_data/watershed/fecal/sh_general_release_dynamic_16.10.2022.fasta"  # CHANGE ME to location on your machine
+taxa <- assignTaxonomy(seqtab.nochim, unite.ref, multithread = TRUE, tryRC = TRUE)
+saveRDS(taxa, file = "taxa.RDS")
+```
+ 
+Remove the sequence row names for display only: rename taxa as `taxa.print` and make it null. Then search for the pattern "Basidiobo" 
+
+**Q**: what is the [,3]
+ 
+```{r} 
+taxa.print <- taxa  # Removing sequence rownames for display only
+rownames(taxa.print) <- NULL
+taxa.print[grep(pattern = "Basidiobo", taxa.print[,3]),]
+```
+
+Save taxa.print for specifically BASI and rename it bas.taxa. `as_tibble` turns an existing object, such as a data frame or matrix, into a so-called tibble, a data frame with class tbl_df. Then creates a bar graph using ggplot with species on the x axis and n, or number of samples on the y axis. 
+
+**Q**: what does this mean? %>%
+like a pipe for r 
+
+Figure 1 
+```{r}
+bas.taxa <- taxa.print[grep(pattern = "Basidiobo", taxa.print[,3]),]
+bas.taxa <- as_tibble(bas.taxa)
+bas.taxa %>% count(Species) %>% ggplot(aes(x=Species, y=n, fill=Species)) + geom_bar(stat = "identity")
+```

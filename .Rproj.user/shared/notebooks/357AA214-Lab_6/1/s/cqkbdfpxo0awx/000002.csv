@@ -1,0 +1,11 @@
+"0","
+sbatch -J K7_jcarleton --wrap ""/Smaug_SSD/bin/SPAdes-3.13.0-Linux/bin/spades.py -t 3 -k 7 -1 S06_CKDN230002813-1A_HT2J2DSX5_L2_1.fq.gz -2 S06_CKDN230002813-1A_HT2J2DSX5_L2_2.fq.gz -o spades_7"";
+
+sbatch -J K21_jcarleton --wrap ""/Smaug_SSD/bin/SPAdes-3.13.0-Linux/bin/spades.py -t 3 -k 21 -1 S06_CKDN230002813-1A_HT2J2DSX5_L2_1.fq.gz -2 S06_CKDN230002813-1A_HT2J2DSX5_L2_2.fq.gz -o spades_21"";
+
+sbatch -J K47_jcarleton --wrap ""/Smaug_SSD/bin/SPAdes-3.13.0-Linux/bin/spades.py -t 3 -k 47 -1 S06_CKDN230002813-1A_HT2J2DSX5_L2_1.fq.gz -2 S06_CKDN230002813-1A_HT2J2DSX5_L2_2.fq.gz -o spades_47"";
+"
+"1","Submitted batch job 2734
+Submitted batch job 2735
+Submitted batch job 2736
+"

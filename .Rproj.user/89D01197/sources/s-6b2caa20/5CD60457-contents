@@ -1,0 +1,33 @@
+6*7
+
+(2021-1660)/10
+
+4^3*8 -> a
+a
+
+rm(a)
+a
+
+?rm()
+
+10:100 -> x
+x
+
+y <- 5+2*x
+y
+
+plot(x,y)
+plot(x,y,type="l")
+
+y <- 1/x
+plot(x,y,type="l")
+plot(x,1/y)
+
+y <- 20^x
+y
+
+curve(9/(5*x), from=10, to=100)
+
+curve(5*x^2, from=0, to=10)
+curve(5*x^2.5, from=0, to=10, add=TRUE)
+curve(2^x/9, from=0, to=10, add=TRUE)

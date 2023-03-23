@@ -1,0 +1,50 @@
+# using the # allows me to make comments instead of running code
+
+library(ggplot2)
+library(Hmisc)
+
+mass <- SockeyeFemaleBodyMass$massKg
+mass
+
+massmean <- mean(mass)
+massmean
+
+sqrt(sum(((mass-massmean)^2)/227))
+
+sd(mass)
+var(mass)
+IQR(mass)
+median(mass)
+
+standard_error <- (sd(mass))/(sqrt(length(mass)))
+standard_error
+
+se <- function(mass){sd(mass)/sqrt(length(mass))}
+se(mass)
+
+(se(mass)*2) + massmean
+massmean - (se(mass)*2)
+
+sort(mass)[qbinom(c(.025,.975), length(mass), 0.5)]
+
+SticklebackPlates <- read.csv('SticklebackPlates.csv')
+
+str(SticklebackPlates)
+mean(SticklebackPlates$Plates)
+
+aggregate(SticklebackPlates$Plates,list(Genotype = SticklebackPlates$Genotype),mean)
+ # complete this for the rest of the variables
+
+FUN <- function(x)c(avg=mean(x),med=median(x),inter.quart.range=IQR(x),std.err=se(x),CI=se(x)*2,std.dev=sd(x)) 
+
+stickleback.summary <- aggregate(SticklebackPlates$Plates,list(Genotype = SticklebackPlates$Genotype),FUN)
+stickleback.summary
+
+stickleback.summary <- do.call(data.frame,stickleback.summary)
+colnames(stickleback.summary)[2:7] <- c('plate.avg', 'plate.median', 'inter.quart.range', 'std.err', 'CI', 'std.dev')
+
+ggplot(stickleback.summary,aes(x=Genotype,y=plate.avg))+geom_errorbar(aes(ymin=plate.avg-std.dev, ymax=plate.avg+std.dev))+geom_point(size=3)
+
+ggplot(stickleback.summary,aes(x=Genotype,y=plate.avg))+geom_errorbar(aes(ymin=plate.avg-2.099539, ymax=plate.avg+1.956794))+geom_point(size=3)
+
+ggplot(stickleback.summary,aes(x=Genotype,y=plate.avg))+geom_errorbar(aes(ymin=plate.avg-(massmean + (se(mass*2))), ymax=plate.avg+(massmean - (se(mass)*2))))+geom_point(size=3) + theme_bw()

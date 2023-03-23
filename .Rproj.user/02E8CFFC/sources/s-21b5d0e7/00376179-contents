@@ -1,0 +1,40 @@
+---
+title: "Lab_5"
+author: "jasper perseus carleton"
+date: '2022-11-11'
+output: html_document
+---
+1. It is Homologene 210
+2. MutS
+3. MutS_I, MutS_II, and ABC_ATPase
+4. |          Species          |        Common Name       |   Protein ID   | Protein length |         Number of domains found         | gapopen | qstart | qend | sstart | send | evalue | bitscore |   |
+|:-------------------------:|:------------------------:|:--------------:|:--------------:|:---------------------------------------:|---------|--------|------|--------|------|--------|----------|---|
+| Homo sapiens              | Human                    | NP_000242.2    | Three          | (MutS_I, MutS_II, ABC_ATPase            | 0       | 1      | 1400 | 1425   | 2824 | 0.0    | 2586     |   |
+| Canis lupus familiaris    | Dog                      | XP_538482.2    | Three          | (MutS_I, MutS_II, ABC_ATPase            |         |        |      |        |      |        |          |   |
+| Bos taurus                | Cattle                   | NP_001029756.1 | Four           | (MutS_I, MutS_II, MutS_III, ABC_ATPase) |         |        |      |        |      |        |          |   |
+| Mus musculus              | House mouse              | NP_032654.1    | Four           | (MutS_I, MutS_II, ABC_ATPase            |         |        |      |        |      |        |          |   |
+| Rattus norvegicus         | Norway rat               | NP_112320.1    | Three          | (MutS_I, MutS_II, ABC_ATPase            |         |        |      |        |      |        |          |   |
+| Gallus gallus             | Chicken                  | XP_426110.4    | Four           | (MutS_I, MutS_II, MutS_III, ABC_ATPase) |         |        |      |        |      |        |          |   |
+| Xenopus tropicalis        | Tropical clawed frog     | XP_002935427.2 | Four           | (MutS_I, MutS_II, MutS_III, ABC_ATPase) |         |        |      |        |      |        |          |   |
+| Danio rerio               | Zebrafish                | NP_998689.1    | Three          | (MutS_I, MutS_II, ABC_ATPase            |         |        |      |        |      |        |          |   |
+| Drosophilia meloanogaster | Fruit fly                | NP_001246031.1 | Three          | (MutS_I, MutS_II, MUTSd)                |         |        |      |        |      |        |          |   |
+| Anopheles gambiae         | Anopheles gambiae        | XP_319476.4    | Three          | (MutS_I, MutS_II, MutS_V)               |         |        |      |        |      |        |          |   |
+| Saccharomyces cerevisiae  | Saccharomyces cerevisiae | 	NP_014551.1    | Four           | (MutS_I, MutS_II, MutS_III, ABC_ATPase) |         |        |      |        |      |        |          |   |
+| Kluyveromyces lactis      | Kluyveromyces lactis     | XP_455202.1    | Three          | (MutS_I, MutS_II, ABC_ATPase)           |         |        |      |        |      |        |          |   |
+| Eremothecium gossypii     | Eremothecium gossypii    | NP_986150.1    | Four           | (MutS_I, MutS_II, MutS_III, ABC_ATPase) |         |        |      |        |      |        |          |   |
+| Schizosaccharomyces pombe | Fission Yeast            | XP_001713136.1 | Three          | (MutS_I, MutS_II, ABC_ATPase)           |         |        |      |        |      |        |          |   |
+| Pyricularia oryzae        | Pyricularia oryzae       | XP_003718090.1 | Four           | (MutS_I, MutS_II, MutS_III, ABC_ATPase) |         |        |      |        |      |        |          |   |
+| Neurospora crassa         | Neurospora crassa        | XP_959643.1    | Four           | (MutS_I, MutS_II, MutS_III, ABC_ATPase) |         |        |      |        |      |        |          |   |
+| Arabidopsis thaliana      | Thale Cress              | NP_566804.3    | Four           | (MutS_I, MutS_II, MutS_III, ABC_ATPase) |         |        |      |        |      |        |          |   |
+5. There are 17 sequences in the mRNA file and 4 in the protein file
+6. I expected there to be the same amount of sequences in each file
+7. doesnt exist
+
+8-11 .
+- multiple conserved domains would use E-INS-i
+- one conserved domain would use L-INS-i
+- a single short domain would use G-INS-i
+
+
+
+

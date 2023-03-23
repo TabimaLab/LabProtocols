@@ -1,0 +1,72 @@
+library(shiny)
+library(tidyverse)
+library(googlesheets4)
+library(googledrive)
+
+gs4_deauth()
+wc <- read_sheet("https://docs.google.com/spreadsheets/d/1MxZIy1IwxaEedCxOHE3mseWtA0JTBD_nPEl-zJOkA3c", sheet = "Sheet1")
+plot.lines <- read_sheet("https://docs.google.com/spreadsheets/d/1MxZIy1IwxaEedCxOHE3mseWtA0JTBD_nPEl-zJOkA3c", sheet = "Sheet2")
+color.vector <- read_sheet("https://docs.google.com/spreadsheets/d/1MxZIy1IwxaEedCxOHE3mseWtA0JTBD_nPEl-zJOkA3c", sheet = "Sheet3")
+
+
+#wc <- read_xlsx("Familia_pronosticos.xlsx", sheet = 1)
+#plot.lines <- read_xlsx("Familia_pronosticos.xlsx", sheet = 2)
+#color.vector <-  read_xlsx("Familia_pronosticos.xlsx", sheet = 3)
+colvec <- unlist(color.vector[,2])
+names(colvec) <- unlist(color.vector[,1]) %>% unname
+
+
+# Define UI for application that draws a histogram
+ui <- fluidPage(
+
+    # Application title
+    titlePanel("Polla Mundialista: Familia Tabima"),
+
+    # Sidebar with a slider input for number of bins 
+    sidebarLayout(
+        sidebarPanel(
+          width = 2,
+          selectInput("member", "Persona:",
+                      choices = colnames(wc)[-c(1:5)]
+                      )
+        ),
+
+        # Show a plot of the generated distribution
+        mainPanel(
+           plotOutput("distPlot")
+        )
+    )
+)
+
+# Define server logic required to draw a histogram
+server <- function(input, output) {
+
+  final.df <- reactive({
+    sel.col <- wc %>% select(input$member)
+    f.df <- tibble(wc[,c(3:5)], sel.col)
+    colnames(f.df)[4] <- "selected"
+    f.df
+  })
+  
+    output$distPlot <- renderPlot({
+      plot.df <- final.df()
+      ggplot(final.df()) + geom_segment(data = plot.lines, aes(x=x, xend=xmax, y=y, yend=ymax), size = 1) + 
+        geom_label(data=final.df(), aes(x=x, y=y, label=selected, fill=selected), color="white", size = 7) + 
+        geom_text(data=final.df(), aes(x=x, y=y+0.7, label=Label), size = 4) + 
+        geom_text(x=3, y=19, label = bquote('Cuartos'), size = 9) + 
+        geom_text(x=11, y=19, label = bquote('Cuartos'), size = 9) + 
+        geom_text(x=5, y=19, label = bquote('Semifinales'), size = 9) + 
+        geom_text(x=9, y=19, label = bquote('Semifinales'), size = 9) + 
+        geom_text(x=7, y=11, label = bquote('Final'), size = 9) + 
+        geom_text(x=7, y=1, label = bquote('Tercer y Cuarto'), size = 9) + 
+        scale_x_continuous(breaks=seq(-2,18,1), limits = c(-0, 14)) +   
+        scale_y_continuous(breaks=seq(0,19,1), limits = c(1, 20)) + 
+        scale_fill_manual(values=colvec) + 
+        theme_void() +
+        theme(legend.position = "none")
+    })
+}
+
+# Run the application 
+shinyApp(ui = ui, server = server)
+

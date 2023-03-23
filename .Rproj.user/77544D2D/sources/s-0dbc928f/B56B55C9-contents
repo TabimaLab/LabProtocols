@@ -1,0 +1,86 @@
+---
+title: "Arctic microbio"
+author: "Sara Wheeler"
+date: '2022-10-24'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Reading in the data and getting the OTU table
+
+```{r}
+otu_table <- read.csv('/Smaug_SSD/MBB101/SaWheeler/Arctic/BACTERIA_Thermokarst_28487_OTUs_matrix.csv', header = F, stringsAsFactors = F )
+
+# removing the last column (Sum of totals)
+otu_table <- otu_table[,c(1:75)]
+
+# Column names are sixth row
+colnames(otu_table) <- otu_table[6,]
+
+# Row names are first column
+rownames(otu_table) <- otu_table[,1]
+
+# Getting rid of the repeated columns and row names
+otu_table <- otu_table[-6, -1]
+
+# Turning around the dataset
+otu_table <- t(otu_table)
+
+# Changing the column name
+colnames(otu_table)[3] <- "thermal_regime"
+
+# HOw does the forst 1o rows and columns look
+head(otu_table[c(1:10),c(1:10)])
+```
+# PCA
+
+```{r}
+# DOING PCA
+
+# Extracting all the numerical data: removing all that is not OTU info
+otu_pca <- otu_table[,6:ncol(otu_table)]
+class(otu_pca) <- "numeric"
+
+# Doing PCA
+otu.res <- prcomp(otu_pca, scale = T)
+otu.res$rotation <- -1*otu.res$rotation
+```
+
+## By Thermal regime
+```{r}
+library(ggfortify)
+library(viridis)
+
+# PERMANOVA
+library(vegan)
+otu_scale <- scale(otu_pca)
+
+colnames(otu_table)[c(1:5)]
+
+adonis2(otu_scale ~ otu_table[,4], method='bray', permutations = 999)
+
+autoplot(otu.res, data = otu_table, colour = 'thermal_regime',  frame = TRUE, frame.type = 't')  + theme_bw()
+
+autoplot(otu.res, data = otu_table, colour = 'location',  frame = TRUE, frame.type = 't')  + theme_bw() 
+
+autoplot(otu.res, data = otu_table, colour = 'subzone',  frame = TRUE, frame.type = 't')  + theme_bw()
+```
+
+### Comparing carbon regimes
+
+```{r}
+env <- read.csv("/Smaug_SSD/MBB101/SaWheeler/Arctic/ENVIRONMENT_Thermokarst_saved.csv")
+env
+
+
+summary(aov(lm(data = env, total.carbon ~ thermokarst.regime)))
+summary(aov(lm(data = env, total.nitrogen ~ thermokarst.regime)))
+summary(aov(lm(data = env, gravimetric.soilmoisture ~ thermokarst.regime)))
+
+ggplot(env, aes(x = thermokarst.regime, y=total.carbon, fill=thermokarst.regime)) + geom_boxplot()
+
+ggplot(env, aes(x = thermokarst.regime, y=gravimetric.soilmoisture, fill=thermokarst.regime)) + geom_boxplot()
+```

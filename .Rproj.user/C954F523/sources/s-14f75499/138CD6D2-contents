@@ -1,0 +1,140 @@
+# High Molecular Weight DNA Extraction
+
+## Remaining Questions
+
+1.  When to use cut pipet tips?
+
+2.  g or RPM?
+
+3.  How to troubleshoot tissue mass.
+
+4.  Potassium acetate function.
+
+## Required PPE
+
+-   Safety glasses
+
+-   Nitrile gloves
+
+-   Cryo-gloves
+
+-   Lab coat (8-14)
+
+-   Fume hood (6, 8, 11)
+
+## Pre-extraction steps
+
+-   Set hot plate to 65℃.
+
+-   Fill liquid nitrogen (LN2) tank.
+
+-   Fill a bucket with ice.
+
+## Extraction Protocol
+
+1.  Combine 650µL Buffer A, 650µL Buffer B, 260µL Buffer C, 175µL PVP (1%), and 10µL Proteinase K in a 2mL tube. Mix by inversion (4) and split volume equally between two 2mL tubes.
+2.  Place tubes in the 65℃ hot plate for 5 minutes or until warm.
+3.  Using a refrigerated mortar and pestle, fill the mortar with LN2 and submerge the pestle until cold. Using a clean spatula, add fungal tissue and grind tissue into a fine powder. Add more LN2 as needed. Add powdered tissue to tubes from step 1.
+4.  Incubate tubes in the incubator shaker (3) for \~30 minutes (at least) \@ 65℃.
+5.  Add 280µL 5M potassium acetate to each tube. Mix tubes by inversion and incubate on ice for 5 minutes.
+6.  Add phenol chloroform until tubes are full (roughly 500 to 700µL). Mix the tubes in the hula mixer for 5 minutes and incubate tubes at room temperature for 2 minutes.
+7.  Centrifuge tubes at 6000 x g for 10 minutes.
+8.  Pipet aqueous phase into new 2mL tubes and discard interphase and organic layers. Premix chloroform and isoamyl alcohol in equal volumes. Add 1mL chloroform/isoamyl alcohol to tubes containing aqueous phase (1).
+
+![Liquid phases](Liquid_phases.jpg)
+
+9.  Mix in the hula mixer for 5 minutes and incubate tubes at room temperature for 2 minutes.
+10. Centrifuge tubes at 6000 x g for 10 minutes.
+11. Pipet supernatant to new 2mL tubes. Add 2.5µL RNase A and put tubes in 37℃ incubator (shire) for 30 minutes.
+12. Estimate the tube's volume. Add 1/10x volume sodium acetate and 1x volume isopropanol at -20℃.
+13. Mix tubes gently by inversion and incubate at room temperature for 5 minutes.
+14. Centrifuge tubes at 3000 x g for 2 minutes. Pipette out as much supernatant as possible without disturbing pellet. Start with 1mL tips and use 200µL tips for residual solution.
+15. Wash pellet by adding 1mL of fresh 70% Ethanol at -20℃.
+16. Centrifuge tubes at 3000 x g for 2 minutes and pipette out all ethanol.
+17. Repeat steps 15 and 16 an additional time for a total of 2 washes.
+18. Loosen tube caps and dry pellet at 65℃ in the hot plate for 2 minutes (2).
+19. Resuspend pellet in 100µL TE buffer or sterile, deionized water.
+
+**Extraction Notes**
+
+(1) Vortexing HMW DNA causes it to break resulting in smaller fragment lengths. Always mix by inversion or on a rotator/shaker.
+
+(2) Thermo Scientific thermal mixer with block (13687713).
+
+(3) Take care to only transfer from the aqueous phase. To ensure contaminants are not transferred, consider leaving a small volume of the aqueous layer behind.
+
+(4) Over drying pellet is not recommended as DNA can convert from B to D form making later resuspension difficult.
+
+## Post-Extraction Steps
+
+-   Perform Qubit fluorometric quantification to obtain DNA concentration.
+
+-   Measure DNA concentration and contamination using NanoDrop spectroscopy.
+
+## Reagent Function and Troubleshooting
+
+**Polyvinylpyrrolidone (PVP)**
+
+Removes phenolic compounds from DNA. Polyphenols bind to DNA and co-precipitate with nucleic acid reducing purity. PVP removes polyphenol contamination by binding via hydrogen bonds and accumulates in the interphase when centrifuged with chloroform [1].
+
+**Proteinase K**
+
+Digestion of contaminant proteins from a nucleic acid solution is performed by addition of proteinase K.
+
+**Potassium Acetate**
+
+C2H3O2K unsure of function.
+
+**Phenol**
+
+As an organic solvent, phenol removes proteins and polysaccharide contamination in conjunction with chloroform and isoamyl alcohol. Additionally, DNA is insoluble in phenol because DNA is polar, and phenol is nonpolar [1].
+
+**Chloroform**
+
+Nonpolar proteins and lipids are dissolved in chloroform which, together with cellular debris, form the organic layer. This process leaves DNA isolated in the aqueous phase [1].
+
+**Isoamyl Alcohol**
+
+C5H12O serves many roles in stabilizing the organic, interphase, and aqueous layers. It prevents chloroform from foaming when in contact with air. Foaming causes emulsification of the solution resulting in difficulties when purifying DNA. It additionally stabilizes the interphase layer as it is not miscible in the aqueous or organic layers. Finally, it helps to inhibit RNase activity and reduce RNA molecule contamination [1].
+
+**Sodium Acetate**
+
+C2H3NaO2 neutralizes the charged sugar phosphate backbone of DNA. This process only occurs in the presence of isopropanol [1].
+
+**Isopropanol**
+
+To precipitate nucleic acids from the supernatant, an alcohol must be used to break the hydration shell that forms around nucleic acid. Isopropanol is a preferred choice as it has a high capacity to reduce the dielectric constant of water and therefore less (0.6-0.7x volume supernatant) can be used in comparison to ethanol (2-3x volume supernatant). A low dielectric constant is needed in conjunction with sodium acetate to precipitate nucleic acid [1].
+
+**Ethanol**
+
+Washes with 70% EtOH remove excess salt from the extraction buffer which may remain in the DNA pellet [1]. Ice cold ethanol should be used for washes.
+
+**TE Buffer**
+
+To store DNA for an extended period, TE buffer is used in place of sterile water. The buffer contains Tris, which buffers the solution by scavenging hydroxyl radicals, and EDTA, which protects DNA from DNases or RNases by chelating magnesium ions necessary for their function. Dilution of TE buffer with sterile water when sending samples for sequencing is recommended [1].
+
+## Background
+
+**What is high molecular weight (HMW) DNA?**
+
+DNA considered HMW consists of strands greater than 50 kb in length [2].
+
+**Why is HMW DNA useful for assembling eukaryotic genomes?**
+
+The genomes of higher eukaryotes often contain many repeated regions greater than several kilobases in length. First and second-generation sequencing technologies rely on DNA reads between 50bp and 1kb which produces fragmented genome assemblies that cannot accurately map repeated regions. HMW DNA using fragments in the 10s of kilobases long which improves the accuracy of eukaryotic genome assembly as longer reads can span repeated regions. Longer reads also contribute to better alignment of DNA contigs within the scope of the entire genome [2].
+
+**Why are both Qubit and NanoDrop spectroscopy used to quantify DNA concentration?**
+
+Qubit quantification detects dyes that only bind to dsDNA molecules. This allows for highly accurate quantification of dsDNA concentration even in the presence of contaminants or ssDNA/RNA. Additionally, Qubit dyes have trouble binding to small nucleic acid fragments and plasmid DNA meaning only longer length fragments are measured [4].
+
+NanoDrop assesses DNA concentration by measuring UV absorbance at 230nm, 260nm and 280nm wavelengths. NanoDrop cannot differentiate between nucleic acid and contaminants that absorb at the same wavelength which can contribute to inaccurate concentration readings. NanoDrop measurement also does not account for fragment length and measures all DNA equally. Yet, nucleic acid purity ratios including proteins and phenols (260/280) and organic contaminants (260/230) can only be determined by NanoDrop [3].
+
+## References
+
+[1] Heikrujam, J., Kishor, R., & Behari Mazumder, P. (2020). The chemistry behind plant DNA isolation protocols. Biochemical Analysis Tools - Methods for Bio-Molecules Studies, 1--12. <https://doi.org/10.5772/intechopen.92206>
+
+[2] Mayjonade, B., Gouzy, J., Donnadieu, C., Pouilly, N., Marande, W., Callot, C., Langlade, N., & Muños, S. (2016). Extraction of high-molecular-weight genomic DNA for long-read sequencing of single molecules. BioTechniques, 61(4), 203--205. <https://doi.org/10.2144/000114460>
+
+[3] Nanodrop microvolume spectrophotometers. Thermo Fisher Scientific. (n.d.). Retrieved October 10, 2022, from <https://www.thermofisher.com/us/en/home/industrial/spectroscopy-elemental-isotope-analysis/molecular-spectroscopy/uv-vis-spectrophotometry/instruments/nanodrop.html>
+
+[4] Qubit fluorometric quantification. Thermo Fisher Scientific. (n.d.). Retrieved October 10, 2022, from <https://www.thermofisher.com/us/en/home/industrial/spectroscopy-elemental-isotope-analysis/molecular-spectroscopy/fluorometers/qubit.html>

@@ -1,0 +1,42 @@
+---
+title: "Lab_6"
+author: "Manning DelCogliano"
+date: '2023-03-15'
+output: html_document
+---
+
+## K-mer size 3
+
+```bash
+sbatch -J K7_mdelcogliano --wrap "python3 /Smaug_SSD/bin/SPAdes-3.13.0-Linux/bin/spades.py -t 3 -k 7 -1 S06_CKDN230002813-1A_HT2J2DSX5_L2_1.fq.gz -2 S06_CKDN230002813-1A_HT2J2DSX5_L2_2.fq.gz -o spades_7"
+sbatch -J K21_mdelcogliano --wrap "python3 /Smaug_SSD/bin/SPAdes-3.13.0-Linux/bin/spades.py -t 3 -k 21 -1 S06_CKDN230002813-1A_HT2J2DSX5_L2_1.fq.gz -2 S06_CKDN230002813-1A_HT2J2DSX5_L2_2.fq.gz -o spades_21"
+sbatch -J K47_mdelcogliano --wrap "python3 /Smaug_SSD/bin/SPAdes-3.13.0-Linux/bin/spades.py -t 3 -k 47 -1 S06_CKDN230002813-1A_HT2J2DSX5_L2_1.fq.gz -2 S06_CKDN230002813-1A_HT2J2DSX5_L2_2.fq.gz -o spades_47"
+```
+
+This tested the three different values of kmers: 7, 21, and 47
+
+```bash
+sbatch -J S06 --wrap "unicycler -1 S06_CKDN230002813-1A_HT2J2DSX5_L2_1.fq.gz -2 S06_CKDN230002813-1A_HT2J2DSX5_L2_2.fq.gz -o unicycler_raw"
+```
+Unicycler chooses the kmer value
+
+### Which Spades ran? What was the best k value?
+
+Unicycler is able to make sketches out of kmer values and only kep scaffolds from a certain sketch, it 
+
+/Smaug_SSD/bin/bbmap/stats.sh in=assembly.fasta
+
+L= number of scaffolds that contain 90% of assembly - you want a lower number
+N=length - you want a higher number
+
+
+| Data | k-mer | Assembly Software | # reads | # scaffolds | % GC   | N50       | L90   | Average Coverage |
+|------|-------|-------------------|---------|-------------|--------|-----------|-------|------------------|
+| S06  | k=21  | spades            | 27040   | 27040       | 56.74% | 2.559 KB  | 15489 |                  |
+| S06  | k=47  | spades            | 25936   | 25936       | 56.85% | 12.135 KB | 14925 |                  |
+| S06  | k=47  | unicycler         | 1212    | 1212        | 61.27% | 91.021 KB | 241   |                  |
+
+
+sendsketch.sh in=best_assembly.fasta refseq
+
+sbatch -J blast_S06 --wrap="blastn -num_threads 4 -task megablast -query assembly.fasta -db /Smaug_SSD/bin/ncbi-blast-2.11.0+/blastdb/nt -outfmt '6 qseqid staxids bitscore std' -max_target_seqs 1 -max_hsps 1 -evalue 1e-25 -out assembly.blast" -o blast_S06

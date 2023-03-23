@@ -1,0 +1,179 @@
+library(vegan)
+
+#Load Watershed data into R
+
+WS.phylaOTU<-read.table(file="~/Microbiomes_FA2022/WS_phylaOTU.txt",sep="",header=T)
+WS.metadata<-read.table(file="~/Microbiomes_FA2022/WS_metadata.txt",sep="",header=T)
+
+###Bar plots
+
+#Calculate relative abundance by dividing each row by the total number of clones for that row (sample)
+
+rowSums(WS.phylaOTU)
+WS.relabund<-WS.phylaOTU/rowSums(WS.phylaOTU)
+
+#Set color scheme
+bar.col<-c("#010101","#D3E4BD","#FDD3B7","#C0E6EE","#009B9A","#9A8C4F","#FAF398","#F5EB00","#AE4A25","#E27EB3","#FACFE2","#C3489A","#A7DDE7","#00A651","#0071BB","#00AFED","#0B6196","#F7946A","#F26728","#EE2E2F")
+
+#Create plots using clone number and relative abundance
+barplot(t(as.matrix(WS.phylaOTU)),col=bar.col,ylab="Number of clones",las=2)
+barplot(t(as.matrix(WS.relabund)),las=2,ylab="Relative abundance",col=bar.col)
+
+#Rarefaction curves (plot then remove labels)
+rarecurve(WS.phylaOTU,step=50,cex=0.6)
+rarecurve(WS.phylaOTU,step=50,cex=0.6,label=F,col=as.character(WS.metadata$Sample.type.col))
+legend('bottomright',c("B","Coes","Cook","KP","MP","MR","PR","PRS","SBFM","T"),
+       text.col = c("blue","red","green","orange","pink","black","purple","yellow","violet","brown"),cex=0.8,bg=NA,box.col=NA)
+
+###Alpha diversity
+
+#Calculate species richness in each sample
+specnumber(WS.phylaOTU)
+
+#Add species richness column to metatdata tables
+WS.metadata2<-cbind(WS.metadata,specnumber(WS.phylaOTU))
+
+#Make a box plot of the richness by sample type
+par(mfrow=c(1,3))
+boxplot(specnumber(WS.phylaOTU) ~ Location, data=WS.metadata,ylab="Richness",lab.cex=0.5,xlab=NA,las=2)
+boxplot(diversity(WS.phylaOTU,index='shannon') ~ Location, data = WS.metadata2,ylab="Shannon Index",lab.cex=0.5,xlab=NA,las=2)
+boxplot(diversity(WS.phylaOTU,index='simpson') ~ Location, data = WS.metadata2,ylab="Simpson Index",lab.cex=0.5,xlab=NA,las=2)
+
+###Beta diversity
+
+#Calculate pairwise Bray Curtis scores
+WS.BC<-vegdist(WS.phylaOTU)
+
+#Convert .BC files to matrix format
+WS.BC.matrix<-as.matrix(WS.BC)
+
+#Cook
+which(WS.metadata$Location=="Cook")
+WS.BC.matrix[15:22,15:22]
+mean(WS.BC.matrix[15:22,15:22])
+
+#Coes
+which(WS.metadata$Location=="Coes")
+WS.BC.matrix[8:14,8:14]
+mean(WS.BC.matrix[8:14,8:14])
+
+#SBFM
+which(WS.metadata$Location=="SBFM")
+WS.BC.matrix[60:62,60:62]
+mean(WS.BC.matrix[60:62,60:62])
+
+#B
+which(WS.metadata$Location=="B")
+WS.BC.matrix[1:7,1:7]
+mean(WS.BC.matrix[1:7,1:7])
+
+#MR
+which(WS.metadata$Location=="MR")
+WS.BC.matrix[41:42,41:42]
+mean(WS.BC.matrix[41:42,41:42])
+
+###
+#Take mean of Cook and Coes, take mean of Coes and SBFM
+mean(WS.BC.matrix[15:22,8:14])
+mean(WS.BC.matrix[8:14,60:62])
+
+#Cook vs Coes (0.57) is more similar than Coes vs SBMF (0.58)
+
+#Visualize BC curve Cook vs Coes and Coes vs SBMF
+x<-cbind(rep(1,length(as.vector(WS.BC.matrix[15:22,8:14]))),as.vector(WS.BC.matrix[15:22,8:14]))
+y<-cbind(rep(2,length(as.vector(WS.BC.matrix[8:14,60:62]))),as.vector(WS.BC.matrix[8:14,60:62]))
+z<-rbind(x,y)
+
+plot(z,xlim=c(0,3),ylab="BC dissimilarity",xlab="Comparison")
+points(1,mean(WS.BC.matrix[15:22,8:14]),pch=19,col='red')
+points(2,mean(WS.BC.matrix[8:14,60:62]),pch=19,col='red')
+
+text(c(1,2),c(1.5,1.5),label=c("Cook vs Coes","Coes vs SBMF"),cex=.5)
+
+colnames(z)<-c("Comparison","BC")
+z.df<-as.data.frame(z)
+z.df$Comparison<-as.factor(z.df$Comparison)
+z.df$BC<-as.numeric(as.character(z.df$BC))
+z.df$Comparison<-as.factor(c("Coes vs SBMF","Cook vs Coes")[as.factor(z[,1])])
+boxplot(BC~Comparison,data=z.df,ylab="BC score")
+points(2,mean(WS.BC.matrix[15:22,8:14]),pch=19,col='red')
+points(1,mean(WS.BC.matrix[8:14,60:62]),pch=19,col='red')
+
+t.test(WS.BC.matrix[15:22,8:14],WS.BC.matrix[8:14,60:62])
+
+###
+#Take mean of Cook and Coes, take mean of Coes and B
+mean(WS.BC.matrix[15:22,8:14])
+mean(WS.BC.matrix[8:14,1:7])
+
+#Cook vs Coes (0.57) is less similar than Coes vs B (0.43)
+
+#Visualize BC curve Cook vs Coes and Coes vs B
+x<-cbind(rep(1,length(as.vector(WS.BC.matrix[15:22,8:14]))),as.vector(WS.BC.matrix[15:22,8:14]))
+y<-cbind(rep(2,length(as.vector(WS.BC.matrix[8:14,1:7]))),as.vector(WS.BC.matrix[8:14,1:7]))
+z<-rbind(x,y)
+
+plot(z,xlim=c(0,3),ylab="BC dissimilarity",xlab="Comparison")
+points(1,mean(WS.BC.matrix[15:22,8:14]),pch=19,col='red')
+points(2,mean(WS.BC.matrix[8:14,1:7]),pch=19,col='red')
+
+text(c(1,2),c(1.5,1.5),label=c("Cook vs Coes","Coes vs B"),cex=.5)
+
+colnames(z)<-c("Comparison","BC")
+z.df<-as.data.frame(z)
+z.df$Comparison<-as.factor(z.df$Comparison)
+z.df$BC<-as.numeric(as.character(z.df$BC))
+z.df$Comparison<-as.factor(c("Coes vs B","Cook vs Coes")[as.factor(z[,1])])
+boxplot(BC~Comparison,data=z.df,ylab="BC score")
+points(2,mean(WS.BC.matrix[15:22,8:14]),pch=19,col='red')
+points(1,mean(WS.BC.matrix[8:14,1:7]),pch=19,col='red')
+
+t.test(WS.BC.matrix[15:22,8:14],WS.BC.matrix[8:14,1:7])
+
+###
+#Take mean of Cook and Coes, take mean of Coes and MR
+mean(WS.BC.matrix[15:22,8:14])
+mean(WS.BC.matrix[8:14,41:42])
+
+#Cook vs Coes (0.57) is less similar than Coes vs MR (0.41)
+
+#Visualize BC curve Cook vs Coes and Coes vs MR
+x<-cbind(rep(1,length(as.vector(WS.BC.matrix[15:22,8:14]))),as.vector(WS.BC.matrix[15:22,8:14]))
+y<-cbind(rep(2,length(as.vector(WS.BC.matrix[8:14,41:42]))),as.vector(WS.BC.matrix[8:14,41:42]))
+z<-rbind(x,y)
+
+plot(z,xlim=c(0,3),ylab="BC dissimilarity",xlab="Comparison")
+points(1,mean(WS.BC.matrix[15:22,8:14]),pch=19,col='red')
+points(2,mean(WS.BC.matrix[8:14,41:42]),pch=19,col='red')
+
+text(c(1,2),c(1.5,1.5),label=c("Cook vs Coes","Coes vs MR"),cex=.5)
+
+colnames(z)<-c("Comparison","BC")
+z.df<-as.data.frame(z)
+z.df$Comparison<-as.factor(z.df$Comparison)
+z.df$BC<-as.numeric(as.character(z.df$BC))
+z.df$Comparison<-as.factor(c("Coes vs MR","Cook vs Coes")[as.factor(z[,1])])
+boxplot(BC~Comparison,data=z.df,ylab="BC score")
+points(2,mean(WS.BC.matrix[15:22,8:14]),pch=19,col='red')
+points(1,mean(WS.BC.matrix[8:14,41:42]),pch=19,col='red')
+
+t.test(WS.BC.matrix[15:22,8:14],WS.BC.matrix[8:14,41:42])
+
+###MDS Analysis
+
+#Run the MDS function
+WS.mds<-metaMDS(WS.phylaOTU)
+
+#Generate a MDS plot (5 lines below written by J. Tabima)
+color.df <- data.frame(location=unique(WS.metadata$Location), color=bar.col[1:length(unique(WS.metadata$Location))])
+color.vector <- color.df$color[match(WS.metadata$Location, color.df$location)]
+plot(WS.mds$point,type='n')
+points(WS.mds$points,col=color.vector, pch=16)
+legend('topright',legend = unique(WS.metadata$Location),text.col = bar.col,cex=0.8,bg=NA,box.col=NA)
+
+###PERMANOVA
+
+#Test if NMD samples cluster by location is statistically significant
+adonis2(WS.phylaOTU~Location,data=WS.metadata,method='bray')
+
+###

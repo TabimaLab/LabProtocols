@@ -1,0 +1,134 @@
+---
+title: "Lab_4"
+author: "jasper perseus carleton, elizabeth zinno, devon rose leaver"
+date: '2022-10-21'
+output: html_document
+---
+# Lab 4
+
+1. 5 ORFs
+2. ORF1, 154 nucleotides and 50 aa, +
+3. Frame 1
+4. protein - MVMITLDRYNVIVRGMAAAPLTHKKATLLLLFVWIWSGGWTILPFFGWSR, nucleotide - ATGGTGATGATAACACTAGACCGCTACAACGTGATTGTTAGAGGTATGGC
+AGCTGCACCTTTGACCCACAAGAAAGCCACTCTGCTCCTCCTGTTTGTCT
+GGATCTGGTCAGGTGGTTGGACTATCCTGCCTTTCTTCGGATGGAGCAGG
+TAG
+5. Yes, ORF5
+6. BLAST - nucleotide edition
+7. Best 3 hits are:
+- Limulus polyphemus opsin 2 gene, exons 2, 3 and 4 and partial cds 	Limulus polyphemus 	1406 	1406 	97% 	0.0 	99.23% 	2235 	AY190508.1
+- Limulus polyphemus opsin 4 gene, exons 2 and 3 and partial cds 	Limulus polyphemus 	1061 	1061 	100% 	0.0 	90.52% 	1469 	AY190514.2
+- Limulus polyphemus opsin 3 gene, exons 2 and 3 and partial cds 	Limulus polyphemus 	1061 	1061 	100% 	0.0 	90.52% 	1476 	AY190512.2
+these are based on the max score value
+8. ![Graphic summary](Screenshot 2022-10-21 155859.png)
+9. Somewhat, it shows a contiguous match of the first three matches to the sequence, but the specifis of the species and genes are not labeled in the graphic (however you can click on each line to show the specifics on the site)
+10. The first results are matches to horseshoe crabs and the next closest match is to bees. They are all arthopods so they are somewhat closely related.
+11. GenBank 
+12. RYNVIVRGMAAAPLTHKKATLLLLFVWIWSGGWTILPFFGWSRY
+    VPEGNLTSCTVDYLTKDWSSASYVIIYGLAVYFLPLITMIYCYFFIVHAVAEHEKQLR
+    EQAKKMNVASLRANADQQKQSAECRLAKVAMMTVGLWFMAWTPYLIIAWAGVFSSGTR
+    LTPLATIWGSVFAKANSCYNPIVYGISHPRYKAALYQRFPSLACGSGESGSDVKSEAS
+    ATTTMEEKPKSPEA
+13. LOC106470356 lateral eye opsin 
+14. Yes!
+15. 2 exons
+16. UniProt 
+17. Yes
+18. Visual pigments
+19. The pigments absorb light that mediate vision, consisting of apoprotein, opsin, covalently linked to cis-retinal.
+'#' <seq id> <alignment start> <alignment end> <envelope start> <envelope end> <hmm acc> <hmm name> <type> <hmm start> <hmm end> <hmm length> <bit score> <E-value> <significance> <clan>
+
+NP_001301089.1     64    328     64    328 PF00001.21  7tm_1             Family     1   263   263    181.3   2.2e-53   1 CL0192   
+NP_001301089.1    214    271    212    279 PF08496.10  Peptidase_S49_N   Family     3    60   153     11.4      0.25   0 CL0127   
+
+20. 2 protein domains
+21. 7tm_1 and Peptidase_S49_N   
+22. PF00001.21 and PF08496.10  
+23. The first e value (for PF00001.21) is close to 0 and is better than the second, which is .25
+24. The name of the PFAM domain is 7 transmembrane receptor (rhodopsin family)
+25. There are 2k domain architectures  
+26. Eukaryota, Metazoa, Chordata, Actinopteri
+27. 
+- This gene encodes the production of a visual pigment, opsin, that binds chromophores. They act as light absorbers and in the activation of G-proteins.
+- The sequence ID is AY190508.1
+- The mRNA and protein accession number is NP_001301089.1
+28. There are 11 sequences in coronavirus_references.fasta and 3 in unknown_locations.fasta. I used ``` grep -o '>' coronavirus_references.fasta | wc -l``` and ```grep -o '>' unknown_locations.fasta | wc -l```
+
+29. They are nucleotide sequences
+30. A BLAST database is a database of sequences (genomes, genes, proteins, mRNA, etc.) that can be used to compare against a pattern and help identify what organism the given pattern originates from or what the gene is. 
+```
+makeblastdb -in coronavirus_references.fasta -dbtype nucl -out coronavirus_database
+```
+
+31. 
+
+```
+blastn -query query_file -db database_name -out output_file -evalue 1e-10 -outfmt 6 -max_target_seqs 7
+```
+we should use blast n as our file is a sequence of nucleotides
+
+32.
+```
+blastn -query unknown_locations.fasta -db coronavirus_database -out coronavirus_blastdb -evalue 1e-10 -outfmt 6 -max_target_seqs 7
+```
+33. 
+- The evalue sets the threshold of similarity for matches. The closer the value is to 0, the more exact the results are. The higher the value is, the more likely it is that the results are just randomly similar.
+- The outfmt 6 designates that the output format should be a table
+- The max target sequence command designates that there should be 7 max target seqs
+
+34.
+
+
+| qseqid | sseqid      | pident | length | mismatch | gapopen | qstart | qend | sstart | send  | evalue | bitscore |   |
+|--------|-------------|--------|--------|----------|---------|--------|------|--------|-------|--------|----------|---|
+| Oregon | NC_045512.2 | 83.542 | 3828   | 594      | 22      | 1      | 3798 | 21563  | 25384 | 0.0    | 3546     |   |
+| Oregon | MN996532.1  | 83.386 | 3822   | 599      | 29      | 1      | 3798 | 21545  | 25354 | 0.0    | 3507     |   |
+| Oregon | MG772933.1  | 83.261 | 2306   | 370      | 16      | 1501   | 3798 | 22992  | 25289 | 0.0    | 2106     |   |
+
+
+
+| qseqid         | sseqid      | pident | length | mismatch | gapopen | qstart | qend | sstart | send  | evalue | bitscore |   |
+|----------------|-------------|--------|--------|----------|---------|--------|------|--------|-------|--------|----------|---|
+| Massachussetts | NC_045512.2 | 98.849 | 3822   | 29       | 2       | 1      | 3807 | 21563  | 25384 | 0.0    | 6800     |   |
+| Massachussetts | MN996532.1  | 92.187 | 3827   | 262      | 17      | 1      | 3807 | 21545  | 25354 | 0.0    | 5376     |   |
+| Massachussetts | MG772933.1  | 83.741 | 2288   | 350      | 17      | 1525   | 3807 | 23019  | 25289 | 0.0    | 2145     |   |
+
+
+| qseqid      | sseqid     | pident  | length | mismatch | gapopen | qstart | qend | sstart | send | evalue | bitscore |   |
+|-------------|------------|---------|--------|----------|---------|--------|------|--------|------|--------|----------|---|
+| Mississippi | KJ675505.1 | 100.000 | 1400   | 0        | 0       | 1      | 1400 | 1425   | 2824 | 0.0    | 2586     | 
+35A. Massachusetts's (as well as Oregon's) top hit is NC_045512.2. This is due to the high bitscore and percent identity match. Mississippi's top hit is the only hit and is KJ675505.1.
+
+36A. 
+
+- Oregon's top hit: NC_045512.2 is SARS coronavirus 2 isolate Wuhan-Hu-1, complete genome
+- Mississippi's top hit: KJ675505.1 is Rhinovirus 1570-MY-10, complete genome
+- Massachusetts's top hit: NC_045512.2 is SARS coronavirus 2 isolate Wuhan-Hu-1, complete genome
+
+35B. It belongs to family IPR001657
+
+36B. The domains listed are IPR003586, IPR003587, IPR000320, and IPR001767. The first two belong to the SMART database and the last two belong to the PFAM database
+
+37A. PF01085 and PF01079
+
+38A. It is likely important in early development of multicellular organisms and managing what cells' designations are
+
+ Extra Credit. 
+ 
+- Signal peptides - regions of proteins recognized by peptides, moved around cell. makes something more likely to be moved outside a cell. Evidence of this in 6 databases
+- TM Helix - shows regions predicted of be bound to the membrane (inside the membrane )
+- Non Cytoplasmic Domain - region of another membrane bound protein outside of the membrane 
+- ![Protein depiction](hmm_example/IMG_0479.jpg)
+
+
+39A. They are the same PFAM accessions as the two domains in Q37 
+
+36C. ``` cat PF01079.hmm PF01805.hmm > SHH.hmm```
+
+37B. ``` hmmsearch --tblout hmm_table SHH.hmm oh_this_is_a_mess.fasta ```
+
+48B. 
+
+- There are  matches of the sequences of gallus gallus and canis lupus familiaris to definite sonic hedgehog sequences (protein and precursor sequences) and matches of bos taurus to predicted sonic sequences (also precursor and protein). This is displayed by the description column of the results table.
+- You can blast the nucleotide sequence in NCBI to find if previously sequenced sonic sequences match. You can also search the found proteins in another database which will check if the amount of domains and types of domains match against a previously identified sonic protein. 
+

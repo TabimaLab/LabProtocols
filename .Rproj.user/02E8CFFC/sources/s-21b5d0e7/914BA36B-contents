@@ -1,0 +1,75 @@
+---
+title: "IlluminaQC"
+author: "jasper perseus carleton"
+date: '2023-02-28'
+output: html_document
+---
+
+enter file then copy file using:
+```
+cd /course_data/BIOL209/Cyano_2023/Illumina/01.RawData$
+
+cp -r S06 /Tabima_lab/homes/jcarleton/genome\ project/Illumina_QC
+
+```
+
+# Analysis
+
+We determined that our reads did not need to be cleaned using Trimmomatic given that our results were already quite good. The basic statistics for both were as expected, with sequence lengths being 150, total sequence numbers being 5590033 for both forward and reverse, and GC content being 62%, which is in accordance with the expected 63% as mentioned in the MacKenzie et al. paper. Both forward and reverse sequences have good per base sequence quality, with most scores being around 35-36. The per tile sequence quality has no problems on the reverse sequence, but has some problems on the forward sequence. As shown by the forward tile sequence quality screenshot, there are some tiles labeled by a light blue section, creating a streak appearance, but FastQC labeled the tile quality good and we determined the problems were not significant enough to use Trimmomatic to try to improve quality. Both reverse and forward sequences have good base sequence content, given that we expected the first 10 bases to show problems mentioned by Novogene in their report. Finally, the per sequence GC content does not exactly match the theoretical distribution, but does not display more than one peak and is not labeled bad by FastQC. All of these results lead us to not edit using Trimmomatic as the only few issues we have likely could not be significantly affected by cleaning, or cleaning could reduce the amount of good quality sequences we have. All screenshots of FastQC report shown below. References shown at bottom of page. 
+
+
+Forward:
+
+
+![Basic Statistics](forward_statistics.jpeg)
+
+
+![Per base sequence quality](forward_per_sequence.jpeg)
+
+
+
+![Per tile seqeunce quality](forward_tile_quality.jpeg)
+
+
+
+![Per base sequence content](forward_base_sequence_quality.jpeg)
+
+
+
+![GC content](forwardGC.jpeg)
+
+
+
+
+
+
+Reverse:
+
+
+
+![Basic Statistics](reverse_statistics.jpeg)
+
+
+
+![Per base sequence quality](reverse_per_sequence.jpeg)
+
+
+
+![Per tile seqeunce quality](reverse_tile_quality.jpeg)
+
+
+
+![Per base sequence content](reverse_base_sequence_quality.jpeg)
+
+
+
+![GC content](reverseGC.jpeg)
+
+
+
+
+References:
+
+MacKenzie, C. A., Marston, M. F., Tabima, J. F., & Ahlgren, N. A. (2022). Genome Sequence of the Estuarine Synechococcus sp. Strain NB0720_010. Microbiology resource announcements, 11(8), e0015122. https://doi.org/10.1128/mra.00151-22
+
+Novogene. (2023). QC Analysis Report.

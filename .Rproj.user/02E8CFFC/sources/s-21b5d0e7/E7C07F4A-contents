@@ -1,0 +1,78 @@
+install.packages('epitools')
+library(epitools)
+library(ggplot2)
+cancer <- read.csv('AspirinCancer.csv')
+head(cancer)
+
+cancerTable <- table(cancer$cancer, cancer$aspirinTreatment)
+cancerTable
+
+mosaicplot(t(cancerTable),col=c('thistle1','aliceblue'), cex.axis=1, sub='Treatment Group',ylab='Result',main='Cancer and Aspirin Relationship')
+
+treatment_px <- (1438/(1438+18496))
+treatment_px
+
+placebo_px <- (1427/(1427+18515))
+placebo_px
+
+Otreatment <- (treatment_px/(1-treatment_px))
+Otreatment
+Oplacebo <- (placebo_px/(1-placebo_px))
+Oplacebo
+OR <- (Otreatment/Oplacebo)
+OR
+
+oddsratio(cancerTable, method="wald")$measure[-1]
+
+RR <- treatment_px/placebo_px
+RR
+
+riskratio(t(cancerTable),rev="both",method="wald")$measure[-1]
+
+worm <- read.csv('WormGetsBird.csv')
+head(worm)
+
+worm$infection <- factor(worm$infection, levels=c("uninfected","lightly", "highly"))
+
+wormTable <- (table(worm$infection, worm$fate))
+wormTable
+addmargins(wormTable)
+
+mosaicplot(t(wormTable),col=c('thistle1','aliceblue'), cex.axis=.7, sub='Fate',ylab='Infection Status',main='Infection and Fate Relationships')
+
+
+saveChiTest <-chisq.test(worm$fate,worm$infection, correct=FALSE)
+saveChiTest
+saveChiTest$expected
+
+vampire <- read.csv('VampireBites.csv')
+head(vampire)
+
+vampireTable <- table(vampire$estrous, vampire$bitten)
+vampireTable
+
+saveTest <- chisq.test(vampire$bitten, vampire$estrous, correct=FALSE)
+
+fishertest <- fisher.test(vampire$bitten, vampire$estrous)
+fishertest
+
+heat <- read.csv('Temperature.csv')
+head(heat)
+
+length(heat$temperature)
+Sturge <- (1+log(length(heat$temperature)))/log(2)
+Sturge
+
+
+range(heat$temperature)
+temprange <- 100-97.4
+bins <- temprange/Sturge
+bins
+
+
+ggplot(heat, aes(x=temperature)) + geom_histogram(binwidth = bins) + theme_bw()
+
+
+ttest <- t.test(heat$temperature, mu=98.6)
+ttest
+o

@@ -1,0 +1,101 @@
+---
+title: "Lab_3"
+author: "jasper perseus carleton"
+date: '2022-09-30'
+output: html_document
+---
+# Lab 3 
+
+## FASTA Questions
+1. I used `wget (link)`
+2. DNA `cat S79522.seq`
+3. Protein `cat AAB21188.seq`
+4. 1 line
+5. 541 characters
+6. 171 As, 134 Ts, 131 Gs, and 104 Cs
+7. ` sed s/T/U/g S79522.seq > S79522_RNA.seq `
+8. You can open the file in the terminal by using `cat S79522_RNA.seq` and check if there are Us instead of Ts or you can use `grep U S79522_RNA.seq` to determine that Us are present
+9. Number of AUGs - 11, number of UAGs - 3, number of UGA - 3, number of UAA - 10, used `grep -o (sequence) S79522_RNA.seq | wc -l `
+10. 157 characters
+11. Amino acids of interest - M and K, # of M - 2, # of K - 15, used `grep -o (character) AAB21188.seq | wc -l
+12. | Sequence | Ribosomal 27 | Ubiquitin | IBR | DNA poly A |
+|----------|--------------|-----------|-----|------------|
+| AAB21188 | Yes          | Yes       | No  | No         |
+|          |              |           |     |            |
+13. Yes because I used these commands as my grep wasn't highlighting as it was supposed to and Maddie showed me how to use pipelines to make it easier and make it work
+14. 
+
+```{bash}
+grep -o A S79522.seq | wc -l
+grep -o T S79522.seq | wc -l
+grep -o C S79522.seq | wc -l
+grep -o G S79522.seq | wc -l
+```
+
+
+15. First identify the amino acids you would like to search for. For this example I will use M, K, Q, P, D, N, A, I, H, and R. Then use the format `grep -o (amino acid letter) AAB21188.seq | wc -l `, each time using a different target amino acid. This formula will output the number of times each amino acid appears, for example, R appears 10 times in this file. 
+16. I used the cat command (`cat sequence_1` and `cat sequence_2`) to view the files and saw that they are sequences, the first one being a FASTA file and the second being a Genbank file.
+17. A FASTA file contains a header with basic information and the sequence data and can be used for DNA, RNA, and amino acid sequences. A Genbank file contains author information, the organism, any annotations, and the sequence itself.
+18. Both can contain RNA, DNA, or protein sequences
+19. Sequence_1 is a FASTA format as it just contains the header and sequence
+20. Sequence_2 is a Genbank format as it has author information, organism information, annotations, and the sequence itself. 
+21. Sequence_1 has 10 lines and you can check how many sequences are in it by using the grep command to search for the '>' which indicates a header for each sequence. The command would be `grep -o '>' sequence_1`. Using this command, you can see that there are 5 sequences. This is different than the number of lines because each sequence makes up more than one line (as the header and sequence take up lines).
+22. You can use `sed -n '1,2 p' sequence_1 | grep -v ">" > (new file name)` to save the first sequence as a new file. 
+```
+sed -n '1,2 p' sequence_1 | grep -v ">" > sequence1_1
+sed -n '3,4 p' sequence_1 | grep -v ">" > sequence1_2
+sed -n '5,6 p' sequence_1 | grep -v ">" > sequence1_3
+sed -n '7,8 p' sequence_1 | grep -v ">" > sequence1_4
+sed -n '9,10 p' sequence_1 | grep -v ">" > sequence1_5
+```
+
+## Genbank Questions
+21. Sequence_2 has 310 lines
+22. Lines 42-45 and 129-154, the gene is from E.coli, this sequence represents the lactose operon with lacI, lacZ, lacY, and lacA. 
+23. the mRNA regions start earlier than the region coding for the gene and CDS and often end at the same location or later. The gene and CDS regions are the same size and start later than the mRNA regions
+
+## Take home question
+
+After breaking up the sequences with:
+```
+sed -n '1,2 p' sequence_1 | grep -v ">" > sequence1_1
+sed -n '3,4 p' sequence_1 | grep -v ">" > sequence1_2
+sed -n '5,6 p' sequence_1 | grep -v ">" > sequence1_3
+sed -n '7,8 p' sequence_1 | grep -v ">" > sequence1_4
+sed -n '9,10 p' sequence_1 | grep -v ">" > sequence1_5
+```
+
+
+then to find the length of each sequence:
+
+```{bash}
+
+wc mystery_genes/sequence1_1
+wc mystery_genes/sequence1_2
+wc mystery_genes/sequence1_3
+wc mystery_genes/sequence1_4
+wc mystery_genes/sequence1_5
+```
+
+
+to find the amount of As, Ts, Gs, and Cs in the sequence:
+
+```{bash}
+grep -o A mystery_genes/sequence1_1 | wc -l
+grep -o T mystery_genes/sequence1_1 | wc -l
+grep -o G mystery_genes/sequence1_1 | wc -l
+grep -o C mystery_genes/sequence1_1 | wc -l
+```
+and repeat for each sequence
+
+
+and to find the number of ORFs in each sequence
+```{bash}
+grep -o ATG mystery_genes/sequence1_1 | wc -l
+grep -o ATG mystery_genes/sequence1_2 | wc -l
+grep -o ATG mystery_genes/sequence1_3 | wc -l
+grep -o ATG mystery_genes/sequence1_4 | wc -l
+grep -o ATG mystery_genes/sequence1_5 | wc -l
+```
+
+

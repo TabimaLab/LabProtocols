@@ -1,0 +1,2 @@
+"0","filtFs <- file.path(path.cut, ""filtered"", basename(cutFs))"
+"0","filtRs <- file.path(path.cut, ""filtered"", basename(cutRs))"

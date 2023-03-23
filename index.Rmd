@@ -1,0 +1,20 @@
+--- 
+title: "Laboratory Notebook"
+author: "Tabima Lab Clark University"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+# url: your book url like https://bookdown.org/yihui/bookdown
+# cover-image: path to the social sharing image like images/cover.jpg
+description: |
+  Lab protocols and guides for Tabima Lab
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+---
+
+# Lab Notebook
+
+## Important links:
+
+- [Buying list for lab](https://docs.google.com/spreadsheets/d/1pGUzsWAr1MFi6S8qB0vqCi13KEJZK6hMMWwoQvy9OPc/edit#gid=0)

@@ -1,0 +1,48 @@
+"0","june.results <- lapply(out1, data_process) %>% do.call(rbind, .) %>% tibble %>% mutate(across(c(""coli"":""p.soluble""), as.numeric))"
+"2","Warning:"
+"2"," [38;5;251mProblem while computing `..1 = across(c(""coli"":""p.soluble""), as.numeric)`.
+[36mℹ[38;5;251m NAs introduced by coercion[39m
+"
+"2","Warning:"
+"2"," [38;5;251mProblem while computing `..1 = across(c(""coli"":""p.soluble""), as.numeric)`.
+[36mℹ[38;5;251m NAs introduced by coercion[39m
+"
+"2","Warning:"
+"2"," [38;5;251mProblem while computing `..1 = across(c(""coli"":""p.soluble""), as.numeric)`.
+[36mℹ[38;5;251m NAs introduced by coercion[39m
+"
+"2","Warning:"
+"2"," [38;5;251mProblem while computing `..1 = across(c(""coli"":""p.soluble""), as.numeric)`.
+[36mℹ[38;5;251m NAs introduced by coercion[39m
+"
+"2","Warning:"
+"2"," [38;5;251mProblem while computing `..1 = across(c(""coli"":""p.soluble""), as.numeric)`.
+[36mℹ[38;5;251m NAs introduced by coercion[39m
+"
+"2","Warning:"
+"2"," [38;5;251mProblem while computing `..1 = across(c(""coli"":""p.soluble""), as.numeric)`.
+[36mℹ[38;5;251m NAs introduced by coercion[39m
+"
+"0","june.results[is.na(june.results)] <- 0"
+"0",""
+"0","aug.results <- lapply(august, data_process) %>% do.call(rbind, .) %>% tibble %>% mutate(across(c(""coli"":""p.soluble""), as.numeric))"
+"2","Warning:"
+"2"," [38;5;251mProblem while computing `..1 = across(c(""coli"":""p.soluble""), as.numeric)`.
+[36mℹ[38;5;251m NAs introduced by coercion[39m
+"
+"2","Warning:"
+"2"," [38;5;251mProblem while computing `..1 = across(c(""coli"":""p.soluble""), as.numeric)`.
+[36mℹ[38;5;251m NAs introduced by coercion[39m
+"
+"2","Warning:"
+"2"," [38;5;251mProblem while computing `..1 = across(c(""coli"":""p.soluble""), as.numeric)`.
+[36mℹ[38;5;251m NAs introduced by coercion[39m
+"
+"2","Warning:"
+"2"," [38;5;251mProblem while computing `..1 = across(c(""coli"":""p.soluble""), as.numeric)`.
+[36mℹ[38;5;251m NAs introduced by coercion[39m
+"
+"2","Warning:"
+"2"," [38;5;251mProblem while computing `..1 = across(c(""coli"":""p.soluble""), as.numeric)`.
+[36mℹ[38;5;251m NAs introduced by coercion[39m
+"

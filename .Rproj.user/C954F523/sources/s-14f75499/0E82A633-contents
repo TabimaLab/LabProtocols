@@ -1,0 +1,92 @@
+library(vegan)
+
+DWH.clones<-read.table(file="~/Microbiomes_FA2022/Bray_Curtis/Redmond_clone_data_v2.txt",sep="\t",header=T,row.names=1)
+head(DWH.clones)
+
+DWH.info<-read.table(file="~/Microbiomes_FA2022/Bray_Curtis/Redmond_clone_data_sample.type.txt",sep="\t",header=T,row.names=1)
+head(DWH.info)
+
+Watershed.metadata<-read.table(file="~/Microbiomes_FA2022/Metadata_table.txt",sep="",header=T)
+head(Watershed.metadata)
+
+Watershed.phylaOTU<-read.table(file="~/Microbiomes_FA2022/phyla_data.txt")
+head(Watershed.phylaOTU)
+
+## convert DWH.clones to rel abundance
+## Divide each row by the total number of clones for that sample (row)
+## The total number of clones is easily determined using the function
+## rowSums
+rowSums(DWH.clones)
+DWH.relabund<-DWH.clones/rowSums(DWH.clones)
+
+rowSums(Watershed.phylaOTU)
+Watershed.relabund<-Watershed.phylaOTU/rowSums(Watershed.phylaOTU)
+
+## Make a simple bar plot of the data
+## set the color scheme, but the order is reversed in the plot
+bar.col<-c("#010101","#D3E4BD","#FDD3B7","#C0E6EE","#009B9A","#9A8C4F","#FAF398","#F5EB00","#AE4A25","#E27EB3","#FACFE2","#C3489A","#A7DDE7","#00A651","#0071BB","#00AFED","#0B6196","#F7946A","#F26728","#EE2E2F")
+
+## plot by number of clones
+barplot(t(as.matrix(DWH.clones)),col=bar.col,ylab="Number of clones",las=2)
+## plot by relative abundance
+barplot(t(as.matrix(DWH.relabund)),las=2,ylab="Relative abundance",col=bar.col)
+
+## plot by number of clones
+#barplot(t(as.matrix(DWH.clones)),col=bar.col,ylab="Number of clones",las=2)
+## plot by relative abundance
+#barplot(t(as.matrix(DWH.relabund)),las=2,ylab="Relative abundance",col=bar.col)
+
+barplot(t(as.matrix(Watershed.phylaOTU)),col=bar.col,ylab="Number of clones",las=2)
+barplot(t(as.matrix(Watershed.relabund)),las=2,ylab="Relative abundance",col=bar.col)
+
+#########################################################
+### Beta diversity
+#########################################################
+### BC scores
+DWH.BC<-vegdist(DWH.clones)
+DWH.BC.matrix<-as.matrix(DWH.BC)
+
+## Find P.May samples
+which(DWH.info$Plume.date=="P.May")
+
+## pull out P.May results with [] notation
+## matrix[row.numbers,col.numbers]
+DWH.BC.matrix[1:5,1:5]
+
+## take mean of those scores
+mean(DWH.BC.matrix[1:5,1:5])
+
+## Find NP.May samples
+which(DWH.info$Plume.date=="NP.May")
+
+## pull out NP.May results with [] notation
+DWH.BC.matrix[6:9,6:9]
+
+## take mean of those scores
+mean(DWH.BC.matrix[6:9,6:9])
+
+
+## Look at P.May vs NP.May samples
+DWH.BC.matrix[1:5,1:9]
+mean(DWH.BC.matrix[1:5,6:9])
+
+
+which(DWH.info$Plume.date=="P.June")
+## P.May vs NP.May
+mean(DWH.BC.matrix[1:5,10:12])
+## P.May vs P.June
+mean(DWH.BC.matrix[1:5,6:9])
+
+## Compare scores with t-test for 
+## scores between P.May vs NP.May & P.May vs P.June
+t.test(DWH.BC.matrix[1:5,6:9],DWH.BC.matrix[1:5,10:12])
+
+
+### make simple matrix to look at BC scores: P.May vs NP.May & P.May vs P.June
+a<-cbind(rep(1,length(as.vector(DWH.BC.matrix[1:5,6:9]))),as.vector(DWH.BC.matrix[1:5,6:9]))
+b<-cbind(rep(2,length(as.vector(DWH.BC.matrix[1:5,10:12]))),as.vector(DWH.BC.matrix[1:5,10:12]))
+c<-rbind(a,b)
+
+plot(c,xlim=c(0,3),ylab="BC dissimilarity",xlab="Comparison")
+points(1,mean(DWH.BC.matrix[1:5,6:9]),pch=19,col='red')
+points(2,mean(DWH.BC.matrix[1:5,10:12]),pch=19,col='red')

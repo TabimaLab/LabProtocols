@@ -1,0 +1,110 @@
+---
+title: "Lab_2"
+author: "jasper perseus carleton"
+date: '2023-02-01'
+output: html_document
+---
+
+1.  I expect there to be 2 FASTQ files, 1 for the forward direction and 1 for the reverse direction
+
+2. I expect all of them to be 150bp
+
+3. S40_480, S43_481, S165, S166, S167
+```
+cp /course_data/BIOL209/raw_illumina_data/raw_reads raw_reads
+```
+4. 
+
+S165 - VH00487
+S166 - VH00487
+S167 - VH00487
+
+``` zcat file_name | head ```
+
+
+5. Yes
+
+```zcat file_name | grep -c '@VH00487' ```
+
+6. 
+
+S165 - same number for forward and reverse, I expected this because they are the same read, just different directions
+  R1 - 1589680
+  R2 - 1589680
+
+S166 - same number for forward and reverse, expected again
+  R1 - 1559909
+  R2 - 1559909
+  
+S167 - same number for both, expected
+  R1 - 1589418
+  R2 - 1589418
+
+| Sample Name  |  Sequence ID  |  Number of Reads in R1  |
+|:------------:|:-------------:|:-----------------------:|
+| S165         | VH00487       | 1589680                 |
+| S166         | VH00487       | 1559909                 |
+| S167         | VH00487       | 1589418                 |
+
+```/Smaug_SSD/bin/fastqc -o QC file_name```
+
+
+7. Each outputs an html and a zip
+
+8. 
+
+S165 - 	1589680, yes it does
+
+S166 - 1559909, yes it does
+
+S167 - 1589418, yes it does
+
+9.
+
+S165 -
+  R1 - 35-151 - they should all be 150 or at least around it so it seems weird!
+  R2 - 140-151 - this seems more consistent and accurate than the other strand, overall closer to the length it should be
+
+S166 -
+  R1 - 35-151 - again they should be consistently longer so weird!
+  R2 - 138-151 - closer to what they should be
+  
+S167 - 
+  R1 - 35-151 - again short, would expect it to be closer to 151
+  R2 - 42-151 - still short, given the past two would have expected this to be much closer to 151 
+  
+10. 
+
+S165 - both - 54% - yes this seems like a good ratio of GC to AT, only one peak shown in the per sequence GC content graph
+
+S166 - 
+  R1 - 48% - again seems like a good ratio
+  R2 - 49% - slightly off R1 but still a good ratio
+  both forward and reverse display two peaks, one around 65% and another at a lower percentage. The majority of sequences at the 65% peak are likely Synechococcus, but the other peak shows contamination from an organism with a different GC content. 
+  
+S167 - 
+  R1 - 51% - good ratio
+  R2 - 52% - good ratio, slightly different than R1
+  both forward and reverse display two peaks, one around 65% and another at a lower percentage. The majority of sequences at the 65% peak are likely Synechococcus, but the other peak shows contamination from an organism with a different GC content. 
+  
+  
+11. 
+
+S165 -
+  R1 - No sequences are flagged for poor quality, good quality for per base and per sequence, intermediate for tile quality 
+  R2 - No sequences flagged for poor quality, per base and per sequence quality good, per tile quality bad
+  
+S166 -
+  R1 - No sequences flagged for poor quality, good per base and per sequence quality, intermediate quality per tile
+  R2 - No sequences flagged for poor quality, good per base and per sequence quality, bad tile quality
+  
+S167 -
+  R1 - No sequences flagged as poor, per base and per sequence quality good, per tile quality intermediate
+  R2 - No sequence flagged as poor, per base and per sequence quality good, per tile quality bad
+
+
+12. For all of the sequences and their reads, the qualities are quite similar. The only difference in the quality as assessed by FastQC is the per tile quality. All of the forward reads have intermediate per tile quality while all of the reverse reads have bad per tile quality. 
+
+13. All sequences had levels of issues with their per base sequence content and per sequence GC content. All sequences also have problems with length distribution. The 166 and 165 reverse sequences both have intermediate reliability in the overrepresented sequences and adapter content. Given that all the sequences have issues with the length distribution (Red labeled issues), it seems that this is a consistent issue with the way they were sequenced, applying both to forward and reverse sequences. 
+
+14. There are many ways for quality of HTS data to be improved, with many methods depending on the context of the data, how it was extracted, how it was sequenced, and what steps were taken immediately after sequencing to alter the data. As I am not completely sure how this data has been treated, I can make recommendations that may or may not have already been carried out. Given that the length of the majority of these strands average under 150, I believe that some of the data has already been trimmed to improve quality and reliability. If not, I would ensure that the smaller fragments are indeed the target information rather than noise created by adapter contamination, other contamination, or other artefacts/biases. Additionally, I would search for any other contamination. Without knowing the source of any contamination, I would have to search for it (traditionally searching sequences against a comprehensive database). After contamination is detected, it would need to be removed. Then any further steps would be dependent on what the aim was for this data. If it was de novo assembly, furthher options include digital normalization, pre-assembly quality assessment, and creating overlapping PE reads. If it was for short read alignment, further trimming or clipping could be performed, alongg with removal of PCR duplicates or adjustment of PCR duplcates to even the levels out. 

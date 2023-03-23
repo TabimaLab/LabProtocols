@@ -1,0 +1,12 @@
+---
+title: "Palmer_Penguins"
+author: "Manning DelCogliano"
+date: '2023-03-21'
+output: html_document
+---
+
+```{r}
+install.packages("palmerpenguins")
+library(palmerpenguins)
+```
+

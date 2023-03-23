@@ -1,0 +1,130 @@
+---
+title: "Introduction to the command line"
+author: "Maddie Hincher"
+date: '2022-09-15'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Lab Questions
+
+Question 1: What command would you use to check in which working directory are you?
+```
+pwd
+```
+
+Question 3: What command do you use to make a folder? 
+```
+mkdir
+```
+
+Question 4: Create a folder within MBB101 called Lab_2. How would you do it?
+
+```
+cd MBB101 
+mkdir Lab 2
+```
+Question 5: What are the contents of this file? What command from the list above would you use to open or view a file?
+
+```
+- harry potter 
+`cat text_file.txt`
+```
+
+Question 6: How many lines does this file has? What command from the list above would you use to count the number of lines? What are the three outputs from the command?
+```
+`wc text_file.txt`
+9  340 1915
+```
+
+Question 8
+`grep -o Dursley text_file.txt | wc -l`
+
+Question 9: 
+Using the readlink -f command, can you indicate what is the full path of this file?
+`readlink -f text_file.txt`
+  /Smaug_SSD/BIOL209/mhincher/MBB101/Lab_2/text_file.txt
+
+Question 10: If you are in your home (~) folder, and you have a file there called file.txt, what is the relative path of this file?
+
+```
+cd ~ 
+pwd 
+/Smaug_SSD/BIOL209/mhincher
+```
+
+Question 11: Please present syntax of the command to do the instructions above.
+
+```
+mkdir modified 
+cp text_file.txt modified
+ls
+cd modified/
+ls
+mv text_file.txt modified_text_file.txt
+head modified_text_file.txt
+```
+
+Question 12: What is the absolute path of the modified_file.txt?
+/Smaug_SSD/BIOL209/mhincher/MBB101/Lab_2/modified/modified_text_file.txt
+
+Question 13: What does the > in the command mean?
+
+moved the modified patterns into a new file called potter.txt
+
+Question 14: Check the number of occurrences of the word Potter in the potter.txt file using grep.
+
+```
+grep -o Potter potter.txt| wc -l
+18
+```
+
+Question 15: How many times does the word Potter appear? Is it the same number as in question 6?
+No it is not the same because potter was mentioned in the orginal file so there are now more potters in the modified compared to the number of time Dursley is mentioned. 
+
+Question 16: Count the number of lines of the potter.txt file and compare them to the original file. Answer question 13
+
+Question 17: Is the number of lines similar between potter.txt and modified_file.txt? Very very briefly justify your answer.
+ 
+Yes they are exactly the same because the only thing being modified is words, not the lines. 
+
+Question 18: Extract all the lines that say Potter from potter.txt into a new file called potter_lines.txt
+
+```
+grep Potter potter.txt > potter_lines.txt
+```
+
+Question 19: What are the number of lines that say Potter in the file? Is the number different from questions 14 and 15? Explain your answer very briefly.
+
+No it was not different, this means the mentions of potter that were in the original file must be in the same lines as the other mentions that got modified. 
+
+Question 20: What are the commands you used to remove the files? How can you make sure the files do not exist anymore?
+
+```
+rm potter_lines.txt
+rm modified_text_file.txt
+ls 
+```
+
+Question 21: Rename the potter.txt file as Potter_story.txt using the mv command as such 
+
+```
+mv potter.txt Potter_story.txt. 
+```
+
+Question 22: Explain the syntax of the previous command briefly.
+
+Simply renames the file 
+
+Question 23: Explain the syntax of the previous command briefly.
+
+It is a link to the actual file instead of making a copy 
+
+Question 24: Use the ls -l command while in your Lab_2/ folder. What is a weird pattern you see on the new Potter_story.txt file? Is that its absolute or its relative path?
+
+Relative? 
+
+

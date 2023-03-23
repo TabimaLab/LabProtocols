@@ -1,0 +1,14 @@
+"0","grep -v "">"" Syn_WH101.asmb.fasta | grep -o A | wc -l
+grep -v "">"" Syn_WH101.asmb.fasta | grep -o T | wc -l
+grep -v "">"" Syn_WH101.asmb.fasta | grep -o C | wc -l
+grep -v "">"" Syn_WH101.asmb.fasta | grep -o G | wc -l"
+"1","0
+0
+0
+0
+"
+"2","grep: Syn_WH101.asmb.fasta: No such file or directory
+grep: Syn_WH101.asmb.fasta: No such file or directory
+grep: Syn_WH101.asmb.fasta: No such file or directory
+grep: Syn_WH101.asmb.fasta: No such file or directory
+"

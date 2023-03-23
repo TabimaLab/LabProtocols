@@ -1,0 +1,82 @@
+## load vegan package
+library(vegan)
+
+## load Redmond data
+### be sure to change the "/Folder/" portion to point to where you have saved these files.
+### e.g. on a Mac, this would be "~/Downloads/" 
+### e.g. on a Windows machine, this could be "C:/users/myName/Downloads" 
+### This or similar sites can help you find the path to your in Windows
+### downloads folder: https://www.howtogeek.com/273618/how-do-you-change-windows-default-download-path/
+### or this https://support.microsoft.com/en-us/windows/download-files-from-the-web-abb92c09-af3a-bd99-d279-a89848b54b0b
+
+## read in the clone data from the file Redmond_clone_data.txt
+DWH.clones<-read.table(file="~/Home/Tabima_lab/homes/LCleary/MicrobiomesRedmond_clone_data.txt",sep="\t",header=T,row.names=1)
+head(DWH.clones)
+
+## read in the sample info
+## this contains info on which sample set it belongs (Sample month, and plume, non-plume, surface)
+## And also some colors to map to each differen sample set
+DWH.info<-read.table(file="C:/Users/lclea/Desktop/MGA/Rarefaction/Redmond_clone_data_sample.type.txt",sep="\t",header=T,row.names=1)
+head(DWH.info)
+
+Watershed.metadata<-read.table(file="C:/Users/lclea/Desktop/MGA/Watershed_Data/Metadata_table.txt",sep="",header=T)
+head(Watershed.metadata)
+
+Watershed.taxa<-read.table(file="C:/Users/lclea/Desktop/MGA/Watershed_Data/taxa_table2.txt",sep="",header=T)
+head(Watershed.taxa)
+
+## convert DWH.clones to rel abundance
+## Divide each row by the total number of clones for that sample (row)
+## The total number of clones is easily determined using the function
+## rowSums
+rowSums(DWH.clones)
+DWH.relabund<-DWH.clones/rowSums(DWH.clones)
+
+## Make a simple bar plot of the data
+## set the color scheme, but the order is reversed in the plot
+bar.col<-c("#010101","#D3E4BD","#FDD3B7","#C0E6EE","#009B9A","#9A8C4F","#FAF398","#F5EB00","#AE4A25","#E27EB3","#FACFE2","#C3489A","#A7DDE7","#00A651","#0071BB","#00AFED","#0B6196","#F7946A","#F26728","#EE2E2F")
+
+## plot by number of clones
+barplot(t(as.matrix(DWH.clones)),col=bar.col,ylab="Number of clones",las=2)
+## plot by relative abundance
+barplot(t(as.matrix(DWH.relabund)),las=2,ylab="Relative abundance",col=bar.col)
+
+## Plot the rarefaction curve for all the samples
+rarecurve(DWH.clones)
+
+## Turn off the label feature to see the curves better
+rarecurve(DWH.clones,label=FALSE,col=as.character(DWH.info$Sample.type.col))
+## Add a legend with sample type/date
+legend('bottomright',c("Plume.May","Plume.June","Plume.Sept","Surface.May","NonPlume.May","NonPlume.Sept")
+       ,text.col = c("blue","green","black","red","orange","pink"),cex=0.8,bg=NA,box.col=NA)
+
+## Answer the following questions in your HW submission
+## Use the rarefaction curves generated above to assess how 
+## well the community has been sampled.
+## Are you satisfied with the number of clones sequenced in the 
+## paper to sample the diversity of the community, or would you 
+## recommend sequencing more clones and if so how many more?
+## Looking at the rarefaction curves, are there any obvious patterns 
+## in how well the different sample sites (i.e. plume vs non-plume vs surface
+## or across certain dates) have been sampled for diversity?
+## (8 pts)
+
+
+## Easily determine the richness in each sampling using specnumber()
+specnumber(DWH.clones)
+## Put together in a table with sample the sample info
+DWH.info.2<-cbind(DWH.info,specnumber(DWH.clones))
+DWH.info.2
+
+### Make a box plot of the richness by sample type
+## Note: NP = Nonplume, P = Plume, S = Surface
+## followed by the month of sampling
+
+boxplot(specnumber(DWH.clones) ~ Plume.date, data = DWH.info,ylab="Species number",lab.cex=0.5,xlab=NA)
+
+
+## This provides a more quantitative way to examine richness across samples
+## If needed, expand the Plot box to see all of the x-axis labels
+## Note that I didn't incorporate all of the data from all of the samples from Fig. 1.
+## Particularly for the Plume (May) and Plume (Sept), I didn't incorporate all the samples
+## here.

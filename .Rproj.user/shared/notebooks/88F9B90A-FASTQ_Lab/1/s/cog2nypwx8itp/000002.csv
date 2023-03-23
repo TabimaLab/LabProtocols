@@ -1,0 +1,6 @@
+"0","for i in S167/*_R?*.fastq.gz;
+  do /Smaug_SSD/bin/fastqc $i;
+done
+"
+"2","Skipping 'S167/*_R?*.fastq.gz' which didn't exist, or couldn't be read
+"

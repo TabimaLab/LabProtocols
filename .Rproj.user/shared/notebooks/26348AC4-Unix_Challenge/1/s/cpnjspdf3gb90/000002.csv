@@ -1,0 +1,6 @@
+"0","grep ""ribosomal protein"" -c Syn_WH101.aa.fasta.txt
+
+grep ""family protein"" -c Syn_WH101.aa.fasta.txt "
+"2","grep: Syn_WH101.aa.fasta.txt: No such file or directory
+grep: Syn_WH101.aa.fasta.txt: No such file or directory
+"

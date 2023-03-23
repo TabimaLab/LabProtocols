@@ -1,0 +1,4 @@
+"0","
+for i in S165 S166 S167;
+  do mkdir $i
+done"

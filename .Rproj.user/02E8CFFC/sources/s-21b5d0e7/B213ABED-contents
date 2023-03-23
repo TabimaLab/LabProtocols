@@ -1,0 +1,15 @@
+#                                                                                            --- full sequence ---- --- best 1 domain ---- --- domain number estimation ----
+# target name                                     accession  query name           accession    E-value  score  bias   E-value  score  bias   exp reg clu  ov env dom rep inc description of target
+#                             ------------------- ---------- -------------------- ---------- --------- ------ ----- --------- ------ -----   --- --- --- --- --- --- --- --- ---------------------
+jgi|Lenti6_1|546205|estExt_Genewise1Plus.C_130077 -          Het-C                PF07217.14  2.9e-219  729.1   0.0    4e-219  728.6   0.0   1.1   1   0   0   1   1   1   1 -
+jgi|Lenti6_1|519699|estExt_Genewise1.C_4_t20400   -          Het-C                PF07217.14  2.8e-216  719.2   0.0  3.8e-216  718.8   0.0   1.1   1   0   0   1   1   1   1 -
+#
+# Program:         hmmsearch
+# Version:         3.3 (Nov 2019)
+# Pipeline mode:   SEARCH
+# Query file:      het_c_HMM.hmm
+# Target file:     Lenti6_1_GeneCatalog_proteins_20130903.aa.fasta
+# Option settings: hmmsearch --tblout HETC_basidio_table het_c_HMM.hmm Lenti6_1_GeneCatalog_proteins_20130903.aa.fasta 
+# Current dir:     /Tabima_lab/homes/jcarleton/MBB101/Final_project
+# Date:            Fri Dec  2 13:23:31 2022
+# [ok]

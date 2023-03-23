@@ -1,0 +1,88 @@
+library(vegan)
+
+DWH.clones<-read.table(file="~/Microbiomes_FA2022/Bray_Curtis/Redmond_clone_data_v2.txt",sep="\t",header=T,row.names=1)
+head(DWH.clones)
+
+DWH.info<-read.table(file="~/Microbiomes_FA2022/Bray_Curtis/Redmond_clone_data_sample.type.txt",sep="\t",header=T,row.names=1)
+head(DWH.info)
+
+Watershed.metadata<-read.table(file="~/Microbiomes_FA2022/Metadata_table.txt",sep="",header=T)
+head(Watershed.metadata)
+
+Watershed.phylaOTU<-read.table(file="~/Microbiomes_FA2022/phyla_data.txt")
+head(Watershed.phylaOTU)
+
+############
+
+### BC scores
+DWH.BC<-vegdist(DWH.clones)
+DWH.BC.matrix<-as.matrix(DWH.BC)
+
+Watershed.BC<-vegdist(Watershed.phylaOTU)
+Watershed.BC.matrix<-as.matrix(Watershed.BC)
+
+## Find P.May samples
+which(DWH.info$Plume.date=="P.May")
+which(Watershed.metadata$Location=="B")
+
+## pull out P.May results with [] notation
+## matrix[row.numbers,col.numbers]
+DWH.BC.matrix[1:5,1:5]
+Watershed.BC.matrix[1:7,1:7]
+
+## take mean of those scores
+mean(DWH.BC.matrix[1:5,1:5])
+mean(Watershed.BC.matrix[1:7,1:7])
+
+## Find NP.May samples
+which(DWH.info$Plume.date=="NP.May")
+which(Watershed.metadata$Location=="Coes")
+
+## pull out NP.May results with [] notation
+DWH.BC.matrix[6:9,6:9]
+Watershed.BC.matrix[8:14,8:14]
+
+## take mean of those scores
+mean(DWH.BC.matrix[6:9,6:9])
+mean(Watershed.BC.matrix[8:14,8:14])
+
+## Look at P.May vs NP.May samples
+DWH.BC.matrix[1:5,1:9]
+mean(DWH.BC.matrix[1:5,6:9])
+
+Watershed.BC.matrix[1:7,8:14]
+mean(Watershed.BC.matrix[1:7,8:14])
+
+
+which(DWH.info$Plume.date=="P.June")
+which(Watershed.metadata$Location=="Cook")
+
+## P.May vs NP.May
+mean(DWH.BC.matrix[1:5,10:12])
+mean(Watershed.BC.matrix[1:7,15:22])
+
+## P.May vs P.June
+mean(DWH.BC.matrix[1:5,6:9])
+mean(Watershed.BC.matrix[1:7,8:14])
+
+## Compare scores with t-test for 
+## scores between P.May vs NP.May & P.May vs P.June
+t.test(DWH.BC.matrix[1:5,6:9],DWH.BC.matrix[1:5,10:12])
+t.test(Watershed.BC.matrix[1:7,8:14],Watershed.BC.matrix[1:7,15:22])
+
+### make simple matrix to look at BC scores: P.May vs NP.May & P.May vs P.June
+a<-cbind(rep(1,length(as.vector(DWH.BC.matrix[1:5,6:9]))),as.vector(DWH.BC.matrix[1:5,6:9]))
+b<-cbind(rep(2,length(as.vector(DWH.BC.matrix[1:5,10:12]))),as.vector(DWH.BC.matrix[1:5,10:12]))
+c<-rbind(a,b)
+
+plot(c,xlim=c(0,3),ylab="BC dissimilarity",xlab="Comparison")
+points(1,mean(DWH.BC.matrix[1:5,6:9]),pch=19,col='red')
+points(2,mean(DWH.BC.matrix[1:5,10:12]),pch=19,col='red')
+
+x<-cbind(rep(1,length(as.vector(Watershed.BC.matrix[1:7,8:14]))),as.vector(Watershed.BC.matrix[1:7,8:14]))
+y<-cbind(rep(2,length(as.vector(Watershed.BC.matrix[1:7,15:22]))),as.vector(Watershed.BC.matrix[1:7,15:22]))
+z<-rbind(x,y)
+
+plot(z,xlim=c(0,3),ylab="BC dissimilarity",xlab="Comparison")
+points(1,mean(Watershed.BC.matrix[1:7,8:14]),pch=19,col='red')
+points(2,mean(Watershed.BC.matrix[1:7,15:22]),pch=19,col='red')

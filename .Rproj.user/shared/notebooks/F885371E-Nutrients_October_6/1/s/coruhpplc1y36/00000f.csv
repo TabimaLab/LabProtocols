@@ -1,0 +1,3 @@
+"0","autoplot(june.pca.res, data = june.final, colour = 'LocManning',"
+"0","         loadings = TRUE, loadings.colour = 'grey',"
+"0","         loadings.label = TRUE, loadings.label.size = 3, shape = FALSE, label.size = 3)  + theme_bw() + scale_color_viridis(discrete = T, option = ""D"")"

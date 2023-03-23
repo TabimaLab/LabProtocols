@@ -1,0 +1,43 @@
+---
+---
+---
+
+# Buffer A
+
+| Ingredient | Working [] | Final [] |
+|------------|------------|----------|
+| Tris       | 1M         | 0.1M     |
+| EDTA       | 0.5M       | 0.5mM    |
+| Sorbitol   | NA         | 0.35M    |
+
+### Recipe A
+
+1.  Add 1mL of Tris (1M) to a clean 500mL Pyrex bottle.
+2.  Add 0.1mL of EDTA (0.5M) to bottle.
+3.  Measure 0.64 g of Sorbitol and add to bottle.
+4.  Mix Tris, EDTA, and Sorbitol via inversion.
+5.  Add distilled H2O until 100 mL volume reached.
+6.  Autoclave buffer A mix.
+7.  Split sterile A mix into two, labeled 50mL falcon tubes. Work in the sterile hood.
+8.  Store buffer A at 4 C.
+
+# Buffer B
+
+| Ingredient | Working [] | Final [] |
+|------------|------------|----------|
+| Tris       | 1M         | 0.2M     |
+| EDTA       | 0.5M       | 0.5mM    |
+| NaCl       | 5M         | 2M       |
+| 2% CTAB    | NA         | NA       |
+
+### Recipe B
+
+1.  Add 2mL of Tris (1M) to a clean 500mL Pyrex bottle.
+2.  Add 1mL of EDTA to bottle.
+3.  Add 4mL of NaCl to bottle.
+4.  Measure 0.2g of 2% CTAB and add to bottle.
+5.  Mix Tris, EDTA, NaCl, and 2% CTAB via inversion.
+6.  Add distilled H2O until 100 mL volume reached.
+7.  Autoclave buffer B mix.
+8.  Split sterile B mix into two, labeled 50mL falcon tubes. Work in the sterile hood.
+9.  Store buffer B at 4 C.

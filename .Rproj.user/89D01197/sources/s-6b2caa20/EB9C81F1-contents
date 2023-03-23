@@ -1,0 +1,43 @@
+library(ggplot2)
+library(Hmisc)
+
+p_hat = X/n
+# X = 15, n = 16
+p_hat <- 15/16
+p_hat
+
+
+SEp <- (sqrt((p_hat*(1-p_hat))/16))
+SEp
+
+binom.test(15,16,.9)
+
+colnames(ChocolateNobels)[3] <- 'nobels.won'
+head(ChocolateNobels)
+
+chisq.test(ChocolateNobels$nobels.won)
+
+dpois(0:3, lambda=0.6)
+
+sum(dpois(0:3,lambda=0.6))
+
+dpois(0:2,lambda=0.6) -> expected
+expected
+
+1-sum(expected) -> expected2
+
+append(expected,expected2)->expected
+sum(expected)
+
+c(203,39,18,15) -> observed
+observed
+
+chisq.test(observed,p=expected) -> results
+results
+
+str(results)
+results$expected
+
+1-pchisq(results$statistic,2)
+
+shapiro.test(SockeyeFemaleBodyMass$mass)

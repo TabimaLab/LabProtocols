@@ -1,0 +1,51 @@
+# High Molecular Weight DNA Extraction
+
+Details of DNA extraction kit (supplier, stock #, etc.)
+
+##Extraction Protocol
+Prep: Ensure hot plate is on @ 65℃, get liquid nitrogen, get ice
+
+1. For 2 samples - put 650µL Buffer A, 650µL Buffer B, 260µL Buffer C, 175µL PVP(1%), and 10µL Proteinase K into a 2mL tube, mix, split equally into two 2mL tubes
+2. Place tubes into 65℃ hot plate
+3. Pour liquid nitrogen into mortar over the pestle. Add fungi sample using a clean spatula, grind into a fine powder, add more nitrogen as needed. When finely powdered, add ~100mg of tissue into each tube
+4. Incubate tubes in the new shaker for ~30 minutes (at least) @ 65℃ 
+5. Add 280µL 5M Potassium Acetate to each tube, mix by inversion, incubate on ice for 5 minutes
+6. Add 500-700µL Phenol Chloroform (as much as the tube can hold without overfilling), hula mixer for 5 minutes, incubate at room temp for 2 minutes
+7. Centrifuge @ 6000 x g for 10 minutes
+8. Transfer supernatant to new 2mL tubes, add equal volume Chloroform:Isoamyl alcohol (usually ~1000µL)
+Make sure you don’t grab anything from the interphase, all from the aqueous phase:
+![Liquid phases](Liquid_phases.jpg)
+9. Mix by hula mixer for 5 minutes, incubate @ room temp for 2 minutes
+10. Centrifuge @ 6000 x g for 10 minutes
+11. Add supernatant to new 2mL tubes, add 2.5µL RNAse A, put in Shire for 30 minutes
+12. Add 1/10x volume Sodium Acetate, 1x volume Isopropanol
+13. Mix gently by inversion, incubate @ room temp for 5 minutes
+14. Centrifuge @ 3000 x g for 2 minutes, pour or pipette out supernatant
+15. Wash w/ 1mL, fresh, cold, 70% Ethanol
+16. Centrifuge @ 3000 x g for 2 minutes, pipette out Ethanol
+17. Repeat 15 and 16 one more time
+18. Dry pellet @ 65℃ in hot plate for 2 minutes, resuspend in 50-100µL TE (water also works)
+Post: Nanodrop, Qubit
+
+##Reagent Function and Troubleshooting
+*Format*
+*Reagent*
+*Reagent function*
+*Troubleshooting reagent (reference HMW protocols)*
+
+Polyvinylpyrrolidone (PVP)
+Proteinase K
+Potassium Acetate
+Phenol
+Chloroform
+Isoamyl Alcohol
+Sodium Acetate
+Isopropanol
+Ethanol
+TE Buffer
+
+##Background
+What is high molecular weight (HMW) DNA?
+Why do some sequencing methods require HMW DNA?
+
+##References

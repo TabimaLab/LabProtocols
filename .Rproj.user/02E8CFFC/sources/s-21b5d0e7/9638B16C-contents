@@ -1,0 +1,16 @@
+#                                                                                             --- full sequence ---- --- best 1 domain ---- --- domain number estimation ----
+# target name                                      accession  query name           accession    E-value  score  bias   E-value  score  bias   exp reg clu  ov env dom rep inc description of target
+#                              ------------------- ---------- -------------------- ---------- --------- ------ ----- --------- ------ -----   --- --- --- --- --- --- --- --- ---------------------
+jgi|Basme2finSC|347242|gm1.3753_g                  -          Het-C                PF07217.14    0.0017   20.9   0.6    0.0031   20.1   0.6   1.3   1   0   0   1   1   1   1 -
+jgi|Basme2finSC|334931|estExt_fgenesh1_pg.C_680031 -          Het-C                PF07217.14    0.0057   19.2   0.8    0.0064   19.0   0.8   1.0   1   0   0   1   1   1   1 -
+jgi|Basme2finSC|334931|estExt_fgenesh1_pg.C_680031 -          Het-C                PF07217.14    0.0057   19.2   0.8    0.0064   19.0   0.8   1.0   1   0   0   1   1   1   1 -
+#
+# Program:         hmmsearch
+# Version:         3.3 (Nov 2019)
+# Pipeline mode:   SEARCH
+# Query file:      het_c_HMM.hmm
+# Target file:     Basme2finSC_all_proteins_20150701.aa.fasta
+# Option settings: hmmsearch --tblout HETC_zoopago_table het_c_HMM.hmm Basme2finSC_all_proteins_20150701.aa.fasta 
+# Current dir:     /Tabima_lab/homes/jcarleton/MBB101/Final_project
+# Date:            Fri Dec  2 11:07:06 2022
+# [ok]

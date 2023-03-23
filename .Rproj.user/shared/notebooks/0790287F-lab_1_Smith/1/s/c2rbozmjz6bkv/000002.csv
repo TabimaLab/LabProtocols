@@ -1,0 +1,4 @@
+"0","number_of_hypothetical_proteins=$(grep -o -c ""hypothetical protein"" Syn_WH101.aa.fasta)
+echo 'There are' $number_of_hypothetical_proteins 'hypothetical proteins in the amino acid file'"
+"1","There are 552 hypothetical proteins in the amino acid file
+"

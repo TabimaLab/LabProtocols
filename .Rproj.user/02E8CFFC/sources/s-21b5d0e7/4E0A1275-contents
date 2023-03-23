@@ -1,0 +1,310 @@
+LOCUS       ECOLAC                  7477 bp    DNA     linear   BCT 05-MAY-1993
+DEFINITION  E.coli lactose operon with lacI, lacZ, lacY and lacA genes.
+ACCESSION   J01636 J01637 K01483 K01793
+VERSION     J01636.1
+KEYWORDS    acetyltransferase; beta-D-galactosidase; galactosidase; lac operon;
+            lac repressor protein; lacA gene; lacI gene; lacY gene; lacZ gene;
+            lactose permease; mutagenesis; palindrome; promoter region;
+            thiogalactoside acetyltransferase.
+SOURCE      Escherichia coli
+  ORGANISM  Escherichia coli
+            Bacteria; Proteobacteria; Gammaproteobacteria; Enterobacterales;
+            Enterobacteriaceae; Escherichia.
+REFERENCE   
+  AUTHORS   Gilbert,W. and Maxam,A.
+  TITLE     The nucleotide sequence of the lac operator
+  JOURNAL   Proc. Natl. Acad. Sci. U.S.A. 70 (12), 3581-3584 (1973)
+   PUBMED   4587255
+COMMENT     Original source text: Escherichia coli DNA; mRNA; clone
+            lambda-h80dlac DNA; clone puk217; pgm8 (see comment).
+            [3]  sites; UV5 mRNA transcripts and operator mutants. [(in)
+            Sund,H. and Blauer,G. (eds.);Protein-Ligand Interactions:
+            193-207;Walter de]  sites; operator mutational analysis. [7]
+            sites; S1 and mung bean nuclease action on operator DNA. [9]
+            sites; class I, II and III promoter mutant analysis. [13]  sites;
+            lacI mutant analysis.
+            [16]  sites; Tn5, Tn9 and Tn10 insertion sites in lac region. [14]
+            sites; lacI promoter mutation UJ177.
+            [18]  sites; palindromic dimer operator;.
+            [19]  sites; natural operator sequence.
+            [20]  sites; operator mutational analysis.
+            [21]  sites; lacI-Q deletion.
+            [17]  sites; RNA polymerase UV5 promoter interaction. [22]  sites;
+            lacY mutational analysis.
+            [24]  sites; lacI-promoted transcription termination. [25]  sites;
+            wt and UV5 promoter sequence studies. [23]  sites; UV5 promoter
+            mutational analysis.
+            [30]  sites; perfectly symmetric operator sequence. [29]  sites;
+            lacI mRNA termination site.
+            [27]  sites; distamycin and actinomycin binding to promoter. [31]
+            sites; lacI deletion studies.
+            [35]  sites; promoter mutational studies.
+            [33]  sites; DNAase I studies with promoter sequence. [34]  sites;
+            ribosomal binding and translation initiation for lacZ. [36]  sites;
+            insertion sequence IS1 integration in lacZ;. [32]  sites; DNAase I
+            studies with promoter.
+            [1] first reports a 27 bp operator(sites 1240-1266) with two-fold
+            symmetries; the operator has also been defined to be bases
+            1246-1266 or bases 1239-1273 [8]. [(in) Kjeldgaard,N.C. and Maaloe,
+            O.(eds);Control of ribosome synthesis: 138-143;A] explores the
+            ability of lac
+            repressor protein to affect methylation of operator DNA.  [8]
+            argues that DNA on both sides of the 21 bp operator (bases
+            1246-1266) affects repressor binding but that the sequences of this
+            DNA are probably not critical. [5] gives a larger sequence known as
+            the promoter-operator region for the wild-type, whereas [2] and
+            [26] give portions of this region for the mutant strain UV5. Within
+            the promoter region, bases 1162-1199 are identified as the
+            catabolite gene activator protein binding site (cap) and bases
+            1200-1245 are the RNA polymerase interaction site. [10] reports a
+            sequence for the 5'end of the lacI (repressor) gene and discusses
+            restart in mutant strains. [11] presents a sequence for the lacI
+            promoter region and identifies an I-Q mutation which enhances lacI
+            transcription approximately ten-fold. [12] gives a complete
+            sequence
+            for lacI which agrees with the known lac repressor sequence. [26]
+            examines the promoter-operator region in the UV5 strain (lac109)
+            and studies 23 mutant derivatives of this sequence. This sequence
+            agrees with known protein sequences for the lacZ, lacY and lacA
+            enzymes. [15] notes that the fMet codon is not present
+            for lacA and suggests that the 'ttg' codon (5727-5729), which
+            immediately precedes the mature N-terminal asparagine codon, is the
+            start codon. The cds for lacZ, lacY and lacA are included on a
+            single mRNA transcript.
+            Complete source information:
+            Escherichia coli DNA [1],[(in) Kjeldgaard,N.C. and Maaloe,O.(eds);
+            Control of ribosome synthesis: 138-143;A],[8],[12],[26]; mRNA [2],
+            [5],[10]; clone
+            lambda-h80dlac DNA [11],[15]; clone puk217 [28]; pgm8 [37].
+FEATURES             Location/Qualifiers
+     source          1..7477
+                     /organism="Escherichia coli"
+                     /mol_type="genomic DNA"
+                     /db_xref="taxon:562"
+     variation       16
+                     /note="c in wild-type; t in 'up' promoter mutant I-Q [11]"
+     mRNA            51..1230
+                     /note="lacI (repressor) mRNA; preferred in vivo 3' end
+                     [12],[29]"
+     gene            79..1161
+                     /gene="lacI"
+     CDS             79..1161
+                     /gene="lacI"
+                     /note="lac repressor protein (gtg start codon)"
+                     /codon_start=1
+                     /transl_table=11
+                     /protein_id="AAA24052.1"
+                     /translation="MKPVTLYDVAEYAGVSYQTVSRVVNQASHVSAKTREKVEAAMAE
+                     LNYIPNRVAQQLAGKQSLLIGVATSSLALHAPSQIVAAIKSRADQLGASVVVSMVERS
+                     GVEACKAAVHNLLAQRVSGLIINYPLDDQDAIAVEAACTNVPALFLDVSDQTPINSII
+                     FSHEDGTRLGVEHLVALGHQQIALLAGPLSSVSARLRLAGWHKYLTRNQIQPIAEREG
+                     DWSAMSGFQQTMQMLNEGIVPTAMLVANDQMALGAMRAITESGLRVGADISVVGYDDT
+                     EDSSCYIPPSTTIKQDFRLLGQTSVDRLLQLSQGQAVKGNQLLPVSLVKRKTTLAPNT
+                     QTASPRALADSLMQLARQVSRLESGQ"
+     regulatory      1162..1199
+                     /regulatory_class="other"
+                     /note="cap protein binding site"
+     variation       1183..1186
+                     /note="ttag in wild-type; aatt in strain UV5 [26]"
+     variation       1209..1211
+                     /note="gct in wild-type; gt in mutant l305 [5]"
+     variation       1212
+                     /note="t in wild-type; a in mutant l241 [5]"
+     variation       1230
+                     /note="c in wild-type; a in mutant p-r-1a [5]"
+     variation       1237..1238
+                     /note="gt in wild-type; aa in strain UV5 [26]"
+     variation       1242..1245
+                     /note="gtgg in wild-type; ttca in synthetic operator [8]"
+     mRNA            1246..>4358
+                     /note="lacZ mRNA [2],[5]"
+     regulatory      1246..1266
+                     /regulatory_class="other"
+                     /note="lac repressor protein binding site"
+     variation       1267..1268
+                     /note="tc in wild-type; tg in synthetic operator [8]"
+     variation       1282..1291
+                     /note="ctatgaccat in wild-type; gatccggcca in strain UV5
+                     [26]"
+     gene            1284..4358
+                     /gene="lacZ"
+     CDS             1284..4358
+                     /gene="lacZ"
+                     /note="beta-d-galactosidase"
+                     /codon_start=1
+                     /transl_table=11
+                     /protein_id="AAA24053.1"
+                     /translation="MTMITDSLAVVLQRRDWENPGVTQLNRLAAHPPFASWRNSEEAR
+                     TDRPSQQLRSLNGEWRFAWFPAPEAVPESWLECDLPEADTVVVPSNWQMHGYDAPIYT
+                     NVTYPITVNPPFVPTENPTGCYSLTFNVDESWLQEGQTRIIFDGVNSAFHLWCNGRWV
+                     GYGQDSRLPSEFDLSAFLRAGENRLAVMVLRWSDGSYLEDQDMWRMSGIFRDVSLLHK
+                     PTTQISDFHVATRFNDDFSRAVLEAEVQMCGELRDYLRVTVSLWQGETQVASGTAPFG
+                     GEIIDERGGYADRVTLRLNVENPKLWSAEIPNLYRAVVELHTADGTLIEAEACDVGFR
+                     EVRIENGLLLLNGKPLLIRGVNRHEHHPLHGQVMDEQTMVQDILLMKQNNFNAVRCSH
+                     YPNHPLWYTLCDRYGLYVVDEANIETHGMVPMNRLTDDPRWLPAMSERVTRMVQRDRN
+                     HPSVIIWSLGNESGHGANHDALYRWIKSVDPSRPVQYEGGGADTTATDIICPMYARVD
+                     EDQPFPAVPKWSIKKWLSLPGETRPLILCEYAHAMGNSLGGFAKYWQAFRQYPRLQGG
+                     FVWDWVDQSLIKYDENGNPWSAYGGDFGDTPNDRQFCMNGLVFADRTPHPALTEAKHQ
+                     QQFFQFRLSGQTIEVTSEYLFRHSDNELLHWMVALDGKPLASGEVPLDVAPQGKQLIE
+                     LPELPQPESAGQLWLTVRVVQPNATAWSEAGHISAWQQWRLAENLSVTLPAASHAIPH
+                     LTTSEMDFCIELGNKRWQFNRQSGFLSQMWIGDKKQLLTPLRDQFTRAPLDNDIGVSE
+                     ATRIDPNAWVERWKAAGHYQAEAALLQCTADTLADAVLITTAHAWQHQGKTLFISRKT
+                     YRIDGSGQMAITVDVEVASDTPHPARIGLNCQLAQVAERVNWLGLGPQENYPDRLTAA
+                     CFDRWDLPLSDMYTPYVFPSENGLRCGTRELNYGPHQWRGDFQFNISRYSQQQLMETS
+                     HRHLLHAEEGTWLNIDGFHMGIGGDDSWSPSVSAEFQLSAGRYHYQLVWCQK"
+     gene            4410..5663
+                     /gene="lacY"
+     CDS             4410..5663
+                     /gene="lacY"
+                     /note="lactose permease"
+                     /codon_start=1
+                     /transl_table=11
+                     /protein_id="AAA24054.1"
+                     /translation="MYYLKNTNFWMFGLFFFFYFFIMGAYFPFFPIWLHDINHISKSD
+                     TGIIFAAISLFSLLFQPLFGLLSDKLGLRKYLLWIITGMLVMFAPFFIFIFGPLLQYN
+                     ILVGSIVGGIYLGFCFNAGAPAVEAFIEKVSRRSNFEFGRARMFGCVGWALCASIVGI
+                     MFTINNQFVFWLGSGCALILAVLLFFAKTDAPSSATVANAVGANHSAFSLKLALELFR
+                     QPKLWFLSLYVIGVSCTYDVFDQQFANFFTSFFATGEQGTRVFGYVTTMGELLNASIM
+                     FFAPLIINRIGGKNALLLAGTIMSVRIIGSSFATSALEVVILKTLHMFEVPFLLVGCF
+                     KYITSQFEVRFSATIYLVCFCFFKQLAMIFMSVLAGNMYESIGFQGAYLVLGLVALGF
+                     TLISVFTLSGPGPLSLLRRQVNEVA"
+     gene            5727..6338
+                     /gene="lacA"
+     CDS             5727..6338
+                     /gene="lacA"
+                     /note="thiogalactoside acetyltransferase (ttg start
+                     codon)"
+                     /codon_start=1
+                     /transl_table=11
+                     /protein_id="AAA24055.1"
+                     /translation="MNMPMTERIRAGKLFTDMCEGLPEKRLRGKTLMYEFNHSHPSEV
+                     EKRESLIKEMFATVGENAWVEPPVYFSYGSNIHIGRNFYANFNLTIVDDYTVTIGDNV
+                     LIAPNVTLSVTGHPVHHELRKNGEMYSFPITIGNNVWIGSHVVINPGVTIGDNSVIGA
+                     GSIVTKDIPPNVVAAGVPCRVIREINDRDKHYYFKDYKVESSV"
+ORIGIN      HindII site [Nature 274, 762-765 (1978)].
+        1 gacaccatcg aatggcgcaa aacctttcgc ggtatggcat gatagcgccc ggaagagagt
+       61 caattcaggg tggtgaatgt gaaaccagta acgttatacg atgtcgcaga gtatgccggt
+      121 gtctcttatc agaccgtttc ccgcgtggtg aaccaggcca gccacgtttc tgcgaaaacg
+      181 cgggaaaaag tggaagcggc gatggcggag ctgaattaca ttcccaaccg cgtggcacaa
+      241 caactggcgg gcaaacagtc gttgctgatt ggcgttgcca cctccagtct ggccctgcac
+      301 gcgccgtcgc aaattgtcgc ggcgattaaa tctcgcgccg atcaactggg tgccagcgtg
+      361 gtggtgtcga tggtagaacg aagcggcgtc gaagcctgta aagcggcggt gcacaatctt
+      421 ctcgcgcaac gcgtcagtgg gctgatcatt aactatccgc tggatgacca ggatgccatt
+      481 gctgtggaag ctgcctgcac taatgttccg gcgttatttc ttgatgtctc tgaccagaca
+      541 cccatcaaca gtattatttt ctcccatgaa gacggtacgc gactgggcgt ggagcatctg
+      601 gtcgcattgg gtcaccagca aatcgcgctg ttagcgggcc cattaagttc tgtctcggcg
+      661 cgtctgcgtc tggctggctg gcataaatat ctcactcgca atcaaattca gccgatagcg
+      721 gaacgggaag gcgactggag tgccatgtcc ggttttcaac aaaccatgca aatgctgaat
+      781 gagggcatcg ttcccactgc gatgctggtt gccaacgatc agatggcgct gggcgcaatg
+      841 cgcgccatta ccgagtccgg gctgcgcgtt ggtgcggata tctcggtagt gggatacgac
+      901 gataccgaag acagctcatg ttatatcccg ccgtcaacca ccatcaaaca ggattttcgc
+      961 ctgctggggc aaaccagcgt ggaccgcttg ctgcaactct ctcagggcca ggcggtgaag
+     1021 ggcaatcagc tgttgcccgt ctcactggtg aaaagaaaaa ccaccctggc gcccaatacg
+     1081 caaaccgcct ctccccgcgc gttggccgat tcattaatgc agctggcacg acaggtttcc
+     1141 cgactggaaa gcgggcagtg agcgcaacgc aattaatgtg agttagctca ctcattaggc
+     1201 accccaggct ttacacttta tgcttccggc tcgtatgttg tgtggaattg tgagcggata
+     1261 acaatttcac acaggaaaca gctatgacca tgattacgga ttcactggcc gtcgttttac
+     1321 aacgtcgtga ctgggaaaac cctggcgtta cccaacttaa tcgccttgca gcacatcccc
+     1381 ctttcgccag ctggcgtaat agcgaagagg cccgcaccga tcgcccttcc caacagttgc
+     1441 gcagcctgaa tggcgaatgg cgctttgcct ggtttccggc accagaagcg gtgccggaaa
+     1501 gctggctgga gtgcgatctt cctgaggccg atactgtcgt cgtcccctca aactggcaga
+     1561 tgcacggtta cgatgcgccc atctacacca acgtaaccta tcccattacg gtcaatccgc
+     1621 cgtttgttcc cacggagaat ccgacgggtt gttactcgct cacatttaat gttgatgaaa
+     1681 gctggctaca ggaaggccag acgcgaatta tttttgatgg cgttaactcg gcgtttcatc
+     1741 tgtggtgcaa cgggcgctgg gtcggttacg gccaggacag tcgtttgccg tctgaatttg
+     1801 acctgagcgc atttttacgc gccggagaaa accgcctcgc ggtgatggtg ctgcgttgga
+     1861 gtgacggcag ttatctggaa gatcaggata tgtggcggat gagcggcatt ttccgtgacg
+     1921 tctcgttgct gcataaaccg actacacaaa tcagcgattt ccatgttgcc actcgcttta
+     1981 atgatgattt cagccgcgct gtactggagg ctgaagttca gatgtgcggc gagttgcgtg
+     2041 actacctacg ggtaacagtt tctttatggc agggtgaaac gcaggtcgcc agcggcaccg
+     2101 cgcctttcgg cggtgaaatt atcgatgagc gtggtggtta tgccgatcgc gtcacactac
+     2161 gtctgaacgt cgaaaacccg aaactgtgga gcgccgaaat cccgaatctc tatcgtgcgg
+     2221 tggttgaact gcacaccgcc gacggcacgc tgattgaagc agaagcctgc gatgtcggtt
+     2281 tccgcgaggt gcggattgaa aatggtctgc tgctgctgaa cggcaagccg ttgctgattc
+     2341 gaggcgttaa ccgtcacgag catcatcctc tgcatggtca ggtcatggat gagcagacga
+     2401 tggtgcagga tatcctgctg atgaagcaga acaactttaa cgccgtgcgc tgttcgcatt
+     2461 atccgaacca tccgctgtgg tacacgctgt gcgaccgcta cggcctgtat gtggtggatg
+     2521 aagccaatat tgaaacccac ggcatggtgc caatgaatcg tctgaccgat gatccgcgct
+     2581 ggctaccggc gatgagcgaa cgcgtaacgc gaatggtgca gcgcgatcgt aatcacccga
+     2641 gtgtgatcat ctggtcgctg gggaatgaat caggccacgg cgctaatcac gacgcgctgt
+     2701 atcgctggat caaatctgtc gatccttccc gcccggtgca gtatgaaggc ggcggagccg
+     2761 acaccacggc caccgatatt atttgcccga tgtacgcgcg cgtggatgaa gaccagccct
+     2821 tcccggctgt gccgaaatgg tccatcaaaa aatggctttc gctacctgga gagacgcgcc
+     2881 cgctgatcct ttgcgaatac gcccacgcga tgggtaacag tcttggcggt ttcgctaaat
+     2941 actggcaggc gtttcgtcag tatccccgtt tacagggcgg cttcgtctgg gactgggtgg
+     3001 atcagtcgct gattaaatat gatgaaaacg gcaacccgtg gtcggcttac ggcggtgatt
+     3061 ttggcgatac gccgaacgat cgccagttct gtatgaacgg tctggtcttt gccgaccgca
+     3121 cgccgcatcc agcgctgacg gaagcaaaac accagcagca gtttttccag ttccgtttat
+     3181 ccgggcaaac catcgaagtg accagcgaat acctgttccg tcatagcgat aacgagctcc
+     3241 tgcactggat ggtggcgctg gatggtaagc cgctggcaag cggtgaagtg cctctggatg
+     3301 tcgctccaca aggtaaacag ttgattgaac tgcctgaact accgcagccg gagagcgccg
+     3361 ggcaactctg gctcacagta cgcgtagtgc aaccgaacgc gaccgcatgg tcagaagccg
+     3421 ggcacatcag cgcctggcag cagtggcgtc tggcggaaaa cctcagtgtg acgctccccg
+     3481 ccgcgtccca cgccatcccg catctgacca ccagcgaaat ggatttttgc atcgagctgg
+     3541 gtaataagcg ttggcaattt aaccgccagt caggctttct ttcacagatg tggattggcg
+     3601 ataaaaaaca actgctgacg ccgctgcgcg atcagttcac ccgtgcaccg ctggataacg
+     3661 acattggcgt aagtgaagcg acccgcattg accctaacgc ctgggtcgaa cgctggaagg
+     3721 cggcgggcca ttaccaggcc gaagcagcgt tgttgcagtg cacggcagat acacttgctg
+     3781 atgcggtgct gattacgacc gctcacgcgt ggcagcatca ggggaaaacc ttatttatca
+     3841 gccggaaaac ctaccggatt gatggtagtg gtcaaatggc gattaccgtt gatgttgaag
+     3901 tggcgagcga tacaccgcat ccggcgcgga ttggcctgaa ctgccagctg gcgcaggtag
+     3961 cagagcgggt aaactggctc ggattagggc cgcaagaaaa ctatcccgac cgccttactg
+     4021 ccgcctgttt tgaccgctgg gatctgccat tgtcagacat gtataccccg tacgtcttcc
+     4081 cgagcgaaaa cggtctgcgc tgcgggacgc gcgaattgaa ttatggccca caccagtggc
+     4141 gcggcgactt ccagttcaac atcagccgct acagtcaaca gcaactgatg gaaaccagcc
+     4201 atcgccatct gctgcacgcg gaagaaggca catggctgaa tatcgacggt ttccatatgg
+     4261 ggattggtgg cgacgactcc tggagcccgt cagtatcggc ggaattccag ctgagcgccg
+     4321 gtcgctacca ttaccagttg gtctggtgtc aaaaataata ataaccgggc aggccatgtc
+     4381 tgcccgtatt tcgcgtaagg aaatccatta tgtactattt aaaaaacaca aacttttgga
+     4441 tgttcggttt attctttttc ttttactttt ttatcatggg agcctacttc ccgtttttcc
+     4501 cgatttggct acatgacatc aaccatatca gcaaaagtga tacgggtatt atttttgccg
+     4561 ctatttctct gttctcgcta ttattccaac cgctgtttgg tctgctttct gacaaactcg
+     4621 ggctgcgcaa atacctgctg tggattatta ccggcatgtt agtgatgttt gcgccgttct
+     4681 ttatttttat cttcgggcca ctgttacaat acaacatttt agtaggatcg attgttggtg
+     4741 gtatttatct aggcttttgt tttaacgccg gtgcgccagc agtagaggca tttattgaga
+     4801 aagtcagccg tcgcagtaat ttcgaatttg gtcgcgcgcg gatgtttggc tgtgttggct
+     4861 gggcgctgtg tgcctcgatt gtcggcatca tgttcaccat caataatcag tttgttttct
+     4921 ggctgggctc tggctgtgca ctcatcctcg ccgttttact ctttttcgcc aaaacggatg
+     4981 cgccctcttc tgccacggtt gccaatgcgg taggtgccaa ccattcggca tttagcctta
+     5041 agctggcact ggaactgttc agacagccaa aactgtggtt tttgtcactg tatgttattg
+     5101 gcgtttcctg cacctacgat gtttttgacc aacagtttgc taatttcttt acttcgttct
+     5161 ttgctaccgg tgaacagggt acgcgggtat ttggctacgt aacgacaatg ggcgaattac
+     5221 ttaacgcctc gattatgttc tttgcgccac tgatcattaa tcgcatcggt gggaaaaacg
+     5281 ccctgctgct ggctggcact attatgtctg tacgtattat tggctcatcg ttcgccacct
+     5341 cagcgctgga agtggttatt ctgaaaacgc tgcatatgtt tgaagtaccg ttcctgctgg
+     5401 tgggctgctt taaatatatt accagccagt ttgaagtgcg tttttcagcg acgatttatc
+     5461 tggtctgttt ctgcttcttt aagcaactgg cgatgatttt tatgtctgta ctggcgggca
+     5521 atatgtatga aagcatcggt ttccagggcg cttatctggt gctgggtctg gtggcgctgg
+     5581 gcttcacctt aatttccgtg ttcacgctta gcggccccgg cccgctttcc ctgctgcgtc
+     5641 gtcaggtgaa tgaagtcgct taagcaatca atgtcggatg cggcgcgacg cttatccgac
+     5701 caacatatca taacggagtg atcgcattga acatgccaat gaccgaaaga ataagagcag
+     5761 gcaagctatt taccgatatg tgcgaaggct taccggaaaa aagacttcgt gggaaaacgt
+     5821 taatgtatga gtttaatcac tcgcatccat cagaagttga aaaaagagaa agcctgatta
+     5881 aagaaatgtt tgccacggta ggggaaaacg cctgggtaga accgcctgtc tatttctctt
+     5941 acggttccaa catccatata ggccgcaatt tttatgcaaa tttcaattta accattgtcg
+     6001 atgactacac ggtaacaatc ggtgataacg tactgattgc acccaacgtt actctttccg
+     6061 ttacgggaca ccctgtacac catgaattga gaaaaaacgg cgagatgtac tcttttccga
+     6121 taacgattgg caataacgtc tggatcggaa gtcatgtggt tattaatcca ggcgtcacca
+     6181 tcggggataa ttctgttatt ggcgcgggta gtatcgtcac aaaagacatt ccaccaaacg
+     6241 tcgtggcggc tggcgttcct tgtcgggtta ttcgcgaaat aaacgaccgg gataagcact
+     6301 attatttcaa agattataaa gttgaatcgt cagtttaaat tataaaaatt gcctgatacg
+     6361 ctgcgcttat caggcctaca agttcagcga tctacattag ccgcatccgg catgaacaaa
+     6421 gcgcaggaac aagcgtcgca tcatgcctct ttgacccaca gctgcggaaa acgtactggt
+     6481 gcaaaacgca gggttatgat catcagccca acgacgcaca gcgcatgaaa tgcccagtcc
+     6541 atcaggtaat tgccgctgat actacgcagc acgccagaaa accacggggc aagcccggcg
+     6601 atgataaaac cgattccctg cataaacgcc accagcttgc cagcaatagc cggttgcaca
+     6661 gagtgatcga gcgccagcag caaacagagc ggaaacgcgc cgcccagacc taacccacac
+     6721 accatcgccc acaataccgg caattgcatc ggcagccaga taaagccgca gaaccccacc
+     6781 agttgtaaca ccagcgccag cattaacagt ttgcgccgat cctgatggcg agccatagca
+     6841 ggcatcagca aagctcctgc ggcttgccca agcgtcatca atgccagtaa ggaaccgctg
+     6901 tactgcgcgc tggcaccaat ctcaatatag aaagcgggta accaggcaat caggctggcg
+     6961 taaccgccgt taatcagacc gaagtaaaca cccagcgtcc acgcgcgggg agtgaatacc
+     7021 acgcgaaccg gagtggttgt tgtcttgtgg gaagaggcga cctcgcgggc gctttgccac
+     7081 caccaggcaa agagcgcaac aacggcaggc agcgccacca ggcgagtgtt tgataccagg
+     7141 tttcgctatg ttgaactaac cagggcgtta tggcggcacc aagcccaccg ccgcccatca
+     7201 gagccgcgga ccacagcccc atcaccagtg gcgtgcgctg ctgaaaccgc cgtttaatca
+     7261 ccgaagcatc accgcctgaa tgatgccgat ccccacccca ccaagcagtg cgctgctaag
+     7321 cagcagcgca ctttgcgggt aaagctcacg catcaatgca ccgacggcaa tcagcaacag
+     7381 actgatggcg acactgcgac gttcgctgac atgctgatga agccagcttc cggccagcgc
+     7441 cagcccgccc atggtaacca ccggcagagc ggtcgac
+//

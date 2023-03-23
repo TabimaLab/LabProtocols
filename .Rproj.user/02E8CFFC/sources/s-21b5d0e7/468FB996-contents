@@ -1,0 +1,15 @@
+#                                                               --- full sequence ---- --- best 1 domain ---- --- domain number estimation ----
+# target name        accession  query name           accession    E-value  score  bias   E-value  score  bias   exp reg clu  ov env dom rep inc description of target
+#------------------- ---------- -------------------- ---------- --------- ------ ----- --------- ------ -----   --- --- --- --- --- --- --- --- ---------------------
+John_cena_protein    -          protein_mafft        -                  0 1611.1   7.8         0 1610.9   7.8   1.0   1   0   0   1   1   1   1 -
+XP_012783992.1       -          protein_mafft        -                  0 1409.8  13.1  2.9e-286  944.5  10.3   3.0   1   1   1   2   2   2   2 PREDICTED: DNA mismatch repair protein Msh2 [Ochotona princeps]
+#
+# Program:         hmmsearch
+# Version:         3.3 (Nov 2019)
+# Pipeline mode:   SEARCH
+# Query file:      MSH2.hmm
+# Target file:     mess_with_human_proteins.fasta
+# Option settings: hmmsearch --tblout MSH_table MSH2.hmm mess_with_human_proteins.fasta 
+# Current dir:     /Tabima_lab/homes/jcarleton/MBB101/Lab_5
+# Date:            Fri Nov 11 15:56:43 2022
+# [ok]

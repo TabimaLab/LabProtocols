@@ -1,0 +1,65 @@
+install.packages("epitools")
+library("epitools")
+
+cancer <- read.csv("AspirinCancer.csv")
+vampire <- read.csv("VampireBites.csv")
+heat <- read.csv("Temperature.csv")
+worm <- read.csv("WormGetsBird-1.csv")
+
+head(heat)
+
+cancerTable <- table(cancer$cancer,cancer$aspirinTreatment)
+cancerTable
+
+mosaicplot(t(cancerTable))
+mosaicplot( t(cancerTable), col = c("magenta", "cyan"), cex.axis = 1,  sub = "Treatment", ylab = "Result", main = "Cancer")
+
+p1 <- (1438/(1438+18496))
+O1 <- (p1/(1-p1))
+p2 <- (1427/(1427+18515))
+O2 <- (p2/(1-p2))
+
+OR <- (O1/O2)
+OR
+
+oddsratio(cancerTable, method = "wald")$measure[-1]
+
+RR <- (p1/p2)
+RR
+
+riskratio(t(cancerTable), rev= "both", method = "wald")$measure[-1]
+
+worm$infection <- factor(worm$infection, levels = c("uninfected", "lightly", "highly"))
+
+wormTable <- table(worm$infection,worm$fate)
+wormTable
+addmargins(wormTable)
+mosaicplot( t(wormTable), col = c("magenta", "cyan"), cex.axis = .5,  sub = "Fate", ylab = "Infection", main = "Worm Infection Fate")
+
+saveChiTest <- chisq.test(worm$fate, worm$infection, correct = FALSE)
+saveChiTest
+
+vampireTable <- table(vampire$estrous,vampire$bitten)
+vampireTable
+
+saveTest <- chisq.test(vampire$bitten, vampire$estrous, correct=FALSE)
+saveTest$expected
+
+fisher.test(vampire$bitten, vampire$estrous)
+
+# Sturges Rule
+I <- (1+log(25))/log(2)
+I
+
+# to find range
+temp_range <- range(heat$temperature)
+temp_range
+temprange <- 100-97.4
+temprange
+
+# to find binwidth
+binwidth <- temprange/I
+
+ggplot(heat, aes(temperature)) + geom_histogram(binwidth=binwidth)
+
+t.test(heat$temperature, mu= 98.6)

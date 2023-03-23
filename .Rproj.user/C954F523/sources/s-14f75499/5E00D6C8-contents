@@ -1,0 +1,99 @@
+## load vegan package
+library(vegan)
+
+## load Redmond data
+### be sure to change the /Folder/ portion to point to where you have saved these files.
+### e.g. on a Mac, this could be ~/Downloads/ if it's in your Downloads folder
+### e.g. on a Windows machine, this could be /Users/Downloads/ if it's in your Downloads folder
+
+DWH.clones<-read.table(file="~/Microbiomes_FA2022/Beta_Diversity/Redmond_clone_data_v2.txt",sep="\t",header=T,row.names=1)
+head(DWH.clones)
+
+## read in the sample info
+## this contains info on which sample set it belongs (Sample month, and plume, non-plume, surface)
+## And also some colors to map to each differen sample set
+DWH.info<-read.table(file="~/Downloads/Redmond_clone_data_sample.type.txt",sep="\t",header=T,row.names=1)
+head(DWH.info)
+
+## convert DWH.clones to relative abundance
+## Divide each row by the total number of clones for that sample (row)
+## The total number of clones is easily determined using the function
+## rowSums
+rowSums(DWH.clones)
+DWH.relabund<-DWH.clones/rowSums(DWH.clones)
+
+## Make a simple bar plot of the data
+## set the color scheme, but the order is reversed in the plot
+bar.col<-c("#010101","#D3E4BD","#FDD3B7","#C0E6EE","#009B9A","#9A8C4F","#FAF398","#F5EB00","#AE4A25","#E27EB3","#FACFE2","#C3489A","#A7DDE7","#00A651","#0071BB","#00AFED","#0B6196","#F7946A","#F26728","#EE2E2F")
+
+## plot by number of clones
+barplot(t(as.matrix(DWH.clones)),col=bar.col,ylab="Number of clones",las=2)
+## plot by relative abundance
+barplot(t(as.matrix(DWH.relabund)),las=2,ylab="Relative abundance",col=bar.col)
+
+
+#########################################################
+### Beta diversity
+#########################################################
+### calculate all pairwise BC scores
+DWH.BC<-vegdist(DWH.clones)
+### convert the output to a matrix format
+DWH.BC.matrix<-as.matrix(DWH.BC)
+
+## Find P.May samples
+which(DWH.info$Plume.date=="P.May")
+
+## pull out P.May results with [] notation
+## matrix[row.numbers,col.numbers]
+DWH.BC.matrix[1:5,1:5]
+
+## take mean of those scores
+mean(DWH.BC.matrix[1:5,1:5])
+
+## Find NP.May samples
+which(DWH.info$Plume.date=="NP.May")
+
+## pull out NP.May results with [] notation
+DWH.BC.matrix[6:9,6:9]
+
+## take mean of those scores
+mean(DWH.BC.matrix[6:9,6:9])
+
+
+## Look at the P.May vs NP.May samples
+DWH.BC.matrix[1:5,1:9]
+## take mean of those scores
+mean(DWH.BC.matrix[1:5,6:9])
+
+### Now compare two sets of samples to explore
+### if two sample groups or more or less similar
+### in their community composition than two
+### other samples groups.
+### In this case P.May vs NP.May & P.May vs P.June
+
+## Find which samples are Plume June
+which(DWH.info$Plume.date=="P.June")
+### take a look at the scores within P.June
+DWH.BC.matrix[10:12,10:12]
+
+## Take the mean values of two sets of samples:
+## P.May vs NP.May
+mean(DWH.BC.matrix[1:5,10:12])
+## P.May vs P.June
+mean(DWH.BC.matrix[1:5,6:9])
+
+## P.May vs NP.May: BC = 0.78
+## P.May vs P.June: BC = 0.52
+## This means that there is greater similarity between P.May and P.June samples
+## than there is between P.May and Np.May
+
+## Follwoing the example code above, now pick three set samples groups to make two
+## pairwise comparisons between them (e.g. in the example above we did P.May vs NP.May for
+## comparison 1 and P.May vs P.June for comparison 2)
+## Looking at the bar graphing Fig. 1 of Redmond et al., make a hypothesis about
+## which set of communities that you've chosen are more similar. (1 pt)
+## Write the code below to determine the mean scores for your comparisons
+## and report the mean BC scores for the two sets of comparisons.
+## Be sure to interpret your results--i.e. how does the BC score relate to 
+## community similarity, and assess if your hypothesis was correct or not.
+## (5 pts)

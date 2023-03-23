@@ -1,0 +1,95 @@
+# Water Extraction Protocol for Sterivex Filters
+
+*Modified 2022 by Tabima lab. Modified 2019 by Emily Dart. Modified 2015 by the Brazelton Lab protocols by Rika Anderson, Colleen Kellogg, Julie Heber, and Byron Crump. Incorporated some recommendations from Lever et al. (2015) Frontiers in Microbiology doi: 10.3389/fmicb.2015.00476.*
+
+## Hot Lysis
+
+1. In a water bath: heat DNA Extraction Buffer (DEB) to 65℃ until crystals dissolve. 
+2. Pre-heat thermoshaker to 65℃. 
+3. Obtain the Dremel tool and sterilize the bit with 100% EtOH. Cut the wide end of the Sterivex until you can easily pull the filter out. 
+4. Use a sharp, EtOH cleaned, scalpel to cut a horizontal line across the top of the filter and two vertical lines going down the sides. Next, use forceps to remove the filter and place it in a LoBind 2 mL tube. 
+5. Add 1.4 mL DEB and 10 µL proteinase K to each tube containing a filter. 
+    **Possible stopping point: store at - 20℃.**
+6. Vortex each tube for 30 seconds. 
+7. Incubate 30 minutes at 320 RPM and 65℃ in the thermoshaker. 
+8. Vortex each tube again for 30 seconds.
+
+## Phenol/Chloroform Extraction
+
+1.Transfer fluid from each tube into a fresh 2 mL DNA LoBind tube. Add no more than 900 µL.
+2. Add equal volume of phenol / chloroform / isoamyl alcohol (25:24:1) to each tube. 
+3. Gently shake a few times and then centrifuge at 14,000g for 1 minute. 
+4. Remove supernatant to a fresh tube. 
+5. Add equal volume of chloroform / isoamyl alcohol (24:1) to each tube.
+6. Gently shake a few times and then centrifuge at 14,000g for 1 minute.  
+7. Remove supernatant to a fresh tube. Add no more than 550 µL.  
+
+## Ethanol Precipitation
+
+1. Add 0.1 volumes of sodium acetate (3 M, pH 5.2). (e.g. add 55 µL to 550 µL). 
+2. Add 1 volume of 100% molecular-grade Isopropanol.
+3. Invert a few times to mix. 
+4. Incubate at -20℃ for at least 1 hour or overnight.  Recommended 2 hours
+
+---
+
+5. Centrifuge for 40 minutes at 16,000g at 0℃.
+6. Pour out the supernatant. Keep at a gentle angle to minimize chance of pellet falling out. 
+7. Add 500 µL of cold 70% ethanol to each tube.
+8. Invert tube to mix. Make sure the pellet is dislodged from the bottom so that it is properly washed. 
+9. Centrifuge at 16,000g for 10 minutes. 
+10. Remove liquid again with a pipettor. Be careful to avoid pellet. 
+11. Leave open lids of tubes for up to 5 minutes until pellet is dry. 
+12. Resuspend pellet in 100 µL of 1 x TE. Heat to 65℃ for up to 10 minutes to dissolve pellet. 
+For long term storage, place in -20℃.
+
+## Solutions To Prepare
+
+### DNA Extraction Buffer (DEB) Makes 45mL
+
+0.1 M Tris-HCl (pH 8)
+4.5 mL of 1.0 M
+0.1 M Na-EDTA (pH 8)
+9 mL of 0.5 M
+0.1 M KH2PO4 (pH 8)
+0.54 g
+1.5 M NaCl
+13.5 mL of 5 M
+0.8 M Guanidine HCl
+3.44 g
+0.5% Triton-X 100
+0.225 mL of 100% 
+
+1. Add above ingredients to 50 mL tube.
+2. Add milli-Q water to ~40 mL
+3. Add NaOH to pH 10 (several drops at a time)
+4. Add milli-Q water to 45 mL
+5. Filter-sterilize to remove possible spores 
+6. Autoclave. Slightly loosen the lid so that it is not air-tight. Recover from autoclave very soon after the autoclave cycle is completed. 
+7. Pour autoclave solution into fresh 50 mL tube
+9. **Optional: aliquot into 1.5 mL tubes**
+
+### Low EDTA TE:
+
+10 mM Tris-HCl
+0.1 mM EDTA
+
+### 3 M sodium acetate, pH 5.2 
+24.61g NaCl
+Acetic acid
+100 mL milli-Q water 
+
+In autoclaved glassware, add water to sodium acetate and bring volume to 80 mL. Add acetic acid until pH is 5.2. Bring the final volume to 100 mL. Filter sterilize with 0.22µm filter to remove spores. Autoclave. 
+
+### 5 N NaCl
+	29.22g NaCl
+	100 mL milli-Q water
+
+In autoclaves glassware, add water to NaCl. Bring to 100 mL. Filter sterilize to remove spores. Autoclave. 
+
+### NaOH (2N)
+	8 g NaOH powder
+	100 mL milli-Q water
+
+In fume hood, add NaOH to 80 mL water. Bring to 100 mL total volume. 
+

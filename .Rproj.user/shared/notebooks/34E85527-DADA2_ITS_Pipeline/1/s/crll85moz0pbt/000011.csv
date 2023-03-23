@@ -1,0 +1,4475 @@
+"0","cutadapt <- ""/Tabima_lab/homes/mhincher/miniconda3/envs/cutadaptenv/bin/cutadapt"" # CHANGE ME to the cutadapt path on your machine"
+"0",""
+"0","path.cut <- file.path(path, ""cutadapt"")"
+"0","if(!dir.exists(path.cut)) dir.create(path.cut)"
+"0","fnFs.cut <- file.path(path.cut, basename(fnFs))"
+"0","fnRs.cut <- file.path(path.cut, basename(fnRs))"
+"0",""
+"0","FWD.RC <- dada2:::rc(FWD)"
+"0","REV.RC <- dada2:::rc(REV)"
+"0","# Trim FWD and the reverse-complement of REV off of R1 (forward reads)"
+"0","R1.flags <- paste(""-g"", FWD, ""-a"", REV.RC) "
+"0","# Trim REV and the reverse-complement of FWD off of R2 (reverse reads)"
+"0","R2.flags <- paste(""-G"", REV, ""-A"", FWD.RC) "
+"0","# Run Cutadapt"
+"0","for(i in seq_along(fnFs)) {"
+"0","  system2(cutadapt, args = c(R1.flags, R2.flags, ""-n"", 2, # -n 2 required to remove FWD and REV from reads"
+"0","                             ""-o"", fnFs.cut[i], ""-p"", fnRs.cut[i], # output files"
+"0","                             fnFs.filtN[i], fnRs.filtN[i])) # input files"
+"0","}"
+"1","This is cutadapt 4.1 with Python 3.10.6
+"
+"1","Command line parameters: -g ACCTGCGGARGGATCA -a AACTTTYARCAAYGGATCTC -G GAGATCCRTTGYTRAAAGTT -A TGATCCYTCCGCAGGT -n 2 -o /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314314_1.fastq.gz -p /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314314_2.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314314_1.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314314_2.fastq.gz
+"
+"1","Processing paired-end reads on 1 core ...
+"
+"1","Finished in 0.58 s (94 µs/read; 0.64 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:              6,202
+  Read 1 with adapter:                   4,390 (70.8%)
+  Read 2 with adapter:                   4,368 (70.4%)
+Pairs written (passing filters):         6,202 (100.0%)
+
+Total basepairs processed:     2,376,427 bp
+  Read 1:     1,188,960 bp
+  Read 2:     1,187,467 bp
+Total written (filtered):      2,061,040 bp (86.7%)
+  Read 1:     1,030,239 bp
+  Read 2:     1,030,801 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: ACCTGCGGARGGATCA; Type: regular 5'; Length: 16; Trimmed: 4388 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+15	17	0.0	1	2 15
+16	4359	0.0	1	4210 149
+17	12	0.0	1	4 8
+
+
+=== First read: Adapter 2 ===
+
+Sequence: AACTTTYARCAAYGGATCTC; Type: regular 3'; Length: 20; Trimmed: 4254 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Bases preceding removed adapters:
+  A: 98.6%
+  C: 0.7%
+  G: 0.0%
+  T: 0.7%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	1	96.9	0	1
+17	6	0.0	1	6
+18	1	0.0	1	0 1
+19	39	0.0	1	6 29 4
+20	3931	0.0	2	3472 358 101
+21	11	0.0	2	1 10
+24	4	0.0	2	3 0 1
+25	1	0.0	2	1
+32	4	0.0	2	2 0 2
+33	150	0.0	2	72 54 24
+34	106	0.0	2	39 43 24
+
+
+=== Second read: Adapter 3 ===
+
+Sequence: GAGATCCRTTGYTRAAAGTT; Type: regular 5'; Length: 20; Trimmed: 4362 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	4	96.9	0	4
+18	1	0.0	1	0 1
+19	45	0.0	1	6 39
+20	4294	0.0	2	4199 85 10
+21	16	0.0	2	0 16
+24	2	0.0	2	1 1
+
+
+=== Second read: Adapter 4 ===
+
+Sequence: TGATCCYTCCGCAGGT; Type: regular 3'; Length: 16; Trimmed: 4164 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Bases preceding removed adapters:
+  A: 99.6%
+  C: 0.2%
+  G: 0.1%
+  T: 0.0%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	2	96.9	0	2
+14	6	0.0	1	6
+15	12	0.0	1	2 10
+16	3914	0.0	1	3601 313
+17	11	0.0	1	4 7
+21	2	0.0	1	1 1
+28	8	0.0	1	6 2
+29	136	0.0	1	93 43
+30	70	0.0	1	36 34
+31	2	0.0	1	1 1
+64	1	0.0	1	1
+
+
+WARNING:
+    One or more of your adapter sequences may be incomplete.
+    Please see the detailed output above.
+"
+"1","This is cutadapt 4.1 with Python 3.10.6
+"
+"1","Command line parameters: -g ACCTGCGGARGGATCA -a AACTTTYARCAAYGGATCTC -G GAGATCCRTTGYTRAAAGTT -A TGATCCYTCCGCAGGT -n 2 -o /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314315_1.fastq.gz -p /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314315_2.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314315_1.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314315_2.fastq.gz
+"
+"1","Processing paired-end reads on 1 core ...
+"
+"1","Finished in 0.93 s (76 µs/read; 0.79 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:             12,325
+  Read 1 with adapter:                   1,172 (9.5%)
+  Read 2 with adapter:                   1,179 (9.6%)
+Pairs written (passing filters):        12,325 (100.0%)
+
+Total basepairs processed:     4,904,919 bp
+  Read 1:     2,457,314 bp
+  Read 2:     2,447,605 bp
+Total written (filtered):      4,820,517 bp (98.3%)
+  Read 1:     2,415,143 bp
+  Read 2:     2,405,374 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: ACCTGCGGARGGATCA; Type: regular 5'; Length: 16; Trimmed: 1172 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+15	2	0.0	1	0 2
+16	1167	0.0	1	1130 37
+17	3	0.0	1	0 3
+
+
+=== First read: Adapter 2 ===
+
+Sequence: AACTTTYARCAAYGGATCTC; Type: regular 3'; Length: 20; Trimmed: 1131 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Bases preceding removed adapters:
+  A: 99.6%
+  C: 0.4%
+  G: 0.0%
+  T: 0.1%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+17	1	0.0	1	1
+19	6	0.0	1	2 4
+20	1057	0.0	2	934 102 21
+21	6	0.0	2	0 4 2
+25	2	0.0	2	1 1
+32	2	0.0	2	0 2
+33	32	0.0	2	14 9 9
+34	24	0.0	2	7 10 7
+35	1	0.0	2	1
+
+
+=== Second read: Adapter 3 ===
+
+Sequence: GAGATCCRTTGYTRAAAGTT; Type: regular 5'; Length: 20; Trimmed: 1168 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+19	7	0.0	1	3 4
+20	1157	0.0	2	1135 18 4
+21	4	0.0	2	0 4
+
+
+=== Second read: Adapter 4 ===
+
+Sequence: TGATCCYTCCGCAGGT; Type: regular 3'; Length: 16; Trimmed: 1141 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Bases preceding removed adapters:
+  A: 98.7%
+  C: 0.4%
+  G: 0.1%
+  T: 0.9%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	11	192.6	0	11
+12	1	0.0	1	1
+13	1	0.0	1	1
+15	2	0.0	1	0 2
+16	1065	0.0	1	980 85
+17	3	0.0	1	0 3
+28	5	0.0	1	2 3
+29	35	0.0	1	20 15
+30	18	0.0	1	11 7
+
+
+WARNING:
+    One or more of your adapter sequences may be incomplete.
+    Please see the detailed output above.
+"
+"1","This is cutadapt 4.1 with Python 3.10.6
+"
+"1","Command line parameters: -g ACCTGCGGARGGATCA -a AACTTTYARCAAYGGATCTC -G GAGATCCRTTGYTRAAAGTT -A TGATCCYTCCGCAGGT -n 2 -o /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314316_1.fastq.gz -p /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314316_2.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314316_1.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314316_2.fastq.gz
+"
+"1","Processing paired-end reads on 1 core ...
+"
+"1","Finished in 1.12 s (70 µs/read; 0.86 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:             16,006
+  Read 1 with adapter:                     142 (0.9%)
+  Read 2 with adapter:                     145 (0.9%)
+Pairs written (passing filters):        16,006 (100.0%)
+
+Total basepairs processed:     6,413,796 bp
+  Read 1:     3,214,831 bp
+  Read 2:     3,198,965 bp
+Total written (filtered):      6,404,033 bp (99.8%)
+  Read 1:     3,209,993 bp
+  Read 2:     3,194,040 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: ACCTGCGGARGGATCA; Type: regular 5'; Length: 16; Trimmed: 142 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+15	1	0.0	1	1
+16	141	0.0	1	137 4
+
+
+=== First read: Adapter 2 ===
+
+Sequence: AACTTTYARCAAYGGATCTC; Type: regular 3'; Length: 20; Trimmed: 124 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Bases preceding removed adapters:
+  A: 98.4%
+  C: 1.6%
+  G: 0.0%
+  T: 0.0%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+17	1	0.0	1	0 1
+20	118	0.0	2	103 11 4
+21	1	0.0	2	0 1
+33	2	0.0	2	1 1
+34	1	0.0	2	0 1
+69	1	0.0	2	0 1
+
+
+=== Second read: Adapter 3 ===
+
+Sequence: GAGATCCRTTGYTRAAAGTT; Type: regular 5'; Length: 20; Trimmed: 140 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+20	139	0.0	2	134 5
+21	1	0.0	2	0 1
+
+
+=== Second read: Adapter 4 ===
+
+Sequence: TGATCCYTCCGCAGGT; Type: regular 3'; Length: 16; Trimmed: 130 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Bases preceding removed adapters:
+  A: 95.4%
+  C: 0.8%
+  G: 0.8%
+  T: 3.1%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	4	250.1	0	4
+13	1	0.0	1	1
+15	1	0.0	1	1
+16	117	0.0	1	110 7
+29	3	0.0	1	1 2
+30	3	0.0	1	1 2
+35	1	0.0	1	1
+
+
+WARNING:
+    One or more of your adapter sequences may be incomplete.
+    Please see the detailed output above.
+"
+"1","This is cutadapt 4.1 with Python 3.10.6
+"
+"1","Command line parameters: -g ACCTGCGGARGGATCA -a AACTTTYARCAAYGGATCTC -G GAGATCCRTTGYTRAAAGTT -A TGATCCYTCCGCAGGT -n 2 -o /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314317_1.fastq.gz -p /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314317_2.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314317_1.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314317_2.fastq.gz
+"
+"1","Processing paired-end reads on 1 core ...
+"
+"1","Finished in 0.83 s (70 µs/read; 0.85 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:             11,801
+  Read 1 with adapter:                     126 (1.1%)
+  Read 2 with adapter:                     125 (1.1%)
+Pairs written (passing filters):        11,801 (100.0%)
+
+Total basepairs processed:     4,726,063 bp
+  Read 1:     2,368,777 bp
+  Read 2:     2,357,286 bp
+Total written (filtered):      4,717,311 bp (99.8%)
+  Read 1:     2,364,272 bp
+  Read 2:     2,353,039 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: ACCTGCGGARGGATCA; Type: regular 5'; Length: 16; Trimmed: 126 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+16	126	0.0	1	121 5
+
+
+=== First read: Adapter 2 ===
+
+Sequence: AACTTTYARCAAYGGATCTC; Type: regular 3'; Length: 20; Trimmed: 111 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Bases preceding removed adapters:
+  A: 96.4%
+  C: 1.8%
+  G: 0.0%
+  T: 1.8%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	2	184.4	0	2
+19	2	0.0	1	0 2
+20	90	0.0	2	75 13 2
+33	8	0.0	2	4 2 2
+34	7	0.0	2	3 1 3
+71	1	0.0	2	0 1
+72	1	0.0	2	0 0 1
+
+
+=== Second read: Adapter 3 ===
+
+Sequence: GAGATCCRTTGYTRAAAGTT; Type: regular 5'; Length: 20; Trimmed: 123 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+19	3	0.0	1	0 3
+20	120	0.0	2	116 2 2
+
+
+=== Second read: Adapter 4 ===
+
+Sequence: TGATCCYTCCGCAGGT; Type: regular 3'; Length: 16; Trimmed: 107 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Bases preceding removed adapters:
+  A: 99.1%
+  C: 0.9%
+  G: 0.0%
+  T: 0.0%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	1	184.4	0	1
+13	1	0.0	1	1
+16	98	0.0	1	97 1
+29	4	0.0	1	3 1
+30	3	0.0	1	2 1
+
+
+WARNING:
+    One or more of your adapter sequences may be incomplete.
+    Please see the detailed output above.
+"
+"1","This is cutadapt 4.1 with Python 3.10.6
+"
+"1","Command line parameters: -g ACCTGCGGARGGATCA -a AACTTTYARCAAYGGATCTC -G GAGATCCRTTGYTRAAAGTT -A TGATCCYTCCGCAGGT -n 2 -o /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314331_1.fastq.gz -p /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314331_2.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314331_1.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314331_2.fastq.gz
+"
+"1","Processing paired-end reads on 1 core ...
+"
+"1","Finished in 1.95 s (112 µs/read; 0.53 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:             17,399
+  Read 1 with adapter:                  17,389 (99.9%)
+  Read 2 with adapter:                  17,351 (99.7%)
+Pairs written (passing filters):        17,399 (100.0%)
+
+Total basepairs processed:     6,760,764 bp
+  Read 1:     3,379,265 bp
+  Read 2:     3,381,499 bp
+Total written (filtered):      5,727,693 bp (84.7%)
+  Read 1:     2,869,749 bp
+  Read 2:     2,857,944 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: ACCTGCGGARGGATCA; Type: regular 5'; Length: 16; Trimmed: 17366 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+13	1	0.0	1	1
+14	2	0.0	1	2
+15	74	0.0	1	7 67
+16	17251	0.0	1	16627 624
+17	37	0.0	1	8 29
+23	1	0.0	1	1
+
+
+=== First read: Adapter 2 ===
+
+Sequence: AACTTTYARCAAYGGATCTC; Type: regular 3'; Length: 20; Trimmed: 12956 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Bases preceding removed adapters:
+  A: 54.6%
+  C: 27.2%
+  G: 0.0%
+  T: 18.2%
+  none/other: 0.0%
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	15	271.9	0	15
+4	7	68.0	0	7
+5	855	17.0	0	855
+6	382	4.2	0	382
+7	254	1.1	0	254
+8	2	0.3	0	2
+12	1	0.0	1	1
+15	53	0.0	1	38 15
+16	45	0.0	1	27 18
+17	3336	0.0	1	2657 679
+18	9	0.0	1	4 3 2
+19	30	0.0	1	0 25 5
+20	7524	0.0	2	6576 800 148
+21	16	0.0	2	5 10 1
+23	4	0.0	2	4
+24	59	0.0	2	27 20 12
+25	51	0.0	2	35 9 7
+26	86	0.0	2	45 32 9
+27	19	0.0	2	13 3 3
+29	1	0.0	2	0 1
+33	107	0.0	2	61 29 17
+34	72	0.0	2	27 27 18
+68	1	0.0	2	0 0 1
+69	24	0.0	2	13 9 2
+70	1	0.0	2	0 0 1
+71	2	0.0	2	0 1 1
+
+
+=== Second read: Adapter 3 ===
+
+Sequence: GAGATCCRTTGYTRAAAGTT; Type: regular 5'; Length: 20; Trimmed: 17336 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	1	271.9	0	1
+16	2	0.0	1	2
+18	7	0.0	1	4 0 3
+19	86	0.0	1	11 72 3
+20	17189	0.0	2	16393 741 55
+21	49	0.0	2	15 33 1
+23	2	0.0	2	2
+
+
+=== Second read: Adapter 4 ===
+
+Sequence: TGATCCYTCCGCAGGT; Type: regular 3'; Length: 16; Trimmed: 12021 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Bases preceding removed adapters:
+  A: 98.6%
+  C: 1.1%
+  G: 0.0%
+  T: 0.3%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	667	271.9	0	667
+4	13	68.0	0	13
+11	28	0.0	1	21 7
+12	883	0.0	1	767 116
+13	2550	0.0	1	2279 271
+14	28	0.0	1	24 4
+15	33	0.0	1	6 27
+16	7383	0.0	1	6793 590
+17	12	0.0	1	1 11
+19	4	0.0	1	4
+20	35	0.0	1	15 20
+21	130	0.0	1	101 29
+22	60	0.0	1	32 28
+23	10	0.0	1	7 3
+28	3	0.0	1	2 1
+29	122	0.0	1	90 32
+30	29	0.0	1	19 10
+63	2	0.0	1	1 1
+64	8	0.0	1	8
+65	14	0.0	1	8 6
+66	1	0.0	1	1
+67	2	0.0	1	1 1
+68	2	0.0	1	2
+73	1	0.0	1	1
+74	1	0.0	1	1
+
+
+WARNING:
+    One or more of your adapter sequences may be incomplete.
+    Please see the detailed output above.
+"
+"1","This is cutadapt 4.1 with Python 3.10.6
+"
+"1","Command line parameters: -g ACCTGCGGARGGATCA -a AACTTTYARCAAYGGATCTC -G GAGATCCRTTGYTRAAAGTT -A TGATCCYTCCGCAGGT -n 2 -o /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314332_1.fastq.gz -p /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314332_2.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314332_1.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314332_2.fastq.gz
+"
+"1","Processing paired-end reads on 1 core ...
+"
+"1","Finished in 4.54 s (107 µs/read; 0.56 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:             42,604
+  Read 1 with adapter:                  42,556 (99.9%)
+  Read 2 with adapter:                  42,504 (99.8%)
+Pairs written (passing filters):        42,604 (100.0%)
+
+Total basepairs processed:    16,552,065 bp
+  Read 1:     8,276,206 bp
+  Read 2:     8,275,859 bp
+Total written (filtered):     14,042,392 bp (84.8%)
+  Read 1:     7,041,892 bp
+  Read 2:     7,000,500 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: ACCTGCGGARGGATCA; Type: regular 5'; Length: 16; Trimmed: 42517 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	2	665.7	0	2
+11	2	0.0	1	2
+12	1	0.0	1	0 1
+14	5	0.0	1	2 3
+15	187	0.0	1	27 160
+16	42222	0.0	1	40729 1493
+17	98	0.0	1	15 83
+
+
+=== First read: Adapter 2 ===
+
+Sequence: AACTTTYARCAAYGGATCTC; Type: regular 3'; Length: 20; Trimmed: 30596 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Bases preceding removed adapters:
+  A: 56.3%
+  C: 24.6%
+  G: 0.0%
+  T: 19.1%
+  none/other: 0.0%
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	56	665.7	0	56
+4	18	166.4	0	18
+5	1853	41.6	0	1853
+6	1085	10.4	0	1085
+7	598	2.6	0	598
+8	17	0.7	0	17
+9	3	0.2	0	3
+10	1	0.0	1	0 1
+15	99	0.0	1	57 42
+16	107	0.0	1	52 55
+17	7111	0.0	1	5613 1498
+18	8	0.0	1	0 3 5
+19	99	0.0	1	7 85 7
+20	18094	0.0	2	15350 2245 499
+21	50	0.0	2	7 37 6
+23	3	0.0	2	3
+24	219	0.0	2	113 72 34
+25	222	0.0	2	143 56 23
+26	223	0.0	2	93 90 40
+27	66	0.0	2	36 18 12
+32	3	0.0	2	0 2 1
+33	280	0.0	2	147 77 56
+34	266	0.0	2	114 87 65
+35	1	0.0	2	1
+36	1	0.0	2	0 0 1
+67	4	0.0	2	0 3 1
+68	9	0.0	2	3 4 2
+69	74	0.0	2	43 16 15
+70	1	0.0	2	0 0 1
+71	16	0.0	2	0 14 2
+72	3	0.0	2	0 2 1
+74	1	0.0	2	0 1
+75	2	0.0	2	0 2
+76	1	0.0	2	0 0 1
+77	2	0.0	2	0 2
+
+
+=== Second read: Adapter 3 ===
+
+Sequence: GAGATCCRTTGYTRAAAGTT; Type: regular 5'; Length: 20; Trimmed: 42485 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	1	665.7	0	1
+17	1	0.0	1	1
+18	22	0.0	1	10 2 10
+19	290	0.0	1	41 240 9
+20	42052	0.0	2	40062 1912 78
+21	118	0.0	2	18 93 7
+47	1	0.0	2	1
+
+
+=== Second read: Adapter 4 ===
+
+Sequence: TGATCCYTCCGCAGGT; Type: regular 3'; Length: 16; Trimmed: 29014 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Bases preceding removed adapters:
+  A: 98.7%
+  C: 1.0%
+  G: 0.1%
+  T: 0.3%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	1866	665.7	0	1866
+4	25	166.4	0	25
+5	2	41.6	0	2
+9	1	0.2	0	1
+11	31	0.0	1	26 5
+12	1547	0.0	1	1364 183
+13	5980	0.0	1	5444 536
+14	74	0.0	1	68 6
+15	91	0.0	1	12 79
+16	18479	0.0	1	17223 1256
+17	42	0.0	1	5 37
+19	9	0.0	1	8 1
+20	78	0.0	1	54 24
+21	251	0.0	1	188 63
+22	112	0.0	1	67 45
+23	29	0.0	1	15 14
+28	10	0.0	1	4 6
+29	212	0.0	1	147 65
+30	88	0.0	1	54 34
+31	5	0.0	1	3 2
+63	5	0.0	1	3 2
+64	27	0.0	1	23 4
+65	24	0.0	1	18 6
+67	9	0.0	1	5 4
+68	14	0.0	1	11 3
+71	3	0.0	1	3
+
+
+WARNING:
+    One or more of your adapter sequences may be incomplete.
+    Please see the detailed output above.
+"
+"1","This is cutadapt 4.1 with Python 3.10.6
+"
+"1","Command line parameters: -g ACCTGCGGARGGATCA -a AACTTTYARCAAYGGATCTC -G GAGATCCRTTGYTRAAAGTT -A TGATCCYTCCGCAGGT -n 2 -o /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314333_1.fastq.gz -p /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314333_2.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314333_1.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314333_2.fastq.gz
+"
+"1","Processing paired-end reads on 1 core ...
+"
+"1","Finished in 2.65 s (90 µs/read; 0.67 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:             29,489
+  Read 1 with adapter:                  29,462 (99.9%)
+  Read 2 with adapter:                  29,371 (99.6%)
+Pairs written (passing filters):        29,489 (100.0%)
+
+Total basepairs processed:    11,412,238 bp
+  Read 1:     5,702,953 bp
+  Read 2:     5,709,285 bp
+Total written (filtered):      9,647,277 bp (84.5%)
+  Read 1:     4,830,613 bp
+  Read 2:     4,816,664 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: ACCTGCGGARGGATCA; Type: regular 5'; Length: 16; Trimmed: 29438 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	3	460.8	0	3
+12	1	0.0	1	0 1
+15	102	0.0	1	9 93
+16	29263	0.0	1	28334 929
+17	69	0.0	1	14 55
+
+
+=== First read: Adapter 2 ===
+
+Sequence: AACTTTYARCAAYGGATCTC; Type: regular 3'; Length: 20; Trimmed: 21810 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Bases preceding removed adapters:
+  A: 55.1%
+  C: 23.2%
+  G: 0.0%
+  T: 21.6%
+  none/other: 0.0%
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	43	460.8	0	43
+4	11	115.2	0	11
+5	1201	28.8	0	1201
+6	531	7.2	0	531
+7	280	1.8	0	280
+8	2	0.4	0	2
+9	1	0.1	0	1
+10	1	0.0	1	0 1
+14	1	0.0	1	1
+15	69	0.0	1	42 27
+16	87	0.0	1	33 54
+17	4777	0.0	1	3878 899
+18	9	0.0	1	5 0 4
+19	100	0.0	1	11 78 11
+20	13838	0.0	2	11904 1650 284
+21	52	0.0	2	3 44 5
+23	5	0.0	2	2 2 1
+24	111	0.0	2	54 43 14
+25	119	0.0	2	71 34 14
+26	140	0.0	2	69 48 23
+27	29	0.0	2	17 8 4
+32	1	0.0	2	0 0 1
+33	205	0.0	2	110 50 45
+34	117	0.0	2	45 41 31
+35	1	0.0	2	1
+67	1	0.0	2	0 1
+68	3	0.0	2	0 2 1
+69	60	0.0	2	41 13 6
+70	1	0.0	2	0 0 1
+71	7	0.0	2	0 6 1
+72	2	0.0	2	0 2
+74	1	0.0	2	0 1
+75	3	0.0	2	0 2 1
+77	1	0.0	2	0 1
+
+
+=== Second read: Adapter 3 ===
+
+Sequence: GAGATCCRTTGYTRAAAGTT; Type: regular 5'; Length: 20; Trimmed: 29352 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	7	460.8	0	7
+16	3	0.0	1	0 3
+18	17	0.0	1	7 2 8
+19	230	0.0	1	25 197 8
+20	28993	0.0	2	26892 1990 111
+21	100	0.0	2	9 84 7
+24	1	0.0	2	1
+26	1	0.0	2	0 1
+
+
+=== Second read: Adapter 4 ===
+
+Sequence: TGATCCYTCCGCAGGT; Type: regular 3'; Length: 16; Trimmed: 20123 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Bases preceding removed adapters:
+  A: 98.4%
+  C: 1.3%
+  G: 0.0%
+  T: 0.3%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	808	460.8	0	808
+4	21	115.2	0	21
+5	1	28.8	0	1
+8	1	0.4	0	1
+11	31	0.0	1	20 11
+12	1282	0.0	1	1073 209
+13	3594	0.0	1	3166 428
+14	55	0.0	1	46 9
+15	30	0.0	1	5 25
+16	13285	0.0	1	12046 1239
+17	37	0.0	1	4 33
+19	4	0.0	1	1 3
+20	103	0.0	1	48 55
+21	307	0.0	1	222 85
+22	136	0.0	1	87 49
+23	38	0.0	1	23 15
+24	2	0.0	1	1 1
+25	1	0.0	1	1
+28	16	0.0	1	4 12
+29	191	0.0	1	133 58
+30	101	0.0	1	55 46
+31	5	0.0	1	5
+32	1	0.0	1	1
+63	3	0.0	1	1 2
+64	23	0.0	1	19 4
+65	30	0.0	1	18 12
+66	2	0.0	1	1 1
+67	6	0.0	1	2 4
+68	8	0.0	1	8
+74	1	0.0	1	1
+
+
+WARNING:
+    One or more of your adapter sequences may be incomplete.
+    Please see the detailed output above.
+"
+"1","This is cutadapt 4.1 with Python 3.10.6
+"
+"1","Command line parameters: -g ACCTGCGGARGGATCA -a AACTTTYARCAAYGGATCTC -G GAGATCCRTTGYTRAAAGTT -A TGATCCYTCCGCAGGT -n 2 -o /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314335_1.fastq.gz -p /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314335_2.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314335_1.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314335_2.fastq.gz
+"
+"1","Processing paired-end reads on 1 core ...
+"
+"1","Finished in 3.15 s (88 µs/read; 0.68 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:             35,763
+  Read 1 with adapter:                  35,753 (100.0%)
+  Read 2 with adapter:                  35,669 (99.7%)
+Pairs written (passing filters):        35,763 (100.0%)
+
+Total basepairs processed:    13,683,995 bp
+  Read 1:     6,839,526 bp
+  Read 2:     6,844,469 bp
+Total written (filtered):     11,427,190 bp (83.5%)
+  Read 1:     5,716,488 bp
+  Read 2:     5,710,702 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: ACCTGCGGARGGATCA; Type: regular 5'; Length: 16; Trimmed: 35730 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	5	558.8	0	5
+11	1	0.0	1	1
+14	5	0.0	1	1 4
+15	122	0.0	1	21 101
+16	35535	0.0	1	34381 1154
+17	60	0.0	1	13 47
+18	1	0.0	1	1
+19	1	0.0	1	1
+
+
+=== First read: Adapter 2 ===
+
+Sequence: AACTTTYARCAAYGGATCTC; Type: regular 3'; Length: 20; Trimmed: 29569 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Bases preceding removed adapters:
+  A: 56.6%
+  C: 26.9%
+  G: 0.0%
+  T: 16.4%
+  none/other: 0.0%
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	41	558.8	0	41
+4	11	139.7	0	11
+5	1602	34.9	0	1602
+6	333	8.7	0	333
+7	175	2.2	0	175
+8	2	0.5	0	2
+9	6	0.1	0	6
+14	1	0.0	1	0 1
+15	115	0.0	1	68 47
+16	85	0.0	1	39 46
+17	7629	0.0	1	5937 1692
+18	13	0.0	1	2 5 6
+19	109	0.0	1	13 80 16
+20	18317	0.0	2	15712 2204 401
+21	59	0.0	2	8 44 7
+23	10	0.0	2	7 1 2
+24	107	0.0	2	56 32 19
+25	128	0.0	2	78 30 20
+26	194	0.0	2	99 64 31
+27	41	0.0	2	15 15 11
+32	7	0.0	2	3 2 2
+33	265	0.0	2	149 63 53
+34	163	0.0	2	57 58 48
+35	4	0.0	2	0 1 3
+65	1	0.0	2	1
+67	6	0.0	2	4 2
+68	8	0.0	2	2 6
+69	109	0.0	2	80 19 10
+71	16	0.0	2	0 12 4
+72	6	0.0	2	0 5 1
+74	1	0.0	2	0 0 1
+75	5	0.0	2	0 4 1
+
+
+=== Second read: Adapter 3 ===
+
+Sequence: GAGATCCRTTGYTRAAAGTT; Type: regular 5'; Length: 20; Trimmed: 35655 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	5	558.8	0	5
+5	1	34.9	0	1
+14	2	0.0	1	0 2
+16	1	0.0	1	0 1
+17	3	0.0	1	2 1
+18	19	0.0	1	7 1 11
+19	240	0.0	1	34 190 16
+20	35252	0.0	2	33264 1871 117
+21	125	0.0	2	15 104 6
+22	2	0.0	2	0 0 2
+23	3	0.0	2	0 3
+24	2	0.0	2	2
+
+
+=== Second read: Adapter 4 ===
+
+Sequence: TGATCCYTCCGCAGGT; Type: regular 3'; Length: 16; Trimmed: 27391 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Bases preceding removed adapters:
+  A: 98.6%
+  C: 1.1%
+  G: 0.0%
+  T: 0.3%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	508	558.8	0	508
+4	17	139.7	0	17
+5	8	34.9	0	8
+9	4	0.1	0	4
+11	61	0.0	1	45 16
+12	1871	0.0	1	1601 270
+13	5863	0.0	1	5249 614
+14	64	0.0	1	54 10
+15	66	0.0	1	16 50
+16	17873	0.0	1	16438 1435
+17	22	0.0	1	8 14
+18	1	0.0	1	1
+19	3	0.0	1	1 2
+20	88	0.0	1	59 29
+21	210	0.0	1	148 62
+22	146	0.0	1	80 66
+23	41	0.0	1	21 20
+25	1	0.0	1	0 1
+28	20	0.0	1	9 11
+29	240	0.0	1	167 73
+30	134	0.0	1	64 70
+31	1	0.0	1	1
+61	1	0.0	1	0 1
+63	9	0.0	1	1 8
+64	41	0.0	1	36 5
+65	74	0.0	1	48 26
+66	4	0.0	1	4
+67	7	0.0	1	6 1
+68	8	0.0	1	8
+69	3	0.0	1	3
+71	1	0.0	1	1
+73	1	0.0	1	1
+
+
+WARNING:
+    One or more of your adapter sequences may be incomplete.
+    Please see the detailed output above.
+"
+"1","This is cutadapt 4.1 with Python 3.10.6
+"
+"1","Command line parameters: -g ACCTGCGGARGGATCA -a AACTTTYARCAAYGGATCTC -G GAGATCCRTTGYTRAAAGTT -A TGATCCYTCCGCAGGT -n 2 -o /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314336_1.fastq.gz -p /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314336_2.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314336_1.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314336_2.fastq.gz
+"
+"1","Processing paired-end reads on 1 core ...
+"
+"1","Finished in 3.98 s (89 µs/read; 0.67 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:             44,545
+  Read 1 with adapter:                  44,523 (100.0%)
+  Read 2 with adapter:                  44,437 (99.8%)
+Pairs written (passing filters):        44,545 (100.0%)
+
+Total basepairs processed:    17,179,525 bp
+  Read 1:     8,592,001 bp
+  Read 2:     8,587,524 bp
+Total written (filtered):     14,412,708 bp (83.9%)
+  Read 1:     7,222,122 bp
+  Read 2:     7,190,586 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: ACCTGCGGARGGATCA; Type: regular 5'; Length: 16; Trimmed: 44474 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	3	696.0	0	3
+13	1	0.0	1	0 1
+14	2	0.0	1	0 2
+15	149	0.0	1	16 133
+16	44217	0.0	1	42630 1587
+17	100	0.0	1	14 86
+20	1	0.0	1	1
+23	1	0.0	1	1
+
+
+=== First read: Adapter 2 ===
+
+Sequence: AACTTTYARCAAYGGATCTC; Type: regular 3'; Length: 20; Trimmed: 35788 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Bases preceding removed adapters:
+  A: 53.1%
+  C: 32.2%
+  G: 0.0%
+  T: 14.7%
+  none/other: 0.0%
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	59	696.0	0	59
+4	23	174.0	0	23
+5	2259	43.5	0	2259
+6	444	10.9	0	444
+7	222	2.7	0	222
+8	8	0.7	0	8
+9	5	0.2	0	4 1
+10	4	0.0	1	0 4
+12	2	0.0	1	2
+15	188	0.0	1	107 81
+16	151	0.0	1	68 83
+17	11074	0.0	1	8510 2564
+18	2	0.0	1	2
+19	134	0.0	1	20 103 11
+20	19522	0.0	2	16281 2702 539
+21	70	0.0	2	9 48 13
+22	2	0.0	2	1 0 1
+23	7	0.0	2	4 2 1
+24	169	0.0	2	85 56 28
+25	246	0.0	2	154 63 29
+26	259	0.0	2	116 93 50
+27	82	0.0	2	46 27 9
+32	10	0.0	2	1 6 3
+33	356	0.0	2	187 92 77
+34	306	0.0	2	117 108 81
+35	4	0.0	2	3 0 1
+65	1	0.0	2	0 1
+67	11	0.0	2	2 7 2
+68	18	0.0	2	10 5 3
+69	118	0.0	2	90 20 8
+70	1	0.0	2	0 0 1
+71	15	0.0	2	0 9 6
+72	12	0.0	2	0 9 3
+74	3	0.0	2	0 0 3
+78	1	0.0	2	0 0 1
+
+
+=== Second read: Adapter 3 ===
+
+Sequence: GAGATCCRTTGYTRAAAGTT; Type: regular 5'; Length: 20; Trimmed: 44430 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	12	696.0	0	12
+18	9	0.0	1	2 2 5
+19	327	0.0	1	50 270 7
+20	43936	0.0	2	41932 1915 89
+21	140	0.0	2	19 117 4
+22	4	0.0	2	4
+35	2	0.0	2	2
+
+
+=== Second read: Adapter 4 ===
+
+Sequence: TGATCCYTCCGCAGGT; Type: regular 3'; Length: 16; Trimmed: 33836 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Bases preceding removed adapters:
+  A: 98.6%
+  C: 1.1%
+  G: 0.1%
+  T: 0.3%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	717	696.0	0	717
+4	28	174.0	0	28
+5	9	43.5	0	9
+8	2	0.7	0	2
+10	3	0.0	1	2 1
+11	68	0.0	1	56 12
+12	2435	0.0	1	2120 315
+13	9324	0.0	1	8466 858
+14	107	0.0	1	90 17
+15	68	0.0	1	10 58
+16	20018	0.0	1	18669 1349
+17	46	0.0	1	7 39
+19	8	0.0	1	8
+20	89	0.0	1	64 25
+21	212	0.0	1	166 46
+22	116	0.0	1	83 33
+23	31	0.0	1	17 14
+28	11	0.0	1	6 5
+29	282	0.0	1	220 62
+30	99	0.0	1	56 43
+31	4	0.0	1	2 2
+59	1	0.0	1	0 1
+62	1	0.0	1	1
+63	9	0.0	1	5 4
+64	50	0.0	1	41 9
+65	66	0.0	1	47 19
+66	3	0.0	1	3
+67	8	0.0	1	5 3
+68	14	0.0	1	11 3
+69	1	0.0	1	1
+70	1	0.0	1	1
+71	5	0.0	1	5
+
+
+WARNING:
+    One or more of your adapter sequences may be incomplete.
+    Please see the detailed output above.
+"
+"1","This is cutadapt 4.1 with Python 3.10.6
+"
+"1","Command line parameters: -g ACCTGCGGARGGATCA -a AACTTTYARCAAYGGATCTC -G GAGATCCRTTGYTRAAAGTT -A TGATCCYTCCGCAGGT -n 2 -o /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314337_1.fastq.gz -p /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314337_2.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314337_1.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314337_2.fastq.gz
+"
+"1","Processing paired-end reads on 1 core ...
+"
+"1","Finished in 3.10 s (89 µs/read; 0.67 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:             34,887
+  Read 1 with adapter:                  34,865 (99.9%)
+  Read 2 with adapter:                  34,808 (99.8%)
+Pairs written (passing filters):        34,887 (100.0%)
+
+Total basepairs processed:    13,452,517 bp
+  Read 1:     6,725,130 bp
+  Read 2:     6,727,387 bp
+Total written (filtered):     11,349,225 bp (84.4%)
+  Read 1:     5,685,395 bp
+  Read 2:     5,663,830 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: ACCTGCGGARGGATCA; Type: regular 5'; Length: 16; Trimmed: 34843 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	3	545.1	0	3
+13	2	0.0	1	2
+14	5	0.0	1	2 3
+15	105	0.0	1	21 84
+16	34649	0.0	1	33509 1140
+17	78	0.0	1	15 63
+21	1	0.0	1	1
+
+
+=== First read: Adapter 2 ===
+
+Sequence: AACTTTYARCAAYGGATCTC; Type: regular 3'; Length: 20; Trimmed: 26682 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Bases preceding removed adapters:
+  A: 57.9%
+  C: 32.9%
+  G: 0.0%
+  T: 9.2%
+  none/other: 0.0%
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	43	545.1	0	43
+4	14	136.3	0	14
+5	2200	34.1	0	2200
+6	279	8.5	0	279
+7	114	2.1	0	114
+8	5	0.5	0	5
+9	16	0.1	0	16
+10	5	0.0	1	0 5
+11	1	0.0	1	1
+12	8	0.0	1	7 1
+13	4	0.0	1	3 1
+15	123	0.0	1	81 42
+16	116	0.0	1	54 62
+17	8397	0.0	1	6538 1859
+18	5	0.0	1	3 1 1
+19	95	0.0	1	9 79 7
+20	14296	0.0	2	12633 1354 309
+21	44	0.0	2	5 35 4
+22	2	0.0	2	1 0 1
+23	5	0.0	2	4 1
+24	68	0.0	2	40 18 10
+25	78	0.0	2	56 15 7
+26	172	0.0	2	94 49 29
+27	46	0.0	2	24 13 9
+28	1	0.0	2	1
+30	1	0.0	2	0 0 1
+32	8	0.0	2	2 3 3
+33	215	0.0	2	141 53 21
+34	158	0.0	2	80 53 25
+35	5	0.0	2	2 3
+37	1	0.0	2	0 0 1
+38	4	0.0	2	2 2
+42	1	0.0	2	1
+46	1	0.0	2	1
+66	1	0.0	2	1
+67	5	0.0	2	1 2 2
+68	16	0.0	2	12 1 3
+69	126	0.0	2	85 27 14
+71	2	0.0	2	0 2
+72	1	0.0	2	0 0 1
+
+
+=== Second read: Adapter 3 ===
+
+Sequence: GAGATCCRTTGYTRAAAGTT; Type: regular 5'; Length: 20; Trimmed: 34792 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	4	545.1	0	4
+16	1	0.0	1	1
+17	11	0.0	1	5 6
+18	11	0.0	1	1 2 8
+19	255	0.0	1	47 201 7
+20	34395	0.0	2	33595 734 66
+21	109	0.0	2	17 87 5
+22	4	0.0	2	1 0 3
+23	2	0.0	2	2
+
+
+=== Second read: Adapter 4 ===
+
+Sequence: TGATCCYTCCGCAGGT; Type: regular 3'; Length: 16; Trimmed: 24291 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Bases preceding removed adapters:
+  A: 98.7%
+  C: 1.0%
+  G: 0.1%
+  T: 0.3%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	387	545.1	0	387
+4	28	136.3	0	28
+5	25	34.1	0	25
+6	2	8.5	0	2
+8	11	0.5	0	11
+9	4	0.1	0	4
+10	2	0.0	1	2
+11	58	0.0	1	42 16
+12	1759	0.0	1	1500 259
+13	6894	0.0	1	6143 751
+14	72	0.0	1	64 8
+15	41	0.0	1	8 33
+16	14209	0.0	1	13206 1003
+17	38	0.0	1	4 34
+19	2	0.0	1	1 1
+20	45	0.0	1	25 20
+21	130	0.0	1	92 38
+22	118	0.0	1	80 38
+23	29	0.0	1	18 11
+25	2	0.0	1	2
+27	1	0.0	1	1
+28	8	0.0	1	6 2
+29	160	0.0	1	121 39
+30	92	0.0	1	54 38
+31	9	0.0	1	6 3
+33	2	0.0	1	1 1
+34	1	0.0	1	1
+35	1	0.0	1	1
+42	1	0.0	1	0 1
+63	4	0.0	1	4
+64	63	0.0	1	58 5
+65	86	0.0	1	61 25
+68	6	0.0	1	6
+71	1	0.0	1	1
+
+
+WARNING:
+    One or more of your adapter sequences may be incomplete.
+    Please see the detailed output above.
+"
+"1","This is cutadapt 4.1 with Python 3.10.6
+"
+"1","Command line parameters: -g ACCTGCGGARGGATCA -a AACTTTYARCAAYGGATCTC -G GAGATCCRTTGYTRAAAGTT -A TGATCCYTCCGCAGGT -n 2 -o /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314338_1.fastq.gz -p /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314338_2.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314338_1.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314338_2.fastq.gz
+"
+"1","Processing paired-end reads on 1 core ...
+"
+"1","Finished in 2.82 s (88 µs/read; 0.68 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:             31,965
+  Read 1 with adapter:                  31,951 (100.0%)
+  Read 2 with adapter:                  31,864 (99.7%)
+Pairs written (passing filters):        31,965 (100.0%)
+
+Total basepairs processed:    12,370,801 bp
+  Read 1:     6,184,785 bp
+  Read 2:     6,186,016 bp
+Total written (filtered):     10,461,198 bp (84.6%)
+  Read 1:     5,240,786 bp
+  Read 2:     5,220,412 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: ACCTGCGGARGGATCA; Type: regular 5'; Length: 16; Trimmed: 31905 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+11	1	0.0	1	0 1
+14	3	0.0	1	1 2
+15	109	0.0	1	17 92
+16	31730	0.0	1	30696 1034
+17	60	0.0	1	13 47
+18	1	0.0	1	1
+30	1	0.0	1	1
+
+
+=== First read: Adapter 2 ===
+
+Sequence: AACTTTYARCAAYGGATCTC; Type: regular 3'; Length: 20; Trimmed: 24147 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Bases preceding removed adapters:
+  A: 58.6%
+  C: 31.3%
+  G: 0.0%
+  T: 10.1%
+  none/other: 0.0%
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	31	499.5	0	31
+4	8	124.9	0	8
+5	2172	31.2	0	2172
+6	317	7.8	0	317
+7	115	2.0	0	115
+8	5	0.5	0	5
+9	14	0.1	0	13 1
+10	2	0.0	1	0 2
+11	1	0.0	1	1
+12	8	0.0	1	8
+13	3	0.0	1	1 2
+14	1	0.0	1	0 1
+15	109	0.0	1	64 45
+16	100	0.0	1	53 47
+17	7198	0.0	1	5790 1408
+18	5	0.0	1	0 4 1
+19	91	0.0	1	14 71 6
+20	13125	0.0	2	11746 1117 262
+21	28	0.0	2	5 22 1
+23	2	0.0	2	2
+24	55	0.0	2	27 19 9
+25	67	0.0	2	50 10 7
+26	161	0.0	2	91 44 26
+27	40	0.0	2	23 8 9
+28	1	0.0	2	0 0 1
+29	2	0.0	2	2
+32	7	0.0	2	3 1 3
+33	203	0.0	2	118 55 30
+34	147	0.0	2	60 49 38
+35	5	0.0	2	2 1 2
+38	2	0.0	2	0 2
+67	3	0.0	2	2 1
+68	9	0.0	2	6 3
+69	92	0.0	2	67 15 10
+70	2	0.0	2	2
+71	5	0.0	2	0 5
+72	10	0.0	2	0 7 3
+76	1	0.0	2	0 0 1
+
+
+=== Second read: Adapter 3 ===
+
+Sequence: GAGATCCRTTGYTRAAAGTT; Type: regular 5'; Length: 20; Trimmed: 31844 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	1	499.5	0	1
+15	2	0.0	1	2
+17	3	0.0	1	2 1
+18	9	0.0	1	3 2 4
+19	232	0.0	1	42 184 6
+20	31514	0.0	2	30784 647 83
+21	82	0.0	2	10 70 2
+23	1	0.0	2	1
+
+
+=== Second read: Adapter 4 ===
+
+Sequence: TGATCCYTCCGCAGGT; Type: regular 3'; Length: 16; Trimmed: 21870 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Bases preceding removed adapters:
+  A: 98.6%
+  C: 1.0%
+  G: 0.1%
+  T: 0.3%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	443	499.5	0	443
+4	17	124.9	0	17
+5	21	31.2	0	21
+8	10	0.5	0	10
+11	50	0.0	1	35 15
+12	1551	0.0	1	1363 188
+13	5877	0.0	1	5305 572
+14	63	0.0	1	54 9
+15	37	0.0	1	6 31
+16	13135	0.0	1	12194 941
+17	32	0.0	1	4 28
+18	1	0.0	1	1
+19	2	0.0	1	2
+20	34	0.0	1	29 5
+21	128	0.0	1	100 28
+22	84	0.0	1	47 37
+23	27	0.0	1	18 9
+25	2	0.0	1	1 1
+26	1	0.0	1	1
+27	1	0.0	1	1
+28	10	0.0	1	3 7
+29	160	0.0	1	125 35
+30	81	0.0	1	40 41
+31	7	0.0	1	6 1
+33	2	0.0	1	2
+34	2	0.0	1	0 2
+63	13	0.0	1	13
+64	36	0.0	1	32 4
+65	37	0.0	1	22 15
+68	4	0.0	1	2 2
+71	2	0.0	1	2
+
+
+WARNING:
+    One or more of your adapter sequences may be incomplete.
+    Please see the detailed output above.
+"
+"1","This is cutadapt 4.1 with Python 3.10.6
+"
+"1","Command line parameters: -g ACCTGCGGARGGATCA -a AACTTTYARCAAYGGATCTC -G GAGATCCRTTGYTRAAAGTT -A TGATCCYTCCGCAGGT -n 2 -o /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314339_1.fastq.gz -p /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314339_2.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314339_1.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314339_2.fastq.gz
+"
+"1","Processing paired-end reads on 1 core ...
+"
+"1","Finished in 2.28 s (88 µs/read; 0.68 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:             25,946
+  Read 1 with adapter:                  25,937 (100.0%)
+  Read 2 with adapter:                  25,863 (99.7%)
+Pairs written (passing filters):        25,946 (100.0%)
+
+Total basepairs processed:     9,876,739 bp
+  Read 1:     4,933,265 bp
+  Read 2:     4,943,474 bp
+Total written (filtered):      8,198,473 bp (83.0%)
+  Read 1:     4,098,960 bp
+  Read 2:     4,099,513 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: ACCTGCGGARGGATCA; Type: regular 5'; Length: 16; Trimmed: 25919 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+11	2	0.0	1	2
+13	1	0.0	1	1
+14	1	0.0	1	0 1
+15	93	0.0	1	15 78
+16	25774	0.0	1	24959 815
+17	47	0.0	1	9 38
+18	1	0.0	1	1
+
+
+=== First read: Adapter 2 ===
+
+Sequence: AACTTTYARCAAYGGATCTC; Type: regular 3'; Length: 20; Trimmed: 21585 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Bases preceding removed adapters:
+  A: 45.6%
+  C: 47.9%
+  G: 0.0%
+  T: 6.5%
+  none/other: 0.0%
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	24	405.4	0	24
+4	4	101.4	0	4
+5	841	25.3	0	841
+6	180	6.3	0	180
+7	98	1.6	0	98
+8	9	0.4	0	9
+9	5	0.1	0	5
+10	2	0.0	1	0 2
+11	2	0.0	1	2
+12	4	0.0	1	4
+14	2	0.0	1	2
+15	62	0.0	1	34 28
+16	71	0.0	1	37 34
+17	3679	0.0	1	2911 768
+18	4	0.0	1	1 2 1
+19	113	0.0	1	12 88 13
+20	15357	0.0	2	13680 1378 299
+21	53	0.0	2	9 40 4
+23	3	0.0	2	2 0 1
+24	48	0.0	2	29 10 9
+25	46	0.0	2	31 11 4
+26	86	0.0	2	41 32 13
+27	24	0.0	2	10 10 4
+29	2	0.0	2	1 0 1
+32	6	0.0	2	0 4 2
+33	171	0.0	2	91 50 30
+34	157	0.0	2	63 61 33
+35	6	0.0	2	3 2 1
+36	3	0.0	2	3
+37	146	0.0	2	57 51 38
+38	260	0.0	2	165 69 26
+39	41	0.0	2	21 10 10
+40	3	0.0	2	0 2 1
+41	5	0.0	2	2 2 1
+42	12	0.0	2	6 4 2
+44	1	0.0	2	0 1
+48	2	0.0	2	1 1
+49	2	0.0	2	2
+67	2	0.0	2	0 1 1
+68	4	0.0	2	1 3
+69	40	0.0	2	29 8 3
+71	2	0.0	2	0 2
+75	3	0.0	2	0 3
+
+
+=== Second read: Adapter 3 ===
+
+Sequence: GAGATCCRTTGYTRAAAGTT; Type: regular 5'; Length: 20; Trimmed: 25856 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	7	405.4	0	7
+15	1	0.0	1	1
+18	7	0.0	1	2 1 4
+19	216	0.0	1	21 191 4
+20	25537	0.0	2	25053 430 54
+21	84	0.0	2	12 70 2
+30	1	0.0	2	1
+33	1	0.0	2	1
+40	2	0.0	2	2
+
+
+=== Second read: Adapter 4 ===
+
+Sequence: TGATCCYTCCGCAGGT; Type: regular 3'; Length: 16; Trimmed: 20268 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Bases preceding removed adapters:
+  A: 98.8%
+  C: 0.9%
+  G: 0.1%
+  T: 0.3%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	314	405.4	0	314
+4	20	101.4	0	20
+5	13	25.3	0	13
+8	3	0.4	0	3
+9	2	0.1	0	2
+11	40	0.0	1	30 10
+12	965	0.0	1	844 121
+13	2858	0.0	1	2564 294
+14	49	0.0	1	40 9
+15	48	0.0	1	6 42
+16	14709	0.0	1	13509 1200
+17	27	0.0	1	8 19
+18	1	0.0	1	1
+19	1	0.0	1	1
+20	27	0.0	1	17 10
+21	64	0.0	1	52 12
+22	45	0.0	1	27 18
+23	13	0.0	1	11 2
+28	8	0.0	1	3 5
+29	160	0.0	1	125 35
+30	99	0.0	1	64 35
+31	3	0.0	1	1 2
+32	62	0.0	1	54 8
+33	385	0.0	1	217 168
+34	154	0.0	1	97 57
+35	105	0.0	1	63 42
+36	10	0.0	1	6 4
+37	21	0.0	1	10 11
+38	10	0.0	1	6 4
+39	1	0.0	1	1
+43	1	0.0	1	0 1
+44	1	0.0	1	1
+63	6	0.0	1	5 1
+64	17	0.0	1	16 1
+65	26	0.0	1	15 11
+
+
+WARNING:
+    One or more of your adapter sequences may be incomplete.
+    Please see the detailed output above.
+"
+"1","This is cutadapt 4.1 with Python 3.10.6
+"
+"1","Command line parameters: -g ACCTGCGGARGGATCA -a AACTTTYARCAAYGGATCTC -G GAGATCCRTTGYTRAAAGTT -A TGATCCYTCCGCAGGT -n 2 -o /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314343_1.fastq.gz -p /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314343_2.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314343_1.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314343_2.fastq.gz
+"
+"1","Processing paired-end reads on 1 core ...
+"
+"1","Finished in 5.29 s (87 µs/read; 0.69 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:             60,906
+  Read 1 with adapter:                  60,875 (99.9%)
+  Read 2 with adapter:                  60,694 (99.7%)
+Pairs written (passing filters):        60,906 (100.0%)
+
+Total basepairs processed:    23,540,632 bp
+  Read 1:    11,767,277 bp
+  Read 2:    11,773,355 bp
+Total written (filtered):     19,621,191 bp (83.4%)
+  Read 1:     9,818,093 bp
+  Read 2:     9,803,098 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: ACCTGCGGARGGATCA; Type: regular 5'; Length: 16; Trimmed: 60821 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	2	951.7	0	2
+11	2	0.0	1	2
+13	3	0.0	1	3
+14	7	0.0	1	2 5
+15	240	0.0	1	28 212
+16	60407	0.0	1	58428 1979
+17	157	0.0	1	25 132
+19	3	0.0	1	0 3
+
+
+=== First read: Adapter 2 ===
+
+Sequence: AACTTTYARCAAYGGATCTC; Type: regular 3'; Length: 20; Trimmed: 47552 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Bases preceding removed adapters:
+  A: 96.7%
+  C: 1.5%
+  G: 0.0%
+  T: 1.8%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	9	951.7	0	9
+4	4	237.9	0	4
+5	92	59.5	0	92
+6	92	14.9	0	92
+7	33	3.7	0	33
+10	1	0.1	1	0 1
+13	1	0.0	1	0 1
+16	2	0.0	1	0 2
+17	99	0.0	1	71 28
+18	14	0.0	1	3 2 9
+19	304	0.0	1	34 241 29
+20	43683	0.0	2	38276 4326 1081
+21	145	0.0	2	25 105 15
+22	4	0.0	2	1 0 3
+23	1	0.0	2	0 0 1
+24	37	0.0	2	19 13 5
+25	141	0.0	2	99 34 8
+26	1224	0.0	2	592 422 210
+27	328	0.0	2	194 79 55
+28	1	0.0	2	0 1
+29	2	0.0	2	1 1
+32	9	0.0	2	4 3 2
+33	733	0.0	2	414 198 121
+34	574	0.0	2	240 188 146
+35	4	0.0	2	1 1 2
+36	1	0.0	2	1
+67	2	0.0	2	2
+68	1	0.0	2	1
+69	9	0.0	2	5 3 1
+71	2	0.0	2	0 2
+
+
+=== Second read: Adapter 3 ===
+
+Sequence: GAGATCCRTTGYTRAAAGTT; Type: regular 5'; Length: 20; Trimmed: 60668 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	5	951.7	0	5
+10	1	0.1	1	1
+13	1	0.0	1	0 1
+16	1	0.0	1	0 1
+17	7	0.0	1	0 7
+18	20	0.0	1	8 2 10
+19	445	0.0	1	66 368 11
+20	59976	0.0	2	58861 937 178
+21	197	0.0	2	32 160 5
+22	7	0.0	2	4 1 2
+23	2	0.0	2	1 0 1
+24	1	0.0	2	1
+31	2	0.0	2	0 0 2
+35	3	0.0	2	3
+
+
+=== Second read: Adapter 4 ===
+
+Sequence: TGATCCYTCCGCAGGT; Type: regular 3'; Length: 16; Trimmed: 45844 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Bases preceding removed adapters:
+  A: 98.8%
+  C: 1.0%
+  G: 0.1%
+  T: 0.1%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	179	951.7	0	179
+4	3	237.9	0	3
+6	1	14.9	0	1
+11	5	0.0	1	5
+12	16	0.0	1	11 5
+13	79	0.0	1	70 9
+14	6	0.0	1	3 3
+15	151	0.0	1	14 137
+16	42566	0.0	1	38087 4479
+17	98	0.0	1	14 84
+20	27	0.0	1	15 12
+21	137	0.0	1	90 47
+22	1030	0.0	1	626 404
+23	242	0.0	1	139 103
+24	2	0.0	1	2
+25	1	0.0	1	0 1
+27	1	0.0	1	1
+28	55	0.0	1	32 23
+29	752	0.0	1	521 231
+30	466	0.0	1	284 182
+31	9	0.0	1	6 3
+32	5	0.0	1	4 1
+34	1	0.0	1	1
+63	1	0.0	1	1
+64	4	0.0	1	4
+65	6	0.0	1	4 2
+68	1	0.0	1	0 1
+
+
+WARNING:
+    One or more of your adapter sequences may be incomplete.
+    Please see the detailed output above.
+"
+"1","This is cutadapt 4.1 with Python 3.10.6
+"
+"1","Command line parameters: -g ACCTGCGGARGGATCA -a AACTTTYARCAAYGGATCTC -G GAGATCCRTTGYTRAAAGTT -A TGATCCYTCCGCAGGT -n 2 -o /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314344_1.fastq.gz -p /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314344_2.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314344_1.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314344_2.fastq.gz
+"
+"1","Processing paired-end reads on 1 core ...
+"
+"1","Finished in 5.50 s (91 µs/read; 0.66 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:             60,624
+  Read 1 with adapter:                  60,594 (100.0%)
+  Read 2 with adapter:                  60,438 (99.7%)
+Pairs written (passing filters):        60,624 (100.0%)
+
+Total basepairs processed:    23,365,447 bp
+  Read 1:    11,680,408 bp
+  Read 2:    11,685,039 bp
+Total written (filtered):     19,350,882 bp (82.8%)
+  Read 1:     9,678,043 bp
+  Read 2:     9,672,839 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: ACCTGCGGARGGATCA; Type: regular 5'; Length: 16; Trimmed: 60530 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	1	947.2	0	1
+10	1	0.1	1	1
+14	3	0.0	1	1 2
+15	229	0.0	1	32 197
+16	60183	0.0	1	58079 2104
+17	111	0.0	1	16 95
+18	2	0.0	1	1 1
+
+
+=== First read: Adapter 2 ===
+
+Sequence: AACTTTYARCAAYGGATCTC; Type: regular 3'; Length: 20; Trimmed: 50406 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Bases preceding removed adapters:
+  A: 96.7%
+  C: 1.5%
+  G: 0.0%
+  T: 1.8%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	16	947.2	0	16
+4	1	236.8	0	1
+5	133	59.2	0	133
+6	52	14.8	0	52
+7	45	3.7	0	45
+10	1	0.1	1	0 1
+11	1	0.0	1	1
+12	1	0.0	1	0 1
+15	3	0.0	1	2 1
+16	5	0.0	1	4 1
+17	111	0.0	1	81 30
+18	23	0.0	1	9 0 14
+19	303	0.0	1	50 224 29
+20	46378	0.0	2	40726 4465 1187
+21	153	0.0	2	23 116 14
+22	3	0.0	2	3
+23	6	0.0	2	5 1
+24	41	0.0	2	17 11 13
+25	115	0.0	2	82 21 12
+26	1280	0.0	2	595 435 250
+27	313	0.0	2	160 94 59
+28	3	0.0	2	2 1
+29	1	0.0	2	1
+31	1	0.0	2	0 1
+32	12	0.0	2	5 4 3
+33	794	0.0	2	447 207 140
+34	593	0.0	2	225 228 140
+35	7	0.0	2	2 4 1
+67	1	0.0	2	1
+68	1	0.0	2	0 0 1
+69	7	0.0	2	4 1 2
+71	2	0.0	2	0 1 1
+
+
+=== Second read: Adapter 3 ===
+
+Sequence: GAGATCCRTTGYTRAAAGTT; Type: regular 5'; Length: 20; Trimmed: 60412 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	9	947.2	0	9
+4	1	236.8	0	1
+5	1	59.2	0	1
+7	1	3.7	0	1
+11	1	0.0	1	1
+17	3	0.0	1	3
+18	30	0.0	1	11 1 18
+19	416	0.0	1	69 332 15
+20	59747	0.0	2	58584 949 214
+21	199	0.0	2	32 165 2
+22	3	0.0	2	3
+53	1	0.0	2	0 1
+
+
+=== Second read: Adapter 4 ===
+
+Sequence: TGATCCYTCCGCAGGT; Type: regular 3'; Length: 16; Trimmed: 48846 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Bases preceding removed adapters:
+  A: 98.9%
+  C: 0.9%
+  G: 0.0%
+  T: 0.1%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	147	947.2	0	147
+4	5	236.8	0	5
+5	3	59.2	0	3
+10	1	0.1	1	1
+11	1	0.0	1	1
+12	34	0.0	1	26 8
+13	85	0.0	1	72 13
+14	4	0.0	1	2 2
+15	168	0.0	1	19 149
+16	45664	0.0	1	41383 4281
+17	75	0.0	1	10 65
+18	2	0.0	1	1 1
+19	1	0.0	1	0 1
+20	27	0.0	1	16 11
+21	130	0.0	1	99 31
+22	1040	0.0	1	660 380
+23	224	0.0	1	141 83
+24	4	0.0	1	3 1
+28	50	0.0	1	31 19
+29	774	0.0	1	566 208
+30	389	0.0	1	232 157
+31	6	0.0	1	3 3
+64	7	0.0	1	7
+65	5	0.0	1	3 2
+
+
+WARNING:
+    One or more of your adapter sequences may be incomplete.
+    Please see the detailed output above.
+"
+"1","This is cutadapt 4.1 with Python 3.10.6
+"
+"1","Command line parameters: -g ACCTGCGGARGGATCA -a AACTTTYARCAAYGGATCTC -G GAGATCCRTTGYTRAAAGTT -A TGATCCYTCCGCAGGT -n 2 -o /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314345_1.fastq.gz -p /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314345_2.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314345_1.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314345_2.fastq.gz
+"
+"1","Processing paired-end reads on 1 core ...
+"
+"1","Finished in 2.03 s (85 µs/read; 0.70 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:             23,858
+  Read 1 with adapter:                  23,848 (100.0%)
+  Read 2 with adapter:                  23,767 (99.6%)
+Pairs written (passing filters):        23,858 (100.0%)
+
+Total basepairs processed:     9,215,119 bp
+  Read 1:     4,605,965 bp
+  Read 2:     4,609,154 bp
+Total written (filtered):      7,669,862 bp (83.2%)
+  Read 1:     3,836,150 bp
+  Read 2:     3,833,712 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: ACCTGCGGARGGATCA; Type: regular 5'; Length: 16; Trimmed: 23823 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+14	3	0.0	1	3
+15	119	0.0	1	14 105
+16	23651	0.0	1	22901 750
+17	49	0.0	1	4 45
+18	1	0.0	1	1
+
+
+=== First read: Adapter 2 ===
+
+Sequence: AACTTTYARCAAYGGATCTC; Type: regular 3'; Length: 20; Trimmed: 18992 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Bases preceding removed adapters:
+  A: 97.1%
+  C: 1.3%
+  G: 0.0%
+  T: 1.5%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	4	372.8	0	4
+5	34	23.3	0	34
+6	33	5.8	0	33
+7	15	1.5	0	15
+10	1	0.0	1	0 1
+15	2	0.0	1	2
+17	39	0.0	1	28 11
+18	5	0.0	1	0 1 4
+19	116	0.0	1	12 94 10
+20	17616	0.0	2	15623 1589 404
+21	43	0.0	2	5 37 1
+22	2	0.0	2	2
+23	3	0.0	2	2 1
+24	7	0.0	2	3 3 1
+25	57	0.0	2	39 11 7
+26	414	0.0	2	194 154 66
+27	106	0.0	2	56 31 19
+28	1	0.0	2	0 0 1
+32	10	0.0	2	4 1 5
+33	265	0.0	2	155 63 47
+34	214	0.0	2	89 76 49
+35	1	0.0	2	1
+68	1	0.0	2	0 1
+69	2	0.0	2	0 1 1
+74	1	0.0	2	0 0 1
+
+
+=== Second read: Adapter 3 ===
+
+Sequence: GAGATCCRTTGYTRAAAGTT; Type: regular 5'; Length: 20; Trimmed: 23755 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	4	372.8	0	4
+16	2	0.0	1	2
+17	3	0.0	1	3
+18	10	0.0	1	3 3 4
+19	174	0.0	1	21 150 3
+20	23501	0.0	2	23108 332 61
+21	56	0.0	2	3 50 3
+22	2	0.0	2	2
+23	3	0.0	2	2 1
+
+
+=== Second read: Adapter 4 ===
+
+Sequence: TGATCCYTCCGCAGGT; Type: regular 3'; Length: 16; Trimmed: 18234 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Bases preceding removed adapters:
+  A: 99.1%
+  C: 0.8%
+  G: 0.1%
+  T: 0.1%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	57	372.8	0	57
+4	1	93.2	0	1
+6	1	5.8	0	1
+11	4	0.0	1	2 2
+12	7	0.0	1	6 1
+13	30	0.0	1	22 8
+14	2	0.0	1	2
+15	84	0.0	1	10 74
+16	17015	0.0	1	15326 1689
+17	35	0.0	1	1 34
+20	9	0.0	1	7 2
+21	54	0.0	1	41 13
+22	367	0.0	1	213 154
+23	98	0.0	1	59 39
+24	1	0.0	1	0 1
+27	1	0.0	1	0 1
+28	18	0.0	1	11 7
+29	252	0.0	1	182 70
+30	188	0.0	1	110 78
+31	2	0.0	1	0 2
+63	1	0.0	1	1
+64	2	0.0	1	1 1
+65	4	0.0	1	3 1
+72	1	0.0	1	1
+
+
+WARNING:
+    One or more of your adapter sequences may be incomplete.
+    Please see the detailed output above.
+"
+"1","This is cutadapt 4.1 with Python 3.10.6
+"
+"1","Command line parameters: -g ACCTGCGGARGGATCA -a AACTTTYARCAAYGGATCTC -G GAGATCCRTTGYTRAAAGTT -A TGATCCYTCCGCAGGT -n 2 -o /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314346_1.fastq.gz -p /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314346_2.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314346_1.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314346_2.fastq.gz
+"
+"1","Processing paired-end reads on 1 core ...
+"
+"1","Finished in 3.75 s (85 µs/read; 0.71 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:             44,175
+  Read 1 with adapter:                  44,145 (99.9%)
+  Read 2 with adapter:                  44,092 (99.8%)
+Pairs written (passing filters):        44,175 (100.0%)
+
+Total basepairs processed:    17,063,476 bp
+  Read 1:     8,537,512 bp
+  Read 2:     8,525,964 bp
+Total written (filtered):     14,240,031 bp (83.5%)
+  Read 1:     7,140,685 bp
+  Read 2:     7,099,346 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: ACCTGCGGARGGATCA; Type: regular 5'; Length: 16; Trimmed: 44081 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	1	690.2	0	1
+11	3	0.0	1	3
+12	2	0.0	1	2
+14	4	0.0	1	2 2
+15	154	0.0	1	30 124
+16	43851	0.0	1	42269 1582
+17	66	0.0	1	19 47
+
+
+=== First read: Adapter 2 ===
+
+Sequence: AACTTTYARCAAYGGATCTC; Type: regular 3'; Length: 20; Trimmed: 33484 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Bases preceding removed adapters:
+  A: 97.2%
+  C: 1.3%
+  G: 0.0%
+  T: 1.5%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	7	690.2	0	7
+4	2	172.6	0	2
+5	66	43.1	0	66
+6	42	10.8	0	42
+7	17	2.7	0	17
+9	1	0.2	0	1
+12	1	0.0	1	0 1
+15	1	0.0	1	1
+16	3	0.0	1	3
+17	53	0.0	1	46 7
+18	15	0.0	1	0 0 15
+19	201	0.0	1	20 166 15
+20	30538	0.0	2	26282 3344 912
+21	83	0.0	2	9 65 9
+22	4	0.0	2	2 2
+24	24	0.0	2	15 3 6
+25	78	0.0	2	53 15 10
+26	897	0.0	2	432 292 173
+27	244	0.0	2	125 79 40
+28	2	0.0	2	0 1 1
+32	15	0.0	2	3 6 6
+33	561	0.0	2	293 176 92
+34	609	0.0	2	244 228 137
+35	6	0.0	2	3 2 1
+36	1	0.0	2	1
+38	2	0.0	2	0 2
+67	1	0.0	2	0 1
+68	2	0.0	2	2
+69	8	0.0	2	6 2
+
+
+=== Second read: Adapter 3 ===
+
+Sequence: GAGATCCRTTGYTRAAAGTT; Type: regular 5'; Length: 20; Trimmed: 44076 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	5	690.2	0	5
+12	2	0.0	1	0 2
+16	2	0.0	1	2
+17	3	0.0	1	3
+18	17	0.0	1	0 0 17
+19	309	0.0	1	50 256 3
+20	43608	0.0	2	42975 582 51
+21	125	0.0	2	14 107 4
+22	5	0.0	2	4 0 1
+
+
+=== Second read: Adapter 4 ===
+
+Sequence: TGATCCYTCCGCAGGT; Type: regular 3'; Length: 16; Trimmed: 33408 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Bases preceding removed adapters:
+  A: 99.3%
+  C: 0.5%
+  G: 0.0%
+  T: 0.1%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	93	690.2	0	93
+4	3	172.6	0	3
+11	2	0.0	1	2
+12	13	0.0	1	9 4
+13	48	0.0	1	47 1
+14	2	0.0	1	1 1
+15	98	0.0	1	11 87
+16	31860	0.0	1	29747 2113
+17	43	0.0	1	8 35
+20	13	0.0	1	5 8
+21	74	0.0	1	60 14
+22	405	0.0	1	240 165
+23	83	0.0	1	48 35
+24	2	0.0	1	1 1
+28	30	0.0	1	20 10
+29	451	0.0	1	360 91
+30	184	0.0	1	105 79
+31	1	0.0	1	0 1
+61	1	0.0	1	1
+65	2	0.0	1	1 1
+
+
+WARNING:
+    One or more of your adapter sequences may be incomplete.
+    Please see the detailed output above.
+"
+"1","This is cutadapt 4.1 with Python 3.10.6
+"
+"1","Command line parameters: -g ACCTGCGGARGGATCA -a AACTTTYARCAAYGGATCTC -G GAGATCCRTTGYTRAAAGTT -A TGATCCYTCCGCAGGT -n 2 -o /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314348_1.fastq.gz -p /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314348_2.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314348_1.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314348_2.fastq.gz
+"
+"1","Processing paired-end reads on 1 core ...
+"
+"1","Finished in 4.29 s (85 µs/read; 0.70 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:             50,358
+  Read 1 with adapter:                  50,333 (100.0%)
+  Read 2 with adapter:                  50,219 (99.7%)
+Pairs written (passing filters):        50,358 (100.0%)
+
+Total basepairs processed:    19,442,741 bp
+  Read 1:     9,722,483 bp
+  Read 2:     9,720,258 bp
+Total written (filtered):     16,209,814 bp (83.4%)
+  Read 1:     8,119,980 bp
+  Read 2:     8,089,834 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: ACCTGCGGARGGATCA; Type: regular 5'; Length: 16; Trimmed: 50277 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	2	786.8	0	2
+12	1	0.0	1	0 1
+13	3	0.0	1	2 1
+14	3	0.0	1	2 1
+15	192	0.0	1	29 163
+16	49977	0.0	1	48244 1733
+17	98	0.0	1	17 81
+23	1	0.0	1	0 1
+
+
+=== First read: Adapter 2 ===
+
+Sequence: AACTTTYARCAAYGGATCTC; Type: regular 3'; Length: 20; Trimmed: 38852 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Bases preceding removed adapters:
+  A: 97.0%
+  C: 1.6%
+  G: 0.0%
+  T: 1.5%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	6	786.8	0	6
+4	7	196.7	0	7
+5	69	49.2	0	69
+6	32	12.3	0	32
+7	29	3.1	0	29
+8	3	0.8	0	3
+15	2	0.0	1	0 2
+16	2	0.0	1	2
+17	114	0.0	1	87 27
+18	17	0.0	1	3 2 12
+19	236	0.0	1	21 192 23
+20	35814	0.0	2	31430 3536 848
+21	105	0.0	2	11 78 16
+22	7	0.0	2	5 0 2
+24	18	0.0	2	7 7 4
+25	71	0.0	2	42 22 7
+26	891	0.0	2	411 302 178
+27	238	0.0	2	115 73 50
+28	2	0.0	2	0 2
+32	12	0.0	2	2 6 4
+33	645	0.0	2	360 153 132
+34	518	0.0	2	216 191 111
+35	4	0.0	2	1 2 1
+68	2	0.0	2	2
+69	8	0.0	2	6 1 1
+
+
+=== Second read: Adapter 3 ===
+
+Sequence: GAGATCCRTTGYTRAAAGTT; Type: regular 5'; Length: 20; Trimmed: 50195 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	7	786.8	0	7
+15	2	0.0	1	0 2
+17	2	0.0	1	2
+18	23	0.0	1	5 1 17
+19	389	0.0	1	58 323 8
+20	49609	0.0	2	48799 720 90
+21	151	0.0	2	19 130 2
+22	10	0.0	2	5 0 5
+33	1	0.0	2	0 1
+46	1	0.0	2	0 1
+
+
+=== Second read: Adapter 4 ===
+
+Sequence: TGATCCYTCCGCAGGT; Type: regular 3'; Length: 16; Trimmed: 38209 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Bases preceding removed adapters:
+  A: 99.1%
+  C: 0.8%
+  G: 0.0%
+  T: 0.1%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	101	786.8	0	101
+4	7	196.7	0	7
+12	26	0.0	1	19 7
+13	91	0.0	1	84 7
+14	3	0.0	1	2 1
+15	133	0.0	1	14 119
+16	36043	0.0	1	33073 2970
+17	60	0.0	1	6 54
+19	2	0.0	1	1 1
+20	14	0.0	1	9 5
+21	85	0.0	1	67 18
+22	604	0.0	1	383 221
+23	161	0.0	1	93 68
+24	2	0.0	1	2
+27	1	0.0	1	0 1
+28	31	0.0	1	12 19
+29	538	0.0	1	393 145
+30	288	0.0	1	162 126
+31	5	0.0	1	2 3
+32	1	0.0	1	0 1
+64	4	0.0	1	3 1
+65	7	0.0	1	4 3
+68	2	0.0	1	2
+
+
+WARNING:
+    One or more of your adapter sequences may be incomplete.
+    Please see the detailed output above.
+"
+"1","This is cutadapt 4.1 with Python 3.10.6
+"
+"1","Command line parameters: -g ACCTGCGGARGGATCA -a AACTTTYARCAAYGGATCTC -G GAGATCCRTTGYTRAAAGTT -A TGATCCYTCCGCAGGT -n 2 -o /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314349_1.fastq.gz -p /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314349_2.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314349_1.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314349_2.fastq.gz
+"
+"1","Processing paired-end reads on 1 core ...
+"
+"1","Finished in 2.10 s (85 µs/read; 0.71 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:             24,724
+  Read 1 with adapter:                  24,718 (100.0%)
+  Read 2 with adapter:                  24,661 (99.7%)
+Pairs written (passing filters):        24,724 (100.0%)
+
+Total basepairs processed:     9,503,960 bp
+  Read 1:     4,753,121 bp
+  Read 2:     4,750,839 bp
+Total written (filtered):      7,818,649 bp (82.3%)
+  Read 1:     3,912,293 bp
+  Read 2:     3,906,356 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: ACCTGCGGARGGATCA; Type: regular 5'; Length: 16; Trimmed: 24684 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+11	2	0.0	1	1 1
+14	3	0.0	1	3
+15	92	0.0	1	17 75
+16	24549	0.0	1	23713 836
+17	35	0.0	1	6 29
+18	1	0.0	1	0 1
+21	2	0.0	1	2
+
+
+=== First read: Adapter 2 ===
+
+Sequence: AACTTTYARCAAYGGATCTC; Type: regular 3'; Length: 20; Trimmed: 21729 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Bases preceding removed adapters:
+  A: 97.9%
+  C: 1.5%
+  G: 0.0%
+  T: 0.6%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	2	386.3	0	2
+5	32	24.1	0	32
+6	7	6.0	0	7
+7	1	1.5	0	1
+11	1	0.0	1	1
+17	15	0.0	1	11 4
+18	11	0.0	1	6 1 4
+19	98	0.0	1	11 83 4
+20	20195	0.0	2	17925 1847 423
+21	50	0.0	2	8 36 6
+22	5	0.0	2	1 0 4
+23	1	0.0	2	0 1
+24	14	0.0	2	8 3 3
+25	49	0.0	2	37 7 5
+26	561	0.0	2	264 197 100
+27	153	0.0	2	77 40 36
+28	1	0.0	2	1
+32	5	0.0	2	2 3
+33	327	0.0	2	195 93 39
+34	182	0.0	2	71 68 43
+35	8	0.0	2	6 2
+36	1	0.0	2	1
+37	1	0.0	2	1
+38	3	0.0	2	1 1 1
+67	2	0.0	2	1 1
+68	1	0.0	2	0 1
+69	3	0.0	2	3
+
+
+=== Second read: Adapter 3 ===
+
+Sequence: GAGATCCRTTGYTRAAAGTT; Type: regular 5'; Length: 20; Trimmed: 24651 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	1	386.3	0	1
+11	1	0.0	1	1
+16	1	0.0	1	1
+17	2	0.0	1	0 2
+18	12	0.0	1	7 0 5
+19	137	0.0	1	21 113 3
+20	24422	0.0	2	24086 299 37
+21	68	0.0	2	12 53 3
+22	7	0.0	2	1 0 6
+
+
+=== Second read: Adapter 4 ===
+
+Sequence: TGATCCYTCCGCAGGT; Type: regular 3'; Length: 16; Trimmed: 21493 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Bases preceding removed adapters:
+  A: 99.1%
+  C: 0.7%
+  G: 0.1%
+  T: 0.1%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	24	386.3	0	24
+4	1	96.6	0	1
+12	4	0.0	1	3 1
+13	8	0.0	1	7 1
+14	1	0.0	1	1
+15	68	0.0	1	8 60
+16	20531	0.0	1	19002 1529
+17	28	0.0	1	7 21
+18	1	0.0	1	0 1
+20	1	0.0	1	1
+21	55	0.0	1	49 6
+22	299	0.0	1	180 119
+23	55	0.0	1	34 21
+25	1	0.0	1	0 1
+28	15	0.0	1	6 9
+29	257	0.0	1	196 61
+30	132	0.0	1	78 54
+31	5	0.0	1	3 2
+32	1	0.0	1	1
+33	3	0.0	1	3
+35	1	0.0	1	0 1
+64	1	0.0	1	1
+65	1	0.0	1	0 1
+
+
+WARNING:
+    One or more of your adapter sequences may be incomplete.
+    Please see the detailed output above.
+"
+"1","This is cutadapt 4.1 with Python 3.10.6
+"
+"1","Command line parameters: -g ACCTGCGGARGGATCA -a AACTTTYARCAAYGGATCTC -G GAGATCCRTTGYTRAAAGTT -A TGATCCYTCCGCAGGT -n 2 -o /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314350_1.fastq.gz -p /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314350_2.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314350_1.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314350_2.fastq.gz
+"
+"1","Processing paired-end reads on 1 core ...
+"
+"1","Finished in 1.73 s (85 µs/read; 0.70 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:             20,226
+  Read 1 with adapter:                  20,218 (100.0%)
+  Read 2 with adapter:                  20,193 (99.8%)
+Pairs written (passing filters):        20,226 (100.0%)
+
+Total basepairs processed:     7,775,327 bp
+  Read 1:     3,891,485 bp
+  Read 2:     3,883,842 bp
+Total written (filtered):      6,397,883 bp (82.3%)
+  Read 1:     3,204,811 bp
+  Read 2:     3,193,072 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: ACCTGCGGARGGATCA; Type: regular 5'; Length: 16; Trimmed: 20198 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	1	316.0	0	1
+11	1	0.0	1	1
+14	1	0.0	1	1
+15	55	0.0	1	12 43
+16	20097	0.0	1	19364 733
+17	42	0.0	1	6 36
+20	1	0.0	1	1
+
+
+=== First read: Adapter 2 ===
+
+Sequence: AACTTTYARCAAYGGATCTC; Type: regular 3'; Length: 20; Trimmed: 17564 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Bases preceding removed adapters:
+  A: 97.6%
+  C: 1.7%
+  G: 0.0%
+  T: 0.7%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	5	316.0	0	5
+5	33	19.8	0	33
+6	6	4.9	0	6
+7	5	1.2	0	5
+12	2	0.0	1	1 1
+16	2	0.0	1	2
+17	18	0.0	1	15 3
+18	5	0.0	1	1 0 4
+19	90	0.0	1	11 72 7
+20	15980	0.0	2	13570 1943 467
+21	44	0.0	2	11 28 5
+24	3	0.0	2	0 2 1
+25	50	0.0	2	29 16 5
+26	546	0.0	2	239 197 110
+27	169	0.0	2	85 60 24
+29	1	0.0	2	1
+31	1	0.0	2	1
+32	7	0.0	2	4 2 1
+33	315	0.0	2	182 83 50
+34	268	0.0	2	109 97 62
+35	6	0.0	2	0 2 4
+39	1	0.0	2	1
+63	1	0.0	2	0 0 1
+69	6	0.0	2	4 2
+
+
+=== Second read: Adapter 3 ===
+
+Sequence: GAGATCCRTTGYTRAAAGTT; Type: regular 5'; Length: 20; Trimmed: 20185 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+12	1	0.0	1	1
+18	9	0.0	1	1 1 7
+19	134	0.0	1	25 107 2
+20	19984	0.0	2	19759 194 31
+21	54	0.0	2	9 45
+25	3	0.0	2	0 3
+
+
+=== Second read: Adapter 4 ===
+
+Sequence: TGATCCYTCCGCAGGT; Type: regular 3'; Length: 16; Trimmed: 17625 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Bases preceding removed adapters:
+  A: 99.4%
+  C: 0.5%
+  G: 0.0%
+  T: 0.1%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	26	316.0	0	26
+4	1	79.0	0	1
+11	4	0.0	1	4
+12	4	0.0	1	4
+13	14	0.0	1	14
+14	1	0.0	1	1
+15	44	0.0	1	5 39
+16	16927	0.0	1	15874 1053
+17	31	0.0	1	2 29
+20	2	0.0	1	1 1
+21	49	0.0	1	42 7
+22	168	0.0	1	111 57
+23	61	0.0	1	43 18
+24	3	0.0	1	3
+28	7	0.0	1	6 1
+29	205	0.0	1	166 39
+30	70	0.0	1	41 29
+31	4	0.0	1	4
+33	1	0.0	1	0 1
+35	2	0.0	1	1 1
+64	1	0.0	1	1
+
+
+WARNING:
+    One or more of your adapter sequences may be incomplete.
+    Please see the detailed output above.
+"
+"1","This is cutadapt 4.1 with Python 3.10.6
+"
+"1","Command line parameters: -g ACCTGCGGARGGATCA -a AACTTTYARCAAYGGATCTC -G GAGATCCRTTGYTRAAAGTT -A TGATCCYTCCGCAGGT -n 2 -o /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314351_1.fastq.gz -p /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314351_2.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314351_1.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314351_2.fastq.gz
+"
+"1","Processing paired-end reads on 1 core ...
+"
+"1","Finished in 1.96 s (88 µs/read; 0.68 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:             22,292
+  Read 1 with adapter:                  22,288 (100.0%)
+  Read 2 with adapter:                  22,220 (99.7%)
+Pairs written (passing filters):        22,292 (100.0%)
+
+Total basepairs processed:     8,557,641 bp
+  Read 1:     4,279,484 bp
+  Read 2:     4,278,157 bp
+Total written (filtered):      7,037,099 bp (82.2%)
+  Read 1:     3,519,273 bp
+  Read 2:     3,517,826 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: ACCTGCGGARGGATCA; Type: regular 5'; Length: 16; Trimmed: 22263 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	2	348.3	0	2
+15	85	0.0	1	6 79
+16	22136	0.0	1	21410 726
+17	40	0.0	1	4 36
+
+
+=== First read: Adapter 2 ===
+
+Sequence: AACTTTYARCAAYGGATCTC; Type: regular 3'; Length: 20; Trimmed: 19612 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Bases preceding removed adapters:
+  A: 98.3%
+  C: 1.3%
+  G: 0.0%
+  T: 0.4%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	8	348.3	0	8
+5	29	21.8	0	29
+6	15	5.4	0	15
+7	3	1.4	0	3
+9	1	0.1	0	1
+14	1	0.0	1	0 1
+16	2	0.0	1	1 1
+17	16	0.0	1	11 5
+18	2	0.0	1	0 0 2
+19	109	0.0	1	8 96 5
+20	18093	0.0	2	15929 1706 458
+21	52	0.0	2	11 39 2
+22	3	0.0	2	0 1 2
+24	2	0.0	2	0 0 2
+25	28	0.0	2	20 2 6
+26	484	0.0	2	229 167 88
+27	126	0.0	2	71 36 19
+32	11	0.0	2	5 5 1
+33	367	0.0	2	214 97 56
+34	236	0.0	2	91 93 52
+35	12	0.0	2	6 3 3
+37	1	0.0	2	0 1
+38	3	0.0	2	2 1
+68	2	0.0	2	0 0 2
+69	6	0.0	2	4 2
+
+
+=== Second read: Adapter 3 ===
+
+Sequence: GAGATCCRTTGYTRAAAGTT; Type: regular 5'; Length: 20; Trimmed: 22216 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	1	348.3	0	1
+17	3	0.0	1	3
+18	2	0.0	1	0 0 2
+19	142	0.0	1	13 127 2
+20	21994	0.0	2	21673 283 38
+21	69	0.0	2	10 57 2
+22	3	0.0	2	0 2 1
+23	2	0.0	2	2
+
+
+=== Second read: Adapter 4 ===
+
+Sequence: TGATCCYTCCGCAGGT; Type: regular 3'; Length: 16; Trimmed: 19241 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Bases preceding removed adapters:
+  A: 99.2%
+  C: 0.7%
+  G: 0.0%
+  T: 0.1%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	41	348.3	0	41
+4	1	87.1	0	1
+5	1	21.8	0	1
+11	3	0.0	1	2 1
+12	5	0.0	1	4 1
+13	11	0.0	1	8 3
+15	67	0.0	1	5 62
+16	18201	0.0	1	16651 1550
+17	32	0.0	1	3 29
+20	2	0.0	1	2
+21	15	0.0	1	11 4
+22	310	0.0	1	194 116
+23	84	0.0	1	54 30
+24	2	0.0	1	2
+28	25	0.0	1	11 14
+29	278	0.0	1	211 67
+30	148	0.0	1	80 68
+31	7	0.0	1	5 2
+33	2	0.0	1	1 1
+35	2	0.0	1	1 1
+64	1	0.0	1	1
+65	3	0.0	1	3
+
+
+WARNING:
+    One or more of your adapter sequences may be incomplete.
+    Please see the detailed output above.
+"
+"1","This is cutadapt 4.1 with Python 3.10.6
+"
+"1","Command line parameters: -g ACCTGCGGARGGATCA -a AACTTTYARCAAYGGATCTC -G GAGATCCRTTGYTRAAAGTT -A TGATCCYTCCGCAGGT -n 2 -o /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314355_1.fastq.gz -p /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314355_2.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314355_1.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314355_2.fastq.gz
+"
+"1","Processing paired-end reads on 1 core ...
+"
+"1","Finished in 8.35 s (94 µs/read; 0.64 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:             88,537
+  Read 1 with adapter:                  88,461 (99.9%)
+  Read 2 with adapter:                  88,310 (99.7%)
+Pairs written (passing filters):        88,537 (100.0%)
+
+Total basepairs processed:    34,697,832 bp
+  Read 1:    17,334,260 bp
+  Read 2:    17,363,572 bp
+Total written (filtered):     29,680,631 bp (85.5%)
+  Read 1:    14,885,855 bp
+  Read 2:    14,794,776 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: ACCTGCGGARGGATCA; Type: regular 5'; Length: 16; Trimmed: 88376 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	2	1383.4	0	2
+12	3	0.0	1	2 1
+13	2	0.0	1	0 2
+14	3	0.0	1	2 1
+15	303	0.0	1	46 257
+16	87928	0.0	1	85032 2896
+17	132	0.0	1	22 110
+20	1	0.0	1	0 1
+21	1	0.0	1	1
+24	1	0.0	1	1
+
+
+=== First read: Adapter 2 ===
+
+Sequence: AACTTTYARCAAYGGATCTC; Type: regular 3'; Length: 20; Trimmed: 50718 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Bases preceding removed adapters:
+  A: 97.0%
+  C: 1.8%
+  G: 0.0%
+  T: 1.2%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	10	1383.4	0	10
+4	2	345.8	0	2
+5	198	86.5	0	198
+6	62	21.6	0	62
+7	40	5.4	0	40
+10	1	0.1	1	0 1
+15	3	0.0	1	3
+16	1	0.0	1	1
+17	97	0.0	1	79 18
+18	16	0.0	1	3 2 11
+19	275	0.0	1	27 221 27
+20	46710	0.0	2	41051 4607 1052
+21	147	0.0	2	31 105 11
+22	4	0.0	2	3 0 1
+24	28	0.0	2	16 7 5
+25	170	0.0	2	125 30 15
+26	1782	0.0	2	869 635 278
+27	426	0.0	2	239 120 67
+28	9	0.0	2	4 1 4
+32	4	0.0	2	1 1 2
+33	415	0.0	2	219 124 72
+34	296	0.0	2	128 97 71
+35	3	0.0	2	2 1
+67	2	0.0	2	1 1
+68	2	0.0	2	1 1
+69	15	0.0	2	12 2 1
+
+
+=== Second read: Adapter 3 ===
+
+Sequence: GAGATCCRTTGYTRAAAGTT; Type: regular 5'; Length: 20; Trimmed: 88274 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	4	1383.4	0	4
+5	1	86.5	0	1
+7	1	5.4	0	1
+15	3	0.0	1	2 1
+16	2	0.0	1	0 2
+17	10	0.0	1	5 5
+18	32	0.0	1	3 6 23
+19	583	0.0	1	87 484 12
+20	87351	0.0	2	86008 1128 215
+21	271	0.0	2	49 217 5
+22	14	0.0	2	6 0 8
+24	2	0.0	2	2
+
+
+=== Second read: Adapter 4 ===
+
+Sequence: TGATCCYTCCGCAGGT; Type: regular 3'; Length: 16; Trimmed: 49543 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Bases preceding removed adapters:
+  A: 98.2%
+  C: 1.6%
+  G: 0.0%
+  T: 0.1%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	530	1383.4	0	530
+4	5	345.8	0	5
+9	1	0.3	0	0 1
+12	22	0.0	1	20 2
+13	76	0.0	1	66 10
+14	1	0.0	1	0 1
+15	133	0.0	1	17 116
+16	46418	0.0	1	42095 4323
+17	53	0.0	1	6 47
+19	3	0.0	1	2 1
+20	30	0.0	1	19 11
+21	135	0.0	1	112 23
+22	1201	0.0	1	754 447
+23	356	0.0	1	221 135
+24	6	0.0	1	4 2
+25	3	0.0	1	0 3
+26	1	0.0	1	1
+28	25	0.0	1	12 13
+29	358	0.0	1	260 98
+30	173	0.0	1	100 73
+31	3	0.0	1	1 2
+39	1	0.0	1	0 1
+63	1	0.0	1	1
+64	2	0.0	1	2
+65	4	0.0	1	3 1
+67	2	0.0	1	1 1
+
+
+WARNING:
+    One or more of your adapter sequences may be incomplete.
+    Please see the detailed output above.
+"
+"1","This is cutadapt 4.1 with Python 3.10.6
+"
+"1","Command line parameters: -g ACCTGCGGARGGATCA -a AACTTTYARCAAYGGATCTC -G GAGATCCRTTGYTRAAAGTT -A TGATCCYTCCGCAGGT -n 2 -o /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314356_1.fastq.gz -p /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314356_2.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314356_1.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314356_2.fastq.gz
+"
+"1","Processing paired-end reads on 1 core ...
+"
+"1","Finished in 3.54 s (84 µs/read; 0.71 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:             41,924
+  Read 1 with adapter:                  41,888 (99.9%)
+  Read 2 with adapter:                  41,780 (99.7%)
+Pairs written (passing filters):        41,924 (100.0%)
+
+Total basepairs processed:    16,435,552 bp
+  Read 1:     8,209,879 bp
+  Read 2:     8,225,673 bp
+Total written (filtered):     14,073,503 bp (85.6%)
+  Read 1:     7,055,719 bp
+  Read 2:     7,017,784 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: ACCTGCGGARGGATCA; Type: regular 5'; Length: 16; Trimmed: 41842 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	6	655.1	0	6
+11	2	0.0	1	1 1
+12	1	0.0	1	0 1
+14	3	0.0	1	1 2
+15	138	0.0	1	11 127
+16	41582	0.0	1	40252 1330
+17	109	0.0	1	16 93
+18	1	0.0	1	1
+
+
+=== First read: Adapter 2 ===
+
+Sequence: AACTTTYARCAAYGGATCTC; Type: regular 3'; Length: 20; Trimmed: 23805 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Bases preceding removed adapters:
+  A: 97.1%
+  C: 1.6%
+  G: 0.0%
+  T: 1.3%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	8	655.1	0	8
+4	2	163.8	0	2
+5	79	40.9	0	79
+6	13	10.2	0	13
+7	19	2.6	0	19
+12	1	0.0	1	0 1
+16	2	0.0	1	1 1
+17	57	0.0	1	37 20
+18	7	0.0	1	1 1 5
+19	149	0.0	1	17 118 14
+20	22051	0.0	2	19538 2045 468
+21	78	0.0	2	10 58 10
+23	2	0.0	2	1 0 1
+24	14	0.0	2	7 4 3
+25	85	0.0	2	51 21 13
+26	730	0.0	2	374 229 127
+27	164	0.0	2	81 52 31
+28	2	0.0	2	2
+32	5	0.0	2	1 2 2
+33	191	0.0	2	104 53 34
+34	140	0.0	2	62 47 31
+35	1	0.0	2	0 1
+39	1	0.0	2	1
+68	1	0.0	2	1
+69	1	0.0	2	1
+71	2	0.0	2	0 1 1
+
+
+=== Second read: Adapter 3 ===
+
+Sequence: GAGATCCRTTGYTRAAAGTT; Type: regular 5'; Length: 20; Trimmed: 41761 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	6	655.1	0	6
+14	1	0.0	1	0 1
+17	7	0.0	1	4 3
+18	10	0.0	1	3 2 5
+19	299	0.0	1	44 251 4
+20	41294	0.0	2	40505 676 113
+21	136	0.0	2	18 116 2
+22	2	0.0	2	0 0 2
+23	2	0.0	2	2
+24	2	0.0	2	2
+32	1	0.0	2	0 1
+34	1	0.0	2	1
+
+
+=== Second read: Adapter 4 ===
+
+Sequence: TGATCCYTCCGCAGGT; Type: regular 3'; Length: 16; Trimmed: 22966 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Bases preceding removed adapters:
+  A: 98.3%
+  C: 1.5%
+  G: 0.0%
+  T: 0.2%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	212	655.1	0	212
+4	1	163.8	0	1
+11	3	0.0	1	3
+12	10	0.0	1	7 3
+13	42	0.0	1	36 6
+15	86	0.0	1	3 83
+16	21488	0.0	1	19398 2090
+17	50	0.0	1	5 45
+19	2	0.0	1	2
+20	9	0.0	1	4 5
+21	84	0.0	1	64 20
+22	567	0.0	1	334 233
+23	146	0.0	1	92 54
+24	4	0.0	1	1 3
+28	14	0.0	1	7 7
+29	164	0.0	1	111 53
+30	80	0.0	1	44 36
+31	2	0.0	1	2
+65	2	0.0	1	2
+
+
+WARNING:
+    One or more of your adapter sequences may be incomplete.
+    Please see the detailed output above.
+"
+"1","This is cutadapt 4.1 with Python 3.10.6
+"
+"1","Command line parameters: -g ACCTGCGGARGGATCA -a AACTTTYARCAAYGGATCTC -G GAGATCCRTTGYTRAAAGTT -A TGATCCYTCCGCAGGT -n 2 -o /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314358_1.fastq.gz -p /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314358_2.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314358_1.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314358_2.fastq.gz
+"
+"1","Processing paired-end reads on 1 core ...
+"
+"1","Finished in 2.88 s (84 µs/read; 0.71 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:             34,084
+  Read 1 with adapter:                  34,055 (99.9%)
+  Read 2 with adapter:                  34,007 (99.8%)
+Pairs written (passing filters):        34,084 (100.0%)
+
+Total basepairs processed:    13,349,058 bp
+  Read 1:     6,668,144 bp
+  Read 2:     6,680,914 bp
+Total written (filtered):     11,408,602 bp (85.5%)
+  Read 1:     5,720,009 bp
+  Read 2:     5,688,593 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: ACCTGCGGARGGATCA; Type: regular 5'; Length: 16; Trimmed: 34043 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	1	532.6	0	1
+13	1	0.0	1	0 1
+14	4	0.0	1	3 1
+15	131	0.0	1	12 119
+16	33843	0.0	1	32814 1029
+17	62	0.0	1	3 59
+20	1	0.0	1	1
+
+
+=== First read: Adapter 2 ===
+
+Sequence: AACTTTYARCAAYGGATCTC; Type: regular 3'; Length: 20; Trimmed: 19836 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Bases preceding removed adapters:
+  A: 97.0%
+  C: 1.8%
+  G: 0.0%
+  T: 1.1%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	7	532.6	0	7
+4	1	133.1	0	1
+5	78	33.3	0	78
+6	28	8.3	0	28
+7	7	2.1	0	7
+15	1	0.0	1	1
+16	1	0.0	1	1
+17	46	0.0	1	33 13
+18	7	0.0	1	1 1 5
+19	104	0.0	1	10 81 13
+20	18393	0.0	2	16273 1700 420
+21	66	0.0	2	18 42 6
+24	5	0.0	2	3 1 1
+25	41	0.0	2	31 8 2
+26	630	0.0	2	316 208 106
+27	151	0.0	2	75 52 24
+28	2	0.0	2	1 0 1
+32	8	0.0	2	1 3 4
+33	164	0.0	2	104 30 30
+34	91	0.0	2	51 26 14
+38	1	0.0	2	1
+69	2	0.0	2	1 0 1
+72	1	0.0	2	0 1
+75	1	0.0	2	0 0 1
+
+
+=== Second read: Adapter 3 ===
+
+Sequence: GAGATCCRTTGYTRAAAGTT; Type: regular 5'; Length: 20; Trimmed: 34001 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+15	1	0.0	1	0 1
+17	1	0.0	1	1
+18	13	0.0	1	3 1 9
+19	222	0.0	1	27 186 9
+20	33631	0.0	2	33068 479 84
+21	133	0.0	2	31 101 1
+
+
+=== Second read: Adapter 4 ===
+
+Sequence: TGATCCYTCCGCAGGT; Type: regular 3'; Length: 16; Trimmed: 19190 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Bases preceding removed adapters:
+  A: 98.3%
+  C: 1.5%
+  G: 0.0%
+  T: 0.2%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	171	532.6	0	171
+4	3	133.1	0	3
+11	3	0.0	1	3
+12	9	0.0	1	6 3
+13	32	0.0	1	26 6
+14	1	0.0	1	0 1
+15	62	0.0	1	2 60
+16	17928	0.0	1	16186 1742
+17	36	0.0	1	2 34
+19	1	0.0	1	1
+20	6	0.0	1	3 3
+21	47	0.0	1	38 9
+22	486	0.0	1	310 176
+23	139	0.0	1	87 52
+28	15	0.0	1	8 7
+29	166	0.0	1	117 49
+30	79	0.0	1	46 33
+31	2	0.0	1	1 1
+64	3	0.0	1	3
+65	1	0.0	1	1
+
+
+WARNING:
+    One or more of your adapter sequences may be incomplete.
+    Please see the detailed output above.
+"
+"1","This is cutadapt 4.1 with Python 3.10.6
+"
+"1","Command line parameters: -g ACCTGCGGARGGATCA -a AACTTTYARCAAYGGATCTC -G GAGATCCRTTGYTRAAAGTT -A TGATCCYTCCGCAGGT -n 2 -o /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314359_1.fastq.gz -p /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314359_2.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314359_1.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314359_2.fastq.gz
+"
+"1","Processing paired-end reads on 1 core ...
+"
+"1","Finished in 3.46 s (85 µs/read; 0.70 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:             40,607
+  Read 1 with adapter:                  40,567 (99.9%)
+  Read 2 with adapter:                  40,527 (99.8%)
+Pairs written (passing filters):        40,607 (100.0%)
+
+Total basepairs processed:    15,886,276 bp
+  Read 1:     7,938,535 bp
+  Read 2:     7,947,741 bp
+Total written (filtered):     13,551,715 bp (85.3%)
+  Read 1:     6,799,421 bp
+  Read 2:     6,752,294 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: ACCTGCGGARGGATCA; Type: regular 5'; Length: 16; Trimmed: 40533 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+14	2	0.0	1	1 1
+15	128	0.0	1	14 114
+16	40328	0.0	1	38937 1391
+17	74	0.0	1	16 58
+35	1	0.0	1	1
+
+
+=== First read: Adapter 2 ===
+
+Sequence: AACTTTYARCAAYGGATCTC; Type: regular 3'; Length: 20; Trimmed: 23991 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Bases preceding removed adapters:
+  A: 97.1%
+  C: 1.7%
+  G: 0.0%
+  T: 1.2%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	4	634.5	0	4
+5	67	39.7	0	67
+6	19	9.9	0	19
+7	17	2.5	0	17
+8	1	0.6	0	1
+9	2	0.2	0	2
+15	2	0.0	1	0 2
+17	79	0.0	1	61 18
+18	9	0.0	1	0 1 8
+19	135	0.0	1	17 104 14
+20	22021	0.0	2	19198 2277 546
+21	61	0.0	2	12 43 6
+22	3	0.0	2	0 0 3
+24	14	0.0	2	9 4 1
+25	70	0.0	2	50 13 7
+26	864	0.0	2	411 305 148
+27	215	0.0	2	122 58 35
+28	2	0.0	2	0 1 1
+29	1	0.0	2	1
+32	3	0.0	2	1 2
+33	235	0.0	2	129 66 40
+34	156	0.0	2	61 52 43
+35	5	0.0	2	1 4
+38	1	0.0	2	1
+68	1	0.0	2	0 1
+69	4	0.0	2	3 1
+
+
+=== Second read: Adapter 3 ===
+
+Sequence: GAGATCCRTTGYTRAAAGTT; Type: regular 5'; Length: 20; Trimmed: 40507 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	2	634.5	0	2
+17	4	0.0	1	3 1
+18	15	0.0	1	3 2 10
+19	289	0.0	1	56 230 3
+20	40057	0.0	2	39544 451 62
+21	135	0.0	2	23 110 2
+22	3	0.0	2	0 0 3
+24	1	0.0	2	1
+43	1	0.0	2	1
+
+
+=== Second read: Adapter 4 ===
+
+Sequence: TGATCCYTCCGCAGGT; Type: regular 3'; Length: 16; Trimmed: 23787 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Bases preceding removed adapters:
+  A: 98.7%
+  C: 1.1%
+  G: 0.0%
+  T: 0.1%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	185	634.5	0	185
+4	1	158.6	0	1
+5	2	39.7	0	2
+12	23	0.0	1	18 5
+13	63	0.0	1	56 7
+15	76	0.0	1	6 70
+16	22503	0.0	1	20685 1818
+17	39	0.0	1	4 35
+19	1	0.0	1	1
+20	7	0.0	1	5 2
+21	53	0.0	1	44 9
+22	449	0.0	1	300 149
+23	119	0.0	1	72 47
+24	4	0.0	1	3 1
+28	13	0.0	1	4 9
+29	149	0.0	1	112 37
+30	83	0.0	1	56 27
+31	6	0.0	1	5 1
+33	2	0.0	1	2
+64	6	0.0	1	6
+65	3	0.0	1	1 2
+
+
+WARNING:
+    One or more of your adapter sequences may be incomplete.
+    Please see the detailed output above.
+"
+"1","This is cutadapt 4.1 with Python 3.10.6
+"
+"1","Command line parameters: -g ACCTGCGGARGGATCA -a AACTTTYARCAAYGGATCTC -G GAGATCCRTTGYTRAAAGTT -A TGATCCYTCCGCAGGT -n 2 -o /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314360_1.fastq.gz -p /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314360_2.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314360_1.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314360_2.fastq.gz
+"
+"1","Processing paired-end reads on 1 core ...
+"
+"1","Finished in 2.04 s (84 µs/read; 0.72 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:             24,317
+  Read 1 with adapter:                  24,298 (99.9%)
+  Read 2 with adapter:                  24,266 (99.8%)
+Pairs written (passing filters):        24,317 (100.0%)
+
+Total basepairs processed:     9,510,419 bp
+  Read 1:     4,752,746 bp
+  Read 2:     4,757,673 bp
+Total written (filtered):      8,105,319 bp (85.2%)
+  Read 1:     4,066,180 bp
+  Read 2:     4,039,139 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: ACCTGCGGARGGATCA; Type: regular 5'; Length: 16; Trimmed: 24276 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	1	380.0	0	1
+13	2	0.0	1	1 1
+15	73	0.0	1	6 67
+16	24158	0.0	1	23329 829
+17	42	0.0	1	10 32
+
+
+=== First read: Adapter 2 ===
+
+Sequence: AACTTTYARCAAYGGATCTC; Type: regular 3'; Length: 20; Trimmed: 14523 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Bases preceding removed adapters:
+  A: 97.4%
+  C: 1.7%
+  G: 0.0%
+  T: 0.9%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	3	380.0	0	3
+4	1	95.0	0	1
+5	24	23.7	0	24
+6	7	5.9	0	7
+7	5	1.5	0	5
+17	44	0.0	1	33 11
+18	3	0.0	1	0 1 2
+19	77	0.0	1	5 66 6
+20	13320	0.0	2	11639 1329 352
+21	41	0.0	2	8 29 4
+23	2	0.0	2	0 2
+24	7	0.0	2	5 0 2
+25	55	0.0	2	39 11 5
+26	509	0.0	2	235 173 101
+27	136	0.0	2	65 44 27
+28	3	0.0	2	3
+32	7	0.0	2	4 2 1
+33	149	0.0	2	94 37 18
+34	114	0.0	2	52 34 28
+35	6	0.0	2	4 1 1
+38	1	0.0	2	1
+68	1	0.0	2	1
+69	8	0.0	2	6 2
+
+
+=== Second read: Adapter 3 ===
+
+Sequence: GAGATCCRTTGYTRAAAGTT; Type: regular 5'; Length: 20; Trimmed: 24255 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	4	380.0	0	4
+6	1	5.9	0	1
+16	1	0.0	1	0 1
+17	4	0.0	1	2 2
+18	9	0.0	1	1 1 7
+19	164	0.0	1	25 138 1
+20	23988	0.0	2	23671 283 34
+21	80	0.0	2	13 66 1
+23	3	0.0	2	0 3
+28	1	0.0	2	1
+
+
+=== Second read: Adapter 4 ===
+
+Sequence: TGATCCYTCCGCAGGT; Type: regular 3'; Length: 16; Trimmed: 14382 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Bases preceding removed adapters:
+  A: 98.5%
+  C: 1.4%
+  G: 0.1%
+  T: 0.0%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	105	380.0	0	105
+4	1	95.0	0	1
+12	9	0.0	1	9
+13	36	0.0	1	34 2
+15	34	0.0	1	5 29
+16	13621	0.0	1	12602 1019
+17	24	0.0	1	7 17
+20	4	0.0	1	3 1
+21	33	0.0	1	28 5
+22	257	0.0	1	162 95
+23	58	0.0	1	34 24
+24	1	0.0	1	0 1
+25	1	0.0	1	1
+28	6	0.0	1	2 4
+29	115	0.0	1	94 21
+30	68	0.0	1	39 29
+31	2	0.0	1	0 2
+64	2	0.0	1	2
+65	5	0.0	1	3 2
+
+
+WARNING:
+    One or more of your adapter sequences may be incomplete.
+    Please see the detailed output above.
+"
+"1","This is cutadapt 4.1 with Python 3.10.6
+"
+"1","Command line parameters: -g ACCTGCGGARGGATCA -a AACTTTYARCAAYGGATCTC -G GAGATCCRTTGYTRAAAGTT -A TGATCCYTCCGCAGGT -n 2 -o /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314361_1.fastq.gz -p /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314361_2.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314361_1.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314361_2.fastq.gz
+"
+"1","Processing paired-end reads on 1 core ...
+"
+"1","Finished in 1.57 s (86 µs/read; 0.69 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:             18,122
+  Read 1 with adapter:                  18,104 (99.9%)
+  Read 2 with adapter:                  18,071 (99.7%)
+Pairs written (passing filters):        18,122 (100.0%)
+
+Total basepairs processed:     7,095,678 bp
+  Read 1:     3,549,482 bp
+  Read 2:     3,546,196 bp
+Total written (filtered):      6,036,709 bp (85.1%)
+  Read 1:     3,031,713 bp
+  Read 2:     3,004,996 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: ACCTGCGGARGGATCA; Type: regular 5'; Length: 16; Trimmed: 18091 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	4	283.2	0	4
+15	59	0.0	1	11 48
+16	17986	0.0	1	17156 830
+17	40	0.0	1	13 27
+18	2	0.0	1	2
+
+
+=== First read: Adapter 2 ===
+
+Sequence: AACTTTYARCAAYGGATCTC; Type: regular 3'; Length: 20; Trimmed: 10897 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Bases preceding removed adapters:
+  A: 97.1%
+  C: 2.3%
+  G: 0.0%
+  T: 0.6%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+4	3	70.8	0	3
+5	26	17.7	0	26
+6	3	4.4	0	3
+7	2	1.1	0	2
+9	1	0.1	0	1
+15	1	0.0	1	1
+17	21	0.0	1	15 6
+18	4	0.0	1	1 0 3
+19	60	0.0	1	8 45 7
+20	9356	0.0	2	7547 1409 400
+21	27	0.0	2	7 14 6
+22	1	0.0	2	0 0 1
+25	70	0.0	2	50 13 7
+26	769	0.0	2	349 263 157
+27	245	0.0	2	122 73 50
+32	4	0.0	2	2 1 1
+33	134	0.0	2	77 34 23
+34	159	0.0	2	65 52 42
+35	4	0.0	2	1 2 1
+38	1	0.0	2	0 0 1
+67	1	0.0	2	1
+68	1	0.0	2	1
+69	4	0.0	2	2 1 1
+
+
+=== Second read: Adapter 3 ===
+
+Sequence: GAGATCCRTTGYTRAAAGTT; Type: regular 5'; Length: 20; Trimmed: 18063 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	1	283.2	0	1
+17	2	0.0	1	2
+18	9	0.0	1	3 1 5
+19	119	0.0	1	22 97
+20	17881	0.0	2	17704 155 22
+21	46	0.0	2	13 33
+22	5	0.0	2	4 0 1
+
+
+=== Second read: Adapter 4 ===
+
+Sequence: TGATCCYTCCGCAGGT; Type: regular 3'; Length: 16; Trimmed: 11101 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Bases preceding removed adapters:
+  A: 98.7%
+  C: 1.2%
+  G: 0.1%
+  T: 0.1%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	68	283.2	0	68
+4	1	70.8	0	1
+5	1	17.7	0	1
+12	5	0.0	1	4 1
+13	18	0.0	1	16 2
+15	38	0.0	1	3 35
+16	10534	0.0	1	9718 816
+17	20	0.0	1	7 13
+18	1	0.0	1	1
+20	2	0.0	1	0 2
+21	34	0.0	1	32 2
+22	197	0.0	1	123 74
+23	71	0.0	1	49 22
+25	1	0.0	1	0 1
+28	4	0.0	1	1 3
+29	79	0.0	1	66 13
+30	22	0.0	1	13 9
+31	2	0.0	1	2
+64	1	0.0	1	1
+65	2	0.0	1	0 2
+
+
+WARNING:
+    One or more of your adapter sequences may be incomplete.
+    Please see the detailed output above.
+"
+"1","This is cutadapt 4.1 with Python 3.10.6
+"
+"1","Command line parameters: -g ACCTGCGGARGGATCA -a AACTTTYARCAAYGGATCTC -G GAGATCCRTTGYTRAAAGTT -A TGATCCYTCCGCAGGT -n 2 -o /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314362_1.fastq.gz -p /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314362_2.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314362_1.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314362_2.fastq.gz
+"
+"1","Processing paired-end reads on 1 core ...
+"
+"1","Finished in 3.99 s (83 µs/read; 0.72 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:             47,812
+  Read 1 with adapter:                  47,778 (99.9%)
+  Read 2 with adapter:                  47,678 (99.7%)
+Pairs written (passing filters):        47,812 (100.0%)
+
+Total basepairs processed:    18,712,497 bp
+  Read 1:     9,348,330 bp
+  Read 2:     9,364,167 bp
+Total written (filtered):     15,935,768 bp (85.2%)
+  Read 1:     7,988,950 bp
+  Read 2:     7,946,818 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: ACCTGCGGARGGATCA; Type: regular 5'; Length: 16; Trimmed: 47738 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	2	747.1	0	2
+11	2	0.0	1	2
+13	3	0.0	1	0 3
+14	2	0.0	1	1 1
+15	155	0.0	1	31 124
+16	47477	0.0	1	45926 1551
+17	95	0.0	1	17 78
+27	2	0.0	1	2
+
+
+=== First read: Adapter 2 ===
+
+Sequence: AACTTTYARCAAYGGATCTC; Type: regular 3'; Length: 20; Trimmed: 29190 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Bases preceding removed adapters:
+  A: 98.1%
+  C: 1.6%
+  G: 0.0%
+  T: 0.4%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	5	747.1	0	5
+4	2	186.8	0	2
+5	59	46.7	0	59
+6	11	11.7	0	11
+7	3	2.9	0	3
+9	2	0.2	0	2
+12	3	0.0	1	3
+15	2	0.0	1	2
+16	1	0.0	1	0 1
+17	14	0.0	1	10 4
+18	12	0.0	1	1 2 9
+19	150	0.0	1	17 117 16
+20	27214	0.0	2	24164 2455 595
+21	75	0.0	2	7 60 8
+22	1	0.0	2	0 0 1
+24	5	0.0	2	1 1 3
+25	85	0.0	2	64 14 7
+26	916	0.0	2	478 303 135
+27	222	0.0	2	117 70 35
+32	11	0.0	2	4 4 3
+33	255	0.0	2	152 57 46
+34	127	0.0	2	57 38 32
+35	6	0.0	2	5 1
+69	8	0.0	2	8
+71	1	0.0	2	0 1
+
+
+=== Second read: Adapter 3 ===
+
+Sequence: GAGATCCRTTGYTRAAAGTT; Type: regular 5'; Length: 20; Trimmed: 47661 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	1	747.1	0	1
+12	3	0.0	1	3
+17	5	0.0	1	2 3
+18	23	0.0	1	12 0 11
+19	307	0.0	1	53 245 9
+20	47176	0.0	2	46445 639 92
+21	133	0.0	2	26 103 4
+22	6	0.0	2	3 0 3
+27	3	0.0	2	3
+28	2	0.0	2	2
+30	2	0.0	2	2
+
+
+=== Second read: Adapter 4 ===
+
+Sequence: TGATCCYTCCGCAGGT; Type: regular 3'; Length: 16; Trimmed: 28481 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Bases preceding removed adapters:
+  A: 98.6%
+  C: 1.3%
+  G: 0.0%
+  T: 0.1%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	168	747.1	0	168
+4	2	186.8	0	2
+5	2	46.7	0	2
+11	3	0.0	1	3
+12	3	0.0	1	3
+13	9	0.0	1	6 3
+14	1	0.0	1	1
+15	78	0.0	1	13 65
+16	26881	0.0	1	24431 2450
+17	32	0.0	1	1 31
+19	1	0.0	1	0 1
+20	1	0.0	1	1
+21	85	0.0	1	76 9
+22	659	0.0	1	391 268
+23	171	0.0	1	113 58
+24	2	0.0	1	1 1
+28	9	0.0	1	3 6
+29	231	0.0	1	180 51
+30	123	0.0	1	77 46
+31	12	0.0	1	5 7
+34	1	0.0	1	1
+64	2	0.0	1	2
+65	4	0.0	1	1 3
+66	1	0.0	1	0 1
+
+
+WARNING:
+    One or more of your adapter sequences may be incomplete.
+    Please see the detailed output above.
+"
+"1","This is cutadapt 4.1 with Python 3.10.6
+"
+"1","Command line parameters: -g ACCTGCGGARGGATCA -a AACTTTYARCAAYGGATCTC -G GAGATCCRTTGYTRAAAGTT -A TGATCCYTCCGCAGGT -n 2 -o /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314363_1.fastq.gz -p /Smaug_SSD/BIOL209/mhincher/Desktop/ITS_DADA2/cutadapt/SRR5314363_2.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314363_1.fastq.gz /Tabima_lab/homes/mhincher/Tabima_lab/homes/mhincher/biol209_home/Desktop/ITS_DADA2/filtN/SRR5314363_2.fastq.gz
+"
+"1","Processing paired-end reads on 1 core ...
+"
+"1","Finished in 2.81 s (84 µs/read; 0.72 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:             33,555
+  Read 1 with adapter:                  33,530 (99.9%)
+  Read 2 with adapter:                  33,473 (99.8%)
+Pairs written (passing filters):        33,555 (100.0%)
+
+Total basepairs processed:    13,134,915 bp
+  Read 1:     6,563,336 bp
+  Read 2:     6,571,579 bp
+Total written (filtered):     11,195,085 bp (85.2%)
+  Read 1:     5,615,958 bp
+  Read 2:     5,579,127 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: ACCTGCGGARGGATCA; Type: regular 5'; Length: 16; Trimmed: 33508 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	2	524.3	0	2
+11	1	0.0	1	1
+13	3	0.0	1	2 1
+14	1	0.0	1	1
+15	85	0.0	1	9 76
+16	33357	0.0	1	32162 1195
+17	55	0.0	1	17 38
+18	2	0.0	1	2
+53	2	0.0	1	2
+
+
+=== First read: Adapter 2 ===
+
+Sequence: AACTTTYARCAAYGGATCTC; Type: regular 3'; Length: 20; Trimmed: 20136 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Bases preceding removed adapters:
+  A: 98.0%
+  C: 1.7%
+  G: 0.0%
+  T: 0.3%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	6	524.3	0	6
+5	37	32.8	0	37
+6	2	8.2	0	2
+7	2	2.0	0	2
+13	3	0.0	1	2 1
+16	1	0.0	1	1
+17	11	0.0	1	9 2
+18	4	0.0	1	2 0 2
+19	135	0.0	1	12 115 8
+20	18655	0.0	2	16441 1800 414
+21	63	0.0	2	22 34 7
+24	5	0.0	2	4 0 1
+25	63	0.0	2	46 11 6
+26	697	0.0	2	363 216 118
+27	183	0.0	2	97 53 33
+28	4	0.0	2	3 1
+29	2	0.0	2	2
+32	2	0.0	2	1 1
+33	158	0.0	2	95 34 29
+34	98	0.0	2	40 37 21
+35	5	0.0	2	3 2
+
+
+=== Second read: Adapter 3 ===
+
+Sequence: GAGATCCRTTGYTRAAAGTT; Type: regular 5'; Length: 20; Trimmed: 33454 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+13	1	0.0	1	1
+16	1	0.0	1	0 1
+17	2	0.0	1	2
+18	12	0.0	1	6 0 6
+19	274	0.0	1	49 220 5
+20	33076	0.0	2	32712 315 49
+21	87	0.0	2	25 59 3
+26	1	0.0	2	1
+
+
+=== Second read: Adapter 4 ===
+
+Sequence: TGATCCYTCCGCAGGT; Type: regular 3'; Length: 16; Trimmed: 19962 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-16 bp: 1
+
+Bases preceding removed adapters:
+  A: 98.6%
+  C: 1.3%
+  G: 0.0%
+  T: 0.1%
+  none/other: 0.0%
+WARNING:
+    The adapter is preceded by 'A' extremely often.
+    The provided adapter sequence could be incomplete at its 5' end.
+    Ignore this warning when trimming primers.
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	134	524.3	0	134
+8	2	0.5	0	2
+9	1	0.1	0	0 1
+12	5	0.0	1	5
+13	6	0.0	1	6
+15	49	0.0	1	5 44
+16	18996	0.0	1	17549 1447
+17	26	0.0	1	2 24
+18	2	0.0	1	2
+20	3	0.0	1	3
+21	55	0.0	1	48 7
+22	375	0.0	1	267 108
+23	117	0.0	1	69 48
+25	2	0.0	1	2
+28	6	0.0	1	3 3
+29	132	0.0	1	104 28
+30	43	0.0	1	24 19
+31	2	0.0	1	2
+33	1	0.0	1	0 1
+34	1	0.0	1	1
+64	1	0.0	1	1
+65	3	0.0	1	3
+
+
+WARNING:
+    One or more of your adapter sequences may be incomplete.
+    Please see the detailed output above.
+"
+"0","rbind(FWD.ForwardReads = sapply(FWD.orients, primerHits, fn = fnFs.cut[[1]]), "
+"0","    FWD.ReverseReads = sapply(FWD.orients, primerHits, fn = fnRs.cut[[1]]), "
+"0","    REV.ForwardReads = sapply(REV.orients, primerHits, fn = fnFs.cut[[1]]), "
+"0","    REV.ReverseReads = sapply(REV.orients, primerHits, fn = fnRs.cut[[1]]))"
+"1","                "
+"1"," Forward"
+"1"," Complement"
+"1"," Reverse"
+"1"," RevComp"
+"1","
+FWD.ForwardReads"
+"1","       0"
+"1","          0"
+"1","       0"
+"1","       0"
+"1","
+FWD.ReverseReads"
+"1","       0"
+"1","          0"
+"1","       0"
+"1","       0"
+"1","
+REV.ForwardReads"
+"1","       0"
+"1","          0"
+"1","       0"
+"1","       0"
+"1","
+REV.ReverseReads"
+"1","       0"
+"1","          0"
+"1","       0"
+"1","       0"
+"1","
+"

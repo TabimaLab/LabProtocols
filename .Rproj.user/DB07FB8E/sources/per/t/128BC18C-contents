@@ -1,0 +1,120 @@
+#
+# This is a Shiny web application. You can run the application by clicking
+# the 'Run App' button above.
+#
+# Find out more about building applications with Shiny here:
+#
+#    http://shiny.rstudio.com/
+#
+
+library(shiny)
+library(leaflet)
+library(googlesheets4)
+library(tidyverse)
+library(ggmap)
+library(scatterpie)
+library(viridis)
+
+#gs4_auth(path = "googlesheets_json")
+gs4_deauth()
+frog_df <- read_sheet("https://docs.google.com/spreadsheets/d/1-R5HzaB2c5bHIbekrREiTmvWsC1Y-jhv5wHbcgmy5uc/edit#gid=51094388", sheet = "Data")
+
+
+coord.df <- frog_df$Coordinates %>% strsplit(split = ", ") %>% do.call(rbind, .) %>% as.data.frame
+colnames(coord.df) <- c("Lat","Lon")
+coord.df <- apply(coord.df, 2, as.numeric)
+
+frog_df <- cbind(frog_df, coord.df)
+site.df <- frog_df[!duplicated(frog_df$Site),c(3, 21, 22)] 
+
+map.df <- frog_df %>% group_by(Site) %>% dplyr::count(Species) %>% pivot_wider(names_from = Species, values_from = n)
+map.df <- merge(site.df, map.df, by="Site")
+map.df[is.na(map.df)] <- 0
+
+my_location <- c(lon=-71.82, lat=42.263)
+
+register_google(key = "AIzaSyA6ZILUoqkjcQAD8-GjdFIuzIFjA4ZPmlU")
+myMap <- get_map(location=my_location, source="stamen", maptype="terrain", crop=FALSE, zoom = 13) 
+
+# Define UI for application that draws a histogram
+ui <- fluidPage(
+  
+  titlePanel("Worcester Watershed Project Results"),
+  
+  sidebarLayout(
+    
+    sidebarPanel(
+      checkboxGroupInput("site", 
+                  label = "Site of collection",
+                  choices = c(unique(frog_df$Site)),
+                  selected = c(unique(frog_df$Site))
+      ),
+      checkboxGroupInput("species", 
+                label = "Frog species",
+                choices = c(unique(frog_df$Species)),
+                selected = c(unique(frog_df$Species))
+      ),
+      checkboxGroupInput("source", 
+                  label = "Source of the sample",
+                  choices = c(unique(frog_df$Water_source)),
+                  selected = c(unique(frog_df$Water_source))
+      ),
+      checkboxGroupInput("poop", 
+                  label = "Fecal Sample",
+                  choices = c(unique(frog_df$Poop)),
+                  selected = c(unique(frog_df$Poop))
+      ),
+    ),
+    mainPanel(
+      tabsetPanel(
+        tabPanel("Table", dataTableOutput("all_table")),
+        tabPanel("Species per site", dataTableOutput("summary_table")),
+        tabPanel("Simple plots", 
+                 plotOutput("plot1"), 
+                 plotOutput("plot2")
+                 ),
+        tabPanel("Geographic abundance map", plotOutput("map")),
+      )
+    )
+  )
+)
+
+
+# 
+server <- function(input, output) {
+  
+  frog_subset <- reactive({
+      df <- frog_df %>% 
+      filter(Site %in% input$site) %>%
+      filter(Species %in% input$species) %>%
+      filter(Water_source %in% input$source) %>%
+      filter(Poop %in% input$poop)
+    return(df)
+  })
+  
+
+  # Table
+  output$all_table <- renderDataTable(frog_subset())
+  
+  # Histograms
+  output$plot1 <- renderPlot(
+    ggplot(frog_subset(), aes (x=Site, fill=Species)) + geom_bar() + scale_fill_viridis(discrete = T, option = "C")+ theme_classic() + ggtitle("Number of individuals per site")
+  )
+  
+  output$plot2 <- renderPlot(
+    ggplot(frog_subset(), aes (x=Site, y=SVL_cm, fill=Species)) + geom_boxplot() + scale_fill_viridis(discrete = T, option = "C")+ theme_classic()+ ggtitle("Distribution of SVL (cm) per species")
+  )
+  
+  
+  output$map <- renderPlot(
+    ggmap(myMap, darken = c(0.1, "white")) + 
+      geom_label(data=map.df, aes(x=Lon+0.005, y=Lat+0.004, label=Site), fontface = "bold", colour = "white", fill="darkgreen") + 
+      geom_scatterpie(aes(x=Lon, y=Lat, group=Site), data=map.df, cols=c("Lithobates catesbeianus","Anaxyrus fowleri", "Lithobates clamitans","Lithobates pipiens"), color=NA, pie_scale = 2) + coord_equal() + scale_fill_viridis(option = "", discrete = T, begin = 0)
+    , width = 1200, height = 1200)
+  output$summary_table <- renderDataTable(map.df %>%  mutate(sum = rowSums(across(4:7))))
+  
+}
+
+
+# Run the application 
+shinyApp(ui = ui, server = server)

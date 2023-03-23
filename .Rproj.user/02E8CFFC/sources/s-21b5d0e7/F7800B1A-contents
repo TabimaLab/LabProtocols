@@ -1,0 +1,106 @@
+---
+title: "final project work"
+author: "jasper perseus carleton"
+date: '2022-11-14'
+output: html_document
+---
+Het-C info
+- IPR010816
+
+# Zoopagomycota
+## Basidiobolus merisosporus HMM search
+- No hits through mycocosm's blastp
+```{bash}
+ hmmsearch --tblout HETC_zoopago_table het_c_HMM.hmm Basme2finSC_all_proteins_20150701.aa.fasta
+
+```
+- first result = protein family IPR028119, IPR017246
+- second result = protein family IPR028119, IPR020966, IPR031327, IPR008047
+- No matching domain family, similar predicted functions include: region of a membrane-bound protein predicted to be outside the membrane 
+- Identified protein families: mini-chromosome maintenance protein (mini-chromosome maintenance complex protein 4), Snapin, and Aluminum-activated malate transporter
+
+Mondo SJ, Dannebaum RO, Kuo RC, Louie KB, Bewick AJ, LaButti K, Haridas S, Kuo A, Salamov A, Ahrendt SR, Lau R, Bowen BP, Lipzen A, Sullivan W, Andreopoulos BB, Clum A, Lindquist E, Daum C, Northen TR, Kunde-Ramamoorthy G, Schmitz RJ, Gryganskyi A, Culley D, Magnuson J, James TY, O'Malley MA, Stajich JE, Spatafora JW, Visel A, Grigoriev IV
+Widespread adenine N6-methylation of active genes in fungi.
+Nat Genet. 2017 Jun;49(6):964-968. doi: 10.1038/ng.3859 
+
+
+# Chytridomycota
+## Batrachochytrium salamandrivorans BS
+- no hits on mycocosms blastp using filtered models
+```{bash}
+hmmsearch --tblout HETC_chytrid2_table  het_c_HMM.hmm Batsa1_GeneCatalog_proteins_20210224.aa.fasta
+```
+- not matched into the het-c protein domain but has even more similar functions than other fungi of interest
+- has region of a membrane-bound protein predicted to be outside the membrane, coil, signal peptide region,C-terminal of a signal peptide, N-terminal region of a signal peptide, signalP-noTM, hydrophobic region of a signal peptide, SignalP-TM, and signal peptide region
+
+
+# Mucoromycota
+## Mortierella alpina
+- No hits through mycocosm's blastp
+```{bash}
+hmmsearch --tblout HETC_mucoro_table het_c_HMM.hmm MoalAD071_1_GeneCatalog_proteins_20210416.aa.fasta
+```
+- domains belonged to the protein family Restriction of telomere capping protein 4 (IPR039024)
+- domain prediction functions include hydrophobic region of a signal peptide, N-terminal region of a signal peptide, signal peptide region, C-terminal region of a signal peptide, region of a membrane-bound protein predicted to be outside the membrane in the extracellular region, and coil
+- het-c also has a signal peptide region, N-terminal region of a signal peptide, hydrophobic region of a signal peptide, C-terminal region of a signal peptide, and region of a membrane-bound protein predicted to be outside the membrane
+ 
+  
+Vandepol N, Liber J, Desirò A, Na H, Kennedy M, Barry K, Grigoriev IV, Miller AN, O'Donnell K, Stajich JE, Bonito G
+Resolving the Mortierellaceae phylogeny through synthesis of multi-gene phylogenetics and phylogenomics.
+Fungal Divers. 2020 Sep;104(1):267-289. doi: 10.1007/s13225-020-00455-5 
+
+
+# Ascomycota
+## Aeosphaeria arxii 
+- 2 hits on mycocosm's blastp
+  - using filtered protein model
+  - Best score: 1,704
+  - Best Evalue = 0
+  - Best % identity = 63.9%
+  - Best % Subject Coverage = 61.1%
+  - Organism of origin - Aaosphaeria arxii CBS 175.79 v1.0
+```{bash}
+hmmsearch --tblout HETC_asco_table het_c_HMM.hmm Aaoar1_GeneCatalog_proteins_20140429.aa.fasta
+```
+- all domains (3) match het-c domains on interpro
+
+Haridas S, Albert R, Binder M, Bloem J, LaButti K, Salamov A, Andreopoulos B, Baker SE, Barry K, Bills G, Bluhm BH, Cannon C, Castanera R, Culley DE, Daum C, Ezra D, González JB, Henrissat B, Kuo A, Liang C, Lipzen A, Lutzoni F, Magnuson J, Mondo SJ, Nolan M, Ohm RA, Pangilinan J, Park HJ, Ramírez L, Alfaro M, Sun H, Tritt A, Yoshinaga Y, Zwiers LH, Turgeon BG, Goodwin SB, Spatafora JW, Crous PW, Grigoriev IV
+101 Dothideomycetes genomes: A test case for predicting lifestyles and emergence of pathogens.
+Stud Mycol. 2020 Jun;96():141-153. doi: 10.1016/j.simyco.2020.01.003
+
+
+# Glomeromycota
+## Rhizophagus clarus
+- 0 hits on mycocosm's blastp
+```{bash}
+hmmsearch --tblout HETC_glomero_table het_c_HMM.hmm Rhicl1_GeneCatalog_proteins_20210318.aa.fasta
+```
+- no domain matches, no domain functions agreed upon so no comparison there
+
+Kobayashi Y, Maeda T, Yamaguchi K, Kameoka H, Tanaka S, Ezawa T, Shigenobu S, Kawaguchi M
+The genome of Rhizophagus clarus HR1 reveals a common genetic basis for auxotrophy among arbuscular mycorrhizal fungi.
+BMC Genomics. 2018 Jun 18;19(1):465. doi: 10.1186/s12864-018-4853-0 
+
+# Basidiomycota
+## Lentinus Tigrinus
+- 2 hits on mycocosm's blastp
+  - using filtered model rather than all proteins model
+  - Best score: 1,225
+  - Best Evalue = 2.24 x e^-113
+  - Best % identity = 51%
+  - Best % Subject Coverage = 59.4%
+  - Organism of origin - Lentinus tigrinus ALCF2SS1-6 v1.0
+
+```{bash}
+hmmsearch --tblout HETC_basidio_table het_c_HMM.hmm Lenti6_1_GeneCatalog_proteins_20130903.aa.fasta
+```
+- Domain family identified as Het-C for both hits
+
+Wu B, Xu Z, Knudson A, Carlson A, Chen N, Kovaka S, LaButti K, Lipzen A, Pennachio C, Riley R, Schakwitz W, Umezawa K, Ohm RA, Grigoriev IV, Nagy LG, Gibbons J, Hibbett D
+Genomics and Development of Lentinus tigrinus: A White-Rot Wood-Decaying Mushroom with Dimorphic Fruiting Bodies.
+Genome Biol Evol. 2018 Dec 1;10(12):3250-3261. doi: 10.1093/gbe/evy246 
+
+
+## summary
+Ascomycete and Basidiomycete species are the only ones with an certain identified Het-C gene. Other phyla do have similar sequences identified using the HMM search, however, these are likely just highly conserved regions of common proteins - i.e. the sharing of protein functions like regions of membrane-bound proteins predicted to be outside the membrane and signal peptide components. 
+

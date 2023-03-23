@@ -1,0 +1,260 @@
+library(vegan)
+
+#Load DWH and Watershed data into R
+
+#DWH.OTU<-read.table(file="~/Microbiomes_FA2022/DWH_OTU_all.txt",sep="\t",header=T,row.names=1)
+#DWH.metadata<-read.table(file="~/Microbiomes_FA2022/DWH_metadata.txt",sep="\t",header=T,row.names=1)
+#DWH.metadataAll<-read.table(file="~/Microbiomes_FA2022/DWH_metadata_all.txt",sep="\t",header=T,row.names=1)
+
+WS.phylaOTU<-read.table(file="~/Microbiomes_FA2022/WS_phylaOTU.txt",sep="",header=T)
+WS.metadata<-read.table(file="~/Microbiomes_FA2022/WS_metadata.txt",sep="",header=T)
+
+#Bar plots
+
+#Calculate relative abundance by dividing each row by the total number of clones for that row (sample)
+#rowSums(DWH.OTU)
+#DWH.relabund<-DWH.OTU/rowSums(DWH.OTU)
+
+rowSums(WS.phylaOTU)
+WS.relabund<-WS.phylaOTU/rowSums(WS.phylaOTU)
+
+#Set color scheme
+bar.col<-c("#010101","#D3E4BD","#FDD3B7","#C0E6EE","#009B9A","#9A8C4F","#FAF398","#F5EB00","#AE4A25","#E27EB3","#FACFE2","#C3489A","#A7DDE7","#00A651","#0071BB","#00AFED","#0B6196","#F7946A","#F26728","#EE2E2F")
+
+#Create plots using clone number and relative abundance
+#barplot(t(as.matrix(DWH.OTU)),col=bar.col,ylab="Number of clones",las=2)
+#barplot(t(as.matrix(DWH.relabund)),las=2,ylab="Relative abundance",col=bar.col)
+
+barplot(t(as.matrix(WS.phylaOTU)),col=bar.col,ylab="Number of clones",las=2)
+barplot(t(as.matrix(WS.relabund)),las=2,ylab="Relative abundance",col=bar.col)
+
+#Rarefaction curves (plot then remove labels)
+
+#rarecurve(DWH.OTU)
+#rarecurve(DWH.OTU,label=FALSE,col=as.character(DWH.metadata$Sample.type.col))
+#legend('bottomright',c("Plume.May","Plume.June","Plume.Sept","Surface.May","NonPlume.May","NonPlume.Sept"),
+#       text.col = c("blue","green","black","red","orange","pink"),cex=0.8,bg=NA,box.col=NA)
+
+rarecurve(WS.phylaOTU,step=50,cex=0.6)
+rarecurve(WS.phylaOTU,step=50,cex=0.6,label=F,col=as.character(WS.metadata$Sample.type.col))
+legend('bottomright',c("B","Coes","Cook","KP","MP","MR","PR","PRS","SBFM","T"),
+       text.col = c("blue","red","green","orange","pink","black","purple","yellow","violet","brown"),cex=0.8,bg=NA,box.col=NA)
+
+#Alpha diversity
+
+#Calculate species richness in each sample
+#specnumber(DWH.OTU)
+specnumber(WS.phylaOTU)
+
+#Add species richness column to metatdata tables
+#DWH.metadata2<-cbind(DWH.metadataAll,specnumber(DWH.OTU))
+WS.metadata2<-cbind(WS.metadata,specnumber(WS.phylaOTU))
+
+### Make a box plot of the richness by sample type
+#par(mfrow=c(1,3))
+#boxplot(specnumber(DWH.OTU) ~ Plume.date, data = DWH.metadata2,ylab="Richness",lab.cex=0.5,xlab=NA,las=2)
+#boxplot(diversity(DWH.OTU,index='shannon') ~ Plume.date, data = DWH.metadata2,ylab="Shannon Index",lab.cex=0.5,xlab=NA,las=2)
+#boxplot(diversity(DWH.OTU,index='simpson') ~ Plume.date, data = DWH.metadata2,ylab="Simpson Index",lab.cex=0.5,xlab=NA,las=2)
+
+par(mfrow=c(1,3))
+boxplot(specnumber(WS.phylaOTU) ~ Location, data=WS.metadata,ylab="Richness",lab.cex=0.5,xlab=NA,las=2)
+boxplot(diversity(WS.phylaOTU,index='shannon') ~ Location, data = WS.metadata2,ylab="Shannon Index",lab.cex=0.5,xlab=NA,las=2)
+boxplot(diversity(WS.phylaOTU,index='simpson') ~ Location, data = WS.metadata2,ylab="Simpson Index",lab.cex=0.5,xlab=NA,las=2)
+
+#Beta diversity
+
+#Calculate pairwise Bray Curtis scores
+#DWH.BC<-vegdist(DWH.OTU)
+WS.BC<-vegdist(WS.phylaOTU)
+
+#Convert .BC files to matrix format
+#DWH.BC.matrix<-as.matrix(DWH.BC)
+WS.BC.matrix<-as.matrix(WS.BC)
+
+#DWH beta diversity measurement
+
+#Find P.May samples, pull P.May data using a matrix [row.numbers,col.numbers], take mean of scores
+#which(DWH.metadata2$Plume.date=="P.May")
+#DWH.BC.matrix[14:22,14:22]
+#mean(DWH.BC.matrix[14:22,14:22])
+
+#Find NP.May samples, pull data in matrix, take mean
+#which(DWH.metadata2$Plume.date=="NP.May")
+#DWH.BC.matrix[1:4,1:4]
+#mean(DWH.BC.matrix[1:4,1:4])
+
+#Find P.June samples, pull data in matrix, take mean
+#which(DWH.metadata2$Plume.date=="P.June")
+#DWH.BC.matrix[9:13,9:13]
+#mean(DWH.BC.matrix[9:13,9:13])
+
+#Now compare two sets of samples to explore if two sample groups or more or less similar
+  #in their community composition than two other samples groups.
+
+#Take mean of P.May and NP.May, take mean of P.May and P.June
+#mean(DWH.BC.matrix[14:22,1:4])
+#mean(DWH.BC.matrix[14:22,9:13])
+
+## P.May vs NP.May: BC = 0.78
+## P.May vs P.June: BC = 0.47
+## This means that there is greater similarity between P.May and P.June samples than there is between P.May and NP.May.
+
+#WS beta diversity measurement
+
+#Bdiversity comparison sites
+
+#1. Pond proximity to city center. KP (r) and Coes(u)
+
+#2. Pond proximity in city. Coes(u) and MP(u)
+
+#Urban pond communities will be more similar compared to urban and rural pond communities. 
+  #Similar ecosystems for urban sites compared to different ecosystems for rural sites.
+  #2 more similar than 1
+
+#KP
+which(WS.metadata$Location=="KP")
+WS.BC.matrix[23:33,23:33]
+mean(WS.BC.matrix[23:33,23:33])
+
+#Coes
+which(WS.metadata$Location=="Coes")
+WS.BC.matrix[8:14,8:14]
+mean(WS.BC.matrix[8:14,8:14])
+
+#MP
+which(WS.metadata$Location=="MP")
+WS.BC.matrix[34:40,34:40]
+mean(WS.BC.matrix[34:40,34:40])
+
+#Take mean of KP and Coes, take mean of Coes and MP
+mean(WS.BC.matrix[23:33,8:14])
+mean(WS.BC.matrix[8:14,34:40])
+
+#KP vs Coes (0.58) is less similar than Coes vs MP (0.42)
+
+#Visualize BC curve KP and Coes, Coes and MP
+a<-cbind(rep(1,length(as.vector(WS.BC.matrix[23:33,8:14]))),as.vector(WS.BC.matrix[23:33,8:14]))
+b<-cbind(rep(2,length(as.vector(WS.BC.matrix[8:14,34:40]))),as.vector(WS.BC.matrix[8:14,34:40]))
+c<-rbind(a,b)
+
+plot(c,xlim=c(0,3),ylab="BC dissimilarity",xlab="Comparison")
+points(1,mean(WS.BC.matrix[23:33,8:14]),pch=19,col='red')
+points(2,mean(WS.BC.matrix[8:14,34:40]),pch=19,col='red')
+
+text(c(1,2),c(1.5,1.5),label=c("KP vs Coes","Coes vs MP"),cex=.5)
+
+colnames(c)<-c("Comparison","BC")
+c.df<-as.data.frame(c)
+c.df$Comparison<-as.factor(c.df$Comparison)
+c.df$BC<-as.numeric(as.character(c.df$BC))
+c.df$Comparison<-as.factor(c("KP vs Coes","Coes vs MP")[as.factor(c[,1])])
+boxplot(BC~Comparison,data=c.df,ylab="BC score")
+points(1,mean(WS.BC.matrix[23:33,8:14]),pch=19,col='red')
+points(2,mean(WS.BC.matrix[8:14,34:40]),pch=19,col='red')
+
+#3. Pond vs river rural. KP(r) and PRS(r)
+
+#4. Pond vs river urban. MR(u) and Coes(u)
+
+#Urban ponds and rivers will be more similar than rural ponds and rivers.
+  #More diverse niches in rural habitats, greater local biodiversity.
+  #4 more similar than 3 
+
+#KP
+which(WS.metadata$Location=="KP")
+WS.BC.matrix[23:33,23:33]
+mean(WS.BC.matrix[23:33,23:33])
+
+#PRS
+which(WS.metadata$Location=="PRS")
+WS.BC.matrix[52:59,52:59]
+mean(WS.BC.matrix[52:59,52:59])
+
+#MR
+which(WS.metadata$Location=="MR")
+WS.BC.matrix[41:42,41:42]
+mean(WS.BC.matrix[41:42,41:42])
+
+#Coes
+which(WS.metadata$Location=="Coes")
+WS.BC.matrix[8:14,8:14]
+mean(WS.BC.matrix[8:14,8:14])
+
+#Take mean of KP and PRS, take mean of MR and Coes
+mean(WS.BC.matrix[23:33,52:59])
+mean(WS.BC.matrix[41:42,8:14])
+
+#KP vs PRS (0.53) is less similar than MR vs Coes (0.41)
+
+#Visualize BC curve KP and PRS, MR and Coes
+x<-cbind(rep(1,length(as.vector(WS.BC.matrix[23:33,52:59]))),as.vector(WS.BC.matrix[23:33,52:59]))
+y<-cbind(rep(2,length(as.vector(WS.BC.matrix[41:42,8:14]))),as.vector(WS.BC.matrix[41:42,8:14]))
+z<-rbind(x,y)
+
+plot(c,xlim=c(0,3),ylab="BC dissimilarity",xlab="Comparison")
+points(1,mean(WS.BC.matrix[23:33,52:59]),pch=19,col='red')
+points(2,mean(WS.BC.matrix[41:42,8:14]),pch=19,col='red')
+
+text(c(1,2),c(1.5,1.5),label=c("KP vs PRS","MR vs Coes"),cex=.5)
+
+colnames(z)<-c("Comparison","BC")
+z.df<-as.data.frame(z)
+z.df$Comparison<-as.factor(z.df$Comparison)
+z.df$BC<-as.numeric(as.character(z.df$BC))
+z.df$Comparison<-as.factor(c("KP vs PRS","MR vs Coes")[as.factor(c[,1])])
+boxplot(BC~Comparison,data=z.df,ylab="BC score")
+points(1,mean(WS.BC.matrix[23:33,52:59]),pch=19,col='red')
+points(2,mean(WS.BC.matrix[41:42,8:14]),pch=19,col='red')
+
+###Bray Curtis
+
+#Compare scores with t-test
+#t.test(DWH.BC.matrix[14:22,1:4],DWH.BC.matrix[14:22,9:13])
+t.test(WS.BC.matrix[1:7,8:14],WS.BC.matrix[1:7,15:22])
+
+#Visualize a BC curve P.May vs NP.May & P.May vs P.June
+#a<-cbind(rep(1,length(as.vector(DWH.BC.matrix[1:4,14:22]))),as.vector(DWH.BC.matrix[1:4,14:22]))
+#b<-cbind(rep(2,length(as.vector(DWH.BC.matrix[9:13,14:22]))),as.vector(DWH.BC.matrix[9:13,14:22]))
+#c<-rbind(a,b)
+
+#plot(c,xlim=c(0,3),ylab="BC dissimilarity",xlab="Comparison")
+#points(1,mean(DWH.BC.matrix[14:22,1:4]),pch=19,col='red')
+#points(2,mean(DWH.BC.matrix[14:22,9:13]),pch=19,col='red')
+
+#text(c(1,2),c(1.5,1.5),label=c("P.May vs NP.May","P.May vs P.June"),cex=.5)
+
+#colnames(c)<-c("Comparison","BC")
+#c.df<-as.data.frame(c)
+#c.df$Comparison<-as.factor(c.df$Comparison)
+#c.df$BC<-as.numeric(as.character(c.df$BC))
+#c.df$Comparison<-as.factor(c("P.May vs NP.May","P.May vs P.June")[as.factor(c[,1])])
+#boxplot(BC~Comparison,data=c.df,ylab="BC score")
+#points(1,mean(DWH.BC.matrix[1:4,14:22]),pch=19,col='red')
+#points(2,mean(DWH.BC.matrix[9:13,14:22]),pch=19,col='red')
+
+#NMDS Analysis
+
+#Create a color scheme
+col.1<-c("#010101","#D3E4BD","#FDD3B7","#C0E6EE","#009B9A","#9A8C4F","#FAF398","#F5EB00","#AE4A25","#E27EB3","#FACFE2","#C3489A","#A7DDE7","#00A651","#0071BB","#00AFED","#0B6196","#F7946A","#F26728","#EE2E2F")
+col.2<-c("orange","grey","green")
+col.3<-c(col.1,col.2)
+
+#Run the MDS function
+#DWH.mds<-metaMDS(DWH.OTU)
+WS.mds<-metaMDS(WS.phylaOTU)
+
+#Generate a MDS plot
+
+#5 lines below written by J. Tabima
+color.df <- data.frame(location=unique(WS.metadata$Location), color=col.1[1:length(unique(WS.metadata$Location))])
+color.vector <- color.df$color[match(WS.metadata$Location, color.df$location)]
+plot(WS.mds$point,type='n')
+points(WS.mds$points,col=color.vector, pch=16)
+legend('topright',legend = unique(WS.metadata$Location),text.col = col.1,cex=0.8,bg=NA,box.col=NA)
+
+#PERMANOVA
+
+#Test if NMD samples cluster by location is statistically significant
+adonis2(WS.phylaOTU~Location,data=WS.metadata,method='bray')
+
+###

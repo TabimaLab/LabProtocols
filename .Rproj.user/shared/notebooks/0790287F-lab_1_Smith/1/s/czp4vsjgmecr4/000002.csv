@@ -1,0 +1,19 @@
+"0","asmb_A=$(grep -v "">"" Syn_WH101.asmb.fasta | grep -o ""A"" | wc -l)
+asmb_T=$(grep -v "">"" Syn_WH101.asmb.fasta | grep -o ""T"" | wc -l)
+asmb_G=$(grep -v "">"" Syn_WH101.asmb.fasta | grep -o ""G"" | wc -l)
+asmb_C=$(grep -v "">"" Syn_WH101.asmb.fasta | grep -o ""C"" | wc -l)
+cds_A=$(grep -v "">"" Syn_WH101.cds.fasta | grep -o ""A"" | wc -l)
+cds_T=$(grep -v "">"" Syn_WH101.cds.fasta | grep -o ""T"" | wc -l)
+cds_G=$(grep -v "">"" Syn_WH101.cds.fasta | grep -o ""G"" | wc -l)
+cds_C=$(grep -v "">"" Syn_WH101.cds.fasta | grep -o ""C"" | wc -l)
+echo 'Nucleotides in whole genome file:'
+echo $asmb_A 'adenines,' $asmb_T 'thyamines,' $asmb_G 'guanines, and' $asmb_C 'cytosines'
+echo ' '
+echo 'Nucleotides in coding sequence file:'
+echo $cds_A 'adenines,' $cds_T 'thyamines,' $cds_G 'guanines, and' $cds_C 'cytosines'"
+"1","Nucleotides in whole genome file:
+482972 adenines, 481415 thyamines, 835785 guanines, and 830120 cytosines
+ 
+Nucleotides in coding sequence file:
+421348 adenines, 456026 thyamines, 775698 guanines, and 770791 cytosines
+"

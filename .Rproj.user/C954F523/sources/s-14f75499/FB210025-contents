@@ -1,0 +1,7 @@
+library(vegan)
+
+data <- read.csv("data.csv")
+
+nmds <- metaMDS(data)
+
+plot(nmds)

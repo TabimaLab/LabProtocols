@@ -1,0 +1,13 @@
+#                                                               --- full sequence ---- --- best 1 domain ---- --- domain number estimation ----
+# target name        accession  query name           accession    E-value  score  bias   E-value  score  bias   exp reg clu  ov env dom rep inc description of target
+#------------------- ---------- -------------------- ---------- --------- ------ ----- --------- ------ -----   --- --- --- --- --- --- --- --- ---------------------
+#
+# Program:         hmmsearch
+# Version:         3.3 (Nov 2019)
+# Pipeline mode:   SEARCH
+# Query file:      het_c_HMM.hmm
+# Target file:     Batde5_best_proteins.fasta
+# Option settings: hmmsearch --tblout HETC_chytrid_table het_c_HMM.hmm Batde5_best_proteins.fasta 
+# Current dir:     /Tabima_lab/homes/jcarleton/MBB101/Final_project
+# Date:            Fri Dec  2 10:39:41 2022
+# [ok]

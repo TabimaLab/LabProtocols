@@ -1,0 +1,116 @@
+---
+title: "lab_2_unix"
+author: "jasper perseus carleton"
+date: '2023-01-25'
+output: html_document
+---
+# Lab 2 - UNIX Review
+
+1. 
+```{bash}
+wc Syn_WH101.aa.fasta
+wc Syn_WH101.asmb.fasta
+wc Syn_WH101.cds.fasta
+```
+13904 lines in aa.fasta
+37578 lines in asmb.fasta
+34441 lines is cds.fasta
+
+2. 
+```{bash}
+grep -o '>' Syn_WH101.aa.fasta | wc -l
+grep -o '>' Syn_WH101.cds.fasta | wc -l
+grep -o '>' Syn_WH101.asmb.fasta | wc -l
+```
+2705 sequences in aa.fasta
+2778 sequences in cds.fasta
+1 sequence in asmb.fasta
+
+3. aa.fasta is protein, cds and asmb are DNA
+
+
+4. asmb has more sequences and lines
+
+5. 
+
+```
+cat Syn_WH101.aa.fasta
+cat Syn_WH101.asmb.fasta
+cat Syn_WH101.cds.fasta
+```
+
+
+
+proteins:
+- WP_006041316.1 MULTISPECIES: 30S ribosomal protein S18 [Cyanobacteria]
+- WP_006041398.1 MULTISPECIES: cytochrome b6-f complex subunit PetN [Synechococcales]
+- WP_006041809.1 MULTISPECIES: translation initiation factor IF-1 [Synechococcales]
+- WP_006042106.1 MULTISPECIES: cytochrome b6 [unclassified Synechococcus]
+- WP_006042122.1 MULTISPECIES: photosystem II reaction center protein T [Synechococcaceae]
+
+genes:
+- lcl|NZ_CP035914.1_cds_WP_130128043.1_1 [locus_tag=SynWH8101_RS00005] [protein=DNA polymerase III subunit beta] [protein_id=WP_130128043.1] [location=25..1197] [gbkey=CDS]
+- lcl|NZ_CP035914.1_cds_WP_130128044.1_2 [locus_tag=SynWH8101_RS00010] [protein=RNA methyltransferase] [protein_id=WP_130128044.1] [location=1202..1942] [gbkey=CDS]
+- lcl|NZ_CP035914.1_cds_WP_174719531.1_3 [gene=purL] [locus_tag=SynWH8101_RS00015] [protein=phosphoribosylformylglycinamidine synthase subunit PurL] [protein_id=WP_174719531.1] [location=2019..4340] [gbkey=CDS]
+- lcl|NZ_CP035914.1_cds_WP_130128046.1_4 [locus_tag=SynWH8101_RS00020] [protein=amidophosphoribosyltransferase] [protein_id=WP_130128046.1] [location=4340..5845] [gbkey=CDS]
+- lcl|NZ_CP035914.1_cds_WP_130128047.1_5 [locus_tag=SynWH8101_RS00025] [protein=DNA topoisomerase 4 subunit A] [protein_id=WP_130128047.1] [location=complement(5834..8329)] [gbkey=CDS]
+
+6. 
+```{bash}
+grep -v '>' Syn_WH101.asmb.fasta | grep -o 'A' | wc -l
+grep -v '>' Syn_WH101.asmb.fasta | grep -o 'T' | wc -l
+grep -v '>' Syn_WH101.asmb.fasta | grep -o 'G' | wc -l
+grep -v '>' Syn_WH101.asmb.fasta | grep -o 'C' | wc -l
+
+
+grep -v '>' Syn_WH101.cds.fasta | grep -o 'A' |wc -l
+grep -v '>' Syn_WH101.cds.fasta | grep -o 'T' |wc -l
+grep -v '>' Syn_WH101.cds.fasta | grep -o 'G' |wc -l
+grep -v '>' Syn_WH101.cds.fasta | grep -o 'C' |wc -l
+```
+
+- asmb has more of each nucleotide
+
+7. 
+```{bash}
+grep -o WP_174719562.1 Syn_WH101.aa.fasta | wc
+grep -o WP_130130567.1  Syn_WH101.aa.fasta | wc
+grep -o WP_130130558.1  Syn_WH101.aa.fasta | wc
+
+grep -o WP_174719562.1 Syn_WH101.asmb.fasta | wc
+grep -o WP_130130567.1  Syn_WH101.asmb.fasta | wc
+grep -o WP_130130558.1  Syn_WH101.asmb.fasta | wc
+
+grep -o WP_174719562.1 Syn_WH101.cds.fasta | wc
+grep -o WP_130130567.1  Syn_WH101.cds.fasta | wc
+grep -o WP_130130558.1  Syn_WH101.cds.fasta | wc
+```
+it is in both the aa.fasta and cds.fasta file
+
+8. 
+```{bash}
+
+grep  WP_130130185.1 Syn_WH101.aa.fasta  
+grep  WP_130130145.1   Syn_WH101.aa.fasta  
+
+```
+| Name           | Function                                     | Org                         |
+|----------------|----------------------------------------------|-----------------------------|
+| WP_130130185.1 | mechanosensitive ion channel family protein  | [Synechococcus sp. WH 8101] |
+| WP_130130145.1 | dephospho-CoA kinase                         | [Synechococcus sp. WH 8101] |
+| WP_006041398.1 | cytochrome b6-f complex subunit PetN         | [Synechococcales]           |
+| WP_006041809.1 | translation initiation factor IF-1           | [Synechococcales]           |
+
+9. 
+```{bash}
+grep -o 'hypothetical protein' Syn_WH101.aa.fasta | wc
+```
+1104 occurences
+
+10. added in table above
+
+11. 
+```{bash}
+grep '>' Syn_WH101.aa.fasta | sed s/T/U/g > new_file 
+
+```

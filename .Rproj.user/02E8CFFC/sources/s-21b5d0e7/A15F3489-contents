@@ -1,0 +1,19 @@
+#                                                               --- full sequence ---- --- best 1 domain ---- --- domain number estimation ----
+# target name        accession  query name           accession    E-value  score  bias   E-value  score  bias   exp reg clu  ov env dom rep inc description of target
+#------------------- ---------- -------------------- ---------- --------- ------ ----- --------- ------ -----   --- --- --- --- --- --- --- --- ---------------------
+NP_990152.1          -          Hint                 PF01079.23   6.4e-82  266.8   0.0     8e-82  266.5   0.0   1.1   1   0   0   1   1   1   1 sonic hedgehog protein precursor [Gallus gallus]
+XP_850450.1          -          Hint                 PF01079.23   8.6e-78  253.3   0.0   1.1e-77  253.0   0.0   1.1   1   0   0   1   1   1   1 sonic hedgehog protein [Canis lupus familiaris]
+XP_002687031.2       -          Hint                 PF01079.23   2.6e-51  166.8   0.0   3.6e-51  166.3   0.0   1.1   1   0   0   1   1   1   1 PREDICTED: sonic hedgehog protein [Bos taurus]
+XP_002687031.2       -          HH_signal            PF01085.21   2.3e-91  296.4   0.0   3.2e-91  295.9   0.0   1.2   1   0   0   1   1   1   1 PREDICTED: sonic hedgehog protein [Bos taurus]
+NP_990152.1          -          HH_signal            PF01085.21   2.4e-91  296.3   0.0   3.4e-91  295.8   0.0   1.2   1   0   0   1   1   1   1 sonic hedgehog protein precursor [Gallus gallus]
+XP_850450.1          -          HH_signal            PF01085.21   2.8e-91  296.1   0.0   3.7e-91  295.7   0.0   1.2   1   0   0   1   1   1   1 sonic hedgehog protein [Canis lupus familiaris]
+#
+# Program:         hmmsearch
+# Version:         3.3 (Nov 2019)
+# Pipeline mode:   SEARCH
+# Query file:      SHH.hmm
+# Target file:     oh_this_is_a_mess.fasta
+# Option settings: hmmsearch --tblout hmm_table SHH.hmm oh_this_is_a_mess.fasta 
+# Current dir:     /Tabima_lab/homes/jcarleton/MBB101/Lab_4/hmm_example
+# Date:            Tue Nov  8 13:35:11 2022
+# [ok]

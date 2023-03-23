@@ -1,0 +1,20 @@
+h1:pcr-protocols PCR Protocols
+h2:dreamtaq-any-primers DreamTaq (Any Primers)
+h3:protocol-mixture-dreamtaq Protocol Mixture (DreamTaq)
+h3:protocol-conditions-dreamtaq Protocol Conditions (DreamTaq)
+h2:its-metabarcoding-its1-fits2 ITS Metabarcoding (ITS1-F/ITS2)
+h3:protocol-mixture-its1-fits2 Protocol Mixture (ITS1-F/ITS2)
+h3:protocol-conditions-its1-fits2 Protocol Conditions (ITS1-F/ITS2)
+h2:its1its4 ITS1/ITS4
+h3:protocol-mixture-its1its4 Protocol Mixture (ITS1/ITS4)
+h3:protocol-conditions-its1its4 Protocol Conditions (ITS1/ITS4)
+h2:lsu LSU
+h3:protocol-mixture-lsu Protocol Mixture (LSU)
+h3:protocol-conditions-lsu Protocol Conditions (LSU)
+h2:basf611basr1340 BASF611/BASR1340
+h3:protocol-mixture-bas Protocol Mixture (BAS)
+h3:protocol-conditions-bas Protocol Conditions (BAS)
+h2:exosap EXOSAP
+h3:protocol-mixture-exosap Protocol Mixture (EXOSAP)
+h3:protocol-conditions-exosap Protocol Conditions (EXOSAP)
+

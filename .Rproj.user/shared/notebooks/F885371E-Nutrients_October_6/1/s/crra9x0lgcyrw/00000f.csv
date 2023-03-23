@@ -1,0 +1,7 @@
+"0","rownames(june.final) <- june.final$Site"
+"0","june.pca <- june.final[,c(2,7:11)]"
+"0",""
+"0",""
+"0","# DOING PCA"
+"0","june.pca.res <- prcomp(june.pca, scale = T)"
+"0","june.pca.res$rotation <- -1*june.pca.res$rotation"

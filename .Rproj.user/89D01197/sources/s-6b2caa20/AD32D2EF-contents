@@ -1,0 +1,32 @@
+install.packages("car")
+install.packages("scales")
+install.packages("stringr")
+
+library(epitools)
+library(Hmisc)
+library(scales)
+library(ggplot2)
+library(car)
+library(scales)
+library(stringr)
+
+beforespider <- SpiderAmputations$speed[SpiderAmputations$amp_status=="before"]
+afterspider <- SpiderAmputations$speed[SpiderAmputations$amp_status=="after"]
+
+differences <- afterspider - beforespider
+differences
+
+mean(differences)
+
+shapiro.test(differences)
+
+t.test(speed~ amp_status,paired=TRUE,data=SpiderAmputations)
+
+ggplot(data = SpiderAmputations, aes(x = amp_status, y = speed)) + geom_boxplot() +scale_y_continuous(limits=c(0, 5.75),breaks=pretty_breaks()) + theme_bw() + ylab("Speed (ft/s)") + xlab("Amputation Status")
+
+ZebraFishBoldness <- read.csv("ZebraFishBoldness.csv")
+head(ZebraFishBoldness)
+
+leveneTest(ZebraFishBoldness$secondsAggressiveActivity~ZebraFishBoldness$genotype)
+
+install.packages("car",dependencies=TRUE)

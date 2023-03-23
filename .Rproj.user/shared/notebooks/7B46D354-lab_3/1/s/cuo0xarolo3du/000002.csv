@@ -1,0 +1,12 @@
+"0","
+wc mystery_genes/sequence1_1
+wc mystery_genes/sequence1_2
+wc mystery_genes/sequence1_3
+wc mystery_genes/sequence1_4
+wc mystery_genes/sequence1_5"
+"1","   1    1 7478 mystery_genes/sequence1_1
+   1    1 1084 mystery_genes/sequence1_2
+   1    1 3076 mystery_genes/sequence1_3
+   1    1 1255 mystery_genes/sequence1_4
+  1   1 613 mystery_genes/sequence1_5
+"

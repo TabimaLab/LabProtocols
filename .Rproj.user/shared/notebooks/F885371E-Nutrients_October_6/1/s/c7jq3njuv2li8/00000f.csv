@@ -1,0 +1,3 @@
+"0","all_data <- readRDS(""all_data.rds"")"
+"0","all_june <- all_data[all_data$month %in% ""June2022"",]"
+"0","june.final <- subset(all_june, select = -p.soluble)"

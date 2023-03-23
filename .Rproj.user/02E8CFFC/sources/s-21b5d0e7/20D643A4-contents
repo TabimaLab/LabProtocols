@@ -1,0 +1,59 @@
+---
+title: "Lab_4"
+author: "jasper perseus carleton"
+date: '2023-02-15'
+output: html_document
+---
+
+Strategy to improve S166 sequence:
+
+- remove adapter contamination- drop overrepresented sequences
+
+- use LEADING and TRAILING to remove low quality parts of the beginning and end of fragents (removal of pieces under a phred score of 30)
+
+- use SLIDING WINDOW to remove relatively lower quality areas - window of 5 and phred of 30
+
+- use MINLEN to remove smaller sequences - aka those under 145bp
+
+- use AVGQUAL to drop any remaining sequences under a phred score of 30
+
+
+Commands to use:
+
+- ILLUMINACLIP
+
+- LEADING and TRAILING
+
+- SLIDINGWINDOW
+
+- MINLEN
+
+- AVGQUAL
+
+
+java -jar /Smaug_SSD/bin/Trimmomatic-0.39/trimmomatic-0.39.jar PE NB0621_05_S166_R1_001.fastq.gz NB0621_05_S166_R2_001.fastq.gz Processed_R1.fastq.gz Processed_R1.Unpaired.fastq.gz Processed_R2.fastq.gz Processed_R2.Unpaired.fastq.gz ILLUMINACLIP:TruSeq3-PE.fa:2:30:10:2:True LEADING:30 TRAILING:30 SLIDINGWINDOW:5:30 MINLEN:145 AVGQUAL:30
+
+
+/Smaug_SSD/bin/fastqc -o Processed_QC Processed_R1.fastq.gz
+
+/Smaug_SSD/bin/fastqc -o Processed_QC Processed_R2.fastq.gz
+
+location of processed reads:
+
+Tabima_lab/homes/jcarleton/genome\ project/Lab_2/genome_backup/S166
+
+specific file names:
+
+Processed_R1.fastqc.gz
+
+Processed_R1.Unpaired.fastqc.gz
+
+Processed_R2.fastqc.gz
+
+Processed_R2.Unpaired.fastqc.gz
+
+
+
+Conclusion:
+
+This process did improve the S166 reads to a reasonable degree, mainly cutting small fragments and removing adapter contamination. Per base quality remained good and was improved to almost all having a phred of 34. All of the tile quality problems were cleaned up. My method also cleared all areas that had a phred score of less than 39

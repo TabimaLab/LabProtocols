@@ -1,0 +1,9 @@
+library(vegan)
+
+data <- read.csv(file="~/Microbiomes_FA2022/WS_phylaOTU.txt",sep="",header=T)
+
+nmds <- metaMDS(data)
+
+colors <- c("red", "green", "blue")
+
+plot(nmds, type = "n", col = colors)

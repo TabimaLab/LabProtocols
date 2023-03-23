@@ -1,0 +1,36 @@
+Command line: /Smaug_SSD/bin/SPAdes-3.13.0-Linux/bin/spades.py	-t	3	-k	47	-1	/Tabima_lab/homes/mdelcogliano/Genome/QC_Trim/S06/S06_CKDN230002813-1A_HT2J2DSX5_L2_1.fq.gz	-2	/Tabima_lab/homes/mdelcogliano/Genome/QC_Trim/S06/S06_CKDN230002813-1A_HT2J2DSX5_L2_2.fq.gz	-o	/Tabima_lab/homes/mdelcogliano/Genome/QC_Trim/S06/spades_47	
+
+System information:
+  SPAdes version: 3.13.0
+  Python version: 3.8.10
+  OS: Linux-5.15.0-67-generic-x86_64-with-glibc2.29
+
+Output dir: /Tabima_lab/homes/mdelcogliano/Genome/QC_Trim/S06/spades_47
+Mode: read error correction and assembling
+Debug mode is turned OFF
+
+Dataset parameters:
+  Multi-cell mode (you should set '--sc' flag if input data was obtained with MDA (single-cell) technology or --meta flag if processing metagenomic dataset)
+  Reads:
+    Library number: 1, library type: paired-end
+      orientation: fr
+      left reads: ['/Tabima_lab/homes/mdelcogliano/Genome/QC_Trim/S06/S06_CKDN230002813-1A_HT2J2DSX5_L2_1.fq.gz']
+      right reads: ['/Tabima_lab/homes/mdelcogliano/Genome/QC_Trim/S06/S06_CKDN230002813-1A_HT2J2DSX5_L2_2.fq.gz']
+      interlaced reads: not specified
+      single reads: not specified
+      merged reads: not specified
+Read error correction parameters:
+  Iterations: 1
+  PHRED offset will be auto-detected
+  Corrected reads will be compressed
+Assembly parameters:
+  k: [47]
+  Repeat resolution is enabled
+  Mismatch careful mode is turned OFF
+  MismatchCorrector will be SKIPPED
+  Coverage cutoff is turned OFF
+Other parameters:
+  Dir for temp files: /Tabima_lab/homes/mdelcogliano/Genome/QC_Trim/S06/spades_47/tmp
+  Threads: 3
+  Memory limit (in Gb): 125
+

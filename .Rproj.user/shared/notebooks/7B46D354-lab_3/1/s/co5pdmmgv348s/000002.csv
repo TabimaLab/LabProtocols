@@ -1,0 +1,9 @@
+"0","grep -o A S79522.seq | wc -l
+grep -o T S79522.seq | wc -l
+grep -o C S79522.seq | wc -l
+grep -o G S79522.seq | wc -l"
+"1","171
+134
+104
+131
+"

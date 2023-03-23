@@ -1,0 +1,11 @@
+"0","grep -o ATG mystery_genes/sequence1_1 | wc -l
+grep -o ATG mystery_genes/sequence1_2 | wc -l
+grep -o ATG mystery_genes/sequence1_3 | wc -l
+grep -o ATG mystery_genes/sequence1_4 | wc -l
+grep -o ATG mystery_genes/sequence1_5 | wc -l"
+"1","135
+18
+58
+21
+11
+"

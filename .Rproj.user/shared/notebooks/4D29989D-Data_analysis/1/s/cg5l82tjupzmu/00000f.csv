@@ -1,0 +1,7 @@
+"0","unite.ref <- ""/Tabima_lab/homes/mhincher/Tabima_lab/raw_data/watershed/fecal/sh_general_release_dynamic_16.10.2022.fasta""  # CHANGE ME to location on your machine"
+"0","taxa <- assignTaxonomy(seqtab.nochim, unite.ref, multithread = TRUE, tryRC = TRUE)"
+"1","UNITE fungal taxonomic reference detected.
+"
+"0","saveRDS(taxa, file = ""taxa.RDS"")"
+"0","taxa <- readRDS(file = ""taxa.RDS"")"
+"0",""

@@ -1,0 +1,3 @@
+"0","june.results <- june.results[!june.results$Site %in% c(""CP6E"", ""CR4"", ""GI3S"", ""MB2"", ""PR7B""), ]"
+"0",""
+"0","aug.results <- aug.results[!aug.results$Site %in% c(""BB4"", ""MB3""), ]"

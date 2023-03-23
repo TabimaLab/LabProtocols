@@ -1,0 +1,90 @@
+---
+title: "PCR Protocol"
+author: "Manning DelCogliano"
+date: '2023-03-01'
+output: html_document
+---
+
+#### DNA Sample Preparations - Dilutions
+
+1. Set up labeled strip tubes in the same order as the primers
+  
+    - for poop, this should be four sets of eight tubes, make sure you leave blanks for the controls
+    
+    - this makes transfering in the following steps much easier
+    
+2. Dilute all samples to 5 ng/ul in 20 ul of PCR pure water
+
+    - follow the dilutions provided on the spreadsheet for any questions
+    
+#### PCR
+
+1. Before beginning, bleach, ethanol, and UV the PCR hood, UV strip tubes
+
+2. In an ice bucket, make sure you have your HiFi Phusion Taq (blue lid), 5x Buffer (red lid), dNTPs, PCR water, strip tubes of primers (in a 96 well PCR box) and your dilutions, as well as your positive community control and your negative
+
+**For MasterMix:**
+
+In order: 
+
+| Reagents     | Per sample (ul) | Total Mix (ul) |
+|--------------|-----------------|----------------|
+| H20          |            15.75|        15.75*n |
+| Buffer       |                5|            5*n |
+| dNTP         |              0.5|          0.5*n |
+| Phusion Taq  |              .25|          .25*n |
+| Total        |             21.5|           21.5 |
+
+3. Add 21.5 ul of MM to each labeled strip tube
+
+4. Add 2.5 ul of designated primer to each tube
+
+    - you can use a multichannel pipette
+    
+5. Add 1 ul of DNA to each tube
+    
+    - again, you can use a multichannel pipette
+    
+    - (+) and (-) will not be in dilutions strip tube, so do them last
+    
+6. spin down all strip tubes
+
+#### Thermocycler???
+
+| Temperature |  Time  | Repeat |
+|:-----------:|:------:|:------:|
+|    98 °C    |  30 s  |        |
+|    98 °C    |  45 s  |   x35  |
+|    50 °C    |  1 min |   x35  |
+|    72 °C    | 1m 30s |   x35  |
+|    72 °C    |  10 m  |        |
+|     4 °C    |  hold  |        |
+
+
+#### Gel #1
+
+1. Use a 100bp ladder to check to make sure every sample has a band present around 400bp
+  
+    - there will be more than just one band but we need the band at 400bp
+    
+#### Bead Cleanup
+
+1. Do your protocol for bead cleanup
+
+2. Elute in 30 ul of TlowE
+
+#### Gel #2
+
+1. Use a 100bp ladder
+
+2. Verify the presence of the 400bp band
+
+#### Qubit
+
+1. Concentrations will be between 2-10 ng/ul, usually
+
+2. Make sure to Qubit the controls as well
+
+#### When samples don't work
+
+1. do 'em again :(

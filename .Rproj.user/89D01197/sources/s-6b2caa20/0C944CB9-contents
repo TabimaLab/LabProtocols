@@ -1,0 +1,76 @@
+---
+title: "August_nutrients"
+author: "Manning DelCogliano"
+date: '2022-11-18'
+output: html_document
+---
+
+Add all data into google sheet, amek sure that it is public and then upload that so that I dont have to run the super complicated pipeline, that was just because we were in a rush
+
+```{R}
+library(tabulizer)
+library(tidyverse)
+#library(ggpubr)
+library(ggrepel)
+library(viridis)
+library(ggfortify)
+```
+
+# To start:
+
+When we extract the August nutrients, we need to remove the **field blank** and the **duplicate**
+
+```{r, eval=FALSE}
+august <- extract_tables('/Tabima_lab/homes/mdelcogliano/Nutrients/Nutrients_august.pdf', method = "decide")
+```
+```{r, eval=FALSE}
+client <- august[[1]][grep(pattern = "Client ID|Location", x = august[[1]][,1]),]
+client
+```
+
+```{r, eval=FALSE}
+client <- gsub(client, pattern = "Client ID: |Sample Location: ", replacement = "")
+client <- client[,1]
+client
+```
+
+```{r, eval=FALSE}
+coli <- august[[1]][grep(pattern = "Coli", x = august[[1]][,1]),]
+coli
+```
+
+```{r, eval=FALSE}
+coli <-  gsub(x = coli[1], pattern = ".+\\) ", replacement = "")
+coli
+```
+
+```{r, eval=FALSE}
+solids <-  august[[1]][grep(pattern = "Solids", x = august[[1]][,1]),1] %>% gsub(pattern = ".+ ", replacement = "")
+n.ammonia <-  august[[1]][grep(pattern = "Ammonia", x = august[[1]][,1]),1] %>% gsub(pattern = ".+ ", replacement = "")
+n.nitrate <- august[[1]][grep(pattern = "Nitrate", x = august[[1]][,1]),1] %>% gsub(pattern = ".+ ", replacement = "")
+p.total <-  august[[1]][grep(pattern = "Phosphorus, Total", x = august[[1]][,1]),1] %>% gsub(pattern = ".+ ", replacement = "")
+p.soluble <-  august[[1]][grep(pattern = "Soluble", x = august[[1]][,1]),1] %>% gsub(pattern = ".+ ", replacement = "")
+```
+
+```{r, eval=FALSE}
+data.frame("Site"=client[1], "Location"=client[2], coli, solids, n.ammonia, n.nitrate, p.total, p.soluble)
+```
+
+```{r, eval=FALSE}
+data_process <- function (x) {
+  client <- x[grep(pattern = "Client ID|Location", x = x[,1]),1] %>% gsub(pattern = "Client ID: |Sample Location: ", replacement = "")
+  coli <- x[grep(pattern = "Coli", x = x[,1]),1] %>%  gsub(pattern = ".+\\) ", replacement = "")
+  solids <-  x[grep(pattern = "Solids", x = x[,1]),1] %>% gsub(pattern = ".+ ", replacement = "")
+  n.ammonia <-  x[grep(pattern = "Ammonia", x = x[,1]),1] %>% gsub(pattern = ".+ ", replacement = "")
+  n.nitrate <- x[grep(pattern = "Nitrate", x = x[,1]),1] %>% gsub(pattern = ".+ ", replacement = "")
+  p.total <-  x[grep(pattern = "Phosphorus, Total", x = x[,1]),1] %>% gsub(pattern = ".+ ", replacement = "")
+  p.soluble <-  x[grep(pattern = "Soluble", x = x[,1]),1] %>% gsub(pattern = ".+ ", replacement = "")
+  
+  return(data.frame("Site"=client[1], "Location"=client[2], coli, solids, n.ammonia, n.nitrate, p.total, p.soluble))
+}
+```
+
+```{r}
+aug.results <- lapply(august, data_process) %>% do.call(rbind, .) %>% tibble %>% mutate(across(c("coli":"p.soluble"), as.numeric))
+```
+

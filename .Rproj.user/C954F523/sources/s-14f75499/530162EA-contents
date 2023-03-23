@@ -1,0 +1,207 @@
+die
+is.vector(die)
+#Returns if the argument is a vector or not
+
+five<-5
+five
+is.vector(five)
+length(five)
+length(die)
+
+int<-1L
+#Adding L creates an integer vector
+
+text<-"ace"
+#Adding quotation marks creates a character vector
+
+int<-c(1L,5L)
+text<-c("ace","hearts")
+#Creates an atomic vector consisting of two integers or characters
+
+sum(int)
+sum(text)
+#R can only do math with atomic vectors containing numbers
+
+is.vector(die)
+typeof(die)
+#Die is an atomic vector considered a double
+
+text<-c("Hello","world")
+text
+typeof(text)
+typeof("Hello")
+#Storing characters in vectors always requires "" even if it is a number you want to store as a character ex. "1"
+
+3>4
+#Logicals return TRUE or FALSE
+
+logic<-c(TRUE,FALSE,TRUE)
+logic
+typeof(logic)
+typeof(F)
+
+comp <- c(1 + 1i, 1 + 2i, 1 + 3i)
+comp
+typeof(comp)
+#Atomic vector that stores complex number values
+
+raw(3)
+typeof(raw(3))
+#Raw vectors store raw bytes of data
+
+attributes(die)
+#Attributes are info attached to atomic vectors that dont affect values of object, serve as metadata
+
+names(die)
+#Shows that die doesn't have name attributes
+
+names(die) <- c("one", "two", "three", "four", "five", "six")
+names(die)
+#Now it does!
+
+names(die)
+attributes(die)
+die
+
+die+1
+#Only changes double values of die, not name attributes
+
+names(die) <- c("uno", "dos", "tres", "quatro", "cinco", "seis")
+die
+#Changes name attributes of die
+
+names(die)<-NULL
+#Removes name attributes of die
+
+dim(die)<-c(2,3)
+die
+#dim function transforms an atomic vector into an n-dimensional array
+
+dim(die)<-c(1,2,3)
+die
+#Transforms into a 3D hypercube with 1 row, 2 columns, 3 slices. Displays as 2D
+
+m<-matrix(die, nrow=2)
+m
+
+m<-matrix(die,nrow=2,byrow=TRUE)
+m
+
+m<-matrix(die,nrow=3,byrow=TRUE)
+m
+#Various ways to arrange matrix output
+
+ar<-array(c(11:14, 21:24, 31:34), dim = c(2, 2, 3))
+ar
+#Arrays generate the same output as dim(). Arrays use an atomic vector as argument 1 and dim() data as argument 2.
+
+rf<-c("ace","spades","king","spades","queen","spades","jack","spades","ten","spades")
+rf
+matrix(rf,nrow=5,byrow=TRUE)
+
+dim(die) <- c(2, 3)
+typeof(die)
+class(die)
+#Changing the dimensions of an object doesn't change the type of object but does change the object's class
+
+class(die)
+attributes(die)
+#Attributes function does not always display class attributes, data returned with class() function
+
+class("Hello")
+class(5)
+
+now<-Sys.time()
+now
+typeof(now)
+class(now)
+#POSIXct is a framework for representing dates and times
+
+unclass(now)
+#Unclass removes class attributes. In this case, it removes POSIXct and reverts class to seconds since 1970.
+
+mil<-1000000
+mil
+class(mil)<-c("POSIXct","POSIXt")
+mil
+#Date format can be applied to any number to find how long since 12:00 a.m. Jan. 1, 1970 the number in seconds is
+
+gender<-factor(c("male","female","female","male"))
+typeof(gender)
+#Factors store categorical information. Factor function recodes atomic vector data and stores as integers
+
+attributes(gender)
+
+unclass(gender)
+#Shows how R is storing factor gender
+
+gender
+
+as.character(gender)
+#Converts a factor to a character
+
+card<-c("ace","hearts",1)
+card
+#R doesn't know what to do with multiple vector formats stored in one type of data. R turns all values into characters
+
+#Via coercion, R turns multple types of data into the same format.
+  #Logical + character = character (TRUE=1,FALSE=0)
+  #Logical + number = numerical
+  #Logical + number + character = character
+
+sum(c(TRUE,TRUE,FALSE,FALSE))
+#Above becomes sum(c(1,1,0,0))
+
+as.character(1)
+as.logical(1)
+as.numeric(FALSE)
+#Function as.XYZ will convert the data argument into the specified vector type
+
+list1 <- list(100:130, "R", list(TRUE, FALSE))
+list1
+#List() creates a list the same way that c creates a vector. Only 1 dimensional
+
+cardL<-list("ace","hearts",1)
+cardL
+
+
+df<-data.frame(face=c("ace","two","six"), suit=c("clubs","clubs","clubs"), value=c(1,2,3))
+df
+#Data frames are two-dimensional lists. Each column(face/suit/value) can only store 1 vector type and each column name is an argument
+
+typeof(df)
+class(df)
+str(df)
+#Str() shows what types of objects are grouped together in a list or data frame
+
+df <- data.frame(face = c("ace", "two", "six"),  
+                 suit = c("clubs", "clubs", "clubs"), value = c(1, 2, 3),
+                 stringsAsFactors = FALSE)
+#Str(df) revealed that df stored our strings as factors. stringsasfactors=FALSE solves this.
+
+deck <- data.frame(
+  face = c("king", "queen", "jack", "ten", "nine", "eight", "seven", "six",
+           "five", "four", "three", "two", "ace", "king", "queen", "jack", "ten", 
+           "nine", "eight", "seven", "six", "five", "four", "three", "two", "ace", 
+           "king", "queen", "jack", "ten", "nine", "eight", "seven", "six", "five", 
+           "four", "three", "two", "ace", "king", "queen", "jack", "ten", "nine", 
+           "eight", "seven", "six", "five", "four", "three", "two", "ace"),  
+  suit = c("spades", "spades", "spades", "spades", "spades", "spades", 
+           "spades", "spades", "spades", "spades", "spades", "spades", "spades", 
+           "clubs", "clubs", "clubs", "clubs", "clubs", "clubs", "clubs", "clubs", 
+           "clubs", "clubs", "clubs", "clubs", "clubs", "diamonds", "diamonds", 
+           "diamonds", "diamonds", "diamonds", "diamonds", "diamonds", "diamonds", 
+           "diamonds", "diamonds", "diamonds", "diamonds", "diamonds", "hearts", 
+           "hearts", "hearts", "hearts", "hearts", "hearts", "hearts", "hearts", 
+           "hearts", "hearts", "hearts", "hearts", "hearts"), 
+  value = c(13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 13, 12, 11, 10, 9, 8, 
+            7, 6, 5, 4, 3, 2, 1, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 13, 12, 11, 
+            10, 9, 8, 7, 6, 5, 4, 3, 2, 1)
+)
+#This is a TON of typing! What if we could load the data instead?
+
+head(deck)
+#head() and tail() provide a look at the beginning and end of datasets
+
+write.csv(deck, file="cards.csv",row.names=FALSE)
+#R will generate the csv files in the working directory. The csv will be a new file named cards.csv.

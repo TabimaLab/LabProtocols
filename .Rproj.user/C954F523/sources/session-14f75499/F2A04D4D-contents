@@ -1,0 +1,21 @@
+#Combining 2D objects
+#Data frames can take any kind of data (character, int)
+#Matrixes can only use the same kinds of data
+
+a<-c("A","A","A")
+b<-c(1:3) #sequential numbers
+
+matrix(a,b)
+matrix(b,b)
+data.frame(b,b)
+as.matrix(data.frame(b,b))
+as.matrix(data.frame(a,b))
+
+#Lists - n dimensional
+
+c<-data.frame(a,b)
+file.cabinet<-list(a,b,c)
+#Objects marked by [[]]
+file.cabinet[[1]]
+file.cabinet[[3]]
+#Allows calling different data (and different data types) from the list

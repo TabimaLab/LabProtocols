@@ -1,0 +1,27 @@
+{
+    "id": "9D6C7AC6",
+    "path": "~/DADA_script/Data_Analysis.Rmd",
+    "project_path": null,
+    "type": "r_markdown",
+    "hash": "0",
+    "contents": "",
+    "dirty": true,
+    "created": 1676489153039.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "chunk_output_type": "inline",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "260,0",
+        "scrollLine": "250"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1676491255,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1679509320578,
+    "read_only": false,
+    "read_only_alternatives": []
+}

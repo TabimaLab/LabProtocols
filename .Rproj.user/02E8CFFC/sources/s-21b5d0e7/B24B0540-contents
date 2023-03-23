@@ -1,0 +1,14 @@
+#                                                                              --- full sequence ---- --- best 1 domain ---- --- domain number estimation ----
+# target name                       accession  query name           accession    E-value  score  bias   E-value  score  bias   exp reg clu  ov env dom rep inc description of target
+#               ------------------- ---------- -------------------- ---------- --------- ------ ----- --------- ------ -----   --- --- --- --- --- --- --- --- ---------------------
+jgi|Batsa1|8076|transcript:OOM99674 -          Het-C                PF07217.14      0.29    9.1   7.6      0.37    8.7   7.6   1.1   1   0   0   1   1   1   0 -
+#
+# Program:         hmmsearch
+# Version:         3.3 (Nov 2019)
+# Pipeline mode:   SEARCH
+# Query file:      het_c_HMM.hmm
+# Target file:     Batsa1_GeneCatalog_proteins_20210224.aa.fasta
+# Option settings: hmmsearch --tblout HETC_chytrid2_table het_c_HMM.hmm Batsa1_GeneCatalog_proteins_20210224.aa.fasta 
+# Current dir:     /Tabima_lab/homes/jcarleton/MBB101/Final_project
+# Date:            Fri Dec  2 14:23:47 2022
+# [ok]

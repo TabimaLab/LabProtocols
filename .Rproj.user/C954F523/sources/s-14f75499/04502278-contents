@@ -1,0 +1,125 @@
+library(vegan)
+
+DWH.clones<-read.table(file="~/Microbiomes_FA2022/NMDS_Analysis/Redmond_clone_data_all.txt",sep="\t",header=T,row.names=1)
+head(DWH.clones)
+
+DWH.info<-read.table(file="~/Microbiomes_FA2022/NMDS_Analysis/Redmond_sample_info_all.txt",sep="\t",header=T,row.names=1)
+head(DWH.info)
+
+Watershed.metadata<-read.table(file="~/Microbiomes_FA2022/Metadata_table.txt",sep="",header=T)
+head(Watershed.metadata)
+
+Watershed.phylaOTU<-read.table(file="~/Microbiomes_FA2022/phyla_data.txt")
+head(Watershed.phylaOTU)
+
+### check that the sample names are the same for DWH.clones and DWH.info
+## should be a series of TRUE's
+rownames(DWH.clones)==rownames(DWH.info)
+rownames(Watershed.phylaOTU)==rownames(Watershed.metadata)
+
+rowSums(Watershed.phylaOTU)
+Watershed.relabund<-Watershed.phylaOTU/rowSums(Watershed.phylaOTU)
+
+## convert DWH.clones to rel abundance
+## Divide each row by the total number of clones for that sample (row)
+## The total number of clones is easily determined using the function
+## rowSums
+rowSums(DWH.clones)
+DWH.relabund<-DWH.clones/rowSums(DWH.clones)
+
+#########################################################
+### Beta diversity
+#########################################################
+### calculate BC scores
+DWH.BC<-vegdist(DWH.clones)
+DWH.BC.matrix<-as.matrix(DWH.BC)
+
+## Find P.May samples
+which(DWH.info$Plume.date=="P.May")
+
+## pull out P.May results with [] notation
+## matrix[row.numbers,col.numbers]
+DWH.BC.matrix[14:22,14:22]
+
+## take mean of those scores
+mean(DWH.BC.matrix[14:22,14:22])
+
+## Find NP.May samples
+which(DWH.info$Plume.date=="NP.May")
+
+## pull out NP.May results with [] notation
+DWH.BC.matrix[1:4,1:4]
+
+## take mean of those scores
+mean(DWH.BC.matrix[1:4,1:4])
+
+## Look at P.May vs NP.May samples
+DWH.BC.matrix[14:22,1:4]
+mean(DWH.BC.matrix[14:22,1:4])
+
+
+which(DWH.info$Plume.date=="P.June")
+
+## P.May vs NP.May
+mean(DWH.BC.matrix[14:22,1:4])
+## P.May vs P.June
+mean(DWH.BC.matrix[14:22,9:13])
+
+## Compare scores with t-test for 
+## scores between P.May vs NP.May & P.May vs P.June
+#t.test(DWH.BC.matrix[14:22,1:4],DWH.BC.matrix[14:22,9:13])
+
+
+### make simple matrix to look at BC scores: P.May vs NP.May & P.May vs P.June
+a<-cbind(rep(1,length(as.vector(DWH.BC.matrix[1:4,14:22]))),as.vector(DWH.BC.matrix[1:4,14:22]))
+b<-cbind(rep(2,length(as.vector(DWH.BC.matrix[9:13,14:22]))),as.vector(DWH.BC.matrix[9:13,14:22]))
+c<-rbind(a,b)
+
+
+plot(c,xlim=c(0,3),ylab="BC dissimilarity",xlab="Comparison",ylim=c(0,2))
+points(1,mean(DWH.BC.matrix[1:4,14:22]),pch=19,col='red')
+points(2,mean(DWH.BC.matrix[9:13,14:22]),pch=19,col='red')
+text(c(1,2),c(1.5,1.5),label=c("P.May vs NP.May","P.May vs P.June"),cex=.5)
+
+colnames(c)<-c("Comparison","BC")
+c.df<-as.data.frame(c)
+c.df$Comparison<-as.factor(c.df$Comparison)
+c.df$BC<-as.numeric(as.character(c.df$BC))
+c.df$Comparison<-as.factor(c("P.May vs NP.May","P.May vs P.June")[as.factor(c[,1])])
+boxplot(BC~Comparison,data=c.df,ylab="BC score")
+points(1,mean(DWH.BC.matrix[1:4,14:22]),pch=19,col='red')
+points(2,mean(DWH.BC.matrix[9:13,14:22]),pch=19,col='red')
+
+
+##########################################
+####### NDMS plot ########################
+##########################################
+
+## make a color scheme
+col.1<-c("red","black","blue")
+col.2<-c("orange","grey","green")
+col.3<-c(col.1,col.2)
+
+## do the MDS function
+DWH.mds<-metaMDS(DWH.clones)
+
+## make an MDS plot
+## make empty plot with the correct x and y limits
+plot(DWH.mds$point,type='n')
+## add the points back without any format
+points(DWH.mds$points)
+
+### make a plot with points colored by Plume.date
+plot(DWH.mds$point,type='n')
+points(DWH.mds$points,col=col.3[DWH.info$Plume.date],pch=19)
+legend('topright',levels(DWH.info$Plume.date),text.col = col.3,cex=0.8,bg=NA,box.col=NA)
+
+## Make plot with points by Plume, Nonplume, surface
+plot(DWH.mds$point,type='n')
+points(DWH.mds$points,col=col.1[DWH.info$Plume],pch=19)
+legend('topright',levels(DWH.info$Plume),text.col = col.1,cex=0.8,bg=NA,box.col=NA)
+
+### test if NMD sample clustering by P,NP,surface is statistically significant
+adonis(DWH.clones~Plume,data=DWH.info,method='bray')
+
+

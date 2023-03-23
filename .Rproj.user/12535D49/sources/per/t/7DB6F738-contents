@@ -1,0 +1,235 @@
+---
+title: "7_basic_commands_for_seq"
+author: "Maddie Hincher"
+date: '2022-09-20'
+output: html_document
+---
+
+Question 1: What commands you used to download the files?
+```
+wget link 
+```
+
+Question 2: What kind of sequence (DNA/RNA/Protein) is the S79522.seq file? Briefly justify your answer.
+
+DNA sequences because we can see all 4 nucleic acids A,C,T,G 
+
+Question 3: What kind of of sequence (DNA/RNA/Protein) is the AAB21188.seq file? Briefly justify your answer.
+
+Protein because we can see the different amino acids that make protein sequences 
+
+Question 4: How many lines are found on this file?
+
+```
+wc S79522.seq
+```
+1 line 
+
+Question 5: How many characters are found on this file? (Or, what is the length of this sequence?)
+
+541 
+
+Question 6: How many A, C, G, and T can you find in this sequence?
+
+**how can i do this without the pipeline** 
+
+**why does this total 540 when it says bytes are 541** 
+
+ grep -o G S79522.seq | wc -l
+131
+grep -o A S79522.seq | wc -l
+171
+grep -o T S79522.seq | wc -l
+134
+grep -o C S79522.seq | wc -l
+104
+
+Question 7: Convert this sequence to RNA and save it in a file called S79522_RNA.seq. Please add the command you used to create the file. (Don’t create a complementary strand, just convert this one from DNA to RNA)
+
+```
+sed s/T/U/g S79522.seq > S79522_RNA.seq
+```
+
+
+Question 8: How can we test that this new file is an RNA sequence S79522_RNA.seq. Please add a command you’d use to check if this is DNA or RNA.
+
+`head S79522_RNA.seq`  shows me if the T's are actually replaced with U's. 
+
+Question 9: Finally, using your RNA sequence, check how many start codons (AUG) or stop codons (UAG,UAG, or UGA) may exist in your sequence
+
+**change one stop codon to UAA** 
+
+```
+grep -o AUG S79522_RNA.seq
+  11
+grep -o UAG S79522_RNA.seq 
+  3
+grep -o UAA S79522_RNA.seq 
+  10 
+grep -o UGA S79522_RNA.seq
+  14
+```
+
+Question 10: How many characters are found on this file? (Or, what is the length of this sequence?)
+
+**change the file name to AAB21188.seq** 
+
+```
+wc AAB21188.seq
+```
+157 
+
+Question 11: Select two aminoacids of interest and count them. Please add the command used to count them.
+
+```
+grep -o M AAB21188.seq
+  2
+grep -o C AAB21188.seq 
+  6
+```
+
+Question 12: Which patterns do you find in the sequence? Fill in this table:
+
+**change the file name in the table to AAB21188.seq** 
+
+|   Sequence   | Ribosomal 27 | Ubiquitin | IBR | DNA poly A |
+|:------------:|:------------:|:---------:|:---:|:----------:|
+| AAB21188.seq | yes          | yes       | no  | no         |
+
+Question 12: Did these results match what you did at the beginning of the lab? Expand briefly your answer.
+
+**change to question 13** 
+
+**change in the example of `grep -c` to `grep -o`**
+
+yes, this is the same number as from before, it is the same outcome just in one line of code. 
+
+Question 13: How would you count the other nucleotides?. Add the code below:
+
+**change to question 14**
+
+```
+nucC=$(grep -o C S79522.seq | wc -l)
+nucG=$(grep -o G S79522.seq | wc -l)
+```
+
+Question 14: Write a set of instructions to count ten of the aminoacids in the AAB21188.seq file.
+
+**change to question 15** 
+
+```
+aminoM=$(grep -o M AAB21188.seq  | wc -l) 
+echo $aminoM
+
+aminoQ=$(grep -o Q AAB21188.seq  | wc -l) 
+echo $aminoQ
+
+aminoI=$(grep -o I AAB21188.seq  | wc -l) 
+echo $aminoI
+
+aminoF=$(grep -o F AAB21188.seq  | wc -l) 
+echo $aminoF
+
+aminoV=$(grep -o V AAB21188.seq  | wc -l) 
+echo $aminoV
+
+aminoK=$(grep -o K AAB21188.seq  | wc -l) 
+echo $aminoK
+
+aminoT=$(grep -o T AAB21188.seq  | wc -l) 
+echo $aminoT
+
+aminoL=$(grep -o L AAB21188.seq  | wc -l) 
+echo $aminoL
+
+aminoG=$(grep -o G AAB21188.seq  | wc -l) 
+echo $aminoG
+
+aminoP=$(grep -o P AAB21188.seq  | wc -l) 
+echo $aminoP
+```
+
+Question 15: 
+
+**change to question 16**
+
+
+Cyberduck server
+
+Question 15: How did you check if the files were correctly uploaded?
+
+go to directory where they were placed and head the files 
+
+Question 16: Briefly summarize what is a FASTA and what is a GenBank file (one sentence each)
+
+FASTA files contain a header and the sequence while genbank files contain a lot more information about the sequence and its source 
+
+Question 17: Can these formats include RNA, DNA and Aminoacid data? (Yes/No answer)
+
+Yes for both 
+
+Question 18: 
+What format is the sequence_1 file in? (FASTA or GenBank) Briefly explain your answer.
+FASTA
+What format is the sequence_2 file in? (FASTA or GenBank) Briefly explain your answer.
+GenBank 
+
+Question 19: 
+How many lines does the sequence_1 file has?
+10 lines 
+How can you count the number of SEQUENCES that exist in the sequence_1 file?
+
+`grep -o '>' sequence_1 | wc -l ` 
+
+What is the number of sequences in the sequence_1 file? Is this result different than the number of lines in the file? Why?
+
+5 sequences, yes this is different than the amount of lines 
+
+This extracts line 1 and 2 with all lines that do not have ">" 
+```
+sed -n '1,2 p' sequence_1 | grep -v ">" 
+```
+
+Extract the sequence in lines 1 and 2, that do not contain ">" and count the length 
+```
+sed -n '1,2 p' sequence_1 | grep -v ">" | wc -c 
+```
+
+7478
+
+How can you save the new sequence in a new FASTA file?
+
+use the carrot 
+
+```
+sed -n '3,4 p' sequence_1 > sequence_1_2
+sed -n '5,6 p' sequence_1 > sequence_1_3
+sed -n '7,8 p' sequence_1 > sequence_1_4
+sed -n '9,10 p' sequence_1 > sequence_1_5
+```
+Question 20: 
+1. Count the number of A,G,C and T?
+`grep -o A sequence_1_1 | grep -v ">" | wc -l` 
+  - just replace A for C,T,G 
+  - replace sequence 1_1 for 1_2, 1_3, 1_4, 1_5 
+2. Count the length of each sequence?
+`grep -v ">" sequence_1_1 | wc -c`
+  - replace sequence 1_1 for 1_2, 1_3, 1_4, 1_5
+3. Count the number of open reading frames (ORF)?
+`grep -o ATG sequence_1_1 | grep -v ">"  | wc -l`
+  - replace sequence 1_1 for 1_2, 1_3, 1_4, 1_5
+
+Question 21: How many lines does the sequence_2 file has?
+310 lines 
+
+Question 22: 
+1. If you were looking for the information on the gene that codes for lacZ, what line would you use?
+  - line 130
+2. What species is this gene taken from?
+  - E.coli 
+3. What genomic region does this represent?
+  - lactose operon 
+  
+Question 23 
+
+

@@ -1,0 +1,21 @@
+Results of DNA Extraction:
+
+260/280: 1.84
+
+260/230: 0.73
+
+Qubit concentration: 20.3 ng/μl
+
+Total DNA extracted: 1075.9 ng
+
+NanoDrop concentration: ![Image](Nanodrop_4.png)
+
+Gel results: ![Image2](Gels.png)
+
+The NanoDrop concentration is less than the Qubit concentration.
+
+The difference between NanoDrop and Qubit is that Nanodrop can analyze purity while Qubit analyzes DNA composition.
+
+The extraction was somewhat of high molecular weight. The band of the gel is visible, but not very clear. There were some salt contaminants that may have impacted the purity of the extraction.
+
+Yes, we extracted enough DNA for a sequencing.

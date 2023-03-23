@@ -1,0 +1,224 @@
+deal(deck)
+deal(deck)
+deal(deck)
+#Always spits out same answer. Not how dealing cards actually works
+
+shuffle(deck)
+#This doesn't actually shuffle deck. It only returns a copy of deck that has been shuffled
+
+deal(deck)
+#Same as above, even after shuffling
+
+as.environment()
+#If you give this an argument it will return the corresponding environment based on the argument
+
+globalenv()
+baseenv()
+emptyenv()
+#Three environments that have their own "accessor functions"
+
+parent.env(globalenv())
+#Command for looking up an environments parent
+
+parent.env(emptyenv())
+#Only environment with a parent env.
+
+ls(emptyenv())
+#ls returns the object names saved in an environment
+
+ls(globalenv())
+ls.str(globalenv())
+#ls.str returns more info about the objects stored in an enviornment
+
+head(globalenv()$deck, 3)
+#A fancy way of calling the first 3 rows of deck by asking for the globalenv but only looking at deck using $deck
+
+assign("new", "Hello Global", envir = globalenv())
+globalenv()$new
+#Above commands create "new" object in globalenv (assigned via envir = ) and then assign Hello Global to new. $new calls new from globalenv()
+  #Assign works similar to <- except assign will write over an existing object without asking for permission
+
+environment()
+#This command will return the current active environment
+
+#The Global Environment should be seen as the user workspace.
+
+#Scoping Rules
+  #1. R looks for objects in the current active environment
+  #2. When working in the command line, the active env is the global environment
+  #3. When R doesn't find an object in the current env. it will look through parent environements in sequence until it finds the object or reaches the empty environment.
+
+new
+new<-"Hello Active"
+new
+#An example of overwriting objects in the global env.
+
+roll <- function() {
+  die <- 1:6
+  dice <- sample(die, size = 2, replace = TRUE)
+  sum(dice)
+}
+#When the author of a function writes code that we later use, they can't predict if we used die and dice as objects already. If they use these words as objects it could cause errors when R
+  #overwrites our previous object assignments. How to we overcome this?
+
+show_env <- function(){
+  list(ran.in = environment(), parent = parent.env(environment()), objects = ls.str(environment()))
+}
+#Above function tells use what an environment looks like. What are its parent environments and what objects do they contain?
+
+show_env()
+#R creates a runtime environment to evaluate this function in. It returns the name of the runtime environment, its parent, and the objects it contains.
+  #R created an environment with a semi-random name, its parent environment is R_GlobalEnv, and it contains zero objects.
+
+environment(show_env)
+#This command returns a functions origin environment
+
+environment(parenvs)
+#I don't have pryr loaded but it would be the parent of parenvs
+
+show_env <- function(){
+  a<-1
+  b<-2
+  c<-3
+  list(ran.in = environment(), parent = parent.env(environment()), objects = ls.str(environment()))
+}
+#R stores objects created as part of show_env in show_env's runtime environment
+
+show_env()
+#Now we have objects stored in show_env! This is how R ensures it doesn't overwrite objects; it stores new objects in the runtime environment of it's function.
+
+foo <- "take me to your runtime"
+show_env <- function(x=foo){
+  list(ran.in = environment(), parent = parent.env(environment()), objects = ls.str(environment()))
+}
+show_env()
+#R brings objects into its runtime environment if they are provided as arguments
+
+deal<-function(){
+  deck[1, ]
+}
+
+deal()
+environment(deal)
+#When R executes deal() it needs to find deck. It uses scoping rules to find deck in the GlobalEnv
+
+DECK<-deck
+deck<-deck[-1, ]
+head(deck,3)
+
+deal <- function() {
+  card <- deck[1, ]
+  deck <- deck[-1, ]
+  card
+}
+#This code doesn't work bc R is using a runtime when it executes deck<-deck[-1, ]. Instead of overwriting deal, R creates a copy of deck in its runtime that it overwrites instead
+
+deal<-function(){
+  card<-deck[1, ]
+  assign("deck", deck[-1, ], envir=globalenv())
+  card
+}
+deal()
+#Above function uses assign to transfer copy of deck with one card removed out of the runtime environment
+
+help(assign)
+#deck is the variable name; deck[-1, ] is the value assigned to deck; envir=globalenv() tells assign what environment to use
+
+shuffle <- function(cards){
+  random<-sample(1:52, size=52)
+  cards[random, ]
+}
+head(deck, 3)
+a <- shuffle(deck)
+head(deck, 3)
+head(a, 3)
+#Shuffle fails to shuffle deck and only returns a copy of deck which may lack the previously dealt cards
+
+shuffle<-function(){
+  random<-sample(1:52, size=52)
+  assign("deck", DECK[random, ], envir=globalenv())
+}
+#DECK lives in the global environment which is where shuffle originates. Therefore, shuffle will be able to find DECK when it creates its new runtime environment. 
+  #Technically, R first searches for DECK in shuffles runtime environment but can'f find it so it moves to the global environment (above shuffle's runtime) and finds DECK there.
+  #Line two of shuffle assigns a random list of 1 through 52 to random using the sample command.
+  #Line three assigns the object deck, DECK after it has been reordered via line 2, and places our newly shuffled deck in the global environment.
+
+shuffle()
+deal()
+deal()
+deal()
+#Both functions work now! But, they require that deck and DECK exist in the global environment meaning they could be modified or erased by accident.
+  #Maybe we could store deck in a runtime environment all on its own?
+
+setup<-function(deck){
+  DECK<-deck
+  
+  DEAL<-function(){
+    card<-deck[1, ]
+    assign("deck", deck[-1, ], envir=globalenv())
+    card
+  }
+  
+  SHUFFLE<-function(){
+    random<-sample(1:52, size=52)
+    assign("deck", DECK[random, ], envir=globalenv())
+  }
+  
+  list(deal=DEAL, shuffle=SHUFFLE)
+}
+cards<-setup(deck)
+#So what do the above nested functions do better than our previous work?
+  #First, setup creates a function that uses deck as an argument and assigns DECK the contents of deck.
+  #Second, DEAL creates a function that assigns card the first row in the deck. Assign moves the remainder of the deck to deck and shifts the data to the global environment. Then card is called.
+  #Finally, SHUFFLE function uses sample to assign a random list of 1-52 to random. This random list is assigned to DECK, DECK is assigned to deck and moved to the global environment.
+  #Both DEAL and SHUFFLE are saved in the environment of setup. This includes DECK and deck which means they are no longer in the globalenv and can't be accidentally modified.
+  #setup will also return DEAL and SHUFFLE as lists so they can be used.
+
+deal<-cards$deal
+shuffle<-cards$shuffle
+#This code saves each element of the list to a dedicated object in the global environment
+
+deal
+shuffle
+#Both deal and shuffle return the same code as before, but now they are stored in a specific environment that is not the runtime environment
+
+environment(deal)
+environment(shuffle)
+#Now when we run deal or shuffle R will evaluate the functions in a runtime environment that uses 0x564b31bfa3b8 as its parent. DECK and deck are in the parent environment so both
+  #functions will be able to find them when the functions are run.
+
+#Setup is the enclosing environment. Both deal and shuffle can work with objects inside setup but R can't access
+  #objects inside setup because of scoping rules only going up.
+
+setup <- function(deck) {
+  DECK <- deck
+  
+  DEAL <- function() {
+    card <- deck[1, ]
+    assign("deck", deck[-1, ], envir = parent.env(environment()))
+    card
+  }
+  
+  SHUFFLE <- function(){
+    random <- sample(1:52, size = 52)
+    assign("deck", DECK[random, ], envir = parent.env(environment()))
+  }
+  
+  list(deal = DEAL, shuffle = SHUFFLE)
+}
+#envir is changed from previous function. Now it assigns to parent.env(environment) which means it only assigns to 
+  #a copy of deck in the setup runtime rather than the global environment.
+
+cards <- setup(deck)
+deal <- cards$deal
+shuffle <- cards$shuffle
+#Assigns setup function with deck argument to cards. Assigns deal only the deal function in setup? Same with shuffle?
+
+rm(deck)
+shuffle()
+deal()
+deal()
+#First removes deck object from global environment. Then runs shuffle using the enclosed version of shuffle with a
+  #protected copy of deck. Then deals cards with protected deck via enclosed deal function.
+
+#Closures are functions linked to objects in protected environments.

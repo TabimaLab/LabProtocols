@@ -1,0 +1,1160 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Laboratory Notebook},
+  pdfauthor={Tabima Lab Clark University},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{natbib}
+\bibliographystyle{plainnat}
+
+\title{Laboratory Notebook}
+\author{Tabima Lab Clark University}
+\date{2023-03-23}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{lab-notebook}{%
+\chapter{Lab Notebook}\label{lab-notebook}}
+
+\hypertarget{important-links}{%
+\section{Important links:}\label{important-links}}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://docs.google.com/spreadsheets/d/1pGUzsWAr1MFi6S8qB0vqCi13KEJZK6hMMWwoQvy9OPc/edit\#gid=0}{Buying list for lab}
+\end{itemize}
+
+\hypertarget{goals-and-expectations}{%
+\chapter{Goals and Expectations}\label{goals-and-expectations}}
+
+The goal of this research group is to study our topics of interest in a passionate yet humane way. We strive for scientific excellence meaning we are clear, thorough and methodical with our science, of course. However, the most important thing in the lab is you and your mental and emotional health. This means that, while I expect you to be an integral and complete scientist, I also immensely value you as a human being. Failures and all.
+
+In addition, as a community I expect a largely collaborative research group. While each project may have and independent leader, we strive in our differences and our knowledge. Ask for help, share your results and your concerns, don't be afraid of failing but be ready to learn from your mistakes, and celebrate and use your community of the lab (and the department) as your academic (and personal, if you so wish) support structure.
+
+Finally, as a general note, I expect all members in the lab to do the following:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Foster and nurture your scientific motivation! I understand that working with animal poop is probably not the way you thought you life is going to be. However, think about the beautiful things we can find there! All the diversity and ecological interactions that reflect so many facets of life\ldots{}
+\item
+  Read and try to stay up to date with the scientific literature. There are a list of papers that are mandatory to read as part of being in the lab (Google docs folder I shared with you when you join the lab). In addition, start creating a mendeley/EndNote/Zotero list of papers of interest that you read (or at least skim in depth) and can use for your publications and presentations
+\item
+  Learn the basic protocols for your research project. We have a folder with protocols in the Google Drive folder that includes the basic elements all members of the lab should know, so please study them before attempting to replicate them. ASK FOR HELP!! Either me or the more senior students already have experience with these methods, so ask us to guide you through them
+\item
+  Maintain a complete, well annotated and super detailed laboratory notebook. Make sure to be very very detailed: What protocol did you use? Did you modify it in any way possible? What were the results? Take pictures of all the gels, tables, ect, and add them to the notebook. Be very strict with this: Your notebook is the support of all of your results, the guide to troubleshooting and the holy grail of what is working and not. This is your most sacred document and treat it as such!
+\item
+  Attend Lab meetings. We will get together every Thursday at noon. Bring lunch or I can get pizza for everyone. This is the space where we will be a community and discuss our results, troubleshoot our protocols, and read relevant literature. Some terms we will do result presentations, some terms we will learn how to program and bioinformatics, some terms we will talk about papers. Lab meetings are mandatory!!
+\item
+  Send me the papers/posters/important documents that will be shared widely. Since we are working in a collaborative manner, I need to provide my input (even if minimally) to any of the papers, posters, presentations that will be presented in public. This way we maintain uniformity and I can also be held responsible for the elements presented. We are a team!
+\end{enumerate}
+
+\hypertarget{isolation-and-culturing}{%
+\chapter{Isolation and Culturing}\label{isolation-and-culturing}}
+
+\hypertarget{culturing}{%
+\section{Culturing}\label{culturing}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Make sure the hood has been on UV for at least 30 minutes before plating and clean hood surfaces
+\item
+  Use scalpel or plug puncher to remove agar from the edge of the original culture's growth, transfer to new plate
+\item
+  Parafilm both plates back up, label the new plate with the specimen type, media type, date, and initials
+\item
+  Place the new culture in the 25°C and the old culture in the tall incubator
+\end{enumerate}
+
+\hypertarget{isolation-from-fresh-poop}{%
+\section{Isolation From Fresh Poop}\label{isolation-from-fresh-poop}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Collect poop from specimen bag and place it into a 2mL tube
+\item
+  Vortex the tube before plating
+\item
+  Begin plating under the hood, ensure to Ethanol the area first
+\item
+  Flame tweezers in the microincinerator, open a large plate and place a large filter paper on top of the TWA, gently flatten as needed. If the filter is not completely stuck down/partially moist, slightly moisten the filter with DNA/RNA free water.
+\item
+  Pipette \textasciitilde100mL of poop in 3 separate locations on the filter paper and spread in each area using the pipette tip.
+  \includegraphics{/Tabima_lab/homes/jcarleton/IMG_4514.jpg}
+\item
+  Clean sides of plate with Ethanol, parafilm it closed, label plate (media used, specimen name, initials, date, and time) and place on metal rack or in plastic box on top of the Brandt -20 (make sure the TWA and filter side is on the bottom with PDA on the top)
+\item
+  Check every \textasciitilde24 hours for sporulation
+  \includegraphics{/Tabima_lab/homes/jcarleton/IMG_4550.jpg}
+\item
+  If sporulation has occurred, perform a regular solid culture transfer from the area of sporulation into a fresh PDA plate
+  \includegraphics{/Tabima_lab/homes/jcarleton/IMG_4570.jpg}
+\end{enumerate}
+
+\hypertarget{liquid-sporulation-culture}{%
+\section{Liquid Sporulation Culture}\label{liquid-sporulation-culture}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Make small YPSS plates of specimen at least 1 week prior to liquid culturing
+\item
+  Autoclave and UV components - mason jars, mason jar tops
+\item
+  Under the hood, ethanol rim of mason jar and jar top, then place jar top on mason jar and tape the top and jar together
+\item
+  Pour about 150ml of PDB in through the top opening
+\item
+  Ethanol sides of culture plate, then place plate in the top opening
+\item
+  Cover top fully with aluminum foil, then tape the foil down and write the specimen name, date, type of liquid media, and initials on the tape
+\end{enumerate}
+
+\hypertarget{poop-extractions}{%
+\chapter{Poop Extractions}\label{poop-extractions}}
+
+\hypertarget{fecal-pellet-storage}{%
+\section{Fecal Pellet Storage:}\label{fecal-pellet-storage}}
+
+\begin{itemize}
+\item
+  When a fecal pellet is released, it should be put in a 2 mL tube with a 20\% glycerol solution. The volume of glycerol solution added depends on the size of the pellet: it should be enough to cover the entire pellet but shouldn't dilute it too much.
+\item
+  Store at -20 ℃
+\end{itemize}
+
+\hypertarget{notes-before-beginning}{%
+\subsection{Notes Before Beginning:}\label{notes-before-beginning}}
+
+-Solution CD2 should be stored at 2-8℃ , all other reagents should be stored at room temperature (15-25℃).
+
+-Heat solution CD3 and C6 to 65 ℃ in the water bath.
+
+-Secure the fecal samples in the glycerol solutions on a Vortex Adapter and vortex at maximum speed for 10 minutes.
+
+\hypertarget{dna-extraction-protocol}{%
+\section{DNA Extraction Protocol:}\label{dna-extraction-protocol}}
+
+Protocol modified by the Tabima lab (2022) from the Qiagen DNeasy PowerSoil Pro Kit (2019).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Spin the Powerbead Pro Tube briefly to ensure that the beads have settled to the bottom. Add 200-300 µL of homogenized fecal sample and 800 µL of Solution CD1. Vortex briefly to mix.
+\item
+  Secure the PowerBead Pro Tube horizontally on the Vortex Adapter and vortex at maximum speed for 10-15 minutes.
+\item
+  Centrifuge the PowerBead Pro Tube at 15,000 x g for 1 min.
+\item
+  Transfer the supernatant to a clean 2 mL Microcentrifuge tube (Note: Expect 500-600 µl).
+\item
+  Add 200 µl of Solution CD2 and vortex from 5 s.
+\item
+  Centrifuge at 15,000 x g for 1 min at room temperature. Avoiding the pellet, transfer up to 700 µL of supernatant to a clean 2 mL Microcentrifuge tube.
+\end{enumerate}
+
+7.Add 600 µL of solution CD3 and vortex for 5 s.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\item
+  Load 650 µL of the lysate onto an MB Spin Column and centrifuge at 15,000 x g for 1 min.
+\item
+  Discard the flow-through and repeat step 8 to ensure that all of the lysate has passed through the MB Spin Column.
+\item
+  Carefully place the MB Spin Column into a clean 2 mL collection tube. Avoid splashing any flow-through onto the MB Spin Column.
+\item
+  Add 500 µL of Solution EA to the MB Spin Column. Centrifuge at 15,000 x g for 1 min.
+\item
+  Discard the flow-through and place the MB Spin Column back into the same 2 mL Collection Tube.
+\item
+  Add 500 µL of Solution C5 to the MB Spin Column. Centrifuge at 15,000 x g for 1 min.
+\item
+  Discard the flow-through and place the MB Spin Column into a new 2 mL collection tube.
+\item
+  Centrifuge at 16,000 x g for 2 min. Carefully place the MB Spin Column into a new 1.5 mL Elution Tube.
+\item
+  Add 50-100 µL of Solution C6 to the center of the white filter membrane.
+\item
+  Centrifuge at 15,000 x g for 1 min. Discard the MB Spin Column. The DNA is now ready for downstream applications.
+\end{enumerate}
+
+18.Store DNA at -20 ℃ .
+
+\hypertarget{water-extraction-protocol-for-sterivex-filters}{%
+\chapter{Water Extraction Protocol for Sterivex Filters}\label{water-extraction-protocol-for-sterivex-filters}}
+
+\emph{Modified 2022 by Tabima lab. Modified 2019 by Emily Dart. Modified 2015 by the Brazelton Lab protocols by Rika Anderson, Colleen Kellogg, Julie Heber, and Byron Crump. Incorporated some recommendations from Lever et al.~(2015) Frontiers in Microbiology doi: 10.3389/fmicb.2015.00476.}
+
+\hypertarget{hot-lysis}{%
+\section{Hot Lysis}\label{hot-lysis}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  In a water bath: heat DNA Extraction Buffer (DEB) to 65℃ until crystals dissolve.
+\item
+  Pre-heat thermoshaker to 65℃.
+\item
+  Obtain the Dremel tool and sterilize the bit with 100\% EtOH. Cut the wide end of the Sterivex until you can easily pull the filter out.
+\item
+  Use a sharp, EtOH cleaned, scalpel to cut a horizontal line across the top of the filter and two vertical lines going down the sides. Next, use forceps to remove the filter and place it in a LoBind 2 mL tube.
+\item
+  Add 1.4 mL DEB and 10 µL proteinase K to each tube containing a filter.
+  \textbf{Possible stopping point: store at - 20℃.}
+\item
+  Vortex each tube for 30 seconds.
+\item
+  Incubate 30 minutes at 320 RPM and 65℃ in the thermoshaker.
+\item
+  Vortex each tube again for 30 seconds.
+\end{enumerate}
+
+\hypertarget{phenolchloroform-extraction}{%
+\section{Phenol/Chloroform Extraction}\label{phenolchloroform-extraction}}
+
+1.Transfer fluid from each tube into a fresh 2 mL DNA LoBind tube. Add no more than 900 µL.
+2. Add equal volume of phenol / chloroform / isoamyl alcohol (25:24:1) to each tube.
+3. Gently shake a few times and then centrifuge at 14,000g for 1 minute.
+4. Remove supernatant to a fresh tube (about 800 µl).
+5. Add equal volume of chloroform / isoamyl alcohol (24:1) to each tube.
+6. Gently shake a few times and then centrifuge at 14,000g for 1 minute.\\
+7. Remove supernatant to a fresh tube. Add no more than 550 µL.
+
+\hypertarget{ethanol-precipitation}{%
+\section{Ethanol Precipitation}\label{ethanol-precipitation}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Add 0.1 volumes of sodium acetate (3 M, pH 5.2). (e.g.~add 55 µL to 550 µL).
+\item
+  Add 1 volume of 100\% molecular-grade Isopropanol.
+\item
+  Invert a few times to mix.
+\item
+  Incubate at -20℃ for at least 1 hour or overnight. Recommended 2 hours
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Centrifuge for 40 minutes at 16,000g at 0℃.
+\item
+  Pour out the supernatant. Keep at a gentle angle to minimize chance of pellet falling out.
+\item
+  Add 500 µL of cold 70\% ethanol to each tube.
+\item
+  Invert tube to mix. Make sure the pellet is dislodged from the bottom so that it is properly washed.
+\item
+  Centrifuge at 16,000g for 10 minutes.
+\item
+  Remove liquid again with a pipettor. Be careful to avoid pellet.
+\item
+  Leave open lids of tubes for up to 5 minutes until pellet is dry.
+\item
+  Resuspend pellet in 100 µL of 1x TE (use 70 µL if low concentration is expected). Heat to 55℃ for up to 10 minutes to dissolve pellet.
+  For long term storage, place in -20℃.
+\end{enumerate}
+
+\hypertarget{solutions-to-prepare}{%
+\section{Solutions To Prepare}\label{solutions-to-prepare}}
+
+\hypertarget{dna-extraction-buffer-deb-makes-45ml}{%
+\subsection{DNA Extraction Buffer (DEB) Makes 45mL}\label{dna-extraction-buffer-deb-makes-45ml}}
+
+0.1 M Tris-HCl (pH 8): \emph{4.5 mL} of 1.0 M
+0.1 M Na-EDTA (pH 8): \emph{9 mL} of 0.5 M
+0.1 M KH2PO4 (pH 8): \emph{0.54 g}
+1.5 M NaCl: \emph{13.5 mL} of 5 M
+0.8 M Guanidine HCl: \emph{3.44 g}
+0.5\% Triton-X 100: \emph{0.225 mL} of 100\%
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Add above ingredients to 50 mL tube.
+\item
+  Add milli-Q water to \textasciitilde40 mL
+\item
+  Add NaOH to pH 10 (several drops at a time)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    make sure pH probe is calibrated
+  \end{itemize}
+\item
+  Add milli-Q water to 45 mL
+\item
+  Autoclave. Slightly loosen the lid so that it is not air-tight. Recover from autoclave very soon after the autoclave cycle is completed.
+\item
+  Pour autoclave solution into fresh 50 mL tube
+\item
+  \textbf{Optional: aliquot into 1.5 mL tubes}
+\end{enumerate}
+
+\hypertarget{low-edta-te}{%
+\subsection{Low EDTA TE:}\label{low-edta-te}}
+
+10 mM Tris-HCl
+0.1 mM EDTA
+
+\hypertarget{m-sodium-acetate-ph-5.2}{%
+\subsection{3 M sodium acetate, pH 5.2}\label{m-sodium-acetate-ph-5.2}}
+
+24.61g NaCl
+Acetic acid
+100 mL milli-Q water
+
+In autoclaved glassware, add water to sodium acetate and bring volume to 80 mL. Add acetic acid until pH is 5.2. Bring the final volume to 100 mL. Filter sterilize with 0.22µm filter to remove spores. Autoclave.
+
+\hypertarget{n-nacl}{%
+\subsection{5 N NaCl}\label{n-nacl}}
+
+\begin{verbatim}
+29.22g NaCl
+100 mL milli-Q water
+\end{verbatim}
+
+In autoclaves glassware, add water to NaCl. Bring to 100 mL. Filter sterilize to remove spores. Autoclave.
+
+\hypertarget{naoh-2n}{%
+\subsection{NaOH (2N)}\label{naoh-2n}}
+
+\begin{verbatim}
+8 g NaOH powder
+100 mL milli-Q water
+\end{verbatim}
+
+In fume hood, add NaOH to 80 mL water. Bring to 100 mL total volume.
+
+\hypertarget{soil-extractions}{%
+\chapter{Soil Extractions}\label{soil-extractions}}
+
+\hypertarget{detailed-procedure-from-dneasy-powersoil-extraction-kit}{%
+\section{Detailed Procedure from DNeasy Powersoil Extraction kit}\label{detailed-procedure-from-dneasy-powersoil-extraction-kit}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Spin the PowerBead Pro Tube briefly to ensure that the beads have settled at the bottom. Add up to 250 mg of soil and 800 µl of Solution CD1. Vortex briefly to mix.
+
+  Note: PowerBead Pro Tube contains a buffer that will help disperse the soil particles, begin to dissolve humic acids, and protect nucleic acids from degradation.
+\item
+  \emph{Homogenize samples thoroughly} - Secure the PowerBead Pro Tube horizontally on a Vortex Adapter for 1.5--2 ml tubes. Vortex at maximum speed for 10 min.
+
+  Note: If using the Vortex Adapter for more than 12 preps simultaneously, increase the vortexing time by 5--10 min.
+\item
+  Centrifuge the PowerBead Pro Tube at 15,000 x g for 1 min.
+\item
+  Transfer the supernatant to a clean 2 ml Microcentrifuge Tube.
+
+  Note: Expect 500--600 µl. The supernatant may still contain some soil particles.
+\item
+  Add 200 µl of Solution CD2 and vortex for 5 s.
+
+  Note: Solution CD2 contains IRT, which will remove contaminating organic and inorganic matter that may reduce DNA purity.
+\item
+  Centrifuge at 15,000 x g for 1 min at room temperature. Avoiding the pellet, transfer up to 700 µl of supernatant to a clean 2 ml Microcentrifuge Tube.
+
+  Note: Expect 500--600 µl.
+\item
+  Add 600 µl of Solution CD3 and vortex for 5 s.
+
+  Note: Solution CD3 will adjust the DNA solution salt concentration to allow binding of DNA to the MB Spin Column filter membrane.
+\item
+  Load 650 µl of the lysate onto an MB Spin Column and centrifuge at 15,000 x g for 1 min.
+
+  Note: DNA is selectively bound to the silica membrane in the MB Spin Column.
+\item
+  Discard the flow-through and repeat step 8 to ensure that all of the lysate has passed through the MB Spin Column.
+\item
+  Carefully place the MB Spin Column into a clean 2 ml Collection Tube. Avoid splashing any flow-through onto the MB Spin Column.
+\item
+  Add 500 µl of Solution EA to the MB Spin Column. Centrifuge at 15,000 x g for 1 min.
+
+  Note: Solution EA is a wash buffer and is removing protein and other non-aqueous contaminants.
+\item
+  Discard the flow-through and place the MB Spin Column back into the same 2 ml Collection Tube.
+\item
+  Add 500 µl of Solution C5 to the MB Spin Column. Centrifuge at 15,000 x g for 1 min.
+
+  Note: Solution C5 is an ethanol-based wash solution to further clean the DNA.
+\item
+  Discard the flow-through and place the MB Spin Column into a new 2 ml Collection Tube.
+\item
+  Centrifuge at up to 16,000 x g for 2 min. Carefully place the MB Spin Column into a new 1.5 ml Elution Tube.
+
+  Note: This spin removes residual Solution C5, which is critical.
+\item
+  Add 50--100 µl of Solution C6 to the center of the white filter membrane.
+
+  Note: Releases DNA from the silica membrane.
+\item
+  Centrifuge at 15,000 x g for 1 min. Discard the MB Spin Column. The DNA is now ready for downstream applications.
+
+  Note: Store the DNA frozen (--30 to --15°C or --90 to --65°C) as Solution C6 does not contain EDTA.
+\end{enumerate}
+
+\hypertarget{high-molecular-weight-dna-extraction}{%
+\chapter{\texorpdfstring{\textbf{High Molecular Weight DNA Extraction}}{High Molecular Weight DNA Extraction}}\label{high-molecular-weight-dna-extraction}}
+
+\textbf{Important safety, preparation, and protocol notes below.}
+
+\hypertarget{protocol}{%
+\section{\texorpdfstring{\textbf{Protocol}}{Protocol}}\label{protocol}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Combine 325µL Buffer A, 325µL Buffer B, 130µL Buffer C, 87µL PVP(1\%), and 5µL Proteinase K into a 2ml lo-bind tube, mix until viscous.
+\item
+  Place tubes into 65℃ hot plate until warm.
+\item
+  Pour LN2 into a refrigerated mortar and pestle until cold. Add tissue using a sterile spatula, grind into a fine powder, adding more LN2 as needed. Add 0.2-0.6g of tissue into each tube {[}1{]}.
+\item
+  Incubate tubes on shaker (320 RPM) for ≥30 minutes @ 65℃.
+\item
+  Add 280µL 5M Potassium Acetate to each tube, mix by inversion, incubate on ice for 5 minutes {[}2{]}.
+\item
+  Add 500-700µL Phenol:Chloroform:Isoamyl alcohol (as much as the tube can hold without overfilling), hula mixer for 5 minutes, incubate at room temp for 2 minutes.
+\item
+  Centrifuge @ 6000 x g for 10 minutes.
+\item
+  Transfer aqueous supernatant using wide-bore pipette tips to new 2ml lo-bind tubes {[}3, 4{]}.
+\item
+  Add 1ml Chloroform:Isoamyl alcohol to tubes containing supernatant, hula mixer for 5 minutes, incubate at room temp for 2 minutes.
+\item
+  Centrifuge @ 6000 x g for 10 minutes.
+\item
+  Pipette supernatant using wide-bore tips into new 2ml lo-bind tubes.
+\item
+  Add 2.5µL RNase A to each tube and leave in 37℃ incubator for 30min.
+\item
+  Estimate tubes volume and add 1/10x volume Sodium Acetate, 1x volume cold isopropyl alcohol.
+\item
+  Mix gently by inversion, incubate @ room temp for 5 minutes.
+\item
+  Centrifuge @ 3000 x g for 2 minutes, gently remove and discard supernatant. A white pellet should remain at the bottom of tubes.
+\item
+  Wash pellet w/ 1mL, fresh, cold, 70\% Ethanol.
+\item
+  Centrifuge @ 3000 x g for 2 minutes, pipette out Ethanol.
+\item
+  Repeat steps 15-17.
+\item
+  Dry pellet @ 65℃ for 2 minutes, re-suspend in 100µL TE (or sterile DNase/RNase free water) {[}5{]}.
+\item
+  Keep suspended pellet @ 4℃ for 24-48hrs to allow pellet to dissolve. When measuring concentration/purity, use wide-bore tips to avoid shearing.~
+\end{enumerate}
+
+\textbf{Extraction Notes {[}\#{]}}~
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Additional tissue can be stored in a sterile 2mL tube @ -20℃.
+\item
+  Vortexing HMW DNA causes it to break resulting in smaller fragment lengths. Always mix by inversion or on a rotator/shaker.
+\item
+  Always transfer solution containing DNA using wide-bore tips. Normal pipette tips are narrow and will shear high-molecular weight DNA. An alternative to wide-bore tips is to cut the ends off pipette tips with sterile scissors to they have a larger opening.
+\item
+  Take care to only transfer from the aqueous phase. To ensure contaminants are not transferred, consider leaving a small volume of the aqueous layer behind.
+\item
+  Over drying pellet is not recommended as DNA can convert from B to D form making later resuspension difficult.
+\end{enumerate}
+
+\textbf{Post-Extraction Steps}~
+
+\begin{itemize}
+\item
+  Perform Qubit fluorometric quantification to obtain DNA concentration.~
+\item
+  Measure DNA concentration and contamination using NanoDrop spectroscopy.~
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{bead-cleaning-protocols}{%
+\section{\texorpdfstring{\textbf{Bead-cleaning protocols}}{Bead-cleaning protocols}}\label{bead-cleaning-protocols}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Add a a 1 to 1 volume of MagBeads to the extracted and eluted DNA
+\item
+  Mix by flickering the tube gently and put the tube in the hula mixer for five minutes
+\item
+  Place the tube in a magnetic rack. Wait until solution is clear and the beads are attached to magnet
+\item
+  While in the magnetic rack, remove supernatant and add 200 uL of fresh 70\% Ethanol
+\item
+  Remove supernatant and repeat step 4
+\item
+  Remove supernatant and spin down the tube. Place the tube into magnetic rack again and remove the remaining ethanol
+\item
+  Open the tube lid to Let the remaining ethanol evaporate for 30s. \textbf{DO NOT LET THE BEADS DRY AS ALL DNA MAY BE LOST WHEN BEADS ARE DRIED FOR A LONG TIME}
+\item
+  Remove the tube from the magnetic rack and add nuclease-free water. The amount depends on the final DNA concentration desired
+\item
+  Mix by flickering the tube gently and put the tube in the hula mixer for five minutes
+\item
+  Place the tube in a magnetic rack. Wait until solution is clear and the beads are attached to magnet
+\item
+  Move the supernatant to a new tube. The supernatant contains the eluted and cleaned DNA
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{required-ppe}{%
+\section{\texorpdfstring{\textbf{Required PPE}~}{Required PPE~}}\label{required-ppe}}
+
+\begin{itemize}
+\item
+  Safety glasses~
+\item
+  Nitrile gloves~
+\item
+  Neoprene gloves~
+\item
+  Cryo-gloves~
+\item
+  Lab coat
+\item
+  Fume hood~
+\end{itemize}
+
+\hypertarget{pre-extraction-steps}{%
+\section{\texorpdfstring{\textbf{Pre-Extraction Steps}~}{Pre-Extraction Steps~}}\label{pre-extraction-steps}}
+
+\textbf{Day Prior}~
+
+\begin{itemize}
+\item
+  Clean and sterilize mortars and pestles, spatulas, tweezers.~
+\item
+  Refrigerate mortars and pestles.
+\item
+  If using tissue from liquid culture, clean and sterilize vacuum flask, ceramic filter, green flask seal, and check sterile filter paper stock.~
+\item
+  Check liquid nitrogen (LN2) tank volume.~
+\item
+  Check all buffer, reagent, and chemical volumes are sufficient.~
+\item
+  Check 2mL lo-bind tube and pipette tips stock.~
+\end{itemize}
+
+\textbf{Day Of}~
+
+\begin{itemize}
+\item
+  Set hot plate to 65℃.~
+\item
+  Fill LN2 dewar.~
+\item
+  Fill a bucket with ice.~
+\item
+  Freeze fresh molecular grade isopropanol (1mL x sample \#) and fresh 70\% ethanol (2mL x sample \#). Make 70\% ethanol from 200 proof stock and DNase/RNase free water.~
+\end{itemize}
+
+\hypertarget{critical-safety-information.}{%
+\section{\texorpdfstring{\textbf{Critical Safety Information.}~}{Critical Safety Information.~}}\label{critical-safety-information.}}
+
+\textbf{Phenol:Chloroform:Isoamyl alcohol} and \textbf{Chloroform:Isoamyl alcohol} are EXTREMLY toxic and should only be handled while wearing full PPE while working in the fume hood. Discard any PPE that contacts either mixture. Necessary PPE includes:~
+
+\begin{itemize}
+\item
+  Safety glasses~
+\item
+  Lab coat~
+\item
+  Nitrile gloves~
+\item
+  Neoprene gloves over nitrile gloves~
+\end{itemize}
+
+If you are exposed to \textbf{Phenol:Chloroform:Isoamyl alcohol} OR \textbf{Chloroform:Isoamyl alcohol} please follow the management protocol below.~
+
+Inhalation: Secure and move away from source to an area with fresh, ventilated air. Monitor symptoms and contact medical services if needed. Most inhalation exposure can be quickly managed and lab members can return to work shortly.~
+
+Skin or eye exposure: Remove PPE and clothes from exposed area. Wash with warm water and soap for 15 minutes using a sink or eyewash (if eyes were exposed). After washing, file an incident report with lab leadership and seek medical attention.~
+
+\textbf{Liquid Nitrogen} is a dangerous chemical that can cause burns and damage organic tissue. It should only be handled while wearing full PPE including:~
+
+\begin{itemize}
+\tightlist
+\item
+  Safety glasses
+\item
+  Lab coat
+\item
+  Nitrile gloves
+\item
+  Cryo-gloves over nitrile gloves
+\end{itemize}
+
+If you are exposed to \textbf{Liquid Nitrogen,} please follow the management exposure below.~
+
+Skin or eye exposure: Soak the affected areas in warm water for 15 minutes. Do not agitate affected areas via rubbing. After soaking, file an incident report with lab leadership and seek medical attention.~
+
+\hypertarget{reagent-function-and-troubleshooting}{%
+\section{\texorpdfstring{\textbf{Reagent Function and Troubleshooting}~}{Reagent Function and Troubleshooting~}}\label{reagent-function-and-troubleshooting}}
+
+\textbf{Buffer Mixes}~
+
+\begin{itemize}
+\item
+  Buffer A - 0.35 M sorbitol; 0.1 M Tris-HCl, pH 9; 5 mM EDTA, pH 8~
+\item
+  Buffer B - 0.2 M Tris-HCl, pH 9; 50 mM EDTA, pH 8; 2 M NaCl; 2\% CTAB~
+\item
+  Buffer C - 5\% Sarkosyl (N-lauroylsarcosine sodium salt SIGMA L5125)~
+\end{itemize}
+
+\textbf{Polyvinylpyrrolidone (PVP)}~
+
+Removes phenolic compounds from DNA. Polyphenols bind to DNA and co-precipitate with nucleic acid reducing purity. PVP removes polyphenol contamination by binding via hydrogen bonds and accumulates in the interphase when centrifuged with chloroform {[}1{]}.~
+
+\textbf{Proteinase K}~
+
+Digestion of contaminant proteins from a nucleic acid solution is performed by addition of proteinase K.~
+
+\textbf{Potassium Acetate}~
+
+C2H3O2K precipitates nucleic acids into the solution's supernatant.~~
+
+\textbf{Phenol}~
+
+As an organic solvent, phenol removes proteins and polysaccharide contamination in conjunction with chloroform and isoamyl alcohol. Additionally, DNA is insoluble in phenol because DNA is polar, and phenol is nonpolar {[}1{]}.~
+
+\textbf{Chloroform}~
+
+Nonpolar proteins and lipids are dissolved in chloroform which, together with cellular debris, form the organic layer. This process leaves DNA isolated in the aqueous phase {[}1{]}.~
+
+\textbf{Isoamyl Alcohol}~
+
+C5H12O serves many roles in stabilizing the organic, interphase, and aqueous layers. It prevents chloroform from foaming when in contact with air. Foaming causes emulsification of the solution resulting in difficulties when purifying DNA. It additionally stabilizes the interphase layer as it is not miscible in the aqueous or organic layers. Finally, it helps to inhibit RNase activity and reduce RNA molecule contamination {[}1{]}.~
+
+\textbf{Sodium Acetate}~
+
+C2H3NaO2 neutralizes the charged sugar phosphate backbone of DNA. This process only occurs in the presence of isopropanol {[}1{]}.~
+
+\textbf{Isopropanol}~
+
+To precipitate nucleic acids from the supernatant, an alcohol must be used to break the hydration shell that forms around nucleic acid. Isopropanol is a preferred choice as it has a high capacity to reduce the dielectric constant of water and therefore less (0.6-0.7x volume supernatant) can be used in comparison to ethanol (2-3x volume supernatant). A low dielectric constant is needed in conjunction with sodium acetate to precipitate nucleic acid {[}1{]}.~
+
+\textbf{Ethanol}~
+
+Washes with 70\% EtOH remove excess salt from the extraction buffer which may remain in the DNA pellet {[}1{]}. Ice cold ethanol should be used for washes.~
+
+\textbf{TE Buffer}~
+
+To store DNA for an extended period, TE buffer is used in place of sterile water. The buffer contains Tris, which buffers the solution by scavenging hydroxyl radicals, and EDTA, which protects DNA from DNases or RNases by chelating magnesium ions necessary for their function. Dilution of TE buffer with sterile water when sending samples for sequencing is recommended {[}1{]}.~
+
+\textbf{Background}~
+
+\textbf{What is high molecular weight (HMW) DNA?}~
+
+DNA considered HMW consists of strands greater than 50 kb in length {[}2{]}.~
+
+\textbf{Why is HMW DNA useful for assembling eukaryotic genomes?}~
+
+The genomes of higher eukaryotes often contain many repeated regions greater than several kilobases in length. First and second-generation sequencing technologies rely on DNA reads between 50bp and 1kb which produces fragmented genome assemblies that cannot accurately map repeated regions. HMW DNA using fragments in the 10s of kilobases long which improves the accuracy of eukaryotic genome assembly as longer reads can span repeated regions. Longer reads also contribute to better alignment of DNA contigs within the scope of the entire genome {[}2{]}.~
+
+\textbf{Why are both Qubit and NanoDrop spectroscopy used to quantify DNA concentration?}~
+
+Qubit quantification detects dyes that only bind to dsDNA molecules. This allows for highly accurate quantification of dsDNA concentration even in the presence of contaminants or ssDNA/RNA. Additionally, Qubit dyes have trouble binding to small nucleic acid fragments and plasmid DNA meaning only longer length fragments are measured {[}4{]}.~
+
+NanoDrop assesses DNA concentration by measuring UV absorbance at 230nm, 260nm and 280nm wavelengths. NanoDrop cannot differentiate between nucleic acid and contaminants that absorb at the same wavelength which can contribute to inaccurate concentration readings. NanoDrop measurement also does not account for fragment length and measures all DNA equally. Yet, nucleic acid purity ratios including proteins and phenols (260/280) and organic contaminants (260/230) can only be determined by NanoDrop {[}3{]}.~
+
+\hypertarget{references}{%
+\section{\texorpdfstring{\textbf{References}~}{References~}}\label{references}}
+
+{[}1{]} Heikrujam, J., Kishor, R., \& Behari Mazumder, P. (2020). The chemistry behind plant DNA isolation protocols. Biochemical Analysis Tools - Methods for Bio-Molecules Studies, 1--12. \url{https://doi.org/10.5772/intechopen.92206}~
+
+{[}2{]} Mayjonade, B., Gouzy, J., Donnadieu, C., Pouilly, N., Marande, W., Callot, C., Langlade, N., \& Muños, S. (2016). Extraction of high-molecular-weight genomic DNA for long-read sequencing of single molecules. BioTechniques, 61(4), 203--205. \url{https://doi.org/10.2144/000114460}~
+
+{[}3{]} Nanodrop microvolume spectrophotometers. Thermo Fisher Scientific. (n.d.). Retrieved October 10, 2022, from \url{https://www.thermofisher.com/us/en/home/industrial/spectroscopy-elemental-isotope-analysis/molecular-spectroscopy/uv-vis-spectrophotometry/instruments/nanodrop.html}~
+
+{[}4{]} Qubit fluorometric quantification. Thermo Fisher Scientific. (n.d.). Retrieved October 10, 2022, from \url{https://www.thermofisher.com/us/en/home/industrial/spectroscopy-elemental-isotope-analysis/molecular-spectroscopy/fluorometers/qubit.html}
+
+\hypertarget{pcr-protocols}{%
+\chapter{PCR Protocols}\label{pcr-protocols}}
+
+\hypertarget{dreamtaq-any-primers}{%
+\section{DreamTaq (Any Primers)}\label{dreamtaq-any-primers}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Location in thermocyclers}
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    Dependent on primers
+  \end{enumerate}
+\end{itemize}
+
+\hypertarget{protocol-mixture-dreamtaq}{%
+\subsection{Protocol Mixture (DreamTaq)}\label{protocol-mixture-dreamtaq}}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+Reagents & Per sample (Microliters) & Total Mix (Microliters) \\
+\midrule
+\endhead
+Buffer & 14 & 14*n \\
+Primers LROR & 0.5 & 0.5*n \\
+Primers LR5 & 0.5 & 0.5*n \\
+H2O & 9 & 9*n \\
+Total mix & 24 & 24*n \\
+\bottomrule
+\end{longtable}
+
+\textbf{\emph{Add 1uL of DNA}}
+
+\hypertarget{protocol-conditions-dreamtaq}{%
+\subsection{Protocol Conditions (DreamTaq)}\label{protocol-conditions-dreamtaq}}
+
+\textbf{DEPENDENT ON PRIMERS}
+
+\hypertarget{its-metabarcoding-its1-fits2}{%
+\section{ITS Metabarcoding (ITS1-F/ITS2)}\label{its-metabarcoding-its1-fits2}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Location in thermocyclers}
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    WALLE: TLAB/ITSBC
+  \item
+    EVA: ITS1/ITSBC
+  \end{enumerate}
+\end{itemize}
+
+\hypertarget{protocol-mixture-its1-fits2}{%
+\subsection{Protocol Mixture (ITS1-F/ITS2)}\label{protocol-mixture-its1-fits2}}
+
+\textbf{\emph{With sample number (n)}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2025}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3291}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3165}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1519}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\raggedright
+Reagent
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Per sample (Microliters)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Total Mix (Microliters)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Order
+\end{minipage} \\
+\midrule
+\endhead
+Buffer & 8 & 8*n & \\
+dNTP's & 1 & 1*n & \\
+Primers ITS1F & 0.5 & 0.5*n & \\
+Primers ITS2 & 0.5 & 0.5*n & \\
+Taq Polymerase & 0.25 & 0.25*n & LAST THING \\
+H2O & 13.75 & 13.75*n & \\
+Total mix & 24 & 24*n & \\
+\bottomrule
+\end{longtable}
+
+\textbf{\emph{Add 1uL of DNA}}
+
+\hypertarget{protocol-conditions-its1-fits2}{%
+\subsection{Protocol Conditions (ITS1-F/ITS2)}\label{protocol-conditions-its1-fits2}}
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+Temperature & Time & Repeat \\
+\midrule
+\endhead
+94 °C & 1 min & \\
+95 °C & 30 s & x35 \\
+52 °C & 30 s & x35 \\
+72°C & 30 s & x35 \\
+72 °C & 5 min & \\
+4 °C & hold & \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{its1its4}{%
+\section{ITS1/ITS4}\label{its1its4}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Location in thermocyclers}
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    WALLE: ITS
+  \item
+    EVA: ITS
+  \end{enumerate}
+\end{itemize}
+
+\hypertarget{protocol-mixture-its1its4}{%
+\subsection{Protocol Mixture (ITS1/ITS4)}\label{protocol-mixture-its1its4}}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+Reagents & Per sample (Microliters) & Total Mix (Microliters) \\
+\midrule
+\endhead
+Buffer & 8 & 8*n \\
+dNTP's & 1 & 1*n \\
+Primers ITS1 & 0.5 & 0.5*n \\
+Primers ITS4 & 0.5 & 0.5*n \\
+Taq Polymerase & 0.25 & 0.25*n \\
+H2O & 9 & 9*n \\
+Total mix & 19.25 & 19.25*n \\
+\bottomrule
+\end{longtable}
+
+\textbf{\emph{Add 1uL of DNA}}
+
+\hypertarget{protocol-conditions-its1its4}{%
+\subsection{Protocol Conditions (ITS1/ITS4)}\label{protocol-conditions-its1its4}}
+
+\hypertarget{lsu}{%
+\section{LSU}\label{lsu}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Location in thermocyclers}
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    WALLE: LSU
+  \item
+    EVA: LSU
+  \end{enumerate}
+\end{itemize}
+
+\hypertarget{protocol-mixture-lsu}{%
+\subsection{Protocol Mixture (LSU)}\label{protocol-mixture-lsu}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2025}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3291}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3165}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1519}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\raggedright
+Reagents
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Per sample (Microliters)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Total Mix (Microliters)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Order
+\end{minipage} \\
+\midrule
+\endhead
+Buffer & 2.5 & 2.5*n & \\
+dNTP's & 0.5 & 0.5*n & \\
+Primers LROR & 1.25 & 1.25*n & \\
+Primers LR5 & 1.25 & 1.25*n & \\
+Taq Polymerase & 0.25 & 0.25*n & LAST THING \\
+H2O & 18.5 & 18.5*n & \\
+Total mix & 24.25 & 24.25*n & \\
+\bottomrule
+\end{longtable}
+
+\textbf{\emph{Add 1uL of DNA}}
+
+\hypertarget{protocol-conditions-lsu}{%
+\subsection{Protocol Conditions (LSU)}\label{protocol-conditions-lsu}}
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+Temperature & Time & Repeat \\
+\midrule
+\endhead
+94 °C & 2 min & \\
+94 °C & 1 min & x35 \\
+50 °C & 30 s & x35 \\
+72 °C & 1m 30s & x35 \\
+72 °C & 5 m & \\
+4 °C & hold & \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{basf611basr1340}{%
+\section{BASF611/BASR1340}\label{basf611basr1340}}
+
+\begin{itemize}
+\tightlist
+\item
+  Location in thermocycler
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    WALLE:
+  \item
+    EVA:
+  \end{enumerate}
+\end{itemize}
+
+\hypertarget{protocol-mixture-bas}{%
+\subsection{Protocol Mixture (BAS)}\label{protocol-mixture-bas}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2025}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3291}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3165}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1519}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\raggedright
+Reagents
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Per sample (Microliters)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Total Mix (Microliters)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Order
+\end{minipage} \\
+\midrule
+\endhead
+Buffer & 8 & 8*n & \\
+dNTP's & 1 & 1*n & \\
+BasF (10uM) & 0.5 & 0.5*n & \\
+BasR (10uM) & 0.5 & 0.5*n & \\
+Taq Polymerase & 0.25 & 0.25*n & LAST THING \\
+H2O & 8.75 & 8.75*n & \\
+Total mix & 19 & 19*n & \\
+\bottomrule
+\end{longtable}
+
+\textbf{\emph{Add 1uL of DNA}}
+
+\hypertarget{protocol-conditions-bas}{%
+\subsection{Protocol Conditions (BAS)}\label{protocol-conditions-bas}}
+
+\hypertarget{exosap}{%
+\section{EXOSAP}\label{exosap}}
+
+\begin{itemize}
+\tightlist
+\item
+  Location in thermocycler
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    WALLE: EXO
+  \item
+    EVA: EXO
+  \end{enumerate}
+\end{itemize}
+
+\hypertarget{protocol-mixture-exosap}{%
+\subsection{Protocol Mixture (EXOSAP)}\label{protocol-mixture-exosap}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1268}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3662}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.5070}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\raggedright
+Reagent
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Per sample (Microliters)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Total Mix per sample (Microliters)
+\end{minipage} \\
+\midrule
+\endhead
+ExoSAP & 2 & 2 \\
+DNA & 5 & 1 \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{protocol-conditions-exosap}{%
+\subsection{Protocol Conditions (EXOSAP)}\label{protocol-conditions-exosap}}
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+Temperature & Time & Repeat \\
+\midrule
+\endhead
+37 °C & 15 min & No \\
+80 °C & 15 min & No \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{a-basic-roadmap-of-the-cluster}{%
+\chapter{A basic roadmap of the cluster}\label{a-basic-roadmap-of-the-cluster}}
+
+\hypertarget{how-to-log-in}{%
+\section{How to log in}\label{how-to-log-in}}
+
+\hypertarget{safety-and-ppe}{%
+\chapter{Safety and PPE}\label{safety-and-ppe}}
+
+(No accidents allowed till I finish this chapter. LPC 10/14/2022)
+
+\hypertarget{submitting-samples-to-novogene}{%
+\chapter{Submitting samples to Novogene}\label{submitting-samples-to-novogene}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Log in to \url{https://cssamerica.novogene.com/}
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Username: \href{mailto:jtabima@clarku.edu}{\nolinkurl{jtabima@clarku.edu}}
+\item
+  Password: Basidiobolus666
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  Click on Send Samples
+\item
+  Select the project and click on add a new batch
+\item
+  Fill basic info with Javier's info
+\item
+  In sample summary, make sure that all your tubes are 1.5mL or we will have to pay more \$
+\item
+  Download the template, fill it up and then upload it
+\item
+  In transportation Condition:
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  If youre sending HMW DNA or RNA: Dry Ice
+\item
+  Anything else: Ice Packs
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\item
+  Courier provider: FedEx (No tracking number), check everything else and submit the SIF
+\item
+  Print the SIF and include it in the package
+\end{enumerate}
+
+  \bibliography{book.bib,packages.bib}
+
+\end{document}

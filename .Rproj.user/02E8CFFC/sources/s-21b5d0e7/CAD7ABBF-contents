@@ -1,0 +1,38 @@
+---
+title: "Lab_6"
+author: "jasper perseus carleton"
+date: '2022-11-18'
+output: html_document
+---
+# Lab 6 
+Jasper Carleton, Devon Rose Leaver, Elizabeth Zinno
+
+
+1. LG+I+G4
+2. They are all the same
+- Akaike:mtMAM+I+G
+- Corrected Akaike:mtMAM+I+G
+- Bayesian:mtMAM+I+G
+3. ``` grep 'Log-likelihood of the tree'  protein_mafft.iqtree > extracted_likelihood.txt```, the value is -19733.1505 (s.e. 367.9978)
+4. Most nodes have a bootstrap value above 90, with a few exceptions as listed below
+- The node between gi|42565226|ref|NP_566804.3| and the ancestor of gi|85093179|ref|XP_959643.1| and gi|389640915|ref|XP_003718090.1| has a bootstrap value of 45, making it not reliable
+- The node between gi|50310365|ref|XP_455202.1| and gi|50310365|ref|XP_455202.1| has a bootstrap value of 78, making it not quite reliable. 
+- The node between gi|512843729|ref|XP_002935427.2| and the ancestor of gi|77736115|ref|NP_001029756.1| (and others) has a bootstrap value of 71, therefore we should be careful in using it as a data point.
+- The node between gi|4557761|ref|NP_000242.1| and gi|73969550|ref|XP_538482.2| has a bootstrap value of 84, making it reasonable but not a completely reliable point.
+- The node between the previous group as listed above and the group of gi|6678938|ref|NP_032654.1| and gi|13591999|ref|NP_112320.1| has a bootstrap value of  75 and therefore not a very reliable point, but not terrible. 
+
+5. ``` mafft --globalpair --maxiterate 1000 homologenemRNA.txt > mRNA_alignment ```
+6. Because G-INS-I is used for single short domains (and the other commands didn't let me use them)
+
+|       mRNA file       | Best nucleotide model |   Likelihood score of tree  |
+|:---------------------:|:---------------------:|:---------------------------:|
+| Your mRNA file        | TIM3+F+I+G4           | -46885.9043 (s.e. 530.5062) |
+| Professor’s mRNA file | TIM3+F+R3             | -49890.4729 (s.e. 564.7578) |
+
+7. Overall there seems to be more confidence given the higher bootstrap values in my file. Additionally, the file homologene_nucl.fasta has an outlier while mine does not. 
+8. Mus musculus is not aligned with all of the other sequences present in the MSA
+
+9. A lot of the tree did stay the same, with some differences listed below
+- gi|42565225|ref|NM_113607.3| Arabidopsis thaliana DNA mismatch repair protein Msh2 mRNA, complete cds change locations and relationships. The node in my file leading to this sequence has a bootstrap value of 100 while the node leading to this sequence in the professor's file has a bootstrap value of 81
+- Otherwise the only change is the bootstrap values, which seem to be slightly higher on my mRNA alignment than the professor correction file.
+The main difference is the movement of gi|42565225|ref|NM_113607.3| Arabidopsis thaliana DNA mismatch repair protein Msh2 mRNA, complete cds. The professor alignment has this placed diverging from a completely different branch than the aligment I made. Both trees from the alignments do have the same branch length for this sequence. Neither has this sequence having a sister 'species', but my alignment does have this sequence more nested and related to other sequences than the professor file does. 

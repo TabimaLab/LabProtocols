@@ -1,0 +1,1 @@
+"0","june.results$Site <- gsub(pattern = ""S$"", replacement = """", x = june.results$Site)"

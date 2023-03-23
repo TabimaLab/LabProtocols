@@ -1,0 +1,58 @@
+---
+title: 'Rubric Lab 3: DNA extractions'
+author: "BIOL209"
+date: '2023-02-12'
+output: 
+  html_document: 
+    toc: yes
+    theme: spacelab
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Results of DNA extraction
+
+|  Sample | **Qubit (ng/uL)** | **Nandrop Concentration (ng/uL)** | **260/280** | **260/230** |
+|:-------:|:-----------------:|:----------------------------------:|:-----------:|:-----------:|
+| **S06** |        11.3       |                14.3                |     1.85    |     0.71    |
+| **S07** |        26.8       |                39.7                |     1.87    |     2.37    |
+| **S08** |        10.1       |                10.4                |     1.87    |     2.57    |
+| **S12** |        20.3       |                 39                 |     1.84    |     0.73    |
+| **S13** |        7.3        |                15.3                |     1.86    |     1.99    |
+
+# Nanodrop plots
+
+![Nanodrop plot](Lab4_results/Nanodrop.png)
+
+# Analytical gel pictures
+
+![Analytical gel](Lab4_results/Gels.png)
+
+***
+
+# Questions:
+
+1. Is the Nanodrop concentration higher than the Qubit? Why?
+
+It is. One of the reasons can be because NanoDrop is not specific for DNA, but can also measure RNA. Despite the use of RNAse A, some RNA may still exist in the sample increasing the 260 value. Qubit is highly specific as its dye only attaches to DNA molecules, making it significantly more accurate.
+
+2. What are the differences between qubit and nanodrop?
+
+|   **Metric**   |                   **NanoDrop**                   |                    **Qubit**                    |
+|:--------------:|:------------------------------------------------:|:-----------------------------------------------:|
+|   **Method**   |                UV spectrophotometry               |           Fluorometry of specific dyes           |
+|    **Range**   |                 Large, up to 20mg                | Depends on the reagent, but usually up to 500ng |
+|   **Quality**  | Measurable using 260/230 and 260/280 comparisons |             Only measurable for RNA             |
+| **Senitivity** |                        Low                       |                       High                      |
+
+Check [this video more more info](https://www.youtube.com/watch?v=y7DLoGxg0k0)
+
+3. Would you consider your DNA extraction to be of HMW?
+
+Based both in the amount of DNA extracted (concentration), quality based in the NanoDrop and the size of the band in the analytical gel, we can say confidently that samples 6,7 and 8 are of HMW. Samples 12 and 13 are a bit more complex as they have a DNA smear, showing potential DNA degradation.
+
+4. Did you extract enough DNA for the Nanopore sequencing of your genome?
+
+Based on what we said in class, Nanopore uses around 300ng uf total DNA, so we should be good to go!

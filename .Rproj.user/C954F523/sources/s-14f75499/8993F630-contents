@@ -1,0 +1,74 @@
+"Location" "host" "water_source" Sample.type.col
+"B001" "B" NA NA blue
+"B003" "B" NA NA blue
+"B007" "B" NA NA blue
+"B008" "B" NA NA blue
+"B009" "B" NA NA blue
+"B010" "B" NA NA blue
+"B011" "B" NA NA blue
+"Coes002" "Coes" "Lithobates catesbeianus" "Pond" red
+"Coes003" "Coes" "Lithobates catesbeianus" "Pond" red
+"Coes004" "Coes" "Lithobates catesbeianus" "Pond" red
+"Coes006" "Coes" "Lithobates catesbeianus" "Pond" red
+"Coes007" "Coes" "Lithobates catesbeianus" "Pond" red
+"Coes009" "Coes" "Lithobates catesbeianus" "Pond" red
+"Coes010" "Coes" "Lithobates catesbeianus" "Pond" red
+"Cook005" "Cook" "Lithobates catesbeianus" "Pond" green
+"Cook006" "Cook" "Anaxyrus fowleri" "Pond" green
+"Cook007" "Cook" "Lithobates catesbeianus" "Pond" green
+"Cook008" "Cook" "Lithobates catesbeianus" "Pond" green
+"Cook009" "Cook" "Lithobates catesbeianus" "Pond" green
+"Cook011" "Cook" "Lithobates catesbeianus" "Pond" green
+"Cook012" "Cook" "Lithobates catesbeianus" "Pond" green
+"Cook013" "Cook" "Lithobates catesbeianus" "Pond" green
+"KP001" "KP" "Lithobates clamitans" "Stream" orange
+"KP002" "KP" "Lithobates clamitans" "Stream" orange
+"KP003" "KP" "Lithobates clamitans" "Stream" orange
+"KP004" "KP" "Lithobates pipiens" "Pond" orange
+"KP005" "KP" "Lithobates catesbeianus" "Pond" orange
+"KP006" "KP" "Lithobates catesbeianus" "Pond" orange
+"KP007" "KP" "Lithobates catesbeianus" "Pond" orange
+"KP009" "KP" "Lithobates pipiens" "Pond" orange
+"KP010" "KP" "Lithobates pipiens" "Pond" orange
+"KP011" "KP" "Lithobates pipiens" "Pond" orange
+"KP013" "KP" "Lithobates pipiens" "Pond" orange
+"MP001" "MP" "Lithobates catesbeianus" "Pond" pink
+"MP002" "MP" "Lithobates clamitans" "Pond" pink
+"MP003" "MP" "Lithobates catesbeianus" "Pond" pink
+"MP004" "MP" "Lithobates catesbeianus" "Pond" pink
+"MP005" "MP" "Lithobates clamitans" "Pond" pink
+"MP007" "MP" "Lithobates clamitans" "Pond" pink
+"MP008" "MP" "Lithobates catesbeianus" "Pond" pink
+"MR001" "MR" "Lithobates catesbeianus" "Stream" black
+"MR002" "MR" "Lithobates clamitans" "Stream" black
+"PR001" "PR" "Lithobates catesbeianus" "Pond" purple
+"PR002" "PR" "Lithobates catesbeianus" "Pond" purple
+"PR003" "PR" "Lithobates clamitans" "Pond" purple
+"PR005" "PR" "Lithobates catesbeianus" "Pond" purple
+"PR006" "PR" "Lithobates clamitans" "Pond" purple
+"PR007" "PR" "Lithobates catesbeianus" "Pond" purple
+"PR008" "PR" "Lithobates clamitans" "Pond" purple
+"PR009" "PR" "Lithobates catesbeianus" "Pond" purple
+"PR010" "PR" "Lithobates catesbeianus" "Pond" purple
+"PRS001" "PRS" "Lithobates catesbeianus" "Stream" yellow
+"PRS002" "PRS" "Lithobates clamitans" "Stream" yellow
+"PRS003" "PRS" "Lithobates clamitans" "Stream" yellow
+"PRS004" "PRS" "Lithobates clamitans" "Stream" yellow
+"PRS006" "PRS" "Lithobates clamitans" "Stream" yellow
+"PRS007" "PRS" "Lithobates clamitans" "Stream" yellow
+"PRS009" "PRS" "Lithobates catesbeianus" "Stream" yellow
+"PRS010" "PRS" "Lithobates pipiens" "Stream" yellow
+"SBFM1" "SBFM" NA NA violet
+"SBFM10" "SBFM" NA NA violet
+"SBFM9" "SBFM" NA NA violet
+"T10" "T" NA NA brown
+"T14" "T" NA NA brown
+"T15" "T" NA NA brown
+"T19" "T" NA NA brown
+"T2" "T" NA NA brown
+"T3" "T" NA NA brown
+"T4" "T" NA NA brown
+"T5" "T" NA NA brown
+"T7" "T" NA NA brown
+"T8" "T" NA NA brown
+"T9" "T" NA NA brown

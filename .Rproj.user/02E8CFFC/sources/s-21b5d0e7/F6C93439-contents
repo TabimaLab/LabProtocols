@@ -1,0 +1,131 @@
+---
+title: "Lab2_jcarleton"
+author: "jasper perseus carleton"
+date: '2022-09-16'
+output: html_document
+---
+
+# Lab 2 - Command Line Intro
+
+## Question 1
+
+`pwd`
+
+## Question 2
+```
+    pwd
+    whoami
+```   
+## Question 5
+
+`mkdir foldername`
+
+## Question 4
+
+```
+cd
+mkdir MBB101
+```
+or if you made the lab file in the home location by accident
+
+```
+cd
+mv Lab2_jcarleton/ MBB101/
+
+```
+I messed up and did not take a screen shot but this is what I did because I made the lab folder in home instead of the MBB folder
+
+
+## Question 5
+
+**The text file contains:** Mr. and Mrs. Dursley, of number four, Privet Drive, were proud to say that they were perfectly normal, thank you very much. They were the last people you'd expect to be involved in anything strange or mysterious, because they just didn't hold with such nonsense.
+
+Mr. Dursley was the director of a firm called Grunnings, which made drills. He was a big, beefy man with hardly any neck, although he did have a very large mustache. Mrs. Dursley was thin and blonde and had nearly twice the usual amount of neck, which came in very useful as she spent so much of her time craning over garden fences, spying on the neighbors. The Dursleys had a small son called Dudley and in their opinion there was no finer boy anywhere.
+
+The Dursleys had everything they wanted, but they also had a secret, and their greatest fear was that somebody would discover it. They didn't think they could bear it if anyone found out about the Potters. Mrs. Potter was Mrs. Dursley's sister, but they hadn't met for several years; in fact, Mrs. Dursley pretended she didn't have a sister, because her sister and her good-for-nothing husband were as unDursleyish as it was possible to be. The Dursleys shuddered to think what the neighbors would say if the Potters arrived in the street. The Dursleys knew that the Potters had a small son, too, but they had never even seen him. This boy was another good reason for keeping the Potters away; they didn't want Dudley mixing with a child like that.
+
+When Mr. and Mrs. Dursley woke up on the dull, gray Tuesday our story starts, there was nothing about the cloudy sky outside to suggest that strange and mysterious things would soon be happening all over the country. Mr. Dursley hummed as he picked out his most boring tie for work, and Mrs. Dursley gossiped away happily as she wrestled a screaming Dudley into his high chair.
+
+None of them noticed a large, tawny owl flutter past the window.
+
+**I used `cat text_file.txt` to open this file**
+
+## Question 6
+
+There are 9 lines in text_file.txt and i used `wc text_file.txt` to determine this. The outputs are 3 different numbers, the first being 9 for number of lines, the second being 340 for the number of words, and the third is 1915 for the number of bytes.
+
+## Question 7
+
+Grep should highlight the string Dursley wherever it is in the text, however, my computer was not allowing the highlighting to happen. If it had, I would then be able to just go through and count the amount of times Dursley occured without having to read and pick out the word myself
+
+## Question 8
+
+grep theoretically should be able to tell you the amount of times Dursley is present by highlighting all of the occasions in the terminal (using the code `grep Dursley text_file.txt`), however this code is not highlighting the word on my laptop `grep -o Dursley text_file.txt` will show all of the occasions of Dursley without the context of the file. `grep -c Dursley text_file.txt` will give the number of lines in which Dursley is mentioned.
+
+## Question 9
+
+Yes, the full path is /Tabima_lab/homes/jcarleton/Lab2_jcarleton/text_file.txt
+
+## Question 10 
+
+/Tabima_lab/homes/jcarleton/text_file.txt
+
+## Question 11
+
+`cp text_file.txt modified_text.txt`
+
+## Question 12
+
+/Tabima_lab/homes/jcarleton/MBB101/Lab2_jcarleton/modified_text.txt
+
+## Question 13
+
+'>' means new pathing to a new location, therefore making a new folder
+
+## Question 14
+
+The word Potter occurs 18 times in potter.txt and
+
+## Question 15
+
+Potter occurs 18 times, it is not the same as question 6 because Potter was mentioned before we converted all of the Dursleys to Potters
+
+## Question 16
+
+There are 9 lines in potter.txt, as there are also 9 lines in text_file.txt
+
+## Question 17
+
+The number of lines are the same as the length of the names Potter and Dursley are very similar therefore the line length hasn't changed much and neither has the amount of lines
+
+## Question 18
+
+`grep Potter potter.txt > potter_lines.txt`
+
+## Question 19
+
+The number of lines with Potter in them is also 4 in the new file as all of the lines with potter were extracted into this file, therefore preserving the number of the original file
+
+## Question 20 
+
+```
+rm potter_lines.txt.
+rm modified_text.txt
+```
+
+## Question 21
+
+This renamed file still has the same properties as before the name changed, therefore still has the same number of lines as potter.txt
+
+## Question 22
+
+`mv potter.txt Potter_story.txt`
+This command changes the pathing and because you are not moving the original file location it instead changes the name of the file. If the command was `mv potter.txt MBB101`, the file would just be moved to the external folder MBB101
+
+## Question 23
+
+`ln -s modified/Potter_story.txt` creates a symbolic link using the clarifier modified after the ln -s, therefore making the path to the file then read Potter_story.txt -> modified/Potter_story.txt
+
+## Question 24
+
+ls -l displays the symbolic link by saying Potter_story.txt -> modified/Potter_story.txt where previously it just would have said Potter_story.txt

@@ -1,0 +1,181 @@
+#Imported deck.csv via Rstudio interface.
+deck2<-deck
+
+vec<-c(0,0,0,0,0,0)
+vec
+
+vec[1]
+vec[1]<-1000
+vec
+#Replacing values in an object
+
+vec[c(1,3,5)]<-c(1,1,1)
+vec
+#Replace multiple values at once as long as number of new values is same as number of selected values
+
+vec[4:6]<-vec[4:6]+1
+vec
+
+vec[7]<-0
+vec
+#Creating new values in an object
+
+deck2$new<-1:52
+head(deck2)
+#Added variable "new" to data set. $ extracts new variable from deck2 which is also being created via 1:52 assignment
+
+deck2$new<-NULL
+head(deck2)
+#Remove columns from a data frame (also elements from a list) via NULL
+
+#To play War, aces have a value of 14, not 1
+
+deck2[c(13,26,39,52), ]
+#Don't forget to add ", " to ask dataframe to return all columns
+
+deck2[c(13,26,39,52),3]
+deck2$value[c(13,26,39,52)]
+#These commands do the same thing! $ asks for values from value column of deck2 but only rows 13,26,39,52
+
+deck2$value[c(13,26,39,52)]<-c(14,14,14,14)
+head(deck2, 13)
+#Shows the the head of deck2 up to 13 rows instead of 6
+
+deck2$value[c(13,26,39,52)]<-14
+head(deck2, 13)
+#This does the same as above!
+
+deck3<-deck
+deck3<-shuffle(deck)
+head(deck3)
+#Defines deck3, runs the shuffle function saved in Rstudio's environment, returns head of deck3
+
+#How do we change our aces values if our deck is shuffled? Could look by hand or...
+
+vec
+vec[c(F,F,F,F,T,F,F)]
+#Logicals only return TRUE values
+
+1>2
+1>c(0,1,2)
+c(1,2,3)==c(3,2,1)
+#List of logical operators in 7.0.2. == must be used, not =. = is the same as <-
+
+1 %in% c(3,4,5)
+c(1,2) %in% c(3,4,5)
+c(1,2,3) %in% c(3,4,5)
+c(1,2,3,4) %in% c(3,4,5)
+#%in% tests whether values on the left side are in the vector on the right side
+
+deck2$face %in% "ace"
+#Compares face values to ace and return true if value equals ace
+
+deck2$face == "ace"
+#This does the same as the above!
+
+sum(deck2$face == "ace")
+#Counts the total number of aces (F = 0, T = 1)
+
+deck3$face == "ace"
+#Shows aces in shuffled deck!
+
+deck3$value[deck3$face == "ace"]
+#Returns point values of aces. This returns a logical vector so it can be used as an index(?)
+
+deck3$value[deck3$face == "ace"] <- 14
+head(deck3)
+#Above function changes all ace values to 14 regardless of ace location in deck.
+  #Function pulls face rows that are equal to ace, then pulls the values of the ace rows, then sets the value
+  #of each row equal to 14.
+
+deck4<-deck
+deck4$value<-0
+
+head(deck4, 13)
+#In Hearts, every card has a value of 0 except for the suit of hearts and the queen of spades.
+
+deck4$value[deck4$suit == "hearts"] <-1
+head(deck4, 52)
+
+#Now we want to change the queen of spades to 13. How should we track her down?
+
+deck4[deck4$face == "queen", ]
+deck4[deck4$suit == "spades", ]
+#Both of these pull the right data subset but not the right card
+
+#Boolean operators in 7.0.2.2
+
+a<-c(1,2,3)
+b<-c(1,2,3)
+c<-c(1,2,4)
+a==b
+b==c
+a==b & b==c
+#Boolean operators compare two things and return TRUE if both are true, ERROR if one side of the operator
+  #produces an error, or FALSE if one or more tests are false
+
+deck4$face=="queen" & deck4$suit=="spades"
+#Returns all cards but only provides TRUE if card is a queen of spades
+
+queenOfSpades <- deck4$face=="queen" & deck4$suit=="spades"
+deck4[queenOfSpades, ]
+
+deck4$value[queenOfSpades] <-13
+deck4[queenOfSpades, ]
+
+w<-c(-1,0,1)
+x<-c(5,15)
+y<-"Febuary"
+z<-c("Monday","Tuesday","Friday")
+
+w>0
+10<x & x<20
+y=="Febuary"
+all(z %in% c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"))
+
+deck5<-deck
+head(deck5, 13)
+#In blackjack, number cards are equal to their value, K/Q/J equal to 10, ace equal to 11 or 1
+
+facecard <- deck5$face %in% c("king","queen","jack")
+#Assigns facecard all the facecards in deck5. First pulls face column from deck5, then %in% asks if K/Q/J are in the face column and only sends those over to facecard
+
+deck5[facecard, ]
+#Pulls only rows from face that were assigned to facecard, pulls full row due to " ".
+
+deck5$value[facecard] <- 10
+head(deck5, 13)
+#Pulls value column from deck5 but only facecard assigned rows, sets row value equal to 10
+
+#Still can't assign ace bc its value is dependent on the rest of the hand.
+
+1+NA
+#R uses NA when data is not available
+
+1+NA=1
+#Doesn't work bc NA is not equal to 0
+
+NA==1
+
+c(NA, 1:50)
+mean(c(NA, 1:50))
+#R can't return a mean bc it doesn't know the value of NA
+
+mean(c(NA, 1:50), na.rm=TRUE)
+#R returns a mean bc na.rm = TRUE tells R to ignore NA values
+
+#How do we identify NA in a data set?
+
+NA==NA
+c(1,2,3,NA)==NA
+#Both tests indicate that a variable is missing by not which one
+
+is.na(NA)
+#This is the fix!
+
+vec<-c(1,2,3,NA)
+is.na(vec)
+
+deck5$value[deck5$face == "ace"] <-NA
+head(deck5, 13)
+#Since ace can be 1 or 11 we will set it to NA for now

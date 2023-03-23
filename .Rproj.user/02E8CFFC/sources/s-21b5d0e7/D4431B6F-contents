@@ -1,0 +1,11 @@
+---
+title: "final project work"
+author: "jasper perseus carleton"
+date: '2022-11-14'
+output: html_document
+---
+
+```{bash}
+ hmmsearch --tblout HETC_zoopago2_table PF06985.hmm USEAaoar1_all_proteins_20140429.aa.fasta
+
+```

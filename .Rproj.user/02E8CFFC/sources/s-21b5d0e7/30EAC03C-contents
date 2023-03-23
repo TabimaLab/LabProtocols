@@ -1,0 +1,16 @@
+#                                                                                                       --- full sequence ---- --- best 1 domain ---- --- domain number estimation ----
+# target name                                                accession  query name           accession    E-value  score  bias   E-value  score  bias   exp reg clu  ov env dom rep inc description of target
+#                                        ------------------- ---------- -------------------- ---------- --------- ------ ----- --------- ------ -----   --- --- --- --- --- --- --- --- ---------------------
+jgi|Aaoar1|418255|fgenesh1_kg.2_#_200_#_Locus3105v1rpkm42.77 -          Het-C                PF07217.14  7.1e-272  902.6   0.0  8.5e-272  902.4   0.0   1.0   1   0   0   1   1   1   1 -
+jgi|Aaoar1|157107|CE157106_21381                             -          Het-C                PF07217.14  5.7e-248  823.7   0.0  6.9e-248  823.4   0.0   1.0   1   0   0   1   1   1   1 -
+jgi|Aaoar1|426940|fgenesh1_kg.10_#_19_#_Locus5490v1rpkm17.96 -          Het-C                PF07217.14     0.064   11.4   0.0      0.11   10.7   0.0   1.2   1   0   0   1   1   1   0 -
+#
+# Program:         hmmsearch
+# Version:         3.3 (Nov 2019)
+# Pipeline mode:   SEARCH
+# Query file:      het_c_HMM.hmm
+# Target file:     Aaoar1_GeneCatalog_proteins_20140429.aa.fasta
+# Option settings: hmmsearch --tblout HETC_asco_table het_c_HMM.hmm Aaoar1_GeneCatalog_proteins_20140429.aa.fasta 
+# Current dir:     /Tabima_lab/homes/jcarleton/MBB101/Final_project
+# Date:            Fri Dec  2 10:26:01 2022
+# [ok]

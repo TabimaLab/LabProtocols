@@ -1,0 +1,15 @@
+#                                                                                --- full sequence ---- --- best 1 domain ---- --- domain number estimation ----
+# target name                         accession  query name           accession    E-value  score  bias   E-value  score  bias   exp reg clu  ov env dom rep inc description of target
+#                 ------------------- ---------- -------------------- ---------- --------- ------ ----- --------- ------ -----   --- --- --- --- --- --- --- --- ---------------------
+jgi|MoalAD071_1|10514|BGZ67_010655-T1 -          Het-C                PF07217.14     0.044   11.6   2.0     0.053   11.3   2.0   1.0   1   0   0   1   1   1   0 -
+jgi|MoalAD071_1|4634|BGZ67_004703-T1  -          Het-C                PF07217.14       8.9    4.0  10.6        15    3.2  10.6   1.2   1   0   0   1   1   1   0 -
+#
+# Program:         hmmsearch
+# Version:         3.3 (Nov 2019)
+# Pipeline mode:   SEARCH
+# Query file:      het_c_HMM.hmm
+# Target file:     MoalAD071_1_GeneCatalog_proteins_20210416.aa.fasta
+# Option settings: hmmsearch --tblout HETC_mucoro_table het_c_HMM.hmm MoalAD071_1_GeneCatalog_proteins_20210416.aa.fasta 
+# Current dir:     /Tabima_lab/homes/jcarleton/MBB101/Final_project
+# Date:            Wed Nov 16 19:57:11 2022
+# [ok]

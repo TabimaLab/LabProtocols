@@ -1,0 +1,70 @@
+library(vegan)
+
+DWH.clones<-read.table(file="~/Microbiomes_FA2022/Alpha_Diversity/Redmond_clone_data.txt",sep="\t",header=T,row.names=1)
+head(DWH.clones)
+
+DWH.info<-read.table(file="~/Microbiomes_FA2022/Alpha_Diversity/Redmond_clone_data_sample.type.txt",sep="\t",header=T,row.names=1)
+head(DWH.info)
+
+Watershed.metadata<-read.table(file="~/Microbiomes_FA2022/Metadata_table.txt",sep="",header=T)
+head(Watershed.metadata)
+
+Watershed.phylaOTU<-read.table(file="~/Microbiomes_FA2022/phyla_data.txt")
+head(Watershed.phylaOTU)
+
+## convert DWH.clones to rel abundance
+## Divide each row by the total number of clones for that sample (row)
+## The total number of clones is easily determined using the function
+## rowSums
+rowSums(DWH.clones)
+DWH.relabund<-DWH.clones/rowSums(DWH.clones)
+
+rowSums(Watershed.phylaOTU)
+Watershed.relabund<-Watershed.phylaOTU/rowSums(Watershed.phylaOTU)
+
+## Make a simple bar plot of the data
+## set the color scheme, but the order is reversed in the plot
+bar.col<-c("#010101","#D3E4BD","#FDD3B7","#C0E6EE","#009B9A","#9A8C4F","#FAF398","#F5EB00","#AE4A25","#E27EB3","#FACFE2","#C3489A","#A7DDE7","#00A651","#0071BB","#00AFED","#0B6196","#F7946A","#F26728","#EE2E2F")
+
+## plot by number of clones
+barplot(t(as.matrix(DWH.clones)),col=bar.col,ylab="Number of clones",las=2)
+barplot(t(as.matrix(Watershed.phylaOTU)),col=bar.col,ylab="Number of clones",las=2)
+
+## plot by relative abundance
+barplot(t(as.matrix(DWH.relabund)),las=2,ylab="Relative abundance",col=bar.col)
+barplot(t(as.matrix(Watershed.relabund)),las=2,ylab="Relative abundance",col=bar.col)
+
+## Plot the rarefaction curve for all the samples
+rarecurve(DWH.clones)
+rarecurve(Watershed.phylaOTU,step=100,cex=0.6)
+
+## Turn off the label feature to see the curves better
+rarecurve(DWH.clones,label=FALSE,col=as.character(DWH.info$Sample.type.col))
+legend('bottomright',c("Plume.May","Plume.June","Plume.Sept","Surface.May","NonPlume.May","NonPlume.Sept")
+       ,text.col = c("blue","green","black","red","orange","pink"),cex=0.8,bg=NA,box.col=NA)
+
+rarecurve(Watershed.phylaOTU,step=100,cex=0.6,label=F,col=as.character(Watershed.metadata$Sample.type.col))
+legend('bottomright',c("B","Coes","Cook","KP","MP","MR","PR","PRS","SBFM","T"),
+       text.col = c("blue","red","green","orange","pink","black","purple","yellow","violet","brown"),cex=0.8,bg=NA,box.col=NA)
+
+## Easily determine the richness in each sampling using specnumber()
+specnumber(DWH.clones)
+specnumber(Watershed.phylaOTU)
+
+## Put together in a table with sample the sample info
+DWH.info.2<-cbind(DWH.info,specnumber(DWH.clones))
+DWH.info.2
+
+Watershed.metadata.2<-cbind(Watershed.metadata,specnumber(Watershed.phylaOTU))
+Watershed.metadata.2
+
+### Make a box plot of the richness by sample type
+par(mfrow=c(1,3))
+boxplot(specnumber(DWH.clones) ~ Plume.date, data = DWH.info,ylab="Richness",lab.cex=0.5,xlab=NA,las=2)
+boxplot(diversity(DWH.clones,index='shannon') ~ Plume.date, data = DWH.info,ylab="Shannon Index",lab.cex=0.5,xlab=NA,las=2)
+boxplot(diversity(DWH.clones,index='simpson') ~ Plume.date, data = DWH.info,ylab="Simpson Index",lab.cex=0.5,xlab=NA,las=2)
+
+par(mfrow=c(1,3))
+boxplot(specnumber(Watershed.phylaOTU) ~ Location, data=Watershed.metadata,ylab="Richness",lab.cex=0.5,xlab=NA,las=2)
+boxplot(diversity(Watershed.phylaOTU,index='shannon') ~ Location, data = Watershed.metadata,ylab="Shannon Index",lab.cex=0.5,xlab=NA,las=2)
+boxplot(diversity(Watershed.phylaOTU,index='simpson') ~ Location, data = Watershed.metadata,ylab="Simpson Index",lab.cex=0.5,xlab=NA,las=2)

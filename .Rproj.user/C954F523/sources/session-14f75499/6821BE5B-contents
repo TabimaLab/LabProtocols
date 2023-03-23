@@ -1,0 +1,48 @@
+#1D
+c(1,2,3,4,5)
+
+c("A","B","C","D","E")
+
+#2D
+data.frame(c(1,2,3,4,5), c("A","B","C","D","E"))
+
+#Objects
+lab <- c("fungi","dishes")
+lab
+
+#Vectors are unidirectional objects
+numbers <- c(1,2,3,4,5)
+numbers
+
+letters <- c("A","B","C","D","E")
+letters
+
+#c() is a function that R uses to "interpret and order"
+#R has many built in functions
+length(numbers)
+
+#Functions use a command on whatever is in the parentheses
+
+#Q1
+words <- c("dog","cat","mouse","house","armadillo")
+numbers <- c(7,14,21,28,35)
+mixed <- c("seven",6,"five",4,"three",2)
+
+words
+numbers
+mixed
+
+#class() command will return the type of vector
+class(words)
+class(numbers)
+class(mixed)
+
+double.words<-c(words,words)
+double.words
+
+more.numbers<-c(numbers,42,49,58)
+more.numbers
+
+mixed2<-c(words,numbers)
+mixed2
+class(mixed2)

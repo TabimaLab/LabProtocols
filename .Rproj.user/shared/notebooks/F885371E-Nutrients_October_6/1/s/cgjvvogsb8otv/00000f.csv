@@ -1,0 +1,3 @@
+"0","june.results$Site[june.results$Site %in% ""MB1""] <- ""MR1_1"""
+"0","june.results$Site[june.results$Site %in% ""MR1""] <- ""MB1"""
+"0","june.results$Site[june.results$Site %in% ""MR1_1""] <- ""MR1"""

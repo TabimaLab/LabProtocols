@@ -1,0 +1,10 @@
+---
+title: "palmerpenguins"
+author: "jasper perseus carleton"
+date: "2023-03-21"
+output: html_document
+---
+
+install.packages('palmerpenguins')
+library(palmerpenguins)
+

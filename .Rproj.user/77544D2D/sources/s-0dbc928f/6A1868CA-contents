@@ -1,0 +1,33 @@
+---
+title: "Trimmomatic"
+author: 'yes'
+date: '2023-02-14'
+output: html_document
+---
+
+
+```{r}
+
+java -jar /Smaug_SSD/bin/Trimmomatic-0.39/trimmomatic-0.39.jar PE NB0621_05_S166_R1_001.fastq.gz NB0621_05_S166_R2_001.fastq.gz Processed_R1.fastq.gz Processed_R1.Unpaired.fastq.gz Processed_R2.fastq.gz Processed_R2.Unpaired.fastq.gz ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 MINLEN:120 SLIDINGWINDOW:10:30
+
+ 
+```
+
+```{r}
+java -jar /Smaug_SSD/bin/Trimmomatic-0.39/trimmomatic-0.39.jar PE NB0621_05_S166_R1_001.fastq.gz NB0621_05_S166_R2_001.fastq.gz Processed_R1_2.fastq.gz Processed_R1_2.Unpaired.fastq.gz Processed_R2_2.fastq.gz Processed_R2_2.Unpaired.fastq.gz ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 LEADING:30 SLIDINGWINDOW:10:30 MINLEN:145 
+```
+```{r}
+
+java -jar /Smaug_SSD/bin/Trimmomatic-0.39/trimmomatic-0.39.jar PE NB0621_05_S166_R1_001.fastq.gz NB0621_05_S166_R2_001.fastq.gz Processed_R1_3.fastq.gz Processed_R1_3.Unpaired.fastq.gz Processed_R2_3.fastq.gz Processed_R2_3.Unpaired.fastq.gz ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 SLIDINGWINDOW:20:30 MINLEN:149 
+```
+
+
+```{r}
+
+/Smaug_SSD/bin/fastqc -o ~/Genome_backup/QC Processed_R1.fastq.gz
+
+/Smaug_SSD/bin/fastqc -o ~/Genome_backup/QC Processed_R1_2.fastq.gz
+
+/Smaug_SSD/bin/fastqc -o ~/Genome_backup/QC Processed_R1_3.fastq.gz
+
+```

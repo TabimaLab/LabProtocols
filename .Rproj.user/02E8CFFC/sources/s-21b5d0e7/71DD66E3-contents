@@ -1,0 +1,28 @@
+---
+title: "Lab_3"
+author: "jasper perseus carleton"
+date: '2023-02-09'
+output: html_document
+---
+
+# DNA Extraction Report
+
+Sample: 082107
+
+- Qubit - 26.8 ng/μL
+- 260/230 value = 2.37
+- 260/280 value = 1.87
+- ![Nanodrop graph](Nanodrop_5.png)
+- ![Gel](Gels.png)
+
+
+
+1. The Nanodrop concentration is higher than the Qubit because the two measure in different ways and different things. Nanodrop measures using spectrophotometry and measures DNA concentration, salts, and proteins. Qubit measures just concentration and instead uses a working solution with reagents that bind to DNA, shining for the machine to pick up light and quantify DNA through that light. Generally, Qubit is more reliable to measure concentration, but Nanodrop is important to quantify the purity of the DNA. 
+2. Qubit is a more reliable way to gauge DNA concentration, while the Nanodrop is a better way to gauge contamination (and the ratio of contamination to DNA)
+3. No because the gel indicates that our band is just over 10kb and New England BioLabs defines HMW DNA as that whhich is larger than 50kb, meaning ours isn't large enough to be considered HMW (N.E. BioLabs).
+4. Yes, we extracted enough DNA to perform Nanopore sequencing (we currently have a total of 1336.8ng and the Nanopore requires ~300ng).
+
+
+References:
+
+- N. E. BioLabs, (n.d.). High Molecular Weight (Hmw) DNA Extraction – minimizing a bottleneck for emerging long read sequencing applications. Retrieved February 9, 2023, from https://www.neb.com/nebinspired-blog/hmw-dna---minimizing-the-bottleneck

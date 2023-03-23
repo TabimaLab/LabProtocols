@@ -1,0 +1,1215 @@
+
+Starting Unicycler (2023-03-16 11:13:50)
+----------------------------------------
+    Welcome to Unicycler, an assembly pipeline for bacterial genomes. Since you provided only short reads, Unicycler will essentially function as a SPAdes-optimiser. It will try many k-mer sizes, choose the best based on contig length and graph connectivity, and scaffold the graph using SPAdes repeat resolution.
+    For more information, please see https://github.com/rrwick/Unicycler
+
+Command: /usr/local/bin/unicycler -1 S06_CKDN230002813-1A_HT2J2DSX5_L2_1.fq.gz -2 S06_CKDN230002813-1A_HT2J2DSX5_L2_2.fq.gz -o unicycler_raw
+
+Unicycler version: v0.4.9b
+Using 8 threads
+
+Making output directory:
+  /Tabima_lab/homes/mdelcogliano/Genome/QC_Trim/S06/unicycler_raw
+
+Dependencies:
+  Program         Version   Status  
+  spades.py       3.13.0    good    
+  racon                     not used
+  makeblastdb     2.9.0+    good    
+  tblastn         2.9.0+    good    
+  bowtie2-build   2.4.2     good    
+  bowtie2         2.4.2     good    
+  samtools        1.10      good    
+  java            11.0.18   good    
+  pilon           1.24      good    
+  bcftools                  not used
+
+
+SPAdes read error correction (2023-03-16 11:17:05)
+--------------------------------------------------
+    Unicycler uses the SPAdes read error correction module to reduce the number of errors in the short read before SPAdes assembly. This can make the assembly faster and simplify the assembly graph structure.
+
+Command: /usr/local/bin/spades.py -1 /Tabima_lab/homes/mdelcogliano/Genome/QC_Trim/S06/S06_CKDN230002813-1A_HT2J2DSX5_L2_1.fq.gz -2 /Tabima_lab/homes/mdelcogliano/Genome/QC_Trim/S06/S06_CKDN230002813-1A_HT2J2DSX5_L2_2.fq.gz -o /Tabima_lab/homes/mdelcogliano/Genome/QC_Trim/S06/unicycler_raw/spades_assembly/read_correction --threads 8 --only-error-correction --phred-offset 33
+
+Corrected reads:
+  /Tabima_lab/homes/mdelcogliano/Genome/QC_Trim/S06/unicycler_raw/spades_assembly/corrected_1.fastq.gz
+  /Tabima_lab/homes/mdelcogliano/Genome/QC_Trim/S06/unicycler_raw/spades_assembly/corrected_2.fastq.gz
+
+
+Choosing k-mer range for assembly (2023-03-16 12:52:39)
+-------------------------------------------------------
+    Unicycler chooses a k-mer range for SPAdes based on the length of the input reads. It uses a wide range of many k-mer sizes to maximise the chance of finding an ideal assembly.
+
+SPAdes maximum k-mer: 127
+Median read length: 150
+K-mer range: 27, 47, 63, 77, 89, 99, 107, 115, 121, 127
+
+
+SPAdes assemblies (2023-03-16 12:55:19)
+---------------------------------------
+    Unicycler now uses SPAdes to assemble the short reads. It scores the assembly graph for each k-mer using the number of contigs (fewer is better) and the number of dead ends (fewer is better). The score function is 1/(c*(d+2)), where c is the contig count and d is the dead end count.
+
+K-mer   Contigs   Dead ends   Score   
+   27     6,345       5,185   3.04e-08
+   47     4,640       6,885   3.13e-08 ← best
+   63     5,165       8,641   2.24e-08
+   77     5,046       8,735   2.27e-08
+   89     5,483       9,750   1.87e-08
+   99     5,898      10,716   1.58e-08
+  107     6,330      11,635   1.36e-08
+  115     6,722      12,495   1.19e-08
+  121     7,009      13,126   1.09e-08
+  127     7,255      13,709   1.01e-08
+
+Read depth filter: removed 21786 contigs totalling 11153893 bp
+Deleting /Tabima_lab/homes/mdelcogliano/Genome/QC_Trim/S06/unicycler_raw/spades_assembly/
+
+
+Determining graph multiplicity (2023-03-16 13:56:51)
+----------------------------------------------------
+    Multiplicity is the number of times a sequence occurs in the underlying sequence. Single-copy contigs (those with a multiplicity of one, occurring only once in the underlying sequence) are particularly useful.
+
+Saving /Tabima_lab/homes/mdelcogliano/Genome/QC_Trim/S06/unicycler_raw/001_best_spades_graph.gfa
+
+
+Cleaning graph (2023-03-16 13:56:58)
+------------------------------------
+    Unicycler now performs various cleaning procedures on the graph to remove overlaps and simplify the graph structure. The end result is a graph ready for bridging.
+
+Graph overlaps removed
+
+Removed zero-length segments:
+    3681, 3693, 3696, 3701, 3707, 3724, 3748, 3750, 3759, 3773, 3774, 3776, 3782, 3794, 3798, 3820, 3823, 3834, 3852, 3856, 3862, 3869, 3876, 3893, 3897, 3904, 3917, 3940, 3946, 3953, 3970, 3971
+
+Removed zero-length segments:
+    3687, 3989
+
+Merged small segments:
+    3809, 3839, 3840, 3842, 3845, 3846, 3848, 3855, 3860, 3861, 3865, 3870, 3879, 3881, 3883, 3885, 3886, 3890, 3891, 3892, 3894, 3895, 3896, 3898, 3900, 3901, 3902, 3905, 3906, 3907, 3908, 3909, 3910, 3911, 3912, 3914, 3915, 3919, 3920, 3923, 3928, 3929, 3930, 3931, 3932, 3933, 3934, 3935, 3937, 3941, 3942, 3943, 3945, 3948, 3949, 3950, 3951, 3952, 3954, 3958, 3959, 3960, 3961, 3962, 3963, 3964, 3966, 3967, 3968, 3969, 3972, 3973, 3975, 3977, 3978, 3979, 3980, 3981, 3982, 3984, 3985, 3986, 3987, 3988, 3990, 3991, 3992, 3993
+
+Saving /Tabima_lab/homes/mdelcogliano/Genome/QC_Trim/S06/unicycler_raw/002_overlaps_removed.gfa
+
+    Unicycler now selects a set of anchor contigs from the single-copy contigs. These are the contigs which will be connected via bridges to form the final assembly.
+
+1,150 anchor segments (14,894,708 bp) out of 3,888 total segments (16,713,077 bp)
+
+
+Creating SPAdes contig bridges (2023-03-16 13:57:02)
+----------------------------------------------------
+    SPAdes uses paired-end information to perform repeat resolution (RR) and produce contigs from the assembly graph. SPAdes saves the graph paths corresponding to these contigs in the contigs.paths file. When one of these paths contains two or more anchor contigs, Unicycler can create a bridge from the path.
+
+                                                                                                                                                                  Bridge
+Start                                                                        Path                                                                        End     quality
+ -794                                                                   -3252 → -1352                                                                    1085       17.1
+ -581                                                                       -2725                                                                        846        45.0
+ -557                                          3585 → 3787 → -3751 → 3575 → -3660 → 3428 → -3711 → -3400 → 3689                                          1025       27.1
+ -519                     -3770 → -3800 → 3071 → -3766 → -3542 → -3527 → -3641 → 3559 → -3731 → -2046 → 3654 → -3388 → 3765 → -3863                      636        16.7
+ -496                       3664 → 3554 → -3770 → -3560 → 3869 → 3675 → 1949 → -3731 → 2049 → 3654 → -3826 → -3754 → 3514 → -3703                        654        15.5
+ -379                                         -3856 → -3814 → -3785 → 3884 → 3799 → 3595 → 3878 → -3768 → -3737                                          576        63.2
+ -376                                                                                                                                                    842        53.3
+ -350                                                                        3164                                                                        372        62.3
+ -250                                                                                                                                                    967        24.2
+ -243                                                                       -3863                                                                        362        62.2
+ -219                                                                2866 → -3539 → 2866                                                                 593        20.1
+ -218                                                                       -3698                                                                        480        57.4
+ -194                                                                       -3726                                                                        221        63.0
+ -147                                                                       -3534                                                                        319        62.8
+ -138                                                                        3718                                                                        517        62.6
+ -128                                                                        3672                                                                        249        61.1
+ -125                                                                       -3622                                                                        175        61.7
+  -90                                                                       -3738                                                                        301        62.8
+  -89                                                                       -3714                                                                        518        62.9
+  -86                                                                       -3714                                                                        770        63.2
+  -67                                                                        3718                                                                        512        62.0
+  -63                                                                        3180                                                                        71         63.2
+  -59                                                                       -3662                                                                        280        63.2
+  -46                                                                       -3682                                                                        126        63.1
+  -41                                                                                                                                                    292         1.5
+  -37                                                                        3543                                                                        294        63.2
+  -36                                                                       -3732                                                                        247        59.3
+  -27                                                                3758 → 3854 → -3090                                                                 34         63.2
+  -25                                                                        2157                                                                        113        34.6
+  -23                                                                       -3745                                                                        45         63.2
+  -15                                                                                                                                                    251        18.1
+  -12                                                                       -3672                                                                        270        63.2
+   -8                                                                        3644                                                                        298        61.1
+   -5                                                                       -3643                                                                        217        63.2
+    5                                                                        1469                                                                        -314       25.3
+    7                                                                                                                                                    -24        15.6
+    8                                                                        3746                                                                        11         63.2
+   11                                                                        3713                                                                        208        63.1
+   13                                                                                                                                                    166        63.2
+   15                                                                                                                                                    20         63.0
+   17                                                                       -3726                                                                        -175       63.0
+   19                                                                                                                                                    -27        63.2
+   20                                                                       -3691                                                                        239        62.8
+   22                                                                                                                                                    65         63.2
+   34                                                                                                                                                    -238       63.0
+   45                                                                       -3678                                                                        99         63.2
+   48                                                                       -3637                                                                        -360       52.6
+   52                                                                       -3681                                                                        62         63.2
+   54                                                                       -3713                                                                        118        63.2
+   58                                                                        3744                                                                        146        63.2
+   59                                                                       -3717                                                                        74         63.1
+   67                                                                        3702                                                                        181        62.4
+   69                                                                       -3622                                                                        617        62.7
+   70                                                                        3663                                                                        431        56.9
+   72                                                                        3745                                                                        143        62.3
+   74                                                                       -3716                                                                        -125       61.0
+   82                                                                        3692                                                                        -199       63.2
+   83                                                                        3686                                                                        -146       63.2
+   84                                                                       -3736                                                                        757        62.2
+   88                                                                       -3702                                                                        -142       62.7
+   89                                                                        3546                                                                        -533       61.1
+   90                                                                        3732                                                                        149        59.2
+   91                                                                        3618                                                                        271        61.1
+   95                                                                        3719                                                                        737        62.1
+   99                                                                       -3611                                                                        -469       62.6
+  105                                                                     464 → 448                                                                      -420        8.7
+  109                                                                                                                                                    -121       62.8
+  111                                                                        3691                                                                        -467       62.7
+  114                                                                       -3663                                                                        -180       61.7
+  115                                                                        3608                                                                        -490       63.0
+  117                                                         3758 → 3854 → -3090 → 3811 → 3535                                                          806        42.8
+  127                                                                        3692                                                                        83         63.1
+  130                                                  3720 → 3645 → 2728 → -3680 → 2592 → -3655 → 2823                                                  438        19.9
+  138                                                                                                                                                    189        62.7
+  140                                                                 3686 → 2184 → 3173                                                                 614        27.4
+  143                                                                        3716                                                                        419        57.6
+  153                                                                                                                                                    -395       62.5
+  155                                                                                                                                                    352        60.2
+  156                                                                        3608                                                                        78         63.2
+  159                                                                        3753                                                                        410        63.2
+  163                                                                        3721                                                                        283        62.9
+  164                                                                       -3681                                                                        311        63.2
+  168                                                                        3730                                                                        234        60.7
+  169                                                                    -3286 → 3837                                                                    -222       62.8
+  172                                                                       -3543                                                                        -617       63.1
+  174                                                                        3611                                                                        469        60.4
+  176                                                                        3693                                                                        927        63.2
+  177                                                                                                                                                    103        60.6
+  178                                                                    -3727 → 1173                                                                    140        22.3
+  184                                                                       -3746                                                                        -186       63.2
+  188                                                                        3673                                                                        -241       62.9
+  190                                                                       -3725                                                                        346        63.0
+  191                                                                       -1469                                                                        314        26.2
+  194                                                                -3790 → 2770 → 3173                                                                 330        34.8
+  206                                                                        3727                                                                        107        63.2
+  209                                                                       -3678                                                                        -358       62.4
+  212                                                                        3621                                                                        262        62.8
+  217                                                                       -3643                                                                        4          62.4
+  218                                                                        3617                                                                        32         61.9
+  219                                                                        3709                                                                        -237       63.1
+  221                                                                        3717                                                                        105        63.2
+  227                                                                       -3721                                                                        127        62.8
+  228                                                                        3752                                                                        241        63.1
+  239                                                                        3719                                                                        227        63.0
+  243           -3720 → -3782 → -3756 → -3765 → -3687 → 2586 → -3668 → 3058 → 3639 → -3530 → 3641 → 3650 → 3631 → 3542 → 3544 → -3871 → -3675            -738        5.6
+  250                                                                       -3698                                                                        188        63.2
+  257                                                                       -3752                                                                        17         59.5
+  262                                                                        3617                                                                        -531       49.4
+  271                                                                                                                                                    339        62.1
+  281                                                                       -3736                                                                        277        62.8
+  282                                                                       -3735                                                                        -1079      61.5
+  289                                                                        3662                                                                        -306       58.8
+  294                                                                       -3618                                                                        183        63.1
+  296                                                                       -1493                                                                        515        26.2
+  298                                                         -3629 → 2622 → 2962 → -3648 → 2151                                                         528        10.6
+  308                                                                                                                                                    31         17.0
+  310                                                                       -3735                                                                        1078       62.6
+  313                                                                3492 → -3579 → 3607                                                                 -567       61.1
+  318                                                                        -287                                                                        -346        6.6
+  319                                                                                                                                                    58         63.2
+  330                                                                        2725                                                                        -451       62.6
+  334                                                                        3637                                                                        190        62.9
+  335                                                                        3725                                                                        363        62.8
+  350                                                               -3753 → -2010 → -2674                                                                -496       23.6
+  355                                                                       -3644                                                                        309        60.9
+  362                                                                       -3682                                                                        130        61.7
+  365                                                                       -3546                                                                        48         62.0
+  372                                                 -3806 → -3785 → 3884 → 3799 → 3595 → 3878 → -3802                                                  -378       63.2
+  379                                                 3715 → 3820 → -3878 → -3595 → 3627 → 3814 → -3572                                                  454        53.6
+  418                                                                                                                                                    1177       59.2
+  479                                                                    -922 → -3743                                                                    598        19.4
+  500                                                                        3744                                                                        290        59.8
+  512                                                                        3684                                                                        52         61.4
+  517                                                                        3684                                                                        572        52.3
+  519                                                                        3569                                                                        100        62.4
+  534                                                         2490 → -1996 → 3747 → 3556 → -3587                                                         1079       20.1
+  545                                                                                                                                                    1171       52.7
+  551                                                                        3607                                                                        -995       63.0
+  557                                                                        3680                                                                        49         62.5
+  607                                                                       -3180                                                                        201        61.2
+  675                                                                       -3712                                                                        42         62.4
+  724                                                                -3670 → -3636 → 3624                                                                248        63.1
+  736                                                                        3358                                                                        -850       60.3
+  750                                                                        3596                                                                        1151        2.4
+  806                                                             3854 → -3090 → 3811 → 3535                                                             384        48.3
+  846                                                                        3198                                                                        -1077      54.3
+  880                                                                       -2674                                                                        738        55.4
+  967                                                                   -3252 → -3771                                                                    420        28.7
+  971                                                                                                                                                    761        62.8
+ 1062                                                                       -3561                                                                        310        61.3
+ 1078                                                        3587 → -3555 → -3747 → -1997 → -2490                                                        1080       19.5
+ 1080   -2963 → -1707 → 3098 → -3531 → -3724 → -3839 → -3528 → -3541 → -3612 → 3886 → 3801 → 3603 → 3788 → -3857 → -3723 → -3519 → 3516 → 3676 → -3781   405        13.7
+
+
+Creating loop unrolling bridges (2023-03-16 13:57:02)
+-----------------------------------------------------
+    When a SPAdes contig path connects an anchor contig with the middle contig of a simple loop, Unicycler concludes that the sequences are contiguous (i.e. the loop is not a separate piece of DNA). It then uses the read depth of the middle and repeat contigs to guess the number of times to traverse the loop and makes a bridge.
+
+                                  Loop count   Loop count    Loop    Bridge
+Start   Repeat   Middle     End    by repeat    by middle   count   quality
+  176     3693      927      16         1.07         0.92       1      41.4
+  174     3611      469     -99         1.03         1.07       1      41.0
+ -593    -2866     3539     219         0.95         0.92       1      43.3
+  191    -1469      314      -5         0.94         1.11       1      40.1
+
+
+Applying bridges (2023-03-16 13:57:02)
+--------------------------------------
+    Unicycler now applies to the graph in decreasing order of quality. This ensures that when multiple, contradictory bridges exist, the most supported option is used.
+
+Bridge type   Start → end     Path                                       Quality
+SPAdes          -27 → 34      3758, 3854, -3090                           63.246
+SPAdes          -63 → 71      3180                                        63.245
+SPAdes           19 → -27                                                 63.245
+SPAdes         -379 → 576     -3856, -3814, -3785, 3884, 3799, 3595,      63.244
+                              3878, -3768, -3737                                
+SPAdes          -12 → 270     -3672                                       63.244
+SPAdes           82 → -199    3692                                        63.244
+SPAdes          159 → 410     3753                                        63.243
+SPAdes          164 → 311     -3681                                       63.242
+SPAdes           45 → 99      -3678                                       63.242
+SPAdes           -5 → 217     -3643                                       63.239
+SPAdes            8 → 11      3746                                        63.237
+SPAdes          -23 → 45      -3745                                       63.234
+SPAdes          176 → 927     3693                                        63.234
+SPAdes           22 → 65                                                  63.233
+SPAdes          -59 → 280     -3662                                       63.232
+SPAdes          -37 → 294     3543                                        63.230
+SPAdes           13 → 166                                                 63.228
+SPAdes           54 → 118     -3713                                       63.225
+SPAdes           83 → -146    3686                                        63.222
+SPAdes          319 → 58                                                  63.218
+SPAdes           52 → 62      -3681                                       63.214
+SPAdes          184 → -186    -3746                                       63.210
+SPAdes          372 → -378    -3806, -3785, 3884, 3799, 3595, 3878,       63.210
+                              -3802                                             
+SPAdes          156 → 78      3608                                        63.202
+SPAdes           58 → 146     3744                                        63.195
+SPAdes          206 → 107     3727                                        63.190
+SPAdes          250 → 188     -3698                                       63.188
+SPAdes          221 → 105     3717                                        63.182
+SPAdes          -86 → 770     -3714                                       63.151
+SPAdes          -46 → 126     -3682                                       63.149
+SPAdes          294 → 183     -3618                                       63.145
+SPAdes          219 → -237    3709                                        63.138
+SPAdes          172 → -617    -3543                                       63.138
+SPAdes           59 → 74      -3717                                       63.130
+SPAdes          127 → 83      3692                                        63.098
+SPAdes          724 → 248     -3670, -3636, 3624                          63.093
+SPAdes          228 → 241     3752                                        63.093
+SPAdes           11 → 208     3713                                        63.059
+SPAdes           15 → 20                                                  63.033
+SPAdes           17 → -175    -3726                                       63.016
+SPAdes           34 → -238                                                63.008
+SPAdes          190 → 346     -3725                                       63.006
+SPAdes          551 → -995    3607                                        62.977
+SPAdes         -194 → 221     -3726                                       62.977
+SPAdes          239 → 227     3719                                        62.965
+SPAdes          115 → -490    3608                                        62.956
+SPAdes          163 → 283     3721                                        62.925
+SPAdes          188 → -241    3673                                        62.920
+SPAdes          334 → 190     3637                                        62.891
+SPAdes          -89 → 518     -3714                                       62.871
+SPAdes          -90 → 301     -3738                                       62.842
+SPAdes         -147 → 319     -3534                                       62.841
+SPAdes           20 → 239     -3691                                       62.816
+SPAdes          169 → -222    -3286, 3837                                 62.800
+SPAdes          227 → 127     -3721                                       62.794
+SPAdes          212 → 262     3621                                        62.791
+SPAdes          281 → 277     -3736                                       62.776
+SPAdes          109 → -121                                                62.773
+SPAdes          971 → 761                                                 62.756
+SPAdes          335 → 363     3725                                        62.753
+SPAdes          138 → 189                                                 62.739
+SPAdes           88 → -142    -3702                                       62.735
+SPAdes           69 → 617     -3622                                       62.682
+SPAdes          111 → -467    3691                                        62.652
+SPAdes          330 → -451    2725                                        62.623
+SPAdes          310 → 1078    -3735                                       62.613
+SPAdes         -138 → 517     3718                                        62.612
+SPAdes           99 → -469    -3611                                       62.595
+SPAdes          557 → 49      3680                                        62.534
+SPAdes          153 → -395                                                62.460
+SPAdes          519 → 100     3569                                        62.422
+SPAdes          217 → 4       -3643                                       62.404
+SPAdes          675 → 42      -3712                                       62.384
+SPAdes           67 → 181     3702                                        62.375
+SPAdes          209 → -358    -3678                                       62.364
+SPAdes         -350 → 372     3164                                        62.339
+SPAdes           72 → 143     3745                                        62.308
+SPAdes         -243 → 362     -3863                                       62.248
+SPAdes           84 → 757     -3736                                       62.231
+SPAdes          271 → 339                                                 62.142
+SPAdes           95 → 737     3719                                        62.094
+SPAdes          -67 → 512     3718                                        62.045
+SPAdes          365 → 48      -3546                                       62.019
+SPAdes          218 → 32      3617                                        61.908
+SPAdes          114 → -180    -3663                                       61.735
+SPAdes          362 → 130     -3682                                       61.696
+SPAdes         -125 → 175     -3622                                       61.676
+SPAdes          282 → -1079   -3735                                       61.542
+SPAdes          512 → 52      3684                                        61.373
+SPAdes         1062 → 310     -3561                                       61.259
+SPAdes          607 → 201     -3180                                       61.202
+SPAdes          313 → -567    3492, -3579, 3607                           61.137
+SPAdes         -128 → 249     3672                                        61.133
+SPAdes           91 → 271     3618                                        61.133
+SPAdes           89 → -533    3546                                        61.114
+SPAdes           -8 → 298     3644                                        61.070
+SPAdes           74 → -125    -3716                                       61.029
+SPAdes          355 → 309     -3644                                       60.940
+SPAdes          168 → 234     3730                                        60.740
+SPAdes          177 → 103                                                 60.617
+SPAdes          174 → 469     3611                                        60.377
+SPAdes          736 → -850    3358                                        60.332
+SPAdes          155 → 352                                                 60.164
+SPAdes          500 → 290     3744                                        59.825
+SPAdes          257 → 17      -3752                                       59.508
+SPAdes          -36 → 247     -3732                                       59.348
+SPAdes           90 → 149     3732                                        59.248
+SPAdes          418 → 1177                                                59.206
+SPAdes          289 → -306    3662                                        58.796
+SPAdes          143 → 419     3716                                        57.599
+SPAdes         -218 → 480     -3698                                       57.414
+SPAdes           70 → 431     3663                                        56.873
+SPAdes          880 → 738     -2674                                       55.445
+SPAdes          846 → -1077   3198                                        54.328
+SPAdes          379 → 454     3715, 3820, -3878, -3595, 3627, 3814,       53.592
+                              -3572                                             
+SPAdes         -376 → 842                                                 53.339
+SPAdes          545 → 1171                                                52.668
+SPAdes           48 → -360    -3637                                       52.647
+SPAdes          517 → 572     3684                                        52.262
+SPAdes          262 → -531    3617                                        49.402
+SPAdes          806 → 384     3854, -3090, 3811, 3535                     48.261
+SPAdes         -581 → 846     -2725                                       44.997
+SPAdes          117 → 806     3758, 3854, -3090, 3811, 3535               42.819
+SPAdes          194 → 330     -3790, 2770, 3173                           34.839
+SPAdes          -25 → 113     2157                                        34.561
+SPAdes          967 → 420     -3252, -3771                                28.723
+SPAdes          140 → 614     3686, 2184, 3173                            27.413
+SPAdes         -557 → 1025    3585, 3787, -3751, 3575, -3660, 3428,       27.133
+                              -3711, -3400, 3689                                
+SPAdes          296 → 515     -1493                                       26.249
+SPAdes          191 → 314     -1469                                       26.207
+SPAdes            5 → -314    1469                                        25.320
+SPAdes         -250 → 967                                                 24.223
+SPAdes          350 → -496    -3753, -2010, -2674                         23.602
+SPAdes          178 → 140     -3727, 1173                                 22.286
+SPAdes          534 → 1079    2490, -1996, 3747, 3556, -3587              20.128
+SPAdes         -219 → 593     2866, -3539, 2866                           20.125
+SPAdes          130 → 438     3720, 3645, 2728, -3680, 2592, -3655,       19.915
+                              2823                                              
+SPAdes         1078 → 1080    3587, -3555, -3747, -1997, -2490            19.515
+SPAdes          479 → 598     -922, -3743                                 19.431
+SPAdes          -15 → 251                                                 18.082
+SPAdes         -794 → 1085    -3252, -1352                                17.133
+SPAdes          308 → 31                                                  17.041
+SPAdes         -519 → 636     -3770, -3800, 3071, -3766, -3542, -3527,    16.712
+                              -3641, 3559, -3731, -2046, 3654, -3388,           
+                              3765, -3863                                       
+SPAdes            7 → -24                                                 15.567
+SPAdes         -496 → 654     3664, 3554, -3770, -3560, 3869, 3675,       15.549
+                              1949, -3731, 2049, 3654, -3826, -3754,            
+                              3514, -3703                                       
+SPAdes         1080 → 405     -2963, -1707, 3098, -3531, -3724, -3839,    13.660
+                              -3528, -3541, -3612, 3886, 3801, 3603,            
+                              3788, -3857, -3723, -3519, 3516, 3676,            
+                              -3781                                             
+SPAdes          298 → 528     -3629, 2622, 2962, -3648, 2151              10.613
+
+Saving /Tabima_lab/homes/mdelcogliano/Genome/QC_Trim/S06/unicycler_raw/003_bridges_applied.gfa
+
+
+Bridged assembly graph (2023-03-16 13:57:05)
+--------------------------------------------
+    The assembly is now mostly finished and no more structural changes will be made. Ideally the assembly graph should now have one contig per replicon and no erroneous contigs (i.e a complete assembly). If there are more contigs, then the assembly is not complete.
+
+
+Merged small segments:
+    1405
+Saving /Tabima_lab/homes/mdelcogliano/Genome/QC_Trim/S06/unicycler_raw/004_final_clean.gfa
+
+Component   Segments   Links   Length       N50       Longest segment   Status    
+    total      1,406     914   15,515,024    91,021           596,021             
+        1        639     839   10,580,465   105,343           596,021   incomplete
+        2          1       0      379,279   379,279           379,279   incomplete
+        3          1       0      292,409   292,409           292,409   incomplete
+        4         47      58    1,046,221   163,321           290,403   incomplete
+        5          1       0      272,552   272,552           272,552   incomplete
+        6          1       0      200,803   200,803           200,803   incomplete
+        7          1       0      121,142   121,142           121,142   incomplete
+        8          1       0      102,970   102,970           102,970   incomplete
+        9          1       0       80,556    80,556            80,556   incomplete
+       10          1       0       74,222    74,222            74,222   incomplete
+       11          1       0       67,514    67,514            67,514   incomplete
+       12          1       0       61,296    61,296            61,296   incomplete
+       13          1       0       59,487    59,487            59,487   incomplete
+       14          1       0       55,677    55,677            55,677   incomplete
+       15          5       6       91,973    54,767            54,767   incomplete
+       16          1       0       51,124    51,124            51,124   incomplete
+       17          1       0       50,059    50,059            50,059   incomplete
+       18          1       0       39,851    39,851            39,851   incomplete
+       19          1       0       38,407    38,407            38,407   incomplete
+       20          1       0       37,484    37,484            37,484   incomplete
+       21          1       0       36,219    36,219            36,219   incomplete
+       22          1       0       32,522    32,522            32,522   incomplete
+       23          1       0       31,027    31,027            31,027   incomplete
+       24          1       0       30,995    30,995            30,995   incomplete
+       25          1       0       30,779    30,779            30,779   incomplete
+       26          1       0       29,614    29,614            29,614   incomplete
+       27          1       0       25,261    25,261            25,261   incomplete
+       28          1       0       24,748    24,748            24,748   incomplete
+       29          1       0       20,473    20,473            20,473   incomplete
+       30          1       0       19,369    19,369            19,369   incomplete
+       31          1       0       18,962    18,962            18,962   incomplete
+       32          1       0       18,268    18,268            18,268   incomplete
+       33          1       0       17,839    17,839            17,839   incomplete
+       34          1       0       16,899    16,899            16,899   incomplete
+       35          1       0       16,698    16,698            16,698   incomplete
+       36          1       0       16,280    16,280            16,280   incomplete
+       37          1       0       14,296    14,296            14,296   incomplete
+       38          1       0       13,827    13,827            13,827   incomplete
+       39          1       0       13,618    13,618            13,618   incomplete
+       40          1       0       13,482    13,482            13,482   incomplete
+       41          1       0       12,673    12,673            12,673   incomplete
+       42          1       0       12,252    12,252            12,252   incomplete
+       43          1       0       12,241    12,241            12,241   incomplete
+       44          1       0       12,038    12,038            12,038   incomplete
+       45          1       0       11,609    11,609            11,609   incomplete
+       46          1       0       10,866    10,866            10,866   incomplete
+       47          1       0       10,786    10,786            10,786   incomplete
+       48          1       0       10,509    10,509            10,509   incomplete
+       49          1       0       10,480    10,480            10,480   incomplete
+       50          1       0        9,504     9,504             9,504   incomplete
+       51          1       0        9,383     9,383             9,383   incomplete
+       52          1       0        8,612     8,612             8,612   incomplete
+       53          1       0        8,506     8,506             8,506   incomplete
+       54          1       0        8,171     8,171             8,171   incomplete
+       55          1       0        7,167     7,167             7,167   incomplete
+       56          1       0        7,128     7,128             7,128   incomplete
+       57          1       0        7,001     7,001             7,001   incomplete
+       58          1       0        7,000     7,000             7,000   incomplete
+       59          1       1        6,776     6,776             6,776     complete
+       60          1       0        6,761     6,761             6,761   incomplete
+       61          1       0        6,636     6,636             6,636   incomplete
+       62          1       0        6,483     6,483             6,483   incomplete
+       63          1       0        6,449     6,449             6,449   incomplete
+       64          1       0        6,440     6,440             6,440   incomplete
+       65          1       0        6,396     6,396             6,396   incomplete
+       66          1       0        6,337     6,337             6,337   incomplete
+       67          1       0        6,260     6,260             6,260   incomplete
+       68          1       1        6,218     6,218             6,218     complete
+       69          1       0        6,122     6,122             6,122   incomplete
+       70          1       0        5,892     5,892             5,892   incomplete
+       71          1       0        5,757     5,757             5,757   incomplete
+       72          1       0        5,756     5,756             5,756   incomplete
+       73          1       0        5,687     5,687             5,687   incomplete
+       74          1       0        5,627     5,627             5,627   incomplete
+       75          1       0        5,527     5,527             5,527   incomplete
+       76          1       0        5,424     5,424             5,424   incomplete
+       77          1       0        5,384     5,384             5,384   incomplete
+       78          1       0        5,269     5,269             5,269   incomplete
+       79          1       0        4,837     4,837             4,837   incomplete
+       80          1       0        4,729     4,729             4,729   incomplete
+       81          1       0        4,704     4,704             4,704   incomplete
+       82          1       0        4,698     4,698             4,698   incomplete
+       83          1       0        4,595     4,595             4,595   incomplete
+       84          1       0        4,583     4,583             4,583   incomplete
+       85          1       0        4,562     4,562             4,562   incomplete
+       86          1       0        4,536     4,536             4,536   incomplete
+       87          1       0        4,441     4,441             4,441   incomplete
+       88          1       0        4,389     4,389             4,389   incomplete
+       89          1       0        4,237     4,237             4,237   incomplete
+       90          1       0        4,092     4,092             4,092   incomplete
+       91          1       0        4,072     4,072             4,072   incomplete
+       92          1       0        4,059     4,059             4,059   incomplete
+       93          1       0        4,050     4,050             4,050   incomplete
+       94          1       0        4,047     4,047             4,047   incomplete
+       95          1       0        4,044     4,044             4,044   incomplete
+       96          1       0        4,028     4,028             4,028   incomplete
+       97          1       0        4,019     4,019             4,019   incomplete
+       98          1       0        3,840     3,840             3,840   incomplete
+       99          1       0        3,805     3,805             3,805   incomplete
+      100          1       0        3,792     3,792             3,792   incomplete
+      101          1       0        3,754     3,754             3,754   incomplete
+      102          1       0        3,733     3,733             3,733   incomplete
+      103          1       0        3,701     3,701             3,701   incomplete
+      104          1       0        3,689     3,689             3,689   incomplete
+      105          1       0        3,636     3,636             3,636   incomplete
+      106          1       0        3,607     3,607             3,607   incomplete
+      107          1       0        3,509     3,509             3,509   incomplete
+      108          1       0        3,446     3,446             3,446   incomplete
+      109          1       0        3,419     3,419             3,419   incomplete
+      110          1       0        3,381     3,381             3,381   incomplete
+      111          1       0        3,255     3,255             3,255   incomplete
+      112          1       0        3,200     3,200             3,200   incomplete
+      113          1       0        3,192     3,192             3,192   incomplete
+      114          1       0        3,189     3,189             3,189   incomplete
+      115          1       0        3,147     3,147             3,147   incomplete
+      116          1       0        3,143     3,143             3,143   incomplete
+      117          1       0        3,131     3,131             3,131   incomplete
+      118          1       0        3,119     3,119             3,119   incomplete
+      119          1       0        3,107     3,107             3,107   incomplete
+      120          1       0        3,086     3,086             3,086   incomplete
+      121          1       0        3,073     3,073             3,073   incomplete
+      122          1       0        3,039     3,039             3,039   incomplete
+      123          1       1        3,028     3,028             3,028     complete
+      124          1       0        2,998     2,998             2,998   incomplete
+      125          1       0        2,997     2,997             2,997   incomplete
+      126          1       0        2,987     2,987             2,987   incomplete
+      127          1       0        2,969     2,969             2,969   incomplete
+      128          1       0        2,935     2,935             2,935   incomplete
+      129          1       0        2,935     2,935             2,935   incomplete
+      130          1       0        2,912     2,912             2,912   incomplete
+      131          1       0        2,899     2,899             2,899   incomplete
+      132          1       0        2,864     2,864             2,864   incomplete
+      133          1       0        2,844     2,844             2,844   incomplete
+      134          1       0        2,843     2,843             2,843   incomplete
+      135          1       0        2,823     2,823             2,823   incomplete
+      136          1       0        2,804     2,804             2,804   incomplete
+      137          1       0        2,798     2,798             2,798   incomplete
+      138          1       0        2,761     2,761             2,761   incomplete
+      139          1       0        2,754     2,754             2,754   incomplete
+      140          1       0        2,726     2,726             2,726   incomplete
+      141          1       0        2,659     2,659             2,659   incomplete
+      142          1       0        2,636     2,636             2,636   incomplete
+      143          1       0        2,606     2,606             2,606   incomplete
+      144          1       0        2,603     2,603             2,603   incomplete
+      145          1       0        2,565     2,565             2,565   incomplete
+      146          1       0        2,562     2,562             2,562   incomplete
+      147          1       0        2,552     2,552             2,552   incomplete
+      148          1       0        2,544     2,544             2,544   incomplete
+      149          1       0        2,537     2,537             2,537   incomplete
+      150          1       0        2,533     2,533             2,533   incomplete
+      151          1       0        2,510     2,510             2,510   incomplete
+      152          1       0        2,509     2,509             2,509   incomplete
+      153          1       0        2,508     2,508             2,508   incomplete
+      154          1       0        2,505     2,505             2,505   incomplete
+      155          1       0        2,473     2,473             2,473   incomplete
+      156          1       0        2,462     2,462             2,462   incomplete
+      157          1       0        2,447     2,447             2,447   incomplete
+      158          1       0        2,418     2,418             2,418   incomplete
+      159          1       0        2,417     2,417             2,417   incomplete
+      160          1       0        2,410     2,410             2,410   incomplete
+      161          1       0        2,390     2,390             2,390   incomplete
+      162          1       0        2,373     2,373             2,373   incomplete
+      163          1       0        2,372     2,372             2,372   incomplete
+      164          1       0        2,367     2,367             2,367   incomplete
+      165          1       0        2,359     2,359             2,359   incomplete
+      166          1       0        2,338     2,338             2,338   incomplete
+      167          1       0        2,338     2,338             2,338   incomplete
+      168          1       0        2,331     2,331             2,331   incomplete
+      169          1       0        2,330     2,330             2,330   incomplete
+      170          1       0        2,325     2,325             2,325   incomplete
+      171          1       0        2,320     2,320             2,320   incomplete
+      172          1       0        2,320     2,320             2,320   incomplete
+      173          1       0        2,290     2,290             2,290   incomplete
+      174          1       0        2,287     2,287             2,287   incomplete
+      175          1       0        2,287     2,287             2,287   incomplete
+      176          1       0        2,283     2,283             2,283   incomplete
+      177          1       0        2,282     2,282             2,282   incomplete
+      178          1       0        2,282     2,282             2,282   incomplete
+      179          1       0        2,268     2,268             2,268   incomplete
+      180          1       0        2,261     2,261             2,261   incomplete
+      181          1       0        2,258     2,258             2,258   incomplete
+      182          1       0        2,254     2,254             2,254   incomplete
+      183          1       0        2,250     2,250             2,250   incomplete
+      184          1       0        2,249     2,249             2,249   incomplete
+      185          1       0        2,247     2,247             2,247   incomplete
+      186          1       0        2,226     2,226             2,226   incomplete
+      187          1       0        2,224     2,224             2,224   incomplete
+      188          1       0        2,222     2,222             2,222   incomplete
+      189          1       0        2,216     2,216             2,216   incomplete
+      190          1       0        2,210     2,210             2,210   incomplete
+      191          5       4        6,456     1,617             2,190   incomplete
+      192          1       0        2,187     2,187             2,187   incomplete
+      193          1       0        2,171     2,171             2,171   incomplete
+      194          1       0        2,162     2,162             2,162   incomplete
+      195          1       0        2,161     2,161             2,161   incomplete
+      196          1       0        2,154     2,154             2,154   incomplete
+      197          1       0        2,148     2,148             2,148   incomplete
+      198          1       0        2,145     2,145             2,145   incomplete
+      199          1       0        2,143     2,143             2,143   incomplete
+      200          1       0        2,129     2,129             2,129   incomplete
+      201          1       0        2,120     2,120             2,120   incomplete
+      202          1       0        2,110     2,110             2,110   incomplete
+      203          1       0        2,102     2,102             2,102   incomplete
+      204          1       0        2,102     2,102             2,102   incomplete
+      205          1       0        2,090     2,090             2,090   incomplete
+      206          1       0        2,075     2,075             2,075   incomplete
+      207          1       0        2,075     2,075             2,075   incomplete
+      208          1       0        2,066     2,066             2,066   incomplete
+      209          1       0        2,052     2,052             2,052   incomplete
+      210          1       0        2,051     2,051             2,051   incomplete
+      211          1       0        2,042     2,042             2,042   incomplete
+      212          1       0        2,029     2,029             2,029   incomplete
+      213          1       0        2,007     2,007             2,007   incomplete
+      214          1       0        2,006     2,006             2,006   incomplete
+      215          1       0        2,005     2,005             2,005   incomplete
+      216          1       0        1,995     1,995             1,995   incomplete
+      217          1       0        1,987     1,987             1,987   incomplete
+      218          1       0        1,987     1,987             1,987   incomplete
+      219          1       0        1,987     1,987             1,987   incomplete
+      220          1       0        1,981     1,981             1,981   incomplete
+      221          1       0        1,980     1,980             1,980   incomplete
+      222          1       0        1,977     1,977             1,977   incomplete
+      223          1       0        1,974     1,974             1,974   incomplete
+      224          1       0        1,971     1,971             1,971   incomplete
+      225          1       0        1,970     1,970             1,970   incomplete
+      226          1       0        1,966     1,966             1,966   incomplete
+      227          1       0        1,963     1,963             1,963   incomplete
+      228          1       0        1,963     1,963             1,963   incomplete
+      229          1       0        1,960     1,960             1,960   incomplete
+      230          1       0        1,955     1,955             1,955   incomplete
+      231          1       0        1,953     1,953             1,953   incomplete
+      232          1       0        1,943     1,943             1,943   incomplete
+      233          1       0        1,938     1,938             1,938   incomplete
+      234          1       0        1,929     1,929             1,929   incomplete
+      235          1       0        1,924     1,924             1,924   incomplete
+      236          1       0        1,921     1,921             1,921   incomplete
+      237          1       0        1,920     1,920             1,920   incomplete
+      238          1       0        1,910     1,910             1,910   incomplete
+      239          1       0        1,904     1,904             1,904   incomplete
+      240          1       0        1,901     1,901             1,901   incomplete
+      241          1       0        1,900     1,900             1,900   incomplete
+      242          1       0        1,900     1,900             1,900   incomplete
+      243          1       0        1,898     1,898             1,898   incomplete
+      244          1       0        1,898     1,898             1,898   incomplete
+      245          1       0        1,896     1,896             1,896   incomplete
+      246          1       0        1,892     1,892             1,892   incomplete
+      247          1       0        1,886     1,886             1,886   incomplete
+      248          1       0        1,878     1,878             1,878   incomplete
+      249          1       0        1,872     1,872             1,872   incomplete
+      250          1       0        1,866     1,866             1,866   incomplete
+      251          1       0        1,865     1,865             1,865   incomplete
+      252          1       0        1,860     1,860             1,860   incomplete
+      253          1       0        1,858     1,858             1,858   incomplete
+      254          1       0        1,857     1,857             1,857   incomplete
+      255          1       0        1,846     1,846             1,846   incomplete
+      256          1       0        1,843     1,843             1,843   incomplete
+      257          1       0        1,837     1,837             1,837   incomplete
+      258          1       0        1,833     1,833             1,833   incomplete
+      259          1       0        1,831     1,831             1,831   incomplete
+      260          1       0        1,813     1,813             1,813   incomplete
+      261          1       0        1,806     1,806             1,806   incomplete
+      262          1       0        1,804     1,804             1,804   incomplete
+      263          1       0        1,803     1,803             1,803   incomplete
+      264          1       0        1,802     1,802             1,802   incomplete
+      265          1       0        1,801     1,801             1,801   incomplete
+      266          1       0        1,800     1,800             1,800   incomplete
+      267          1       0        1,797     1,797             1,797   incomplete
+      268          1       0        1,795     1,795             1,795   incomplete
+      269          1       0        1,787     1,787             1,787   incomplete
+      270          1       0        1,785     1,785             1,785   incomplete
+      271          1       0        1,781     1,781             1,781   incomplete
+      272          1       0        1,776     1,776             1,776   incomplete
+      273          1       0        1,774     1,774             1,774   incomplete
+      274          1       0        1,766     1,766             1,766   incomplete
+      275          1       0        1,761     1,761             1,761   incomplete
+      276          1       0        1,757     1,757             1,757   incomplete
+      277          1       0        1,750     1,750             1,750   incomplete
+      278          1       0        1,749     1,749             1,749   incomplete
+      279          1       0        1,744     1,744             1,744   incomplete
+      280          1       0        1,733     1,733             1,733   incomplete
+      281          1       0        1,730     1,730             1,730   incomplete
+      282          1       0        1,723     1,723             1,723   incomplete
+      283          1       0        1,720     1,720             1,720   incomplete
+      284          1       0        1,718     1,718             1,718   incomplete
+      285          1       0        1,717     1,717             1,717   incomplete
+      286          1       0        1,704     1,704             1,704   incomplete
+      287          2       2        3,309     1,701             1,701   incomplete
+      288          1       0        1,698     1,698             1,698   incomplete
+      289          1       0        1,698     1,698             1,698   incomplete
+      290          1       0        1,696     1,696             1,696   incomplete
+      291          1       0        1,691     1,691             1,691   incomplete
+      292          1       0        1,689     1,689             1,689   incomplete
+      293          1       0        1,689     1,689             1,689   incomplete
+      294          1       0        1,686     1,686             1,686   incomplete
+      295          1       0        1,682     1,682             1,682   incomplete
+      296          1       0        1,679     1,679             1,679   incomplete
+      297          1       0        1,676     1,676             1,676   incomplete
+      298          1       0        1,670     1,670             1,670   incomplete
+      299          1       0        1,669     1,669             1,669   incomplete
+      300          1       0        1,662     1,662             1,662   incomplete
+      301          1       0        1,659     1,659             1,659   incomplete
+      302          1       0        1,659     1,659             1,659   incomplete
+      303          1       0        1,655     1,655             1,655   incomplete
+      304          1       0        1,652     1,652             1,652   incomplete
+      305          1       0        1,651     1,651             1,651   incomplete
+      306          1       0        1,647     1,647             1,647   incomplete
+      307          1       0        1,644     1,644             1,644   incomplete
+      308          1       0        1,639     1,639             1,639   incomplete
+      309          1       0        1,638     1,638             1,638   incomplete
+      310          1       0        1,634     1,634             1,634   incomplete
+      311          1       0        1,629     1,629             1,629   incomplete
+      312          1       0        1,624     1,624             1,624   incomplete
+      313          1       0        1,621     1,621             1,621   incomplete
+      314          1       0        1,619     1,619             1,619   incomplete
+      315          1       0        1,617     1,617             1,617   incomplete
+      316          1       0        1,611     1,611             1,611   incomplete
+      317          1       0        1,610     1,610             1,610   incomplete
+      318          1       0        1,610     1,610             1,610   incomplete
+      319          1       0        1,608     1,608             1,608   incomplete
+      320          1       0        1,606     1,606             1,606   incomplete
+      321          1       0        1,592     1,592             1,592   incomplete
+      322          1       0        1,592     1,592             1,592   incomplete
+      323          1       0        1,591     1,591             1,591   incomplete
+      324          1       0        1,585     1,585             1,585   incomplete
+      325          1       0        1,583     1,583             1,583   incomplete
+      326          1       0        1,581     1,581             1,581   incomplete
+      327          1       0        1,578     1,578             1,578   incomplete
+      328          1       0        1,573     1,573             1,573   incomplete
+      329          1       0        1,567     1,567             1,567   incomplete
+      330          1       0        1,562     1,562             1,562   incomplete
+      331          1       0        1,562     1,562             1,562   incomplete
+      332          1       0        1,560     1,560             1,560   incomplete
+      333          1       0        1,559     1,559             1,559   incomplete
+      334          1       0        1,545     1,545             1,545   incomplete
+      335          1       0        1,545     1,545             1,545   incomplete
+      336          1       0        1,542     1,542             1,542   incomplete
+      337          1       0        1,542     1,542             1,542   incomplete
+      338          1       0        1,537     1,537             1,537   incomplete
+      339          1       0        1,536     1,536             1,536   incomplete
+      340          1       0        1,535     1,535             1,535   incomplete
+      341          1       0        1,535     1,535             1,535   incomplete
+      342          1       0        1,534     1,534             1,534   incomplete
+      343          1       0        1,534     1,534             1,534   incomplete
+      344          1       0        1,530     1,530             1,530   incomplete
+      345          1       0        1,527     1,527             1,527   incomplete
+      346          1       0        1,527     1,527             1,527   incomplete
+      347          1       0        1,524     1,524             1,524   incomplete
+      348          1       0        1,521     1,521             1,521   incomplete
+      349          1       0        1,513     1,513             1,513   incomplete
+      350          1       0        1,510     1,510             1,510   incomplete
+      351          1       0        1,506     1,506             1,506   incomplete
+      352          1       0        1,506     1,506             1,506   incomplete
+      353          1       0        1,505     1,505             1,505   incomplete
+      354          1       0        1,504     1,504             1,504   incomplete
+      355          1       0        1,503     1,503             1,503   incomplete
+      356          1       0        1,503     1,503             1,503   incomplete
+      357          1       0        1,502     1,502             1,502   incomplete
+      358          1       0        1,498     1,498             1,498   incomplete
+      359          1       0        1,498     1,498             1,498   incomplete
+      360          1       0        1,495     1,495             1,495   incomplete
+      361          1       0        1,494     1,494             1,494   incomplete
+      362          1       0        1,489     1,489             1,489   incomplete
+      363          1       0        1,488     1,488             1,488   incomplete
+      364          1       0        1,488     1,488             1,488   incomplete
+      365          1       0        1,485     1,485             1,485   incomplete
+      366          1       0        1,481     1,481             1,481   incomplete
+      367          1       0        1,481     1,481             1,481   incomplete
+      368          1       0        1,480     1,480             1,480   incomplete
+      369          1       0        1,475     1,475             1,475   incomplete
+      370          1       0        1,473     1,473             1,473   incomplete
+      371          1       0        1,472     1,472             1,472   incomplete
+      372          1       0        1,472     1,472             1,472   incomplete
+      373          1       0        1,471     1,471             1,471   incomplete
+      374          1       0        1,466     1,466             1,466   incomplete
+      375          1       0        1,465     1,465             1,465   incomplete
+      376          1       0        1,464     1,464             1,464   incomplete
+      377          1       0        1,463     1,463             1,463   incomplete
+      378          1       0        1,462     1,462             1,462   incomplete
+      379          1       0        1,462     1,462             1,462   incomplete
+      380          1       0        1,460     1,460             1,460   incomplete
+      381          1       0        1,455     1,455             1,455   incomplete
+      382          1       0        1,454     1,454             1,454   incomplete
+      383          1       0        1,454     1,454             1,454   incomplete
+      384          1       0        1,453     1,453             1,453   incomplete
+      385          1       0        1,452     1,452             1,452   incomplete
+      386          1       0        1,446     1,446             1,446   incomplete
+      387          1       0        1,445     1,445             1,445   incomplete
+      388          1       0        1,443     1,443             1,443   incomplete
+      389          1       0        1,443     1,443             1,443   incomplete
+      390          1       0        1,441     1,441             1,441   incomplete
+      391          1       0        1,441     1,441             1,441   incomplete
+      392          1       0        1,439     1,439             1,439   incomplete
+      393          1       0        1,439     1,439             1,439   incomplete
+      394          1       0        1,437     1,437             1,437   incomplete
+      395          1       0        1,436     1,436             1,436   incomplete
+      396          1       0        1,434     1,434             1,434   incomplete
+      397          1       0        1,434     1,434             1,434   incomplete
+      398          1       0        1,432     1,432             1,432   incomplete
+      399          1       0        1,431     1,431             1,431   incomplete
+      400          1       0        1,424     1,424             1,424   incomplete
+      401          1       0        1,419     1,419             1,419   incomplete
+      402          1       0        1,419     1,419             1,419   incomplete
+      403          1       0        1,414     1,414             1,414   incomplete
+      404          1       0        1,411     1,411             1,411   incomplete
+      405          1       0        1,408     1,408             1,408   incomplete
+      406          1       0        1,408     1,408             1,408   incomplete
+      407          1       0        1,408     1,408             1,408   incomplete
+      408          1       0        1,405     1,405             1,405   incomplete
+      409          1       0        1,400     1,400             1,400   incomplete
+      410          1       0        1,399     1,399             1,399   incomplete
+      411          1       0        1,392     1,392             1,392   incomplete
+      412          1       0        1,391     1,391             1,391   incomplete
+      413          1       0        1,389     1,389             1,389   incomplete
+      414          1       0        1,387     1,387             1,387   incomplete
+      415          1       0        1,385     1,385             1,385   incomplete
+      416          1       0        1,385     1,385             1,385   incomplete
+      417          1       0        1,383     1,383             1,383   incomplete
+      418          1       0        1,383     1,383             1,383   incomplete
+      419          1       0        1,379     1,379             1,379   incomplete
+      420          1       0        1,379     1,379             1,379   incomplete
+      421          1       0        1,370     1,370             1,370   incomplete
+      422          1       0        1,369     1,369             1,369   incomplete
+      423          1       0        1,365     1,365             1,365   incomplete
+      424          1       0        1,360     1,360             1,360   incomplete
+      425          1       0        1,359     1,359             1,359   incomplete
+      426          1       0        1,356     1,356             1,356   incomplete
+      427          1       0        1,355     1,355             1,355   incomplete
+      428          1       0        1,355     1,355             1,355   incomplete
+      429          1       0        1,354     1,354             1,354   incomplete
+      430          1       0        1,354     1,354             1,354   incomplete
+      431          1       0        1,354     1,354             1,354   incomplete
+      432          1       0        1,354     1,354             1,354   incomplete
+      433          1       0        1,354     1,354             1,354   incomplete
+      434          1       0        1,352     1,352             1,352   incomplete
+      435          1       1        1,350     1,350             1,350     complete
+      436          1       0        1,348     1,348             1,348   incomplete
+      437          1       0        1,347     1,347             1,347   incomplete
+      438          1       0        1,344     1,344             1,344   incomplete
+      439          1       0        1,339     1,339             1,339   incomplete
+      440          1       0        1,335     1,335             1,335   incomplete
+      441          1       0        1,334     1,334             1,334   incomplete
+      442          1       0        1,332     1,332             1,332   incomplete
+      443          1       0        1,328     1,328             1,328   incomplete
+      444          1       0        1,328     1,328             1,328   incomplete
+      445          1       0        1,327     1,327             1,327   incomplete
+      446          1       0        1,327     1,327             1,327   incomplete
+      447          1       0        1,326     1,326             1,326   incomplete
+      448          1       0        1,324     1,324             1,324   incomplete
+      449          1       0        1,321     1,321             1,321   incomplete
+      450          1       0        1,316     1,316             1,316   incomplete
+      451          1       0        1,312     1,312             1,312   incomplete
+      452          1       0        1,311     1,311             1,311   incomplete
+      453          1       0        1,311     1,311             1,311   incomplete
+      454          1       0        1,309     1,309             1,309   incomplete
+      455          1       0        1,309     1,309             1,309   incomplete
+      456          1       0        1,307     1,307             1,307   incomplete
+      457          1       0        1,307     1,307             1,307   incomplete
+      458          1       0        1,306     1,306             1,306   incomplete
+      459          1       0        1,305     1,305             1,305   incomplete
+      460          1       0        1,305     1,305             1,305   incomplete
+      461          1       0        1,299     1,299             1,299   incomplete
+      462          1       0        1,294     1,294             1,294   incomplete
+      463          1       0        1,294     1,294             1,294   incomplete
+      464          1       0        1,293     1,293             1,293   incomplete
+      465          1       0        1,292     1,292             1,292   incomplete
+      466          1       0        1,288     1,288             1,288   incomplete
+      467          1       0        1,288     1,288             1,288   incomplete
+      468          1       0        1,288     1,288             1,288   incomplete
+      469          1       0        1,284     1,284             1,284   incomplete
+      470          1       0        1,284     1,284             1,284   incomplete
+      471          1       0        1,282     1,282             1,282   incomplete
+      472          1       0        1,278     1,278             1,278   incomplete
+      473          1       0        1,273     1,273             1,273   incomplete
+      474          1       0        1,270     1,270             1,270   incomplete
+      475          1       0        1,268     1,268             1,268   incomplete
+      476          1       0        1,267     1,267             1,267   incomplete
+      477          1       0        1,266     1,266             1,266   incomplete
+      478          1       0        1,265     1,265             1,265   incomplete
+      479          1       0        1,264     1,264             1,264   incomplete
+      480          1       0        1,263     1,263             1,263   incomplete
+      481          1       0        1,262     1,262             1,262   incomplete
+      482          1       0        1,262     1,262             1,262   incomplete
+      483          1       0        1,260     1,260             1,260   incomplete
+      484          1       0        1,260     1,260             1,260   incomplete
+      485          1       0        1,258     1,258             1,258   incomplete
+      486          1       0        1,258     1,258             1,258   incomplete
+      487          1       0        1,258     1,258             1,258   incomplete
+      488          1       0        1,257     1,257             1,257   incomplete
+      489          2       1        2,482     1,255             1,255   incomplete
+      490          1       0        1,253     1,253             1,253   incomplete
+      491          1       0        1,250     1,250             1,250   incomplete
+      492          1       0        1,248     1,248             1,248   incomplete
+      493          1       0        1,247     1,247             1,247   incomplete
+      494          1       0        1,245     1,245             1,245   incomplete
+      495          1       0        1,242     1,242             1,242   incomplete
+      496          1       0        1,241     1,241             1,241   incomplete
+      497          1       0        1,238     1,238             1,238   incomplete
+      498          1       0        1,238     1,238             1,238   incomplete
+      499          1       0        1,237     1,237             1,237   incomplete
+      500          1       0        1,232     1,232             1,232   incomplete
+      501          1       0        1,229     1,229             1,229   incomplete
+      502          1       0        1,229     1,229             1,229   incomplete
+      503          1       0        1,225     1,225             1,225   incomplete
+      504          1       0        1,224     1,224             1,224   incomplete
+      505          1       0        1,222     1,222             1,222   incomplete
+      506          1       0        1,221     1,221             1,221   incomplete
+      507          1       0        1,221     1,221             1,221   incomplete
+      508          1       0        1,220     1,220             1,220   incomplete
+      509          1       0        1,220     1,220             1,220   incomplete
+      510          1       0        1,220     1,220             1,220   incomplete
+      511          1       0        1,218     1,218             1,218   incomplete
+      512          1       0        1,218     1,218             1,218   incomplete
+      513          1       0        1,216     1,216             1,216   incomplete
+      514          1       0        1,214     1,214             1,214   incomplete
+      515          1       0        1,213     1,213             1,213   incomplete
+      516          1       0        1,213     1,213             1,213   incomplete
+      517          1       0        1,210     1,210             1,210   incomplete
+      518          1       0        1,208     1,208             1,208   incomplete
+      519          1       0        1,207     1,207             1,207   incomplete
+      520          1       0        1,207     1,207             1,207   incomplete
+      521          1       0        1,204     1,204             1,204   incomplete
+      522          1       0        1,203     1,203             1,203   incomplete
+      523          1       0        1,202     1,202             1,202   incomplete
+      524          1       0        1,202     1,202             1,202   incomplete
+      525          1       0        1,201     1,201             1,201   incomplete
+      526          1       0        1,199     1,199             1,199   incomplete
+      527          1       0        1,198     1,198             1,198   incomplete
+      528          1       0        1,198     1,198             1,198   incomplete
+      529          1       0        1,197     1,197             1,197   incomplete
+      530          1       0        1,195     1,195             1,195   incomplete
+      531          1       0        1,195     1,195             1,195   incomplete
+      532          1       0        1,193     1,193             1,193   incomplete
+      533          1       0        1,192     1,192             1,192   incomplete
+      534          1       0        1,189     1,189             1,189   incomplete
+      535          1       0        1,185     1,185             1,185   incomplete
+      536          1       0        1,185     1,185             1,185   incomplete
+      537          1       0        1,185     1,185             1,185   incomplete
+      538          1       0        1,184     1,184             1,184   incomplete
+      539          1       0        1,184     1,184             1,184   incomplete
+      540          1       0        1,184     1,184             1,184   incomplete
+      541          1       0        1,183     1,183             1,183   incomplete
+      542          1       0        1,181     1,181             1,181   incomplete
+      543          1       0        1,179     1,179             1,179   incomplete
+      544          1       0        1,179     1,179             1,179   incomplete
+      545          1       0        1,179     1,179             1,179   incomplete
+      546          1       0        1,175     1,175             1,175   incomplete
+      547          1       0        1,175     1,175             1,175   incomplete
+      548          1       0        1,170     1,170             1,170   incomplete
+      549          1       0        1,169     1,169             1,169   incomplete
+      550          1       0        1,169     1,169             1,169   incomplete
+      551          1       0        1,169     1,169             1,169   incomplete
+      552          1       0        1,166     1,166             1,166   incomplete
+      553          1       0        1,165     1,165             1,165   incomplete
+      554          1       0        1,163     1,163             1,163   incomplete
+      555          1       0        1,161     1,161             1,161   incomplete
+      556          1       0        1,159     1,159             1,159   incomplete
+      557          1       0        1,158     1,158             1,158   incomplete
+      558          1       0        1,158     1,158             1,158   incomplete
+      559          1       0        1,155     1,155             1,155   incomplete
+      560          1       0        1,155     1,155             1,155   incomplete
+      561          1       0        1,153     1,153             1,153   incomplete
+      562          1       0        1,151     1,151             1,151   incomplete
+      563          1       0        1,147     1,147             1,147   incomplete
+      564          1       0        1,147     1,147             1,147   incomplete
+      565          1       0        1,145     1,145             1,145   incomplete
+      566          1       0        1,145     1,145             1,145   incomplete
+      567          1       0        1,145     1,145             1,145   incomplete
+      568          1       0        1,145     1,145             1,145   incomplete
+      569          1       0        1,142     1,142             1,142   incomplete
+      570          1       0        1,142     1,142             1,142   incomplete
+      571          1       0        1,142     1,142             1,142   incomplete
+      572          1       0        1,140     1,140             1,140   incomplete
+      573          1       0        1,140     1,140             1,140   incomplete
+      574          1       0        1,134     1,134             1,134   incomplete
+      575          1       0        1,134     1,134             1,134   incomplete
+      576          1       0        1,132     1,132             1,132   incomplete
+      577          1       0        1,132     1,132             1,132   incomplete
+      578          1       0        1,130     1,130             1,130   incomplete
+      579          1       0        1,130     1,130             1,130   incomplete
+      580          1       0        1,128     1,128             1,128   incomplete
+      581          1       0        1,128     1,128             1,128   incomplete
+      582          1       0        1,125     1,125             1,125   incomplete
+      583          1       0        1,125     1,125             1,125   incomplete
+      584          1       0        1,121     1,121             1,121   incomplete
+      585          1       0        1,121     1,121             1,121   incomplete
+      586          1       0        1,120     1,120             1,120   incomplete
+      587          1       0        1,120     1,120             1,120   incomplete
+      588          1       0        1,119     1,119             1,119   incomplete
+      589          1       0        1,118     1,118             1,118   incomplete
+      590          1       0        1,116     1,116             1,116   incomplete
+      591          1       0        1,114     1,114             1,114   incomplete
+      592          1       0        1,114     1,114             1,114   incomplete
+      593          1       0        1,113     1,113             1,113   incomplete
+      594          1       0        1,113     1,113             1,113   incomplete
+      595          1       0        1,113     1,113             1,113   incomplete
+      596          1       0        1,112     1,112             1,112   incomplete
+      597          1       0        1,111     1,111             1,111   incomplete
+      598          1       0        1,111     1,111             1,111   incomplete
+      599          1       0        1,111     1,111             1,111   incomplete
+      600          1       0        1,110     1,110             1,110   incomplete
+      601          1       0        1,110     1,110             1,110   incomplete
+      602          1       0        1,109     1,109             1,109   incomplete
+      603          1       0        1,107     1,107             1,107   incomplete
+      604          1       0        1,105     1,105             1,105   incomplete
+      605          1       0        1,104     1,104             1,104   incomplete
+      606          1       0        1,104     1,104             1,104   incomplete
+      607          1       0        1,104     1,104             1,104   incomplete
+      608          1       0        1,100     1,100             1,100   incomplete
+      609          1       0        1,100     1,100             1,100   incomplete
+      610          1       0        1,099     1,099             1,099   incomplete
+      611          1       0        1,099     1,099             1,099   incomplete
+      612          1       0        1,098     1,098             1,098   incomplete
+      613          1       0        1,098     1,098             1,098   incomplete
+      614          1       0        1,097     1,097             1,097   incomplete
+      615          1       0        1,095     1,095             1,095   incomplete
+      616          1       0        1,091     1,091             1,091   incomplete
+      617          1       0        1,091     1,091             1,091   incomplete
+      618          1       0        1,090     1,090             1,090   incomplete
+      619          1       0        1,087     1,087             1,087   incomplete
+      620          1       0        1,087     1,087             1,087   incomplete
+      621          1       0        1,086     1,086             1,086   incomplete
+      622          1       0        1,086     1,086             1,086   incomplete
+      623          1       0        1,085     1,085             1,085   incomplete
+      624          1       0        1,084     1,084             1,084   incomplete
+      625          1       0        1,083     1,083             1,083   incomplete
+      626          1       0        1,083     1,083             1,083   incomplete
+      627          1       0        1,081     1,081             1,081   incomplete
+      628          1       0        1,081     1,081             1,081   incomplete
+      629          1       0        1,078     1,078             1,078   incomplete
+      630          1       0        1,076     1,076             1,076   incomplete
+      631          1       0        1,075     1,075             1,075   incomplete
+      632          1       0        1,075     1,075             1,075   incomplete
+      633          1       0        1,074     1,074             1,074   incomplete
+      634          1       0        1,073     1,073             1,073   incomplete
+      635          1       0        1,071     1,071             1,071   incomplete
+      636          1       0        1,071     1,071             1,071   incomplete
+      637          1       0        1,071     1,071             1,071   incomplete
+      638          1       0        1,070     1,070             1,070   incomplete
+      639          1       0        1,070     1,070             1,070   incomplete
+      640          1       0        1,069     1,069             1,069   incomplete
+      641          1       0        1,069     1,069             1,069   incomplete
+      642          1       0        1,069     1,069             1,069   incomplete
+      643          1       0        1,064     1,064             1,064   incomplete
+      644          1       0        1,064     1,064             1,064   incomplete
+      645          1       0        1,064     1,064             1,064   incomplete
+      646          1       0        1,063     1,063             1,063   incomplete
+      647          1       0        1,063     1,063             1,063   incomplete
+      648          1       0        1,062     1,062             1,062   incomplete
+      649          1       0        1,061     1,061             1,061   incomplete
+      650          1       0        1,060     1,060             1,060   incomplete
+      651          1       0        1,060     1,060             1,060   incomplete
+      652          1       0        1,057     1,057             1,057   incomplete
+      653          1       0        1,057     1,057             1,057   incomplete
+      654          1       0        1,056     1,056             1,056   incomplete
+      655          1       0        1,055     1,055             1,055   incomplete
+      656          1       0        1,055     1,055             1,055   incomplete
+      657          1       0        1,053     1,053             1,053   incomplete
+      658          1       0        1,053     1,053             1,053   incomplete
+      659          1       0        1,052     1,052             1,052   incomplete
+      660          1       0        1,051     1,051             1,051   incomplete
+      661          1       0        1,051     1,051             1,051   incomplete
+      662          1       0        1,044     1,044             1,044   incomplete
+      663          1       0        1,043     1,043             1,043   incomplete
+      664          1       0        1,042     1,042             1,042   incomplete
+      665          1       0        1,041     1,041             1,041   incomplete
+      666          1       0        1,040     1,040             1,040   incomplete
+      667          1       0        1,039     1,039             1,039   incomplete
+      668          1       0        1,039     1,039             1,039   incomplete
+      669          1       0        1,039     1,039             1,039   incomplete
+      670          1       0        1,038     1,038             1,038   incomplete
+      671          1       0        1,036     1,036             1,036   incomplete
+      672          1       0        1,036     1,036             1,036   incomplete
+      673          1       0        1,034     1,034             1,034   incomplete
+      674          1       0        1,033     1,033             1,033   incomplete
+      675          1       0        1,033     1,033             1,033   incomplete
+      676          1       0        1,032     1,032             1,032   incomplete
+      677          1       0        1,032     1,032             1,032   incomplete
+      678          1       0        1,032     1,032             1,032   incomplete
+      679          1       0        1,032     1,032             1,032   incomplete
+      680          1       0        1,031     1,031             1,031   incomplete
+      681          1       0        1,030     1,030             1,030   incomplete
+      682          1       0        1,029     1,029             1,029   incomplete
+      683          1       0        1,029     1,029             1,029   incomplete
+      684          1       0        1,028     1,028             1,028   incomplete
+      685          1       0        1,028     1,028             1,028   incomplete
+      686          1       0        1,027     1,027             1,027   incomplete
+      687          1       0        1,027     1,027             1,027   incomplete
+      688          1       0        1,026     1,026             1,026   incomplete
+      689          1       0        1,026     1,026             1,026   incomplete
+      690          1       0        1,024     1,024             1,024   incomplete
+      691          1       0        1,019     1,019             1,019   incomplete
+      692          1       0        1,019     1,019             1,019   incomplete
+      693          1       0        1,019     1,019             1,019   incomplete
+      694          1       0        1,016     1,016             1,016   incomplete
+      695          1       0        1,014     1,014             1,014   incomplete
+      696          1       0        1,014     1,014             1,014   incomplete
+      697          1       0        1,014     1,014             1,014   incomplete
+      698          1       0        1,013     1,013             1,013   incomplete
+      699          1       0        1,013     1,013             1,013   incomplete
+      700          1       0        1,011     1,011             1,011   incomplete
+      701          1       0        1,011     1,011             1,011   incomplete
+      702          1       0        1,010     1,010             1,010   incomplete
+      703          1       0        1,010     1,010             1,010   incomplete
+      704          1       0        1,009     1,009             1,009   incomplete
+      705          1       0        1,007     1,007             1,007   incomplete
+      706          1       0        1,005     1,005             1,005   incomplete
+      707          1       0        1,005     1,005             1,005   incomplete
+      708          1       0        1,003     1,003             1,003   incomplete
+      709          1       0        1,002     1,002             1,002   incomplete
+      710          1       0        1,002     1,002             1,002   incomplete
+      711          1       0        1,001     1,001             1,001   incomplete
+      712          1       0        1,000     1,000             1,000   incomplete
+
+
+Polishing assembly with Pilon (2023-03-16 13:57:05)
+---------------------------------------------------
+    Unicycler now conducts multiple rounds of Pilon in an attempt to repair any remaining small-scale errors with the assembly.
+
+Aligning reads to find appropriate insert size range...
+Insert size 1st percentile:  171
+Insert size 99th percentile: 622
+
+Pilon polish round 1
+Total number of changes: 412
+
+Pilon polish round 2
+Total number of changes: 212
+
+Pilon polish round 3
+Total number of changes: 82
+
+Pilon polish round 4
+Total number of changes: 58
+
+Pilon polish round 5
+Total number of changes: 60
+
+Pilon polish round 6
+Total number of changes: 2
+
+Pilon polish round 7
+Total number of changes: 1
+
+Pilon polish round 8
+No Pilon changes
+
+Saving /Tabima_lab/homes/mdelcogliano/Genome/QC_Trim/S06/unicycler_raw/005_polished.gfa
+
+
+Rotating completed replicons (2023-03-16 16:23:39)
+--------------------------------------------------
+    Any completed circular contigs (i.e. single contigs which have one link connecting end to start) can have their start position changed without altering the sequence. For consistency, Unicycler now searches for a starting gene (dnaA or repA) in each such contig, and if one is found, the contig is rotated to start with that gene on the forward strand.
+
+Segment   Length   Depth     Starting gene     Position   Strand    Identity   Coverage
+    240    6,776     0.72x   UniRef90_Q7WTS4        575   forward      92.9%     100.0%
+    251    6,218   149.18x   none found                                                
+    337    3,028     5.21x   none found                                                
+    705    1,350     0.29x   none found                                                
+
+Saving /Tabima_lab/homes/mdelcogliano/Genome/QC_Trim/S06/unicycler_raw/006_rotated.gfa
+
+
+Assembly complete (2023-03-16 16:24:37)
+---------------------------------------
+Saving /Tabima_lab/homes/mdelcogliano/Genome/QC_Trim/S06/unicycler_raw/assembly.gfa
+Saving /Tabima_lab/homes/mdelcogliano/Genome/QC_Trim/S06/unicycler_raw/assembly.fasta
+

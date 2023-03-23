@@ -1,0 +1,39 @@
+---
+title: "Lab_4"
+author: "Manning DelCogliano"
+date: '2023-02-15'
+output: html_document
+---
+
+## How to Improve Read Quality
+
+1. To remove the adapters on the R2 sequences, we can use the ```ILLUMINACLIP``` function of Trimmomatic to cut the known adapters off of the end of the desired sequence. 
+
+2. Because the last few base pairs in the files seem to have a lower quality than the rest, we should try removing them. This can be done by using the ```CROP``` command and setting it to remove 7 bp from the end of each of the sequence reads.
+
+3. For those files that have reads that are shorter than expected, we can use the ```MINLEN``` funtion to drop reads below a specific length, which I would chose to be 145bp, as we were expecting 150bp.
+
+4. For overall low quality reads, we can use a number of funtions, but I would chose the ```SLIDINGWINDOW``` command to remove regions of base pairs that are below the set quality threshold. This does not just measure a set of reads, but measures via a sliding window to garner a more apt mean quality of reads.
+
+
+### To trim the FASTQC files of R1 
+
+#### First try ILLUMINACLIP to cut off adaptor
+
+```
+java -jar /Smaug_SSD/bin/Trimmomatic-0.39/trimmomatic-0.39.jar PE -threads 1 NB0621_05_S166_R1_001.fastq.gz NB0621_05_S166_R2_001.fastq.gz IlluminaTrim_R1.fastq.gz IlluminaTrim_R1.Unpaired.fastq.gz lluminaTrim_R2.fastq.gz lluminaTrim_R2.Unpaired.fastq.gz ILLUMINACLIP:/Smaug_SSD/bin/Trimmomatic-0.39/adapters/TruSeq3-PE.fa:2:30:10:2:True
+
+/Smaug_SSD/bin/fastqc -o ~/Genome/Genome_backup/S166/QC_trim IlluminaTrim_R1.fastq.gz 
+/Smaug_SSD/bin/fastqc -o ~/Genome/Genome_backup/S166/QC_trim/ lluminaTrim_R2.fastq.gz 
+```
+
+#### Testing SLIDINGWINDOW to measure quality within a sliding window frame *and* to remove adapters
+
+```
+java -jar /Smaug_SSD/bin/Trimmomatic-0.39/trimmomatic-0.39.jar PE -threads 1 NB0621_05_S166_R1_001.fastq.gz NB0621_05_S166_R1_001.fastq.gz Clean_S166_R1.fastq.gz Clean_S166_R1.Unpaired.fastq.gz Clean_S166_R2.fastq.gz Clean_S166_R2.Unpaired.fastq.gz ILLUMINACLIP:/Smaug_SSD/bin/Trimmomatic-0.39/adapters/TruSeq3-PE.fa:2:30:10:2:True MINLEN:145
+
+/Smaug_SSD/bin/fastqc -o ~/Genome/Genome_backup/S166/QC_trim Clean_S166_R1.fastq.gz
+/Smaug_SSD/bin/fastqc -o ~/Genome/Genome_backup/S166/QC_trim Clean_S166_R2.fastq.gz
+```
+
+##### These two trials are located in /Tabima_lab/homes/mdelcogliano/Genome/Genome_backup/S166/QC_trim

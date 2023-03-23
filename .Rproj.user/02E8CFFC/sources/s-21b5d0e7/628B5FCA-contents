@@ -1,0 +1,7 @@
+
+
+== Error ==  file not found: /Tabima_lab/homes/jcarleton/genome project/Lab_6/S06_CKDN230002813-1A_HT2J2DSX5_L2_1.fq.gz (left reads, library number: 1, library type: paired-end)
+
+In case you have troubles running SPAdes, you can write to spades.support@cab.spbu.ru
+or report an issue on our GitHub repository github.com/ablab/spades
+Please provide us with params.txt and spades.log files from the output directory.

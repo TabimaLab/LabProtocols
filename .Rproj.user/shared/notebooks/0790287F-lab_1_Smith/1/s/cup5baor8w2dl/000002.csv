@@ -1,0 +1,7 @@
+"0","grep WP_130130185.1 Syn_WH101.aa.fasta
+echo ' '
+grep WP_130130145.1 Syn_WH101.aa.fasta"
+"1",">WP_130130185.1 mechanosensitive ion channel family protein [Synechococcus sp. WH 8101]
+ 
+>WP_130130145.1 dephospho-CoA kinase [Synechococcus sp. WH 8101]
+"

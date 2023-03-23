@@ -1,0 +1,152 @@
+### Script and exercise to simulate rarefaction for BIOL212 Microbiomes class
+### In RStudio, go to each line with out comments (lines without #'s at the front)
+### and execute that line by hitting Command-return for Mac and XXXX for Windows
+### (use the pull down menu for 'Code' to figure out the key combination to do this)
+### Or you can copy the line then paste it into the Console and hit enter.
+
+
+## Be sure that you've installed the package vegan
+install.packages('vegan')
+## load the vegan package
+library(vegan)
+
+### Here's the data for the example community samples
+### Each 'Com' represents counts of species collected
+### for that community
+ComA<-c(10,10,10,10,0,0,0,0,0,0,0,0,0,0)
+ComB<-c(5,5,5,5,5,5,5,5,0,0,0,0,0,0)
+ComC<-c(15,10,5,2,2,1,1,1,0,0,0,0,0,0)
+ComD<-c(3,3,3,3,3,3,3,3,3,3,3,3,3,3)
+ComE<-c(30,1,1,1,1,1,1,1,1,1,1,1,1,1)
+### The rows are joined together to make a matrix
+### (a table-like structure)
+com.data<-rbind(ComA,ComB,ComC,ComD,ComE)
+
+## Execute com.data shows you the data in the console
+com.data
+
+## This command returns the dimensions of the matrix com.data
+dim(com.data)
+## This command gives you the sums of each row
+## In this case, it's the total number of counts for each row
+rowSums(com.data)
+
+## Make pie charts of the community composition
+## The par() command tells R to put multiple panels in the plot
+## in this case a 3X2 grid
+## If you get the following error, try making the Plot window in the lower right bigger
+##  Error in plot.new() : figure margins too large
+par(mfrow=c(3,2))
+pie(as.numeric(com.data[1,]), main=rownames(com.data)[1])
+pie(as.numeric(com.data[2,]), main=rownames(com.data)[2])
+pie(as.numeric(com.data[3,]), main=rownames(com.data)[3])
+pie(as.numeric(com.data[4,]), main=rownames(com.data)[4])
+pie(as.numeric(com.data[5,]), main=rownames(com.data)[5])
+## reset the plot settings to one graph per plot
+par(mfrow=c(1,1))
+
+
+### Questions to stop and discuss with your partner in class
+###############################################################
+## What do you notice about the different communities?
+## How do they vary in the level of diversity (i.e. the total number of species)?
+## What other aspect of their community structure do you notice?
+
+## Try out this function to specnumber() to quickly
+## Determine the richness (the number of species) in each community sample
+specnumber(com.data)
+
+
+###############################################################
+## Next exercise, explore rarefaction curves
+###############################################################
+
+## Make a simple rarefaction curves
+###################################
+## set colors for curves (for plots later on)
+## the function rainbow picks n colors from a rainbow spectrum
+## where n is the value you specify as the input
+## In this case we find the dimensions of com.data then take
+## the first value which is the number of rows in com.data
+
+## First runs these expression to see what they return
+## and to see how the [] notation returns the 1st element of
+## the output of dim(com.data)
+dim(com.data)
+dim(com.data)[1]
+## now use that as the input to the rainbow function
+## and save the colors into a new variable curve.col
+curve.col<-rainbow(dim(com.data)[1])
+## execute curve.col to see its contents
+curve.col
+## the length function gives you the length
+## of a vector variable, note that this number
+## should equal dim(com.data)[1]
+length(curve.col)
+
+### Ok, now make the rarefaction curve with the function
+### rarecurve. The input is your community data (com.data)
+### and then your color scheme, and one specification
+rarecurve(com.data,col = curve.col,label=FALSE)
+
+# Add a legend to the plot to indicate what color goes with what community
+legend('bottomright',rownames(com.data),text.col = curve.col,cex=0.8,bg=NA,box.col=NA)
+
+### Questions to stop and discuss with your partner in class
+###############################################################
+# What characteristic of the curve indicates if the community has been
+# sampled well or not, i.e. what aspect of the curve tells you how confident
+# you can be you that you have sampled
+# all or nearly all of the species present?
+#
+# Which communities have been well-sampled?
+
+
+## Now try looking at rarefaction curves where you have sampled each
+## of the communities x times as much
+## Set the variable x to be how much more you'd like to sample the
+## community the communities, e.g. set x<-2 for 2 times more
+## You can choose another value other than 2 if you'd like.
+x<-2
+com.data.v2<-com.data*x
+
+### Look at the data in com.data.v2 and note that each
+### Com has been sampled x times as much
+## You can see this by summing up the counts for each community (row of data)
+rowSums(com.data)
+rowSums(com.data.v2)
+
+### Run the following to look at the plots together
+par(mfrow=c(1,2))
+rarecurve(com.data,col = curve.col,label=FALSE)
+rarecurve(com.data.v2,col = curve.col,label=FALSE)
+# add legend to the plot
+legend('bottomright',rownames(com.data.v2),text.col = curve.col,cex=0.8,bg=NA,box.col=NA)
+
+
+### Questions to consider and discuss with your partner
+### and then submit your answers to each of the questions below
+### These can be emailed to me for class participation credit.
+### Answer each with complete sentences and aim for 2-4 sentences for each.
+#######################################################
+## 1) What did you learn from how increasing sampling affects the rarefaction curve?
+##
+## 2) How does resampling more affect results for communities that you previously
+## deemed were already well-sampled?
+##
+## Now play around with changing the multiplier value x and rerunning the
+## analysis and plots.
+##
+## 3) How much resampling is needed to so that you now
+## are confident that you've completely or nearly
+## completely identified all the species present?
+## i.e. What value of x do you need to be confident that
+## you've sampled most of the diversity?
+##
+## 4) Does the level of resampling needed (the value of x) differ between
+## communities? If so, why do you think that is?
+## What characteristic of the community appears to control that?
+## (Hint: look back at your pie charts)
+##
+## 5) What's the big lesson to learn here about how much to sample?
+

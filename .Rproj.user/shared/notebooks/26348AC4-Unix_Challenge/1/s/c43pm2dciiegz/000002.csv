@@ -1,0 +1,7 @@
+"0","head Syn_WH101.aa.fasta
+head Syn_WH101.cds.fasta
+head Syn_WH101.asmb.fasta"
+"2","head: cannot open 'Syn_WH101.aa.fasta' for reading: No such file or directory
+head: cannot open 'Syn_WH101.cds.fasta' for reading: No such file or directory
+head: cannot open 'Syn_WH101.asmb.fasta' for reading: No such file or directory
+"

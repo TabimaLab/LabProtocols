@@ -1,0 +1,108 @@
+---
+title: "Unix Challenge"
+author: 'Sara W'
+date: '2023-01-24'
+output: html_document
+---
+
+# How many lines are in each FASTA file?
+##13904 Syn_WH101.aa.fasta 34441 Syn_WH101.cds.fasta 37578 Syn_WH101.asmb.fasta
+##wc outputs number of lines, word count, and character count
+```{bash}
+wc Syn_WH101.aa.fasta
+wc Syn_WH101.cds.fasta
+wc Syn_WH101.asmb.fasta
+
+```
+
+# How many sequences are in each FASTA file?
+## There are 2705 in the .aa file, 2764 in the .cds file, and 1 in .asmb file 
+```{bash}
+grep ">" -c Syn_WH101.aa.fasta
+grep ">" -c Syn_WH101.cds.fasta
+grep ">" -c Syn_WH101.asmb.fasta
+
+```
+
+# What kind of molecule is found in each FASTA file?
+## the .aa file contains amino acids/protein seqeunces, the .cds and .asmb files contain DNA/gene seqeunces 
+```{bash}
+head Syn_WH101.aa.fasta
+head Syn_WH101.cds.fasta
+head Syn_WH101.asmb.fasta
+```
+
+
+# Why are the Syn_WH101.asmb.fasta and Syn_WH101.cds.fasta files different to each other?
+## the .asmb file is the compelte assembled genome of Synechococcus while the .cds file contains smaller coding seqeunces that have not been asssembled 
+
+
+# Provide at least five different gene/protein names from the FASTA files in question
+##using the two sequences with genes and proteins. Less to view, q to exit. 
+##examples: 30S ribosomal protein S18 [Cyanobacteria] 30S ribosomal protein S19 translation initiation factor IF-1 BMC domain-containing protein HU family DNA-binding protein protein=DNA topoisomerase 4 subunit A protein=argininosuccinate lyase protein=DNA polymerase III subunit beta protein=RNA methyltransferase protein=phosphoribosylformylglycinamidine synthase subunit PurL
+```{bash}
+less Syn_WH101.aa.fasta 
+
+less Syn_WH101.cds.fasta
+```
+
+# Count the occurrence of each nucleotide (A, T, C, and G) in the Whole Genome Files (WGS) of WH8102 and compare it with the nucleotide content for the Coding Sequence file of WH8102
+
+##coding seqeunce file
+```{bash}
+grep -v ">" Syn_WH101.cds.fasta | grep -o A | wc -l
+grep -v ">" Syn_WH101.cds.fasta | grep -o T | wc -l
+grep -v ">" Syn_WH101.cds.fasta | grep -o C | wc -l
+grep -v ">" Syn_WH101.cds.fasta | grep -o G | wc -l
+```
+## In the coding sequence file:
+## A = 421348, T = 456026, C = 770791, G = 775698
+
+##In the whole genome file:
+## A = 482972, T = 481415, C = 830120, G = 835785
+```{bash}
+grep -v ">" Syn_WH101.asmb.fasta | grep -o A | wc -l
+grep -v ">" Syn_WH101.asmb.fasta | grep -o T | wc -l
+grep -v ">" Syn_WH101.asmb.fasta | grep -o C | wc -l
+grep -v ">" Syn_WH101.asmb.fasta | grep -o G | wc -l
+```
+
+#In which of the three files can you find the genes WP_174719562.1, WP_130130567.1, and WP_130130558.1
+# all three genes are found in both the .cds and the .aa files. They would not be found in the .asmb file since it is a complete genome
+```{bash}
+grep "WP_130130567.1" -c Syn_WH101.cds.fasta
+grep "WP_174719562.1" -c Syn_WH101.cds.fasta
+grep "WP_130130558.1" -c Syn_WH101.cds.fasta
+
+grep "WP_130130567.1" -c Syn_WH101.aa.fasta
+grep "WP_174719562.1" -c Syn_WH101.aa.fasta
+grep "WP_130130558.1" -c Syn_WH101.aa.fasta
+```
+
+#Find the function for the genes WP_130130185.1 and WP_130130145.1 in the Syn_WH8102.aa.fasta and add them in a R markdown table
+## WP_130130185.1 is a mechanosensitive ion channel family protein. WP_130130145.1 is a dephospho-CoA kinase.
+```{bash}
+grep "WP_130130185.1" Syn_WH101.aa.fasta
+grep "WP_130130145.1" Syn_WH101.aa.fasta
+``` 
+| gene | function  |
+|---|---|
+| WP_130130185.1  | mechanosensitive ion channel family protein  |
+| WP_130130145.1  |  dephospho-CoA kinase |
+
+#How many genes with the hypothetical protein function can you find in the Syn_WH8102.aa.fasta file?
+##552 
+```{bash}
+grep "hypothetical protein" -c Syn_WH101.aa.fasta
+```
+#Provide two more protein functions (annotations) and the number of genes associated with them
+##There are 552 genes with a ‘hypothetical protein’ function in this file. 
+```{bash}
+grep "ribosomal protein" -c Syn_WH101.aa.fasta.txt
+
+grep "family protein" -c Syn_WH101.aa.fasta.txt 
+```
+#How would you extract all the information related to sequence names for each file?
+```{bash}
+grep "sequence name" "name of designated .fasta" > new folder
+```

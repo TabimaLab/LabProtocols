@@ -1,0 +1,76 @@
+---
+title: "Lab_2"
+author: "Manning DelCogliano"
+date: '2023-02-01'
+output: html_document
+---
+
+1. I would expect that there would be two FASTQ files because there should be one for the forward read and one for the reverse read
+
+2. All of the reads should be 150bp long because that is the length of the read that have been sequenced
+
+3. MIGS  S165  S166  S167  S40_480  S43_481
+
+4. 
+S165: @VH00487
+
+S166: @VH00487
+
+S167: @VH00487
+
+5. `zcat filename | grep -c "@sequenceID"`
+
+S165: 1589680
+
+S166: 1559909
+
+S167: 1589418
+
+
+6. The number of reads are the same between forward and reverse files, which was expected. This is because there are the same number no matter which direction.
+
+| Sample Name | Sequence ID | Number of Reads in R1 | Number of Reads in R2 |
+|-------------|-------------|-----------------------|-----------------------|
+| S165        | @VH00487    | 1589680               | 1589680               |
+| S166        | @VH00487    | 1559909               | 1559909               |
+| S167        | @VH00487    | 1589418               | 1589418               |
+
+7. the outputs give two files: a fastqc.html and a fastqc.zip
+
+8. 1589680, 1559909, and 1589418 total sequences, which is the same as our previous 
+
+9. 
+
+S165: R1 - 35-151, R2 - 140-151
+
+S166: R1 - 35-151, R2 - 138-151
+
+S167: R1 - 35-151, R2 - 42-151
+
+There are some results that I didnt expect just because they are much smaller than the typical 150bp reads, which may make it difficult. Also, the R2 have different lengths than the R1.
+
+10. 
+
+S165: R1 - 54%, R2 - 54%
+
+S166: R1 - 48%, R2 - 49%
+
+S167: R1 - 51%, R2 - 52%
+
+Going off of the assumption that there is an equal distribution of all nucleotides, this matches the balance between GC & AT contents
+
+11. 
+
+S165: **R1** - for the most part, this is a good quality read with only a few spots with sites of warning  shown by the tiles, **R2** - this has more sites of low quality that the R1, the tiles show that the errors occur not only toward the end but in the middle as well, starting around 120bp, the phred score shows extremely high erroneous bases
+
+S166: **R1** - this quality is pretty standard and similar to the R1 of S165, with quality scores of about 0 for most of the sequence, **R2** - again, similar quality to R2 of S165, the quality tiles have both yellow and red, which indicate lower quality
+
+S167: **R1** - overall quality is good, very few errors, **R2** - as a reverse it has a lower quality like the other examples but still a high quality sample
+
+12. It seems that the reverse reads (R2) are of lower quality than the forwards (R1). They only differ slightly in the amount of errors at the end of each read. This is typically because once the sequencer gets to the end of the reverse read, there is only the lowest of quality reagents left.
+
+13. There seem to be issues always the per base sequence content at the beginning of the sequence the A=T and C=G dont always match but they can be typically ignored. Occasionally, the per base GC content also is red, indicating that there may be some contamination.
+
+14. In order to make the read data of better quality, I would remove sequences that do not have equal GC and AT reads because this is an obvious source of error. I would also suggest filtering for the reads that are much shorter than the expected 150bp because these small fragments are not of the correct size. I would also check for duplications of sequences because there is a very small probability that identical fragments will be sequences. If this is the case, there may be accidental bias in the sampling. 
+
+

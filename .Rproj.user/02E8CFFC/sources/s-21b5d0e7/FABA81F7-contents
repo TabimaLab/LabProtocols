@@ -1,0 +1,53 @@
+---
+title: "Lab_5"
+author: "jasper perseus carleton"
+date: '2022-11-11'
+output: html_document
+---
+#Lab 5
+## Jasper Carleton, Devon Rose Leaver, Elizabeth Zinno
+
+1. It is Homologene 210
+2. MutS
+3. MutS_I, MutS_II, and ABC_ATPase
+4. |          Species          |        Common Name       |   Protein ID   | Protein length |         Number of domains found         |
+|:-------------------------:|:------------------------:|:--------------:|:--------------:|:---------------------------------------:|
+| Homo sapiens              | Human                    | NP_000242.2    | Three          | (MutS_I, MutS_II, ABC_ATPase            |
+| Canis lupus familiaris    | Dog                      | XP_538482.2    | Three          | (MutS_I, MutS_II, ABC_ATPase            |
+| Bos taurus                | Cattle                   | NP_001029756.1 | Four           | (MutS_I, MutS_II, MutS_III, ABC_ATPase) |
+| Mus musculus              | House mouse              | NP_032654.1    | Four           | (MutS_I, MutS_II, ABC_ATPase            |
+| Rattus norvegicus         | Norway rat               | NP_112320.1    | Three          | (MutS_I, MutS_II, ABC_ATPase            |
+| Gallus gallus             | Chicken                  | XP_426110.4    | Four           | (MutS_I, MutS_II, MutS_III, ABC_ATPase) |
+| Xenopus tropicalis        | Tropical clawed frog     | XP_002935427.2 | Four           | (MutS_I, MutS_II, MutS_III, ABC_ATPase) |
+| Danio rerio               | Zebrafish                | NP_998689.1    | Three          | (MutS_I, MutS_II, ABC_ATPase            |
+| Drosophilia meloanogaster | Fruit fly                | NP_001246031.1 | Three          | (MutS_I, MutS_II, MUTSd)                |
+| Anopheles gambiae         | Anopheles gambiae        | XP_319476.4    | Three          | (MutS_I, MutS_II, MutS_V)               |
+| Saccharomyces cerevisiae  | Saccharomyces cerevisiae | 	NP_014551.1    | Four           | (MutS_I, MutS_II, MutS_III, ABC_ATPase) |
+| Kluyveromyces lactis      | Kluyveromyces lactis     | XP_455202.1    | Three          | (MutS_I, MutS_II, ABC_ATPase)           |
+| Eremothecium gossypii     | Eremothecium gossypii    | NP_986150.1    | Four           | (MutS_I, MutS_II, MutS_III, ABC_ATPase) |
+| Schizosaccharomyces pombe | Fission Yeast            | XP_001713136.1 | Three          | (MutS_I, MutS_II, ABC_ATPase)           |
+| Pyricularia oryzae        | Pyricularia oryzae       | XP_003718090.1 | Four           | (MutS_I, MutS_II, MutS_III, ABC_ATPase) |
+| Neurospora crassa         | Neurospora crassa        | XP_959643.1    | Four           | (MutS_I, MutS_II, MutS_III, ABC_ATPase) |
+| Arabidopsis thaliana      | Thale Cress              | NP_566804.3    | Four           | (MutS_I, MutS_II, MutS_III, ABC_ATPase) |
+5. There are 17 sequences in the mRNA file and 4 in the protein file
+6. I expected there to be the same amount of sequences in each file
+7. doesnt exist
+
+8-11.
+- multiple conserved domains would use E-INS-i
+- one conserved domain would use L-INS-i
+- a single short domain would use G-INS-i
+
+12. ![img](MSA.png)
+MutS_I is mostly conserved throughout, MutS_II is variable toward the beginning and end but more conserved toward in the middle, MutS_III is variable throughout most of the domain, MUTSd is more variable toward the end, MutS_IV is most variable toward the middle of the domain, MutS_V is highly conserved, and ABC_ATPase is mostly highly conserved. 
+
+13. There are 101 sequences in the FASTA file
+14. You take the proteins of interest and use the mafft command inside the terminal to create an output alignment file. Then you can use that file to compare against other protein sequences, with the output file acting as a sequence motif. Comparing these files will allow any sequences that match the motif to be identified, meaning those sequences match the protein you originally were looking at. 
+- homo sapiens, canis lupis familiaris, bos taurus, mus musculus, and rattus norvegicus are all very similar in the patterns of their mhs2 protein
+- Saccharomyces cervisiae, kluyveromyces lactis, and eremothecium gossypii all have similar patterns in their mhs2 protein, specifically in the MutS_III domain.
+- Pyricularia oryzae, neruospora crassa, and arbidopsis thaliana also all have similar protein patterns, specifically in their MutS_II and MutS_III domains
+
+| # target name     | accession | query name    | accession | E-value | score  | bias | E-value   | score  | bias | exp | reg | clu | ov | env | dom | rep | inc | description of target                                          |
+|-------------------|-----------|---------------|-----------|---------|--------|------|-----------|--------|------|-----|-----|-----|----|-----|-----|-----|-----|----------------------------------------------------------------|
+| John_cena_protein | -         | protein_mafft | -         |       0 | 1611.1 |  7.8 |         0 | 1610.9 |  7.8 |   1 |   1 |   0 |  0 |   1 |   1 |   1 |   1 | -                                                              |
+| XP_012783992.1    | -         | protein_mafft | -         |       0 | 1409.8 | 13.1 | 2.90E-286 |  944.5 | 10.3 |   3 |   1 |   1 |  1 |   2 |   2 |   2 |   2 | PREDICTED: DNA mismatch repair protein Msh2 [Ochotona princeps |

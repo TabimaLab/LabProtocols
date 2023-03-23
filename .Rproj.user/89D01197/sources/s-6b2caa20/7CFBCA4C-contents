@@ -1,0 +1,59 @@
+---
+title: "QC and trimming"
+author: "Manning DelCogliano"
+date: '2023-02-28'
+output: html_document
+---
+
+USING SO6 from now on!!
+
+#### First, make a copy of the Illumina directory:
+
+```
+/course_data/BIOL209/Cyano_2023/Illumina/01.RawData$ cp -R S06 /Tabima_lab/homes/mdelcogliano/Genome/QC_Trim/
+```
+
+#### Then run fastqc for both the forward and the reverse
+
+```
+/Smaug_SSD/bin/fastqc -o ../FASTQC/ S06*.fq.gz
+```
+
+### Summary of the Forward fastqc
+
+![](/Tabima_lab/homes/mdelcogliano/Genome/QC_Trim/FBasicStats.png)
+This shows the total number of sequences (5,590,033) and those that have been flagged as poor quality (0). All of the sequences are 150bp in length.
+
+![](/Tabima_lab/homes/mdelcogliano/Genome/QC_Trim/FBaseSeqQual.png)
+Our forward reads have very high quality.
+
+![](/Tabima_lab/homes/mdelcogliano/Genome/QC_Trim/FBaseTileQual.png)
+This is the only spot in the fastqc that requires consideration. There are some very faint blue bands of lower quality per tile; however, as they are very faint and we have so many sequences, it is not enough to significantly be considered of poor quality.
+
+![](/Tabima_lab/homes/mdelcogliano/Genome/QC_Trim/FGCQual.png)
+This is another place of concern, where the GC contents do not overlap directly with the theoretical. Still, we do not see two peaks as would indicate that something is very wrong with the data, nor do we see a massive shift between the theoretical and the experimental GC distributions. To me, this still is not enough to require trimming.
+
+![](/Tabima_lab/homes/mdelcogliano/Genome/QC_Trim/FSeqContent.png)
+Similar to the previous problem, the sequence content for the forward read is not perfect over the first few reads, as it should be T=A and G=C, but as it is only a serious problem for about the first five bp in the read, it is not worth trimming.
+
+Overall, we decided **not** to perform the trimming on the forward read for S06 because there were not highly specific issues causing the quality of the reads to decrease. There are no overrepresented sequences, nor was there any adapter contamination. The sequence duplication did not give enough of an indication that trimming was needed for us to comply (not shown for simplicity). If we had truly wanted to consider trimming, we may have wanted to remove a few base pairs off of the ends of the lower quality reads; however, that would have decreased the number of total base pairs in each sample, making them uneven, and thus no longer as comparable.
+
+### Summary of the reverse fastqc
+
+![](/Tabima_lab/homes/mdelcogliano/Genome/QC_Trim/RBasicStats.png)
+This summary of the basic statistics for the reverse read, similarly shows the same number of total sequences as the forward, with no sequences flagged because of low quality, where every sequence has a length of 150 base pairs, which was the target size.
+
+![](/Tabima_lab/homes/mdelcogliano/Genome/QC_Trim/RBaseSeqQual.png)
+Our reverse reads also give very high quality results.
+
+![](/Tabima_lab/homes/mdelcogliano/Genome/QC_Trim/RBaseTileQual.png)
+As we see no discoloration in any of the tiles, we can conclude that the sequence quality per tile is extremely high for every tile. This gives us no indication of needing to trim any of the sequences.
+
+![](/Tabima_lab/homes/mdelcogliano/Genome/QC_Trim/RGCQual.png)
+Like the forward reads, the GC content does not directly pair with the theoretical distribution, but as it is not a drastic difference, there is no need to trim the sequences as we cannot (at this stage) alter the GC content.
+
+![](/Tabima_lab/homes/mdelcogliano/Genome/QC_Trim/RSeqContent.png)
+
+While this again shows not a perfect match between the sequence content over the first few reads, as you should expect G=C and T=A, but it is not enough for us to choose to trim the sequences.
+
+Overall, we decided **not** to trim the sequences in our reverse reads. While there may have been some sequence quality that wasn't perfect during the first couple of base pairs, there were no sequences that were flagged for bad quality, there were no adapters contaminating the sample, and there were no overrepresented sequences. The duplication levels were well within the limit for keeping the sequences as is (not shown for simplicity). Again, we could have chosen to delete the first few base pairs from reads of lower quality, but as none of the sequences were highly troublesome, it was not worth it to perform the trimming. 

@@ -1,0 +1,23 @@
+---
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+### Rarefaction
+
+Use the rarefaction curves generated above to assess how well the community has been sampled.
+
+Are you satisfied with the number of clones sequenced in the paper to sample the diversity of the community, or would you recommend sequencing more clones and if so how many more?
+
+Looking at the rarefaction curves, are there any obvious patterns in how well the different sample sites (i.e. plume vs non-plume vs surface or across certain dates) have been sampled for diversity?
+
+### Alpha Diversity
+
+Use the rarefaction curves generated above to assess how well the community has been sampled.
+
+Are you satisfied with the number of clones sequenced in the paper to sample the diversity of the community, or would you recommend sequencing more clones and if so how many more?
+
+Looking at the rarefaction curves, are there any obvious patterns in how well the different sample sites (i.e. plume vs non-plume vs surface or across certain dates) have been sampled for diversity?
+
+Are there any noticeable patterns in the relative values (i.e. the height) of mode values (the dark horizontal bar in each box) for the different sets of samples (i.e. NP vs P & across months) when using the different alpha diversity measurements (i.e. richness, Shannon, Simpson)?

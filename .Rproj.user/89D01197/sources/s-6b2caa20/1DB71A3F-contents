@@ -1,0 +1,28 @@
+Biostats Lab 2
+
+install.packages("Hmisc")
+install.packages("ggplot2") is already installed
+
+SockeyeFemaleBodyMass <- read.csv("SockeyeFemaleBodyMass.csv")
+head(SockeyeFemaleBodyMass)
+str(SockeyeFemaleBodyMass)
+
+ggplot(SockeyeFemaleBodyMass, aes(massKg)) + geom_histogram(binwidth=0.6)
+ggplot(SockeyeFemaleBodyMass, aes(massKg)) + geom_histogram(binwidth=0.05)
+
+massrange <- 3.528 - 1.18
+
+I = 1 + log(228)/log(2)
+I
+
+massrange/I
+
+RiceI = 2*228^(1/3)
+RiceI
+
+Skipped a bunch of steps to get to:
+  ggplot(data = SpiderAmputations, aes(x = amp_status, y = speed)) + geom_jitter(width = .1, height = 0)
+ggplot(data = ChocolateNobels, aes(x = chocolateConsumption, y = nobelPrizes) + geom_jitter(width = .1, height = 0)
+
+ggplot(data = ChocolateNobels, aes(x = chocolateConsumption, y = NobelPrizes)) + geom_point()
+

@@ -1,0 +1,44 @@
+install.packages('Hmisc')
+library(Hmisc)
+library(ggplot2)
+
+ChocolateNobels <- read.csv('ChocolateNobels.csv')
+SpiderAmps <- read.csv("SpiderAmputations.csv")
+Fish_data <- read.csv("SockeyeFemaleBodyMass.csv")
+SticklebackPlates <- read.csv("SticklebackPlates.csv")
+
+p_hat <- 15/16
+p_hat
+
+SE_p_hat <- (sqrt((p_hat*(1-p_hat))/16))
+SE_p_hat
+
+binom.test(15,16,.9)
+
+colnames(ChocolateNobels)[3] <- 'nobels.won'
+head(ChocolateNobels)
+
+chisq.test(ChocolateNobels$nobels.won)
+
+dpois(0:3, lambda=.6)
+dpois(0:2, lambda=0.6) -> expected
+expected
+sum(dpois(0:3, lambda=0.6))
+
+1-sum(expected) -> expected2
+append(expected,expected2) -> expected
+sum(expected)
+
+c(203,39,18,15) -> observed
+observed
+
+
+chisq.test(observed, p=expected) -> results
+results
+
+str(results)
+results$expected
+
+1- pchisq(results$statistic,2)
+
+shapiro.test(Fish_data$massKg)

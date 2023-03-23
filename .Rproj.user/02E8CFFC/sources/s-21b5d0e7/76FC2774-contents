@@ -1,0 +1,88 @@
+---
+title: "ELN_bioinformatics"
+author: "jasper perseus carleton"
+date: '2022-09-09'
+output: html_document
+---
+
+# Jasper Carleton's *really* cool awesome CV
+[Linkedin](https://www.linkedin.com/in/jasper-carleton-68171320a/)
+
+***
+
+![Image of me in high school playing hockey](~/49542506908_75bbd33884_6k.jpg)
+
+***
+
+## **Education**
+
+### Clark University, Worcester MA 
+
+- Expected BA of `Biology` in 2024
+- Dean's List Second Honors in Spring 2021, Dean's List First Honors in Fall 2022
+- Presidential Scholarship 2020-2024
+
+### Canterbury School, New Milford CT, 2020
+
+- Honor Society
+- Philip H. Brodie Award for exceptional achievement and all-around service to Canterbury School
+
+## **Relevant Experience**
+
+### Tabima Lab Researcher: May 2022 - Present
+Clark University, Worcester, MA
+
+- Lead experiments on fungi of interest
+- Coordinate field work with colleagues to gather environmental specimen
+- Assist other researchers as needed
+- Keep lab clean and organized
+
+### Bookseller: May 2021 - December 2021
+Barnes and Noble, Millbury/Waterbury, MA/CT
+
+- Organized and cleaned bookstore
+- Assisted customers find specific books and gave recommendations
+- Utilized book database for locating and ordering books
+
+### Physical Plant Worker: 2018 - 2020
+Canterbury School, New Milford, CT
+
+- Aided and completed painting, cleaning, assembling furniture, driving company vehicles, and lifting and moving classroom and school-related equipment
+
+## **Other Really Cool Jasper Information**
+
+### Likes and Dislikes
+|Likes|Dislikes|
+|-----|--------|
+|Frogs|Dead frogs|
+|Fungi|Celery|
+|Stuffed Animals|Mean people|
+|Books|People who rip books|
+
+
+### Code that Jasper can do
+```
+a little bit of python
+```
+
+### Super Cool fungi
+![Basi!](https://av.tib.eu/thumbnail/14393/full)
+
+
+### Syllabus for bioinformatics
+|       |                                                  Lecture                                                  |                   Lab                  |    Assignments   |   |
+|:-----:|:---------------------------------------------------------------------------------------------------------:|:--------------------------------------:|:----------------:|---|
+| 1     | Introduction/Syllabus/Class Structure. Why Bioinformatics? Identifying the goals of computational biology |                                        |                  |   |
+| 2     | Reproducibility and replicability: Creating electronic notebooks in R                                     |                                        |                  |   |
+| 3     | Basics of the linux command line 1: What is the command line?                                             |                                        | Assignment 1     |   |
+| 4     | Basics of the linux command line 2: File handling and basic Linux commands                                |                                        |                  |   |
+| 5     | A review of molecular biology and the central dogma                                                       | Exploring the computational cluster    | Assignment 2     |   |
+| 6     | A computational introduction to “the gene”                                                                | The central dogma in bioinformatics I  |                  |   |
+| 7     | Identifying patterns and connecting them with funcions                                                    | The central dogma in bioinformatics II | Pre-proposal due |   |
+| 8     | Databases 1: Genic functions using online resources (BLAST, HMMER)                                        |                                        | Assignment 3     |   |
+| 9     | Databases 2: Protein functions (PFAM, InterPro Scan)                                                      |                                        |                  |   |
+| 10    | Detecting similarities: Homology at the molecular level                                                   | Sequence alignments                    | Assignment 4     |   |
+| 11    | Introduction to phylogenetics                                                                             |                                        |                  |   |
+| 12    | Introduction to genomics: What does a genome look like?                                                   |                                        | Assignment 5     |   |
+| 13    |                                                                                                           |                                        |                  |   |
+| 14-15 | Final Project                                                                                             |                                        |                  |   |

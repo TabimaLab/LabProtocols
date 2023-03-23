@@ -1,0 +1,44 @@
+install.packages("car")
+install.packages("scales")
+install.packages("stringr")
+
+library(epitools)
+library(Hmisc)
+library(scales)
+library(ggplot2)
+library(car)
+library(scales)
+library(stringr)
+
+beforespider <- SpiderAmputations$speed[SpiderAmputations$amp_status=="before"]
+afterspider <- SpiderAmputations$speed[SpiderAmputations$amp_status=="after"]
+
+differences <- afterspider - beforespider
+differences
+
+mean(differences)
+
+shapiro.test(differences)
+
+t.test(speed~ amp_status,paired=TRUE,data=SpiderAmputations)
+
+ggplot(data = SpiderAmputations, aes(x = amp_status, y = speed)) + geom_boxplot() +scale_y_continuous(limits=c(0, 5.75),breaks=pretty_breaks()) + theme_bw() + ylab("Speed (ft/s)") + xlab("Amputation Status")
+
+ZebraFishBoldness <- read.csv("ZebraFishBoldness.csv")
+head(ZebraFishBoldness)
+
+leveneTest(ZebraFishBoldness$secondsAggressiveActivity~ZebraFishBoldness$genotype)
+
+FiddlerCrabFans <- read.csv("FiddlerCrabFans.csv")
+head(FiddlerCrabFans)
+
+se <- function(mass){sd(mass)/sqrt(length(mass))}
+FUN <- function(x)c(avg=mean(x),med=median(x),inter.quart.range=IQR(x),std.err=se(x),CI=se(x)*2,std.dev=sd(x))
+Crab.summary <- aggregate(FiddlerCrabFans$bodyTemperature,list(crabType = FiddlerCrabFans$crabType),FUN)
+Crab.summary
+Crab.summary <- do.call(data.frame,Crab.summary)
+Crab.summary
+
+ggplot(Crab.summary,aes(x=bodyTemperature,y=crabType)) + stat_summary (fun.data=mean_cl_normal, color= 'some_color')
+                                                                    
+                                                                     

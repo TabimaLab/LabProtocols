@@ -1,0 +1,369 @@
+---
+title: "Nutrients"
+author: "Manning DelCogliano"
+date: '2022-10-04'
+output: html_document
+---
+```{R}
+library(tabulizer)
+library(tidyverse)
+#library(ggpubr)
+library(ggrepel)
+library(viridis)
+library(ggfortify)
+```
+
+# Step 1: Scraping the data
+
+To scrape the data we will need to import the PDF files and figure out how we can read them in R.
+
+Remember: We edited the PDF's just to include the results, nothing else. We also created a single file per month.
+
+```{r, eval=FALSE}
+out1 <- extract_tables('/Tabima_lab/homes/mdelcogliano/Nutrients/Nutrients_june.pdf', method = "decide")
+august <- extract_tables('/Tabima_lab/homes/mdelcogliano/Nutrients/Nutrients_august.pdf', method = "decide")
+```
+
+The previous command uses the `tabulizer` package to read the PDF file. The `extract.tables` command has taken every page of the `Nutrients_june` file and made a data frame (technically a matrix but that doesn't matter) per page, and then grouped them all in one list called `out1`
+
+So, for example, page 1 is:
+
+```{r, eval=FALSE}
+out1[[1]]
+```
+
+Now, if you want to extract the data of interest from each page, you need to do a set of things:
+
+1. You need to find the elements in the **first column** (which is the one that has the info of each nutrient or metric of interest) that matter. In this case, those are:
+
+- Location (Found by searching for the words `Client ID` and `Location`)
+- Number of *E. coli* (Search for the word `Coli`)
+- Solids (Search for the word `Solids`)
+- Ammonia, Nitrates, Phosphorus (Total) and Phosphorus (Soluble) (Search for the words `Ammonia`, `Nitrates`,`Phosphorus, Total`,`Soluble` )
+
+Manning, BIOl123/MBB101 question: How do you search for a pattern?
+
+She says `grep`. Lets see.
+
+```{r, eval=FALSE}
+grep(pattern = "Client ID", x = out1[[1]][,1])
+client <- out1[[1]][grep(pattern = "Client ID", x = out1[[1]][,1]),]
+```
+
+She's right.
+
+However, we need not one but two patters. And Manning does not know about booleans.
+
+Manning, do you know what a boolean is?
+
+She says no.That makes sense.
+
+A boolean is a character that allows you to use `AND, OR, TRUE or FALSE` statements.
+
+For example, if you want to get an ice cream AND cookies, you would do
+
+```
+grep(pattern = "Ice cream & cookies")
+```
+
+or, if you want to get either one
+
+```
+grep(pattern = "Ice cream|cookies")
+```
+
+So, the `&` in PERL booleans means `AND` and the `|` means `OR`. (PERL was a great langauge that no one uses anymore but it has the best regular expressions (WAT?)). 
+
+A regular expression is a set of characters that recognize one or mutiple patters of a kind. For example: `\t` is a tab. `\s` is a space. `\d` is a digit (ANY number), `.` means anything.
+
+So, if you're looking for the words `blazeIt420` and `blazeIt421` you would do `grep(pattern="blazeIt42\d")`
+
+So, we need two patterns: One is `Client` and the other is `Location`, so:
+
+```{r, eval=FALSE}
+grep(pattern = "Client ID|Location", x = out1[[1]][,1])
+```
+
+OH SHIT WE HAVE TWO NUMBERS. Don't panic.
+
+```{r, eval=FALSE}
+client <- out1[[1]][grep(pattern = "Client ID|Location", x = out1[[1]][,1]),]
+client
+```
+
+Manning, MBB101 quiz 2: How do we replace things that we don't give a fuck about?
+
+She says no. Classic.
+
+its `sed`. In the case of R, there is no `sed`, but there is a command called `gsub` (Its the same shit).
+
+Why do we care? Do we need it to say Client ID or Location? Nope. So lets get rid of it. 
+
+`gsub` is `grep` in steroids (They even share the same manual), so it means that `gsub` also uses `PERL regex`"
+
+```{r, eval=FALSE}
+client <- gsub(client, pattern = "Client ID: |Sample Location: ", replacement = "")
+client <- client[,1]
+```
+
+Cool. Now we do the same with all the other objects. Lets try the *E. coli*
+
+```{r, eval=FALSE}
+coli <- out1[[1]][grep(pattern = "Coli", x = out1[[1]][,1]),]
+coli
+```
+
+Manning says that we just need the number on the first element. Lets see:
+
+```{r, eval=FALSE}
+coli[1]
+```
+ 
+There are MANY ways of doing it. The simplest is to erase all non-numeric characters:
+ 
+```{r, eval=FALSE}
+coli <-  gsub(x = coli[1], pattern = ".+\\) ", replacement = "")
+```
+
+Ok, this works. And we can do the same for all different metrics of interest:
+
+```{r, eval=FALSE}
+solids <-  out1[[1]][grep(pattern = "Solids", x = out1[[1]][,1]),1] %>% gsub(pattern = ".+ ", replacement = "")
+n.ammonia <-  out1[[1]][grep(pattern = "Ammonia", x = out1[[1]][,1]),1] %>% gsub(pattern = ".+ ", replacement = "")
+n.nitrate <- out1[[1]][grep(pattern = "Nitrate", x = out1[[1]][,1]),1] %>% gsub(pattern = ".+ ", replacement = "")
+p.total <-  out1[[1]][grep(pattern = "Phosphorus, Total", x = out1[[1]][,1]),1] %>% gsub(pattern = ".+ ", replacement = "")
+p.soluble <-  out1[[1]][grep(pattern = "Soluble", x = out1[[1]][,1]),1] %>% gsub(pattern = ".+ ", replacement = "")
+```
+
+So, since all elements have the same length, we can create a data frame
+
+```{r, eval=FALSE}
+data.frame("Site"=client[1], "Location"=client[2], coli, solids, n.ammonia, n.nitrate, p.total, p.soluble)
+```
+
+
+Since we are repeating this AGAIN AND AGAIN AND FUCKING AGAIN, then we need to create a function that does the searching for us:
+
+```{r, eval=FALSE}
+data_process <- function (x) {
+  client <- x[grep(pattern = "Client ID|Location", x = x[,1]),1] %>% gsub(pattern = "Client ID: |Sample Location: ", replacement = "")
+  coli <- x[grep(pattern = "Coli", x = x[,1]),1] %>%  gsub(pattern = ".+\\) ", replacement = "")
+  solids <-  x[grep(pattern = "Solids", x = x[,1]),1] %>% gsub(pattern = ".+ ", replacement = "")
+  n.ammonia <-  x[grep(pattern = "Ammonia", x = x[,1]),1] %>% gsub(pattern = ".+ ", replacement = "")
+  n.nitrate <- x[grep(pattern = "Nitrate", x = x[,1]),1] %>% gsub(pattern = ".+ ", replacement = "")
+  p.total <-  x[grep(pattern = "Phosphorus, Total", x = x[,1]),1] %>% gsub(pattern = ".+ ", replacement = "")
+  p.soluble <-  x[grep(pattern = "Soluble", x = x[,1]),1] %>% gsub(pattern = ".+ ", replacement = "")
+  
+  return(data.frame("Site"=client[1], "Location"=client[2], coli, solids, n.ammonia, n.nitrate, p.total, p.soluble))
+}
+```
+
+And now, for the coup de etat
+
+```{r, eval=FALSE}
+for (i in 1:length(out1)){
+  cat(i,"\n")
+  data_process(x = out1[[i]])
+}
+```
+
+AH DF 4 is being an asshloe, lets see why:
+
+```{r, eval=FALSE}
+data_process(out1[[4]])
+```
+
+Its missing the `Phosporus soluble`. We need to create a check in our function that if the value doesn't exist it creates it.
+
+```{r, eval=FALSE}
+data_process <- function (x) {
+  client <- x[grep(pattern = "Client ID|Location", x = x[,1]),1] %>% gsub(pattern = "Client ID: |Sample Location: ", replacement = "")
+  coli <- x[grep(pattern = "Coli", x = x[,1]),1] %>%  gsub(pattern = ".+\\) ", replacement = "")
+  solids <-  x[grep(pattern = "Solids", x = x[,1]),1] %>% gsub(pattern = ".+ ", replacement = "")
+  n.ammonia <-  x[grep(pattern = "Ammonia", x = x[,1]),1] %>% gsub(pattern = ".+ ", replacement = "")
+  n.nitrate <- x[grep(pattern = "Nitrate", x = x[,1]),1] %>% gsub(pattern = ".+ ", replacement = "")
+  p.total <-  x[grep(pattern = "Phosphorus, Total", x = x[,1]),1] %>% gsub(pattern = ".+ ", replacement = "")
+  p.soluble <-  x[grep(pattern = "Soluble", x = x[,1]),1] %>% gsub(pattern = ".+ ", replacement = "")
+  
+  if(length(p.soluble) == 0 ){
+    p.soluble <- NA
+  }
+
+  
+  return(tibble("Site"=client[1], "Location"=client[2], coli, solids, n.ammonia, n.nitrate, p.total, p.soluble))
+    }
+```
+
+
+## Function for datasets
+
+```{r, eval=FALSE}
+june.results <- lapply(out1, data_process) %>% do.call(rbind, .) %>% tibble %>% mutate(across(c("coli":"p.soluble"), as.numeric))
+june.results[is.na(june.results)] <- 0
+
+aug.results <- lapply(august, data_process) %>% do.call(rbind, .) %>% tibble %>% mutate(across(c("coli":"p.soluble"), as.numeric))
+```
+
+Now, some things: 
+
+1. We need to change the name of MB1 to MR1 because its wrong on the June table
+2. We need to remove CPE6, CR4, GI3, MB2, PR7B in June
+3. We need to remove anything that ends in D
+4. Remove the S from the names
+5. Add the real locations
+
+
+1. Change the name of MB1
+
+```{r, eval=FALSE}
+june.results$Site[june.results$Site %in% "MB1"] <- "MR1_1"
+june.results$Site[june.results$Site %in% "MR1"] <- "MB1"
+june.results$Site[june.results$Site %in% "MR1_1"] <- "MR1"
+```
+
+2. We need to remove CPE6, CR4, GI3, MB2, PR7B in June and BB4 and MB3 from August
+
+```{r, eval=FALSE}
+june.results <- june.results[!june.results$Site %in% c("CP6E", "CR4", "GI3S", "MB2", "PR7B"), ]
+aug.results <- aug.results[!aug.results$Site %in% c("BB4", "MB3"), ]
+```
+
+3. We need to remove anything that ends in D
+
+```{r, eval=FALSE}
+june.results <- june.results[grep(pattern = "D$", x = june.results$Site, invert = T),]
+```
+
+4. Remove all S from names
+
+```{r, eval=FALSE}
+june.results$Site <- gsub(pattern = "S$", replacement = "", x = june.results$Site)
+```
+
+5. Add the real locations
+
+```{r, eval=FALSE}
+location_manning <- read.table("~/Tabima_lab/lab_data/Water_nutrients/location_list", sep = "\t", row.names = NULL, header = T)
+
+june.results <- merge(location_manning, june.results, all.y = T, by = "Site")
+june.results <- subset(june.results, select=-Location)
+
+aug.results <- merge(location_manning, aug.results, all.y = T, by = "Site")
+aug.results <- subset(aug.results, select=-Location)
+```
+
+FINALLY (THANK GOD) we need to combine the two data frames. However, we need to add a column that separates the months
+
+```{r, eval=FALSE}
+june.results$month <- "June2022"
+aug.results$month <- "August2022"
+
+all_data <- rbind(june.results, aug.results) %>% tibble
+```
+
+***
+
+# Things to do:
+
+1. Remove P. soluble and august
+
+```{r}
+all_data <- readRDS("all_data.rds")
+all_june <- all_data[all_data$month %in% "June2022",]
+june.final <- subset(all_june, select = -p.soluble)
+```
+
+2. Add chlorophyll
+
+```{r}
+chloro_geo <- read.table("chloro_geo.txt", sep = "\t", header = T)
+june.final <- merge(chloro_geo, june.final, by = "Site")
+```
+
+3. Measure distance between first point and the rest
+
+There is a function called `distm` in the `geosphere` package that creates the distance between two points.
+
+```{r}
+library(geosphere)
+
+dist.place <- vector()
+for (i in 1:nrow(june.final)){
+  lon <- as.vector(june.final[i, 4]) %>% unlist %>% unname
+  lat <- as.vector(june.final[i, 3]) %>% unlist %>% unname
+  dist.mat <- distm(c(-71.86054, 42.29723), c(lon, lat) , fun = distHaversine)
+  dist.place[i] <- as.vector(dist.mat)
+}
+
+june.final <- data.frame(june.final, dist.place)
+june.final
+```
+
+
+***
+
+# PCA
+
+```{r}
+rownames(june.final) <- june.final$Site
+june.pca <- june.final[,c(2,7:11)]
+
+
+# DOING PCA
+june.pca.res <- prcomp(june.pca, scale = T)
+june.pca.res$rotation <- -1*june.pca.res$rotation
+```
+
+## By Site
+```{r}
+autoplot(june.pca.res, data = june.final, colour = 'Site_type',
+         loadings = TRUE, loadings.colour = 'black', 
+         loadings.label = TRUE, loadings.label.size = 3, shape = FALSE, label.size = 3,  frame = TRUE, frame.type = 't')  + theme_bw() + scale_color_viridis(discrete = T, option = "C", begin = 0.5, end = 0.8) + scale_fill_viridis(discrete = T, option = "C", begin = 0.5, end = 0.8)
+```
+
+### PERMANOVA
+
+```{r}
+june_c <- scale(june.final[,c(2,7:11)])
+# PerMANOVA - partitioning the euclidean distance matrix by species
+library(vegan)
+adonis2(june_c ~ Site_type, data = june.final, method='eu')
+```
+
+
+## By distance
+```{r}
+autoplot(june.pca.res, data = june.final, colour = 'dist.place',
+         loadings = TRUE, loadings.colour = 'grey',
+         loadings.label = TRUE, loadings.label.size = 3, shape = FALSE, label.size = 3) + theme_bw() + scale_color_viridis(discrete = F, option = "C") + guides(fill=guide_legend(title="New Legend Title"))
+```
+```{r}
+adonis2(june_c ~ dist.place, data = june.final, method='eu')
+```
+
+## By geographic location
+```{r}
+autoplot(june.pca.res, data = june.final, colour = 'LocManning',
+         loadings = TRUE, loadings.colour = 'grey',
+         loadings.label = TRUE, loadings.label.size = 3, shape = FALSE, label.size = 3)  + theme_bw() + scale_color_viridis(discrete = T, option = "D")
+
+adonis2(june_c ~ LocManning, data = june.final, method='eu')
+```
+
+
+***
+
+
+# MAP
+
+```{r, fig.height=12, fig.width=8}
+library(ggmap)
+library(leaflet)
+
+my_location <- c(lon=-71.82, lat=42.263)
+register_google(key = "AIzaSyA6ZILUoqkjcQAD8-GjdFIuzIFjA4ZPmlU")
+myMap <- get_map(location=my_location, source="stamen", maptype="terrain", crop=FALSE, zoom = 13) 
+
+ ggmap(myMap, darken = c(0.4, "white")) + 
+      geom_label(data=june.final, aes(x=Longitude, y=Latitude, label=Site, fill=LocManning), fontface = "bold", colour = "white") + scale_fill_viridis(discrete = T, option = "D", end = 0.9)
+```

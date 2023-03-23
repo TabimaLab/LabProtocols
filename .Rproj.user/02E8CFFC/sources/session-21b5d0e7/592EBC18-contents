@@ -1,0 +1,33 @@
+#2/15/23
+
+#Vectors - 1 dimensional objects, i.e. list of numbers, list of words
+
+vec \<- 'hello' tor \<- 'jasper' c(vec,tor)
+
+#2 dimensional objects, two vectors of the same length/same number of objects - i.e. tables
+
+df \<- data.frame(c(1:4),c(1:4)) df[2,2]
+
+#3/1/23
+a <- c("A","A","A")
+# data frames can take any kind of data - i.e. letters, numbers, words
+
+# matrices can only use 1 type of data at a time, allow mathematic operations
+
+# using as.matric(data.frame(x,y)) will turn all variables into one type, i.e turns numbers into strings "1"
+
+# lists - like file cabinets, you can put anything you want in each cabinet
+b <- c(1:3)
+
+# dataframe
+c <- data.frame(a,b)
+
+file.cabinet <- list(a,b,c)
+file.cabinet
+file.cabinet[1]
+file.cabinet[2]
+file.cabinet[3]
+
+# i love penguins
+
+cbind(file.cabinet[[3]], file.cabinet[[3]])

@@ -1,0 +1,6 @@
+"0","primerHits <- function(primer, fn) {"
+"0","    # Counts number of reads in which the primer is found"
+"0","    nhits <- vcountPattern(primer, sread(readFastq(fn)), fixed = FALSE)"
+"0","    return(sum(nhits > 0))"
+"0","}"
+"0",""

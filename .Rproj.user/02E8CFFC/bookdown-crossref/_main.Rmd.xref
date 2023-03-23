@@ -1,0 +1,54 @@
+h1:lab-notebook Lab Notebook
+h2:important-links Important links:
+h1:goals-and-expectations Goals and Expectations
+h1:isolation-and-culturing Isolation and Culturing
+h2:culturing Culturing
+h2:isolation-from-fresh-poop Isolation From Fresh Poop
+h2:liquid-sporulation-culture Liquid Sporulation Culture
+h1:poop-extractions Poop Extractions
+h2:fecal-pellet-storage Fecal Pellet Storage:
+h3:notes-before-beginning Notes Before Beginning:
+h2:dna-extraction-protocol DNA Extraction Protocol:
+h1:water-extraction-protocol-for-sterivex-filters Water Extraction Protocol for Sterivex Filters
+h2:hot-lysis Hot Lysis
+h2:phenolchloroform-extraction Phenol/Chloroform Extraction
+h2:ethanol-precipitation Ethanol Precipitation
+h2:solutions-to-prepare Solutions To Prepare
+h3:dna-extraction-buffer-deb-makes-45ml DNA Extraction Buffer (DEB) Makes 45mL
+h3:low-edta-te Low EDTA TE:
+h3:m-sodium-acetate-ph-5.2 3 M sodium acetate, pH 5.2
+h3:n-nacl 5 N NaCl
+h3:naoh-2n NaOH (2N)
+h1:soil-extractions Soil Extractions
+h2:detailed-procedure-from-dneasy-powersoil-extraction-kit Detailed Procedure from DNeasy Powersoil Extraction kit
+h1:high-molecular-weight-dna-extraction 
+h2:protocol 
+h2:required-ppe  
+h2:pre-extraction-steps  
+h2:critical-safety-information.  
+h2:reagent-function-and-troubleshooting  
+h2:references  
+h1:pcr-protocols PCR Protocols
+h2:dreamtaq-any-primers DreamTaq (Any Primers)
+h3:protocol-mixture-dreamtaq Protocol Mixture (DreamTaq)
+h3:protocol-conditions-dreamtaq Protocol Conditions (DreamTaq)
+h2:its-metabarcoding-its1-fits2 ITS Metabarcoding (ITS1-F/ITS2)
+h3:protocol-mixture-its1-fits2 Protocol Mixture (ITS1-F/ITS2)
+h3:protocol-conditions-its1-fits2 Protocol Conditions (ITS1-F/ITS2)
+h2:its1its4 ITS1/ITS4
+h3:protocol-mixture-its1its4 Protocol Mixture (ITS1/ITS4)
+h3:protocol-conditions-its1its4 Protocol Conditions (ITS1/ITS4)
+h2:lsu LSU
+h3:protocol-mixture-lsu Protocol Mixture (LSU)
+h3:protocol-conditions-lsu Protocol Conditions (LSU)
+h2:basf611basr1340 BASF611/BASR1340
+h3:protocol-mixture-bas Protocol Mixture (BAS)
+h3:protocol-conditions-bas Protocol Conditions (BAS)
+h2:exosap EXOSAP
+h3:protocol-mixture-exosap Protocol Mixture (EXOSAP)
+h3:protocol-conditions-exosap Protocol Conditions (EXOSAP)
+h1:a-basic-roadmap-of-the-cluster A basic roadmap of the cluster
+h2:how-to-log-in How to log in
+h1:safety-and-ppe Safety and PPE
+h1:submitting-samples-to-novogene Submitting samples to Novogene
+
