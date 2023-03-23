@@ -1,8 +1,8 @@
-# **High Molecular Weight DNA Extraction**
+# High Molecular Weight DNA Extraction
 
 **Important safety, preparation, and protocol notes below.**
 
-## **Protocol**
+## Protocol
 
 1.  Combine 325µL Buffer A, 325µL Buffer B, 130µL Buffer C, 87µL PVP(1%), and 5µL Proteinase K into a 2ml lo-bind tube, mix until viscous.
 
@@ -60,7 +60,7 @@
 
 ***
 
-## **Bead-cleaning protocols**
+## Bead-cleaning protocols
 
 1. Add a a 1 to 1 volume of MagBeads to the extracted and eluted DNA
 
@@ -86,7 +86,7 @@
 
 ***
 
-## **Required PPE** 
+## Required PPE 
 
 -   Safety glasses 
 
@@ -100,7 +100,7 @@
 
 -   Fume hood 
 
-## **Pre-Extraction Steps** 
+## Pre-Extraction Steps 
 
 **Day Prior** 
 
@@ -126,7 +126,7 @@
 
 -   Freeze fresh molecular grade isopropanol (1mL x sample \#) and fresh 70% ethanol (2mL x sample \#). Make 70% ethanol from 200 proof stock and DNase/RNase free water. 
 
-## **Critical Safety Information.** 
+## Critical Safety Information. 
 
 **Phenol:Chloroform:Isoamyl alcohol** and **Chloroform:Isoamyl alcohol** are EXTREMLY toxic and should only be handled while wearing full PPE while working in the fume hood. Discard any PPE that contacts either mixture. Necessary PPE includes: 
 
@@ -155,7 +155,7 @@ If you are exposed to **Liquid Nitrogen,** please follow the management exposure
 
 Skin or eye exposure: Soak the affected areas in warm water for 15 minutes. Do not agitate affected areas via rubbing. After soaking, file an incident report with lab leadership and seek medical attention. 
 
-## **Reagent Function and Troubleshooting** 
+## Reagent Function and Troubleshooting 
 
 **Buffer Mixes** 
 
@@ -221,7 +221,7 @@ Qubit quantification detects dyes that only bind to dsDNA molecules. This allows
 
 NanoDrop assesses DNA concentration by measuring UV absorbance at 230nm, 260nm and 280nm wavelengths. NanoDrop cannot differentiate between nucleic acid and contaminants that absorb at the same wavelength which can contribute to inaccurate concentration readings. NanoDrop measurement also does not account for fragment length and measures all DNA equally. Yet, nucleic acid purity ratios including proteins and phenols (260/280) and organic contaminants (260/230) can only be determined by NanoDrop [3]. 
 
-## **References** 
+## References 
 
 [1] Heikrujam, J., Kishor, R., & Behari Mazumder, P. (2020). The chemistry behind plant DNA isolation protocols. Biochemical Analysis Tools - Methods for Bio-Molecules Studies, 1--12. <https://doi.org/10.5772/intechopen.92206> 
 
