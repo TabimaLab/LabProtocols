@@ -1,4 +1,0 @@
-"0","data.frame(""Site""=client[1], ""Location""=client[2], coli, solids, n.ammonia, n.nitrate, p.total, p.soluble)"
-"2","Error in data.frame(Site = client[1], Location = client[2], coli, solids,  : 
-  arguments imply differing number of rows: 1, 0
-"

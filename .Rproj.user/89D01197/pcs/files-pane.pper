@@ -1,9 +1,13 @@
 {
     "sortOrder": [
         {
+            "columnIndex": 4,
+            "ascending": false
+        },
+        {
             "columnIndex": 2,
             "ascending": true
         }
     ],
-    "path": "~/Tabima_lab/documents_and_protocols/lab_notebook"
+    "path": "~/Genome/QC_Trim/S06"
 }

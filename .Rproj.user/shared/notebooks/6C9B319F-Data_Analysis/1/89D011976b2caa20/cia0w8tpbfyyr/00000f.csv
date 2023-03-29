@@ -1,3 +1,0 @@
-"0","seqtab.nochim <- removeBimeraDenovo(seqtab, method=""consensus"", multithread=TRUE, verbose=TRUE)"
-"2","Identified 1412 bimeras out of 21396 input sequences.
-"

@@ -17,4 +17,9 @@ h3:protocol-conditions-bas Protocol Conditions (BAS)
 h2:exosap EXOSAP
 h3:protocol-mixture-exosap Protocol Mixture (EXOSAP)
 h3:protocol-conditions-exosap Protocol Conditions (EXOSAP)
+h2:primer-sequences Primer sequences
+h3:s-for-bacteria 16s for bacteria
+h3:lsu-1 LSU
+h3:its1-metabarcoding ITS1 (metabarcoding)
+h3:its-whole-region ITS whole region
 

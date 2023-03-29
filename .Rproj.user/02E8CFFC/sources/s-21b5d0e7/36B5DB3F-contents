@@ -20,6 +20,14 @@ output: html_document
 | Unicycler       | UC                | 47      | 1212            | 1212                | 61.27% | 91.021 KB | 241   |                  |
 
 
+```
+bwa index best_assembly.fasta
+bwa mem -t 4 best_assembly.fasta S06_CKDN230002813-1A_HT2J2DSX5_L2_1.fq.gz S06_CKDN230002813-1A_HT2J2DSX5_L2_2.fq.gz > bwa.sam
+
+| samtools view -S -b | samtools sort -O bam -o mapped.bam
+samtools index mapped.bam
+``
+
 
 ```
 sbatch -J blast_S07 --wrap="blastn -num_threads 4 -task megablast -query assembly.fasta -db /Smaug_SSD/bin/ncbi-blast-2.11.0+/blastdb/nt -outfmt '6 qseqid staxids bitscore std' -max_target_seqs 1 -max_hsps 1  -evalue 1e-25 -out best_assembly.fasta" -o blast_S06

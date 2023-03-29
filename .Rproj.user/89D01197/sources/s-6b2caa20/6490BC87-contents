@@ -40,3 +40,13 @@ N=length - you want a higher number
 sendsketch.sh in=best_assembly.fasta refseq
 
 sbatch -J blast_S06 --wrap="blastn -num_threads 4 -task megablast -query assembly.fasta -db /Smaug_SSD/bin/ncbi-blast-2.11.0+/blastdb/nt -outfmt '6 qseqid staxids bitscore std' -max_target_seqs 1 -max_hsps 1 -evalue 1e-25 -out assembly.blast" -o blast_S06
+
+
+## To run unicylcer of our 
+sbatch -J unicycler_S06 --wrap="unicycler -1 S06_CKDN230002813-1A_HT2J2DSX5_L2_1.fq.gz -2 S06_CKDN230002813-1A_HT2J2DSX5_L2_2.fq.gz -l S06_nanopore.fastq -otest" -o long_read_assembly
+
+## RUN STATS FOR 3/29
+
+mdelcogliano@smaug:~/Genome/QC_Trim/S06/test$ /Smaug_SSD/bin/bbmap/stats.sh in=assembly.fasta
+
+## Then rename the directory "test" as something else
