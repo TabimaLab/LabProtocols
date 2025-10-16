@@ -1,0 +1,86 @@
+# Culture-Enriched Mycobiome Protocol for Amphibian Feces
+
+## Written by Javier Tabima, Tested by Aris Papadimitrou and Sam Matthews
+
+## Purpose: 
+
+To selectively enrich viable fungi from amphibian feces prior to DNA extraction and ITS barcoding.
+
+## Overview
+
+This protocol enriches fungal taxa from frog feces using a short-term liquid incubation to increase fungal biomass and reduce bacterial load before DNA extraction. The resulting DNA can be used for ITS-based community profiling or culture isolation.
+
+## Materials
+
+| Item | Notes |
+| --- | --- |
+| Fresh or frozen frog fecal pellets | Collect sterilely, store at −80 °C or in DNA/RNA Shield |
+| Sterile PBS or 0.1% Tween-80 | For sample homogenization |
+| Enrichment Medium | PDA- or SDA-based liquid medium |
+| Antibiotics | Chloramphenicol (50 µg/mL), Streptomycin (100 µg/mL), Penicillin G (100 U/mL) |
+| Sterile 50 mL tubes or flasks | For enrichment culture |
+| Orbital shaker (80-100 rpm) | Gentle aeration for oxygenation |
+| Centrifuge (≥5,000 × g) | To pellet cells/mycelia |
+| DNA extraction kit | ZymoBIOMICS or Qiagen PowerSoil Pro |
+
+## Enrichment Medium (Generalist)
+
+Per 1 L of medium:
+
+| Component                     | Amount                                                                        | Purpose             |
+|-------------------------------|-------------------------------------------------------------------------------|---------------------|
+| PDA broth powder (commercial) | 24 g                                                                          | Nutrient base       |
+| Distilled water               | 1 L                                                                           | Solvent             |
+| pH                            | 6.0 – 6.5                                                                     | Adjust if necessary |
+| Optional: antibiotics         | Chloramphenicol (50 µg/mL), Streptomycin (100 µg/mL), Penicillin G (100 U/mL) |                     |
+
+Autoclave the base medium, cool below 50 °C, and aseptically add antibiotics from sterile stock solutions.
+
+## Inoculation
+
+1\. Homogenize 1 fecal pellet in 1 mL sterile PBS or 0.1% Tween-80.  
+2\. Transfer 1 mL of suspension into 9 mL enrichment medium (1:10 ratio).  
+3\. Include a no-sample control tube.
+
+## Incubation
+
+| Parameter | Setting | Notes |
+| --- | --- | --- |
+| Temperature | 25-28 °C | Optimal for gut fungi |
+| Agitation | 80-100 rpm | Gentle shaking |
+| Duration | 48-72 h | Check daily for growth |
+
+- Cloudy medium or small hyphal fragments → fungal growth. 
+- Strong odor or heavy turbidity → bacterial contamination.
+
+## Harvesting the Enrichment
+
+1\. Centrifuge at 5,000 × g for 10 min.  
+2\. Discard supernatant and wash pellet once in sterile PBS.  
+3\. Proceed to DNA extraction or plate aliquots for culture isolation.
+
+##  DNA Extraction
+
+Extract DNA using a stool/soil DNA kit with bead-beating. Include blanks and medium-only controls. Quantify DNA with Qubit or Nanodrop.
+
+## ITS Barcoding / Amplicon Sequencing
+
+| Step | Details |
+| --- | --- |
+| Target region | ITS2 (preferred) - Novogene|
+| Analysis | QIIME2 + DADA2 + UNITE database |
+
+## Optional Modifications
+
+| Goal | Modification |
+| --- | --- |
+| Broader diversity | Run SDA and YM broths in parallel |
+| Zygomycete enrichment | Add 0.1 % casein hydrolysate; incubate microaerobically |
+| Slow growers | Dilute medium 1:2 with water; incubate 5 days |
+| Mixed-kingdom profiling | Extract DNA for both ITS2 and 16S rRNA amplicons |
+
+## 10\. Expected Outcomes
+
+• Increased fungal biomass for DNA extraction  
+• Recovery of diverse gut- and environment-associated fungi (e.g., Basidiobolus, Mucor, Candida, Aspergillus)  
+• Option to isolate viable cultures for downstream identification
